@@ -59,7 +59,7 @@ module.exports = {
          },
       }),
       new InjectManifest({
-         swSrc: path.resolve(__dirname, '../src/sw.js'),
+         swSrc: path.resolve(__dirname, '..', './src/sw.js'),
          maximumFileSizeToCacheInBytes: 50 * 1000 * 1000, //50mb,
          exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
       }),

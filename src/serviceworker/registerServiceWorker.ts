@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: 0 */
 import { WorkboxMessageEvent } from 'workbox-window/utils/WorkboxEvent';
 
 export const registerServiceWorker = async (): Promise<void> => {

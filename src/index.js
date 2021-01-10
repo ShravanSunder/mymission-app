@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
-import { registerServiceWorker } from './workbox/registerServiceWorker';
+import { registerServiceWorker } from './serviceworker/registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('app'));
 

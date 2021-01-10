@@ -1,4 +1,4 @@
-import { Button, createStyles, makeStyles, ThemeProvider } from '@material-ui/core';
+import { Button, createStyles, makeStyles, Theme, ThemeProvider } from '@material-ui/core';
 
 import { grey, green, red, yellow } from '@material-ui/core/colors';
 import React, { useMemo, useState } from 'react';
@@ -44,7 +44,7 @@ export const MainLayout = (): JSX.Element => {
 
    const [isDark] = useState<boolean>(true);
 
-   const theme = useMemo(() => {
+   const theme: Theme = useMemo(() => {
       return createAppTheme(isDark);
    }, [isDark]);
 

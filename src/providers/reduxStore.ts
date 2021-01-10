@@ -23,8 +23,8 @@ const enhancers = composeEnhancers(applyMiddleware(...middleware));
 // @ts-ignore
 export const reduxStore = configureStore({
    reducer: rootReducer,
-   enhancers: process.env.NODE_ENV !== 'production' ? enhancers : applyMiddleware(...middleware),
-   devTools: process.env.NODE_ENV !== 'production',
+   // enhancers: process.env.NODE_ENV !== 'production' ? enhancers : applyMiddleware(...middleware),
+   // devTools: process.env.NODE_ENV !== 'production',
 });
 
 export default reduxStore;

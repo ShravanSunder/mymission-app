@@ -5361,14 +5361,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/workbox-routing@npm:*":
+"@types/workbox-routing@npm:*, @types/workbox-routing@npm:^4.3.0":
   version: 4.3.0
   resolution: "@types/workbox-routing@npm:4.3.0"
   checksum: ad108e1b2849eb708323b5396df8897980ab354a88bf47ced9f58d8380d552738acfa6474f96a1792547f282d2623bbe14ab8bceceb2c44b9425f891c30933df
   languageName: node
   linkType: hard
 
-"@types/workbox-strategies@npm:*":
+"@types/workbox-strategies@npm:*, @types/workbox-strategies@npm:^4.3.0":
   version: 4.3.0
   resolution: "@types/workbox-strategies@npm:4.3.0"
   dependencies:
@@ -5411,6 +5411,13 @@ __metadata:
   version: 5.1.5
   resolution: "@types/workbox-webpack-plugin@npm:5.1.5"
   checksum: 5a8a98329dc140dcaf6ff6acc55598371ac55d78464b1c39063b31db44de5138ccd5f4eb7e4eebd2c04cf35f405d09f2d4a51bcc696d8bbf08fa58db4b4280d7
+  languageName: node
+  linkType: hard
+
+"@types/workbox-window@npm:^4.3.3":
+  version: 4.3.3
+  resolution: "@types/workbox-window@npm:4.3.3"
+  checksum: 5b16c81462adc18164ccbf5b7b37c42cbaf4861baf2146d0c47dfd6bd4dfe09280fcfc2e4803a812646169aa69b660e5fa51cd954f485837a04c217dea0e85c3
   languageName: node
   linkType: hard
 
@@ -7452,8 +7459,11 @@ __metadata:
     "@types/workbox-build": ^5.0.0
     "@types/workbox-core": ^4.3.0
     "@types/workbox-precaching": ^4.3.0
+    "@types/workbox-routing": ^4.3.0
+    "@types/workbox-strategies": ^4.3.0
     "@types/workbox-sw": ^4.3.1
     "@types/workbox-webpack-plugin": ^5.1.5
+    "@types/workbox-window": ^4.3.3
     "@typescript-eslint/eslint-plugin": ^4.12.0
     "@typescript-eslint/parser": ^4.12.0
     "@whitespace/storybook-addon-html": ^4.2.0

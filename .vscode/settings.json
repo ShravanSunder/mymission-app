@@ -1,4 +1,5 @@
 {
+   "editor.formatOnSave": true,
    "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -17,5 +18,16 @@
       "**/obj": true,
       ".yarn": true
    },
-   "explorerExclude.backup": null
+   "explorerExclude.backup": null,
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+   },
+   "eslint.probe": ["typescript", "typescriptreact"],
+   "editor.quickSuggestions": {
+      "strings": true
+   },
+
+   "css.validate": false,
+   "less.validate": false,
+   "scss.validate": false
 }

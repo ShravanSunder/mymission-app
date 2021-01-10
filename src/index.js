@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { App } from './App';
+import { registerServiceWorker } from './workbox/registerServiceWorker';
 
-import App from './App';
+ReactDOM.render(<App />, document.getElementById('app'));
 
-const title = 'React with Webpack and Babel';
-
-ReactDOM.render(
-  <App title={title} />,
-  document.getElementById('app')
-);
-
-module.hot.accept();
+if ('serviceWorker' in navigator) {
+   window.addEventListener('load', () => registerServiceWorker());
+}

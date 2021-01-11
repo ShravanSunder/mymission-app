@@ -1,7 +1,7 @@
 import { Button, Theme, ThemeProvider, createStyles, makeStyles } from '@material-ui/core';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { SnackbarProvider } from 'notistack';
-import { createAppTheme } from '~/styles/theme';
+import { createAppTheme } from '~~/styles/theme';
 
 import { grey, green, red, yellow } from '@material-ui/core/colors';
 

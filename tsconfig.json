@@ -68,7 +68,7 @@
       "resolveJsonModule": true,
       "types": ["jest"],
       "paths": {
-         "~/*": ["./src/*"]
+         "~~/*": ["./src/*"]
       }
       /** eof */
    },

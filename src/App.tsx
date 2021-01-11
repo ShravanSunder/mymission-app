@@ -1,7 +1,3 @@
-import './styles/css/tailwind-base.css';
-import './styles/css/tailwind-components.css';
-import './styles/css/tailwind-utilities.css';
-
 import { reduxStore } from './providers/reduxStore';
 import { Provider } from 'react-redux';
 

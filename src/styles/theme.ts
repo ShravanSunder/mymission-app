@@ -33,7 +33,7 @@ export const createAppTheme = (isDark: boolean): Theme => {
          fontFamily: ['sans-serif'].join(','),
          fontSize: 12,
       },
-      spacing: 6,
+      spacing: 12,
       overrides: {
          MuiTooltip: {
             tooltipPlacementTop: {

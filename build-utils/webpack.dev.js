@@ -29,7 +29,10 @@ const moduleRules = [
          },
          {
             loader: 'ts-loader',
-            options: { transpileOnly: true },
+            options: {
+               transpileOnly: true,
+               configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
+            },
          },
       ],
    },
@@ -38,20 +41,21 @@ const moduleRules = [
 module.exports = {
    mode: 'development',
    cache: cache,
+   target: 'web', // here because https://github.com/webpack/webpack-dev-server/issues/2758
    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
       new Dotenv({
          path: path.resolve(__dirname, '..', './.env.development'),
       }),
       new webpack.EvalSourceMapDevToolPlugin({
          exclude: ['vendor.js'],
       }),
-      new ReactRefreshWebpackPlugin(),
       new ForkTsCheckerWebpackPlugin({
          eslint: {
             files: './src/**/*.{ts,tsx,js,jsx}',
          },
       }),
+      new webpack.HotModuleReplacementPlugin(),
+      new ReactRefreshWebpackPlugin(),
       new InjectManifest({
          swSrc: path.resolve(__dirname, '..', './src/sw.js'),
          maximumFileSizeToCacheInBytes: 50 * 1000 * 1000, //50mb,
@@ -61,6 +65,7 @@ module.exports = {
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,
+      writeToDisk: true,
    },
    devtool: 'eval-source-map',
    module: {

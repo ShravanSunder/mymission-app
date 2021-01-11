@@ -7463,6 +7463,7 @@ __metadata:
     babel-eslint: ^10.1.0
     babel-loader: ^8.2.2
     clean-webpack-plugin: ^3.0.0
+    clsx: ^1.1.1
     connected-react-router: ^6.8.0
     cross-env: ^7.0.3
     css-loader: ^5.0.1
@@ -8433,7 +8434,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.0.4, clsx@npm:^1.1.0":
+"clsx@npm:^1.0.4, clsx@npm:^1.1.0, clsx@npm:^1.1.1":
   version: 1.1.1
   resolution: "clsx@npm:1.1.1"
   checksum: d8ae10ac0546da19fe8c9516886f6582a64a382cf4d09ea7d36d5287cafbdab1192ab249adc2cdf0310e0b0aeac4f4142cf7c738c98d9cb68c19ba24b6f673d5

@@ -1,8 +1,27 @@
-import { Button, Theme, ThemeProvider } from '@material-ui/core';
+import { Button, Theme, ThemeProvider, createStyles, makeStyles } from '@material-ui/core';
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { SnackbarProvider } from 'notistack';
-import { createAppTheme } from 'Monkey/styles/theme';
-import { useStyles } from './MainLayout';
+import { createAppTheme } from '~/styles/theme';
+
+import { grey, green, red, yellow } from '@material-ui/core/colors';
+
+export const useStyles = makeStyles(() => {
+   const snackbarRoot = {
+      color: `${grey[700]}!important`,
+      maxWidth: 280,
+      zIndex: 1000,
+   };
+
+   return createStyles({
+      info: { backgroundColor: `${grey[200]}!important`, ...snackbarRoot },
+      success: { backgroundColor: `${green[50]}!important`, ...snackbarRoot },
+      error: { backgroundColor: `${red[100]}!important`, ...snackbarRoot },
+      warning: {
+         backgroundColor: `${yellow[50]}!important`,
+         ...snackbarRoot,
+      },
+   });
+});
 
 export const MaterialProvider: FunctionComponent = ({ children }) => {
    const classes = useStyles();

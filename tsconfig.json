@@ -68,18 +68,7 @@
       "resolveJsonModule": true,
       "types": ["jest"],
       "paths": {
-         // "@/*": ["src/*"],
-         // "@*": ["src/*"]
-         // "~api/*": ["src/api/*"],
-         // "~components/*": ["src/components/*"],
-         // "~helpers/": ["src/helpers/*"],
-         // "~models/*": ["src/models/*"],
-         // "~providers/*": ["src/providers/*"],
-         // "~redux*": ["src/providers/redux/*"],
-         // "~services/*": ["src/services/*"],
-         // "~serviceworker/*": ["src/serviceworker/*"],
-         "~/*": ["./src/*"],
-         "Monkey*": ["./src/*"]
+         "~/*": ["./src/*"]
       }
       /** eof */
    },

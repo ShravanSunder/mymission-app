@@ -9,12 +9,6 @@ const cache = {
    //type: 'memory',
    type: 'filesystem',
    cacheLocation: path.resolve(__dirname, '.cache'),
-   store: 'pack',
-   buildDependencies: {
-      // This makes all dependencies of this file - build dependencies
-      config: [__filename],
-      // By default webpack and loaders are build dependencies
-   },
 };
 
 const moduleRules = [

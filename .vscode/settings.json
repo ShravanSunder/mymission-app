@@ -29,5 +29,13 @@
 
    "css.validate": false,
    "less.validate": false,
-   "scss.validate": false
+   "scss.validate": false,
+   "tailwindCSS.emmetCompletions": true,
+   "tailwindCSS.includeLanguages": {
+      "plaintext": "javascript",
+      "javascript": "javascript",
+      "HTML": "html",
+      "typescriptreact": "javascript",
+      "javascriptreact": "javascript"
+   }
 }

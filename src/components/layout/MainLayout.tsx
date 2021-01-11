@@ -10,17 +10,18 @@ import { red } from '@material-ui/core/colors';
 export const useStyles = makeStyles((theme: Theme) =>
    createStyles({
       root: {
-         backgroundColor: red[200],
+         backgroundColor: red[50],
       },
    })
 );
 
 export const MainLayout = (): JSX.Element => {
    const classes = useStyles();
+   const string = 'md';
 
    return (
       <MaterialProvider>
-         <Grid container spacing={1}>
+         <Grid class="text" container spacing={1}>
             <Grid item xs={12} sm={6} md={3}>
                <Paper className={classes.root}>xs=12 jjjsm=6 md=3</Paper>
             </Grid>

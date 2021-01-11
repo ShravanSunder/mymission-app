@@ -1,7 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { logger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
-import { applyMiddleware, compose } from 'redux';
 import { rootReducer, history } from './reduxRoot';
 import { routerMiddleware } from 'connected-react-router';
 

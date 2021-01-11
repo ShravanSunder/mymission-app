@@ -1,10 +1,8 @@
 module.exports = {
-   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html', './src/index.html'],
-   presets: [],
-   plugins: [],
-   darkMode: true, // or 'media' or 'class'
-   theme: {
-      extend: {},
+   purge: {
+      enabled: process.env.NODE_ENV === 'production',
+      content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html', './src/index.html'],
    },
+   darkMode: 'class', // or 'media' or 'class'
    important: false,
 };

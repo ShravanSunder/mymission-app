@@ -17,11 +17,11 @@ export const useStyles = makeStyles((theme: Theme) =>
 
 export const MainLayout = (): JSX.Element => {
    const classes = useStyles();
-   const string = 'md';
+   const string = 'test-';
 
    return (
       <MaterialProvider>
-         <Grid class="text" container spacing={1}>
+         <Grid container spacing={1}>
             <Grid item xs={12} sm={6} md={3}>
                <Paper className={classes.root}>xs=12 jjjsm=6 md=3</Paper>
             </Grid>

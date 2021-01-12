@@ -1,24 +1,15 @@
-import { reduxStore } from './providers/reduxStore';
-import { Provider } from 'react-redux';
-
-import React, { StrictMode } from 'react';
-
+import React, { StrictMode, Suspense } from 'react';
 import { ErrorBoundary, ErrorFallback } from './components/common/ErrorFallback';
-import { MainLayout } from './components/layout/MainLayout';
-import { ConnectedRouter } from 'connected-react-router';
-import { history } from './providers/reduxRoot';
+
+const StateProviders = React.lazy(() => import('~~/components/app/StateProvider'));
 
 export const App = (): JSX.Element => {
    return (
       <StrictMode>
          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Provider store={reduxStore}>
-               <ConnectedRouter history={history}>
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
-                     <MainLayout />
-                  </ErrorBoundary>
-               </ConnectedRouter>
-            </Provider>
+            <Suspense fallback={<div>loading...</div>}>
+               <StateProviders></StateProviders>
+            </Suspense>
          </ErrorBoundary>
       </StrictMode>
    );

@@ -4,10 +4,10 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "webpack serve --config build-utils/webpack.config.js --env env=dev",
-      "build:webpack": "NODE_OPTIONS=--max-old-space-size=4096 && webpack --config build-utils/webpack.config.js --env env=prod",
+      "start": "NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --config build-utils/webpack.config.js --env env=dev",
+      "build:webpack": "webpack --config build-utils/webpack.config.js --env env=prod",
       "build:workbox-simple": "workbox injectManifest workbox-config.js",
-      "build:analyze": "yarn run build -- --env addon=bundleanalyze",
+      "build:analyze": "yarn run build:webpack --env addon=bundleanalyze",
       "test": "jest",
       "test:update": "jest -u",
       "test:generate-output": "jest --json --outputFile=.jest-test-results.json",

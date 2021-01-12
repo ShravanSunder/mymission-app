@@ -1,6 +1,6 @@
 module.exports = {
    purge: {
-      enabled: true, //process.env.NODE_ENV === 'production',
+      enabled: true,
       content: ['./src/**/*.{jsx,tsx,html}', './src/index.html'],
    },
    darkMode: 'class', // or 'media' or 'class'

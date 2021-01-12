@@ -1,7 +1,7 @@
 import { WorkboxLifecycleEvent, WorkboxMessageEvent } from 'workbox-window/utils/WorkboxEvent';
 import { Workbox } from 'workbox-window/Workbox';
 
-export function addWorkboxEvents(wb: Workbox) {
+export const addWorkboxEvents = (wb: Workbox): void => {
    wb.addEventListener('activated', (event: WorkboxLifecycleEvent) => {
       // `event.isUpdate` will be true if another version of the service
       // worker was controlling the page when this version was registered.
@@ -36,4 +36,4 @@ export function addWorkboxEvents(wb: Workbox) {
          payload: { urlsToCache },
       }).catch(null);
    });
-}
+};

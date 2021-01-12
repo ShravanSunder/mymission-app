@@ -1,11 +1,11 @@
 import { Button, Theme, ThemeProvider, createStyles, makeStyles } from '@material-ui/core';
-import React, { FunctionComponent, useMemo, useState } from 'react';
+import React, { FunctionComponent, Suspense, useMemo, useState } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
 
 import { grey, green, red, yellow } from '@material-ui/core/colors';
 
-export const useStyles = makeStyles(() => {
+const useStyles = makeStyles(() => {
    const snackbarRoot = {
       color: `${grey[700]}!important`,
       maxWidth: 280,
@@ -23,7 +23,7 @@ export const useStyles = makeStyles(() => {
    });
 });
 
-export const MaterialProvider: FunctionComponent = ({ children }) => {
+const MaterialProvider: FunctionComponent = ({ children }) => {
    const classes = useStyles();
    const notistackRef = React.createRef() as any;
    const onClickDismiss = (key: string | number) => () => {
@@ -58,8 +58,10 @@ export const MaterialProvider: FunctionComponent = ({ children }) => {
                vertical: 'bottom',
                horizontal: 'center',
             }}>
-            {children}
+            <Suspense fallback={<div>loading...</div>}>{children}</Suspense>
          </SnackbarProvider>
       </ThemeProvider>
    );
 };
+
+export default MaterialProvider;

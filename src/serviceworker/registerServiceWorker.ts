@@ -1,8 +1,6 @@
-/* eslint @typescript-eslint/no-explicit-any: 0 */
-import { addWorkboxEvents } from './addWorkboxEvents';
-
 export const registerServiceWorker = async (): Promise<void> => {
    const { Workbox } = await import('workbox-window');
+   const { addWorkboxEvents } = await import('./addWorkboxEvents');
 
    const wb = new Workbox('/sw.js');
 

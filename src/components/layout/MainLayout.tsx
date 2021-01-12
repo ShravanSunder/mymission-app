@@ -1,11 +1,13 @@
-// import '~~/styles/css/tailwind-base.css';
-// import '~~/styles/css/tailwind-components.css';
-// import '~~/styles/css/tailwind-utilities.css';
+import '~~/styles/css/tailwind-base.css';
+import '~~/styles/css/tailwind-components.css';
+import '~~/styles/css/tailwind-utilities.css';
+
 import React from 'react';
-import { MaterialProvider } from './MaterialProvider';
-import { Box, createStyles, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
+import { Box, createStyles, Grid, makeStyles, Paper } from '@material-ui/core';
 import clsx from 'clsx';
 import { red } from '@material-ui/core/colors';
+
+const MaterialProvider = React.lazy(() => import('~~/components/app/MaterialProvider'));
 
 export const useStyles = makeStyles(() =>
    createStyles({
@@ -15,7 +17,7 @@ export const useStyles = makeStyles(() =>
    })
 );
 
-export const MainLayout = (): JSX.Element => {
+const MainLayout = (): JSX.Element => {
    const classes = useStyles();
    const string = 'test-';
 
@@ -34,3 +36,5 @@ export const MainLayout = (): JSX.Element => {
       </MaterialProvider>
    );
 };
+
+export default MainLayout;

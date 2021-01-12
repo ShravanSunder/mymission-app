@@ -4,15 +4,20 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 const moduleRules = [
    {
-      test: /\.(js|jsx|)$/,
-      use: ['babel-loader'],
-      exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
-   },
-   {
-      test: /\.(ts|tsx)$/,
-      exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
-      use: ['ts-loader'],
-      options: { transpileOnly: true },
+      test: /\.[tj]sx?$/,
+      exclude: [/node_modules/, /\.test\.[tj]sx?$/, /\.stories\.tsx?$/],
+      use: [
+         {
+            loader: require.resolve('babel-loader'),
+         },
+         {
+            loader: 'ts-loader',
+            options: {
+               transpileOnly: true,
+               configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
+            },
+         },
+      ],
    },
 ];
 
@@ -31,12 +36,12 @@ module.exports = {
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
    },
-   devtool: 'source-map',
+   //devtool: 'source-map',
    module: {
       rules: moduleRules,
    },
    output: {
-      path: path.resolve(__dirname, '..', 'build'),
+      path: path.resolve(__dirname, '..', './build'),
       filename: '[name].[contenthash].js',
    },
    optimization: {

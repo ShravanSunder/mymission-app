@@ -11,6 +11,12 @@ const name = 'Boilerpate-PWA with React|Redux|Workbox';
 const description = 'Boilerpate-PWA';
 const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
 
+console.log('---------------------------');
+console.log('---------------------------');
+console.log('---------------------------');
+
+const iconSrc = path.resolve(__dirname, '..', './assets/icon.png');
+
 const pwaManifestConfig = {
    name: title,
    short_name: name,
@@ -19,7 +25,7 @@ const pwaManifestConfig = {
    crossorigin: 'use-credentials',
    icons: [
       {
-         src: path.resolve('assets/icon.png'),
+         src: iconSrc,
          sizes: [96, 128, 192, 256, 384, 512],
       },
    ],
@@ -32,10 +38,13 @@ const moduleRules = [
          {
             loader: 'style-loader',
          },
-         { loader: 'css-loader', options: { importLoaders: 1 } },
-         // {
-         //    loader: 'postcss-loader',
-         // },
+         {
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
+         },
+         {
+            loader: 'postcss-loader',
+         },
       ],
       exclude: /node_modules/,
    },
@@ -68,12 +77,16 @@ module.exports = {
          template: path.resolve(__dirname, '..', './src/index.html'),
       }),
       new WebpackPwaManifest(pwaManifestConfig),
-      new FaviconsWebpackPlugin('assets/icon.png'),
+      // new FaviconsWebpackPlugin(iconSrc),
    ],
    output: {
       path: path.resolve(__dirname, '..', './dist'),
       filename: '[name].[contenthash].js',
       //publicPath: './dist',
+   },
+   performance: {
+      // maxEntrypointSize: 512000,
+      // maxAssetSize: 512000,
    },
    optimization: {
       runtimeChunk: 'single',
@@ -81,7 +94,7 @@ module.exports = {
       splitChunks: {
          cacheGroups: {
             vendor: {
-               test: /[\\/]node_modules[\\/]/,
+               test: /([/\/])?node_modules([/\/])?/,
                name(module) {
                   // get the name. E.g. node_modules/packageName/not/this/part.js
                   // or node_modules/packageName

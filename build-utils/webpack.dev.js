@@ -19,12 +19,7 @@ const moduleRules = [
          {
             loader: require.resolve('babel-loader'),
             options: {
-               cacheDirectory: true,
-               // ... other options
-               plugins: [
-                  // ... other plugins
-                  require.resolve('react-refresh/babel'),
-               ].filter(Boolean),
+               plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
             },
          },
          {
@@ -40,7 +35,16 @@ const moduleRules = [
 
 module.exports = {
    mode: 'development',
+   stats: {
+      warningsCount: true,
+      errorsCount: true,
+      logging: 'verbose',
+   },
+   infrastructureLogging: {
+      level: 'verbose',
+   },
    cache: cache,
+   bail: true,
    target: 'web', // here because https://github.com/webpack/webpack-dev-server/issues/2758
    plugins: [
       new Dotenv({
@@ -66,11 +70,11 @@ module.exports = {
       contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,
       host: 'localhost',
+      clientLogLevel: 'trace',
       liveReload: false,
       writeToDisk: true,
       //https: true,
       port: 7035,
-      compress: true,
    },
    devtool: 'eval-source-map',
    module: {

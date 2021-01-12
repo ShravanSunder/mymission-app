@@ -77,7 +77,7 @@ module.exports = {
          template: path.resolve(__dirname, '..', './src/index.html'),
       }),
       new WebpackPwaManifest(pwaManifestConfig),
-      // new FaviconsWebpackPlugin(iconSrc),
+      new FaviconsWebpackPlugin(iconSrc),
    ],
    output: {
       path: path.resolve(__dirname, '..', './dist'),

@@ -13,7 +13,7 @@
       "test:generate-output": "jest --json --outputFile=.jest-test-results.json",
       "lint": "eslint 'src/*.{js,ts,tsx}' --fix",
       "lint:quiet": "eslint 'src/*.{js,ts,tsx}' --quiet --fix",
-      "commit": "pretty-quick --staged --verbose",
+      "commit": "yarn run pretty-quick --staged --verbose --pattern \"./src/*.*(js|jsx|ts|tsx)\"",
       "build:tailwind": "postcss src/tailwind.css -o src/tailwind.generated.css",
       "watch:tailwind": "postcss -w src/tailwind.css -o src/tailwind.generated.css",
       "storybook": "start-storybook -p 6006",
@@ -153,9 +153,9 @@
    },
    "resolutions": {
       "postcss": "latest",
-      "react": "^17.0.1",
-      "react-dom": "^17.0.1",
-      "redux": "^4.0.5"
+      "react": "latest",
+      "react-dom": "latest",
+      "redux": "latest"
    },
    "husky": {
       "hooks": {

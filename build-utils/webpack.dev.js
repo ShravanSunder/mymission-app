@@ -35,16 +35,16 @@ const moduleRules = [
 
 module.exports = {
    mode: 'development',
-   stats: {
-      warningsCount: true,
-      errorsCount: true,
-      logging: 'verbose',
-   },
-   infrastructureLogging: {
-      level: 'verbose',
-   },
+   // stats: {
+   //    warningsCount: true,
+   //    errorsCount: true,
+   //    logging: 'verbose',
+   // },
+   // infrastructureLogging: {
+   //    level: 'verbose',
+   // },
    cache: cache,
-   bail: true,
+   bail: false,
    target: 'web', // here because https://github.com/webpack/webpack-dev-server/issues/2758
    plugins: [
       new Dotenv({
@@ -67,14 +67,13 @@ module.exports = {
       }),
    ],
    devServer: {
-      //contentBase: path.resolve(__dirname, '..', './dist'),
+      contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,
-
+      overlay: false,
+      //noInfo: true,
       host: 'localhost',
-      //clientLogLevel: 'trace',
       liveReload: false,
       //writeToDisk: true,
-      //https: true,
       port: 7035,
    },
    devtool: 'eval-source-map',
@@ -86,3 +85,5 @@ module.exports = {
       chunkIds: 'named',
    },
 };
+
+//remember webpack dev server errors are caused by chokdair FSWatch.  you have to wrap the lib code in a try catch directly

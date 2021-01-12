@@ -26,8 +26,8 @@
       "plugin:@typescript-eslint/recommended",
       "plugin:@typescript-eslint/recommended-requiring-type-checking",
       "plugin:react/recommended",
-      "plugin:jest/recommended"
-      // "plugin:tailwind/recommended"
+      "plugin:jest/recommended",
+      "plugin:tailwind/recommended"
    ],
    "plugins": ["prettier"],
    "rules": {

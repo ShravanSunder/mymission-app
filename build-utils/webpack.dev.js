@@ -67,12 +67,13 @@ module.exports = {
       }),
    ],
    devServer: {
-      contentBase: path.resolve(__dirname, '..', './dist'),
+      //contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,
+
       host: 'localhost',
-      clientLogLevel: 'trace',
+      //clientLogLevel: 'trace',
       liveReload: false,
-      writeToDisk: true,
+      //writeToDisk: true,
       //https: true,
       port: 7035,
    },

@@ -35,18 +35,13 @@ module.exports = {
    module: {
       rules: moduleRules,
    },
+   output: {
+      path: path.resolve(__dirname, '..', 'build'),
+      filename: '[name].[contenthash].js',
+   },
    optimization: {
       minimize: true,
       removeAvailableModules: true,
       removeEmptyChunks: true,
-      splitChunks: {
-         cacheGroups: {
-            vendor: {
-               test: /[\\/]node_modules[\\/]/,
-               name: 'vendors',
-               chunks: 'all',
-            },
-         },
-      },
    },
 };

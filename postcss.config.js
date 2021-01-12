@@ -4,7 +4,6 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
    content: [
       './public/**/*.html',
       './src/**/*.tsx',
-      './src/**/*.ts',
       './src/**/*.jsx',
       './src/index.html',
       // etc.
@@ -24,7 +23,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
 
 // // Export all plugins our postcss should use
 // module.exports = {
-//    plugins: [require('postcss-import'), require('tailwindcss'), require('autoprefixer')], //, ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])],
+//    plugins: [r[equire('postcss-import'),] require('tailwindcss'), require('autoprefixer')], //, ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])],
 // };
 
 module.exports = {

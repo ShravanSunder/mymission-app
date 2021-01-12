@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { logger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
-import { rootReducer, history } from './reduxRoot';
+import { rootReducer, history, rootEpic } from './reduxRoot';
 import { routerMiddleware } from 'connected-react-router';
 
 console.log('Redux store configuration loading');
@@ -16,4 +16,5 @@ export const reduxStore = configureStore({
    devTools: process.env.NODE_ENV !== 'production',
 });
 
+epicMiddleware.run(rootEpic);
 export default reduxStore;

@@ -47,7 +47,7 @@ module.exports = {
          path: path.resolve(__dirname, '..', './.env.development'),
       }),
       new webpack.EvalSourceMapDevToolPlugin({
-         exclude: ['vendor.js'],
+         exclude: [/vendor\..*.js/],
       }),
       new ForkTsCheckerWebpackPlugin({
          eslint: {
@@ -65,7 +65,12 @@ module.exports = {
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,
+      host: 'localhost',
+      liveReload: false,
       writeToDisk: true,
+      //https: true,
+      port: 7035,
+      compress: true,
    },
    devtool: 'eval-source-map',
    module: {

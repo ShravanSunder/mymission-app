@@ -31,7 +31,7 @@ export const MaterialProvider: FunctionComponent = ({ children }) => {
       notistackRef?.current?.closeSnackbar(key);
    };
 
-   const [isDark] = useState<boolean>(true);
+   const [isDark] = useState<boolean>(false);
 
    const theme: Theme = useMemo(() => {
       return createAppTheme(isDark);

@@ -3,6 +3,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { combineEpics } from 'redux-observable';
 import { connectRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
+import { catchError } from 'rxjs/operators';
 
 export const history = createBrowserHistory();
 
@@ -12,4 +13,12 @@ const reducers = {
 export const rootReducer = combineReducers(reducers);
 export type RootState = ReturnType<typeof rootReducer>;
 
-export const rootEpic = combineEpics([]);
+const epics: [] = [];
+
+export const rootEpic = (action$: any, store$: any, dependencies: any) =>
+   combineEpics(...epics)(action$, store$, dependencies).pipe(
+      catchError((error, source) => {
+         console.error(error);
+         return source;
+      })
+   );

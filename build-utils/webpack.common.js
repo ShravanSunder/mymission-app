@@ -33,10 +33,9 @@ const moduleRules = [
             loader: 'style-loader',
          },
          { loader: 'css-loader', options: { importLoaders: 1 } },
-
-         {
-            loader: 'postcss-loader',
-         },
+         // {
+         //    loader: 'postcss-loader',
+         // },
       ],
       exclude: /node_modules/,
    },
@@ -72,11 +71,26 @@ module.exports = {
       new FaviconsWebpackPlugin('assets/icon.png'),
    ],
    output: {
-      path: path.resolve(__dirname, '..', 'dist'),
+      path: path.resolve(__dirname, '..', './dist'),
       filename: '[name].[contenthash].js',
+      //publicPath: './dist',
    },
    optimization: {
       runtimeChunk: 'single',
       moduleIds: 'deterministic',
+      splitChunks: {
+         cacheGroups: {
+            vendor: {
+               test: /[\\/]node_modules[\\/]/,
+               name(module) {
+                  // get the name. E.g. node_modules/packageName/not/this/part.js
+                  // or node_modules/packageName
+                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                  // npm package names are URL-safe, but some servers don't like @ symbols
+                  return `vendor.npm.${packageName.replace('@', '_')}`;
+               },
+            },
+         },
+      },
    },
 };

@@ -14,6 +14,7 @@ Advanced React with Webpack Setup. How to set it up yourself:
 
 -  React 16
 -  Webpack 5
+-  
 -  Babel 7
 -  Hot Module Replacement
 -  Dev + Production Builds

@@ -1,5 +1,5 @@
 import { Button, Theme, ThemeProvider, createStyles, makeStyles } from '@material-ui/core';
-import React, { FunctionComponent, Suspense, useMemo, useState } from 'react';
+import React, { FunctionComponent, useMemo, useState } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
 
@@ -58,7 +58,7 @@ const MaterialProvider: FunctionComponent = ({ children }) => {
                vertical: 'bottom',
                horizontal: 'center',
             }}>
-            <Suspense fallback={<div>loading...</div>}>{children}</Suspense>
+            {children}
          </SnackbarProvider>
       </ThemeProvider>
    );

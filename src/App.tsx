@@ -7,7 +7,7 @@ export const App = (): JSX.Element => {
    return (
       <StrictMode>
          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<div>loading...</div>}>
+            <Suspense fallback={<div></div>}>
                <StateProviders></StateProviders>
             </Suspense>
          </ErrorBoundary>

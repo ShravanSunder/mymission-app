@@ -20,17 +20,13 @@ const useStyles = makeStyles(() =>
 const Trial = () => {
    const classes = useStyles();
    return (
-      <Box>
-         <Grid container spacing={1}>
-            <Grid item xs={12} sm={6} md={5} lg={4}>
-               <Box>
-                  <Paper className={classes.root}>Sideframe</Paper>
-               </Box>
+      <Box width={'100wh'} height={'100vh'}>
+         <Grid container spacing={0}>
+            <Grid item xs={12} sm={5} md={4} lg={4}>
+               <Box className={classes.root} height={'100vh'}></Box>
             </Grid>
-            <Grid item xs={12} sm={6} md={7} lg={8}>
-               <Box width={10}>
-                  <Paper className={classes.root}>Main View</Paper>
-               </Box>
+            <Grid item xs={12} sm={7} md={8} lg={8}>
+               <Box className={classes.root} height={'100vh'}></Box>
             </Grid>
          </Grid>
       </Box>

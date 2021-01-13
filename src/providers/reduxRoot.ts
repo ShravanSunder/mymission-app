@@ -1,15 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { combineReducers } from '@reduxjs/toolkit';
 import { combineEpics } from 'redux-observable';
-import { connectRouter } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
 import { catchError } from 'rxjs/operators';
 
-export const history = createBrowserHistory();
-
-const reducers = {
-   router: connectRouter(history),
-};
+const reducers = {};
 export const rootReducer = combineReducers(reducers);
 export type RootState = ReturnType<typeof rootReducer>;
 

@@ -1,13 +1,12 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { logger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
-import { rootReducer, history, rootEpic } from './reduxRoot';
-import { routerMiddleware } from 'connected-react-router';
+import { rootReducer, rootEpic } from './reduxRoot';
 
 console.log('Redux store configuration loading');
 
 const epicMiddleware = createEpicMiddleware();
-const middleware = getDefaultMiddleware().concat(logger, epicMiddleware, routerMiddleware(history));
+const middleware = getDefaultMiddleware().concat(logger, epicMiddleware);
 
 // @ts-ignore
 export const reduxStore = configureStore({

@@ -6,8 +6,8 @@ import React, { Suspense } from 'react';
 import { Box, createStyles, Grid, makeStyles, Paper } from '@material-ui/core';
 import clsx from 'clsx';
 import { red } from '@material-ui/core/colors';
-import MaterialProvider from '../app/MaterialProvider';
-import { Redirect, Route, Switch } from 'react-router';
+import MaterialProvider from '~~/components/app/MaterialProvider';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
    createStyles({
@@ -37,23 +37,18 @@ const Trial = () => {
    );
 };
 
-const MainLayout = (): JSX.Element => {
+const RootRoutes = (): JSX.Element => {
    return (
       <MaterialProvider>
-         <div>
-            <Switch>
-               <Route exact path="/" render={() => <Trial></Trial>} />
-               <Route path="/trial">
-                  <Trial></Trial>
-               </Route>
-               <Route path="/noworkie/:id">
-                  <div>dsfsdfsdf</div>
-               </Route>
-               <Route render={() => <Trial></Trial>} />
-            </Switch>
-         </div>
+         <BrowserRouter>
+            <Routes>
+               <Route path="/" element={<Trial></Trial>} />
+               <Route path="/users/*" element={<div>users path</div>}></Route>
+               <Route path="/noworkie/:id" element={<div>dsfsdfsdf</div>}></Route>
+            </Routes>
+         </BrowserRouter>
       </MaterialProvider>
    );
 };
 
-export default MainLayout;
+export default RootRoutes;

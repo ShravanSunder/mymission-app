@@ -9,11 +9,9 @@ const StateProvider = (): JSX.Element => {
    return (
       <Provider store={reduxStore}>
          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-               <Suspense fallback={<div></div>}>
-                  <MainLayout />
-               </Suspense>
-            </ErrorBoundary>
+            <Suspense fallback={<div></div>}>
+               <MainLayout />
+            </Suspense>
          </ErrorBoundary>
       </Provider>
    );

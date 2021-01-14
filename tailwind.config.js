@@ -5,4 +5,7 @@ module.exports = {
    },
    darkMode: 'class', // or 'media' or 'class'
    important: false,
+   corePlugins: {
+      //preflight: false,
+   },
 };

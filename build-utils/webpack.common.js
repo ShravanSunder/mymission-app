@@ -11,9 +11,9 @@ const name = 'Boilerpate-PWA with React|Redux|Workbox';
 const description = 'Boilerpate-PWA';
 const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
 
-console.log('---------------------------');
-console.log('---------------------------');
-console.log('---------------------------');
+console.log('------------------------------------------------------');
+console.log('------------------------------------------------------');
+console.log('------------------------------------------------------');
 
 const iconSrc = path.resolve(__dirname, '..', './assets/icon.png');
 

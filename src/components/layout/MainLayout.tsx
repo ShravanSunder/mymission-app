@@ -3,6 +3,9 @@ import { Box, createStyles, Fab, Grid, IconButton, makeStyles, Typography } from
 import clsx from 'clsx';
 import { purple, red } from '@material-ui/core/colors';
 
+import tw, { css } from 'twin.macro';
+// import {css} from '@emotion/react'
+
 import { Alarm as AlarmIcon } from '@material-ui/icons';
 
 const text = `November kicks off the holiday season with high expectations for a cozy and festive time of year. However, for many this time of year is tinged with sadness, anxiety, or depression. Certainly, major depression or a severe anxiety disorder benefits most from professional help. But what about those who just feel lost or overwhelmed or down at this time of year? Research (and common sense) suggests that one aspect of the Thanksgiving season can actually lift the spirits, and it's built right into the holiday — expressing gratitude.
@@ -11,22 +14,24 @@ The word gratitude is derived from the Latin word gratia, which means grace, gra
 
 In positive psychology research, gratitu...`;
 
-const useStyles = makeStyles(() =>
-   createStyles({
-      root: {
-         backgroundColor: red[50],
-         border: 10,
-         borderColor: red[200],
-      },
-      left: {
-         backgroundColor: red[50],
-      },
-      right: {
-         backgroundColor: purple[50],
-      },
-   })
-);
-const SideAccess = () => {
+const panelHeight = css({ height: 'calc(100vh - 3.5rem)' });
+
+// const useStyles = makeStyles(() =>
+//    createStyles({
+//       root: {
+//          backgroundColor: red[50],
+//          border: 10,
+//          borderColor: red[200],
+//       },
+//       left: {
+//          backgroundColor: red[50],
+//       },
+//       right: {
+//          backgroundColor: purple[50],
+//       },
+//    })
+// );
+const SideQuickAccess = () => {
    return <div className={clsx('w-full h-full border-4 bg-purple-300 rounded-md')}></div>;
 };
 
@@ -43,7 +48,7 @@ const MainView = () => {
                   <Typography variant="h3">This is a title and i made it really really long</Typography>
                </div>
                <div className="flex-none h-14">
-                  <IconButton color="primary" aria-label="add an alarm" size="medium">
+                  <IconButton color="primary" aria-label="add an alarm">
                      <AlarmIcon />
                   </IconButton>
                </div>
@@ -60,7 +65,7 @@ const MainView = () => {
       </div>
    );
 };
-const Navigation = () => {
+const NavigationTop = () => {
    return (
       <div className="flex flex-grow-0 w-full bg-pink-200 border-4 border-pink-200 h-14 rounded-md">
          <IconButton classes={{ root: clsx('text-red-400') }} color="primary" aria-label="add an alarm" size="medium">
@@ -80,24 +85,24 @@ const Navigation = () => {
 };
 
 export const Screen1 = (): JSX.Element => {
-   const classes = useStyles();
+   // const classes = useStyles();
    return (
       <Box sx={{ width: '100wh', height: '100vh' }}>
          <Grid container spacing={0} className={'min-h-full max-h-full'}>
             <Grid item xs={12} sm={5} lg={5} className={'min-h-full max-h-full'}>
                <Box
-                  className={clsx('p-2 flex', classes.left)}
+                  className={clsx('p-2 flex bg-red-50')}
                   sx={{
                      height: '100%',
                   }}>
                   <div className={clsx('flex-grow flex h-full bg-purple-100 rounded-md')}>
                      <div className="flex flex-col items-stretch flex-grow h-full rounded-md">
-                        <div className="flex-grow-0 w-full h-14 rounded-md">
-                           <Navigation></Navigation>
+                        <div className="flex-grow-0  w-full h-14 rounded-md">
+                           <NavigationTop></NavigationTop>
                         </div>
-                        <div className="flex w-full panel-height bg-blue-50 rounded-md">
+                        <div css={[panelHeight, tw`flex w-full bg-blue-50 rounded-md`]}>
                            <div className={clsx('w-12 h-full flex-grow-0 rounded-md')}>
-                              <SideAccess></SideAccess>
+                              <SideQuickAccess></SideQuickAccess>
                            </div>
                            <div className={clsx('h-full flex-grow  bg-purple-200 rounded-md ')}>
                               <Sidebar></Sidebar>
@@ -108,7 +113,7 @@ export const Screen1 = (): JSX.Element => {
                </Box>
             </Grid>
             <Grid item xs={12} sm={7} lg={7} className={'min-h-full max-h-full'}>
-               <Box className={clsx('p-2 pl-1 flex', classes.right)} sx={{ height: '100%' }}>
+               <Box className={clsx('p-2 pl-1 flex bg-purple-50')} sx={{ height: '100%' }}>
                   <div className={clsx('w-full h-full bg-green-100  rounded-md')}>
                      <MainView></MainView>
                   </div>

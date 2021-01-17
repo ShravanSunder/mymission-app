@@ -73,5 +73,5 @@
       /** eof */
    },
    "exclude": ["node_modules", "dist", "build", ".yarn", "build-utils"],
-   "include": ["./src", "/src/helpers/definitions/*.ts"]
+   "include": ["./src", "/src/helpers/definitions/*.ts", "/src/styles/twin.d.ts"]
 }

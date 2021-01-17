@@ -27,6 +27,8 @@
       "strings": true
    },
 
+   "editor.autoClosingQuotes": "always",
+
    "css.validate": false,
    "less.validate": false,
    "scss.validate": false,

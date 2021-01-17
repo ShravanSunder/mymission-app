@@ -31,6 +31,9 @@ const moduleRules = [
       use: [
          {
             loader: require.resolve('babel-loader'),
+            options: {
+               cacheDirectory: true,
+            },
          },
          {
             loader: 'ts-loader',
@@ -64,7 +67,7 @@ module.exports = {
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
    },
-   //devtool: 'source-map',
+   devtool: 'none', // 'source-map',
    module: {
       rules: moduleRules,
    },

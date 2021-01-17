@@ -19,6 +19,7 @@ const moduleRules = [
          {
             loader: require.resolve('babel-loader'),
             options: {
+               cacheDirectory: true,
                plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
             },
          },
@@ -81,7 +82,7 @@ module.exports = {
       historyApiFallback: true,
       port: 7035,
    },
-   devtool: 'eval-source-map',
+   devtool: 'eval-cheap-module-source-map', // 'eval-source-map',
    module: {
       rules: moduleRules,
    },

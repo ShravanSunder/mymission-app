@@ -66,6 +66,11 @@ module.exports = {
          exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
       }),
    ],
+   output: {
+      path: path.resolve(__dirname, '..', './dist'),
+      filename: '[name].[contenthash].js',
+      publicPath: '/',
+   },
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,

@@ -4,6 +4,7 @@ import { combineEpics } from 'redux-observable';
 import { catchError } from 'rxjs/operators';
 
 const reducers = {
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
    default: (state: any, action: any) => {
       return state ?? {};
    },

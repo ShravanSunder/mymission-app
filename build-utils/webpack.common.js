@@ -3,44 +3,34 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const title = 'Boilerpate-PWA';
-const name = 'Boilerpate-PWA with React|Redux|Workbox';
-const description = 'Boilerpate-PWA';
 const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
 
 console.log('------------------------------------------------------');
 console.log('------------------------------------------------------');
 console.log('------------------------------------------------------');
 
-const iconSrc = path.resolve(__dirname, '..', './assets/icon.png');
-
-const pwaManifestConfig = {
-   name: title,
-   short_name: name,
-   description: description,
-   background_color: '#ffffff',
-   crossorigin: 'use-credentials',
-   icons: [
-      {
-         src: iconSrc,
-         sizes: [96, 128, 192, 256, 384, 512],
-      },
-   ],
-};
+/**
+ * Use the webpack.development.js file if possible instead
+ */
+const isDev = process.env.NODE_ENV !== 'production';
 
 const moduleRules = [
    {
-      test: /\.css$/,
+      test: /\.css$/i,
       use: [
-         {
-            loader: 'style-loader',
-         },
+         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
          {
             loader: 'css-loader',
-            options: { importLoaders: 1 },
+            options: {
+               // Run `postcss-loader` on each CSS `@import`, do not forget that `sass-loader` compile non CSS `@import`'s into a single file
+               // If you need run `sass-loader` and `postcss-loader` on each CSS `@import` please set it to `2`
+               importLoaders: 1,
+               // Automatically enable css modules for files satisfying `/\.module\.\w+$/i` RegExp.
+               modules: { auto: true },
+            },
          },
          {
             loader: 'postcss-loader',
@@ -76,14 +66,7 @@ module.exports = {
          title: title,
          template: path.resolve(__dirname, '..', './src/index.html'),
       }),
-      new WebpackPwaManifest(pwaManifestConfig),
-      new FaviconsWebpackPlugin(iconSrc),
    ],
-   output: {
-      path: path.resolve(__dirname, '..', './dist'),
-      filename: '[name].[contenthash].js',
-      publicPath: '/',
-   },
    performance: {
       // maxEntrypointSize: 512000,
       // maxAssetSize: 512000,

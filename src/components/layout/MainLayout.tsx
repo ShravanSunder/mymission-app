@@ -82,16 +82,20 @@ const Navigation = () => {
 export const Screen1 = (): JSX.Element => {
    const classes = useStyles();
    return (
-      <Box width={'100wh'} height={'100vh'}>
+      <Box sx={{ width: '100wh', height: '100vh' }}>
          <Grid container spacing={0} className={'min-h-full max-h-full'}>
             <Grid item xs={12} sm={5} lg={5} className={'min-h-full max-h-full'}>
-               <Box className={clsx('p-2 flex', classes.left)} height={'100%'}>
+               <Box
+                  className={clsx('p-2 flex', classes.left)}
+                  sx={{
+                     height: '100%',
+                  }}>
                   <div className={clsx('flex-grow flex h-full bg-purple-100 rounded-md')}>
                      <div className="flex flex-col items-stretch flex-grow h-full rounded-md">
                         <div className="flex-grow-0 w-full h-14 rounded-md">
                            <Navigation></Navigation>
                         </div>
-                        <div className="flex flex-grow w-full bg-blue-50 rounded-md">
+                        <div className="flex w-full panel-height bg-blue-50 rounded-md">
                            <div className={clsx('w-12 h-full flex-grow-0 rounded-md')}>
                               <SideAccess></SideAccess>
                            </div>
@@ -104,7 +108,7 @@ export const Screen1 = (): JSX.Element => {
                </Box>
             </Grid>
             <Grid item xs={12} sm={7} lg={7} className={'min-h-full max-h-full'}>
-               <Box className={clsx('p-2 pl-1 flex', classes.right)} height={'100%'}>
+               <Box className={clsx('p-2 pl-1 flex', classes.right)} sx={{ height: '100%' }}>
                   <div className={clsx('w-full h-full bg-green-100  rounded-md')}>
                      <MainView></MainView>
                   </div>

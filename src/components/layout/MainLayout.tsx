@@ -17,18 +17,18 @@ const toolbarHeight = css(tw`h-14`);
 const panelHeight = css({ height: 'calc(100vh - 4.7rem)' });
 
 const SideQuickAccess = () => {
-   return <div className={clsx('w-full h-full bg-purple-300 rounded-md')}></div>;
+   return <div className={'w-full h-full bg-purple-300 rounded-md'}></div>;
 };
 
 const Sidebar = () => {
-   return <div className={clsx('h-full flex-grow bg-purple-200 rounded-md ')}></div>;
+   return <div className={'h-full flex-grow bg-purple-200 rounded-md '}></div>;
 };
 
 const MainView = () => {
    return (
       <div className="w-full h-full">
          <div className="flex flex-col items-stretch flex-grow w-full h-full rounded-md">
-            <div css={[toolbarHeight, tw`flex items-center flex-grow-0 w-full  h-14 rounded-md`]}>
+            <div className={clsx(toolbarHeight, 'flex items-center flex-grow-0 w-full  h-14 rounded-md')}>
                <div className="flex items-center flex-grow h-full bg-yellow-100  pl-0.5 rounded-md"></div>
                <div className="flex items-center flex-none h-14">
                   <IconButton color="primary" aria-label="add an alarm">
@@ -36,7 +36,7 @@ const MainView = () => {
                   </IconButton>
                </div>
             </div>
-            <div css={[panelHeight, tw`flex flex-grow flex-shrink w-full overflow-y-auto bg-green-200  rounded-md`]}>
+            <div className={clsx(panelHeight, 'flex flex-grow flex-shrink w-full overflow-y-auto bg-green-200  rounded-md')}>
                <div className="flex-grow flex-shrink p-3 bg-green-300">
                   <Typography> {text}</Typography>
                </div>
@@ -84,17 +84,17 @@ export const Screen1 = (): JSX.Element => {
       <div css={{ height: '100vh', width: '100wh' }}>
          <Grid container spacing={0} className={'min-h-full max-h-full'}>
             <Grid item xs={12} sm={5} lg={5} className={'min-h-full max-h-full'}>
-               <div className={clsx('p-2 flex bg-red-50 h-full')}>
-                  <div className={clsx('flex-grow flex h-full bg-purple-100 rounded-md')}>
+               <div className={'p-2 flex bg-red-50 h-full'}>
+                  <div className={'flex-grow flex h-full bg-purple-100 rounded-md'}>
                      <div className="flex flex-col items-stretch flex-grow h-full rounded-md">
-                        <div css={[toolbarHeight, tw`flex-grow-0  w-full h-14 rounded-md`]}>
+                        <div className={clsx(toolbarHeight, tw`flex-grow-0  w-full h-14 rounded-md`)}>
                            <NavigationTop></NavigationTop>
                         </div>
-                        <div css={[panelHeight, tw`flex w-full bg-blue-50 rounded-md`]}>
-                           <div className={clsx('w-12 h-full flex-grow-0 rounded-md')}>
+                        <div className={clsx(panelHeight, 'flex w-full bg-blue-50 rounded-md')}>
+                           <div className={'w-12 h-full flex-grow-0 rounded-md'}>
                               <SideQuickAccess></SideQuickAccess>
                            </div>
-                           <div className={clsx('h-full flex-grow  bg-purple-200 rounded-md ')}>
+                           <div className={'h-full flex-grow  bg-purple-200 rounded-md '}>
                               <Sidebar></Sidebar>
                            </div>
                         </div>
@@ -103,8 +103,8 @@ export const Screen1 = (): JSX.Element => {
                </div>
             </Grid>
             <Grid item xs={12} sm={7} lg={7} className={'min-h-full max-h-full'}>
-               <div className={clsx('p-2 pl-1 flex bg-purple-50 h-full')}>
-                  <div className={clsx('w-full h-full bg-green-100  rounded-md')}>
+               <div className={'p-2 pl-1 flex bg-purple-50 h-full'}>
+                  <div className={'w-full h-full bg-green-100  rounded-md'}>
                      <MainView></MainView>
                   </div>
                </div>

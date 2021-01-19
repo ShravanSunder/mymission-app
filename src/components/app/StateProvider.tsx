@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import React, { Suspense } from 'react';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
-const MainLayout = React.lazy(() => import('~~/components/layout/RootRoutes'));
+const MainLayout = React.lazy(() => import('~~/components/app/RootRoutes'));
 
 const StateProvider = (): JSX.Element => {
    return (

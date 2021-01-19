@@ -9,6 +9,8 @@ const cache = {
    //type: 'memory',
    type: 'filesystem',
    cacheLocation: path.resolve(__dirname, '.cache'),
+   idleTimeout: 30000,
+   idleTimeoutForInitialStore: 10000,
 };
 
 const moduleRules = [
@@ -69,7 +71,7 @@ module.exports = {
    ],
    output: {
       path: path.resolve(__dirname, '..', './dist'),
-      filename: '[name].[contenthash].js',
+      filename: '[name].js',
       publicPath: '/',
    },
    devServer: {

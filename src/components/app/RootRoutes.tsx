@@ -5,7 +5,7 @@ import '~~/styles/css/tailwind-utilities.css';
 import React, { Suspense } from 'react';
 import MaterialProvider from '~~/components/app/MaterialProvider';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { Screen1 } from './MainLayout';
+import { Screen1 } from '../layout/MainLayout';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 const RootRoutes = (): JSX.Element => {

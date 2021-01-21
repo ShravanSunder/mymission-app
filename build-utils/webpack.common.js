@@ -60,7 +60,7 @@ module.exports = {
       },
    },
    plugins: [
-      new ESLintPlugin(),
+      new ESLintPlugin({ cache: true }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
          title: title,

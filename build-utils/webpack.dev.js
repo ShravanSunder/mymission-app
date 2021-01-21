@@ -9,7 +9,7 @@ const cache = {
    //type: 'memory',
    type: 'filesystem',
    cacheLocation: path.resolve(__dirname, '.cache'),
-   idleTimeout: 30000,
+   idleTimeout: 10000,
    idleTimeoutForInitialStore: 10000,
 };
 
@@ -21,6 +21,7 @@ const moduleRules = [
          {
             loader: require.resolve('babel-loader'),
             options: {
+               cacheCompression: false,
                cacheDirectory: true,
                plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
             },

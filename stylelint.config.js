@@ -17,4 +17,5 @@ module.exports = {
       'declaration-block-trailing-semicolon': null,
       'no-descending-specificity': null,
    },
+   ignoreFiles: ['**/*.ts', '**/*.tsx', '**/*.test.*', '**/*.stories.*', '**/*.js'],
 };

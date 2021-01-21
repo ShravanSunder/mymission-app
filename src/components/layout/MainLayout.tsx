@@ -20,14 +20,14 @@ export const Screen1 = (): JSX.Element => {
    // const classes = useStyles();
    return (
       <div css={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
-         <Grid container spacing={0} className={'min-h-full max-h-full'}>
-            <Grid item xs={12} sm={5} md={4} lg={3} className={'min-h-full max-h-full'}>
-               <div className={'p-2 flex bg-red-50 h-full'}>
+         <Grid container spacing={0} className={'min-h-full max-h-full w-full'}>
+            <Grid item xs={12} sm={5} md={4} lg={3} className={'min-h-full max-h-full '}>
+               <div className={'p-2 flex bg-red-50 h-full w-full overflow-hidden'}>
                   <LeftPane></LeftPane>
                </div>
             </Grid>
-            <Grid item xs={12} sm md lg className={'min-h-full max-h-full'}>
-               <div className={'p-2 pl-1 flex bg-purple-50 h-full'}>
+            <Grid item xs={12} sm md lg className={'min-h-full max-h-full w-full'}>
+               <div className={'p-2 pl-1 flex bg-purple-50 h-full w-full overflow-hidden'}>
                   <RightPane></RightPane>
                </div>
             </Grid>

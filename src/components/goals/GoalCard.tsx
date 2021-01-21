@@ -14,7 +14,7 @@ export const GoalCard = (): JSX.Element => {
       <div className="rounded-l-lg">
          <Card>
             <CardMedia
-               style={{ height: 120 }}
+               style={{ height: 120, opacity: '80%' }}
                component="div"
                image="https://images.unsplash.com/photo-1564410267841-915d8e4d71ea?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"></CardMedia>
             <CardContent>
@@ -32,15 +32,14 @@ export const GoalCard = (): JSX.Element => {
                </div>
             </CardContent>
             <CardActions style={{ marginTop: 0, paddingTop: 0 }} disableSpacing>
-               <Button size="small" color="primary">
-                  Share
-               </Button>
-               <Button size="small" color="primary">
-                  Learn More
-               </Button>
-               <Button size="small" color="primary">
-                  Learn More
-               </Button>
+               <div css={tw`flex justify-between w-full`}>
+                  <Button size="small" color="primary">
+                     Share
+                  </Button>
+                  <Button size="small" color="primary">
+                     Edit
+                  </Button>
+               </div>
             </CardActions>
          </Card>
       </div>

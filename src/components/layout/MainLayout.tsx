@@ -21,14 +21,14 @@ export const Screen1 = (): JSX.Element => {
    return (
       <div css={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
          <Grid container spacing={0} className={'min-h-full max-h-full'}>
-            <Grid item xs={12} sm={5} lg={5} className={'min-h-full max-h-full'}>
+            <Grid item xs={12} sm={5} md={4} style={{ maxWidth: '100rem' }} className={'min-h-full max-h-full '}>
                <div className={'p-2 flex bg-red-50 h-full'}>
                   <div className={'flex-grow flex h-full bg-purple-100 rounded-md'}>
                      <LeftPane></LeftPane>
                   </div>
                </div>
             </Grid>
-            <Grid item xs={12} sm={7} lg={7} className={'min-h-full max-h-full'}>
+            <Grid item xs={12} sm md className={'min-h-full max-h-full'}>
                <div className={'p-2 pl-1 flex bg-purple-50 h-full'}>
                   <div className={'w-full h-full bg-green-100  rounded-md'}>
                      <RightPane></RightPane>

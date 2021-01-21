@@ -11,7 +11,7 @@ export const LeftPane = (): JSX.Element => {
             <NavigationTop></NavigationTop>
          </div>
          <div css={[panelHeight, tw`flex w-full bg-blue-50 rounded-md`]}>
-            <div className={'w-12 h-full flex-grow-0 rounded-md'}>
+            <div className={'flex w-12 h-full flex-grow-0 flex-shrink-0 rounded-md'}>
                <SideQuickAccess></SideQuickAccess>
             </div>
             <div className={'h-full flex-grow  bg-purple-200 rounded-md '}>

@@ -13,6 +13,7 @@ module.exports = {
             ignoreProperties: ['label'],
          },
       ],
+      'selector-type-no-unknown': null,
       'declaration-block-trailing-semicolon': null,
       'no-descending-specificity': null,
    },

@@ -38,9 +38,11 @@ export const GoalCardFocus = (): JSX.Element => {
                   </Typography>
                </div>
                <div css={tw`flex flex-grow`}>
-                  <div css={tw`flex-grow`}>
+                  <div css={tw`flex-grow overscroll-y-auto max-h-28 overflow-y-auto`}>
                      <Typography variant="body2" color="textSecondary" component="p">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica. Lizards
+                        are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica. Lizards are a
+                        widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
                      </Typography>
                   </div>
                </div>

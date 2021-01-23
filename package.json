@@ -4,7 +4,7 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --config build-utils/webpack.config.js --env env=dev --stats verbose",
+      "start": "NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --config build-utils/webpack.config.js --env env=dev",
       "build:webpack": "webpack --config build-utils/webpack.config.js --env env=prod",
       "build:workbox-simple": "workbox injectManifest workbox-config.js",
       "build:analyze": "yarn run build:webpack --env addon=bundleanalyze",
@@ -144,6 +144,7 @@
       "react": "^17.0.1",
       "react-dom": "^17.0.1",
       "react-error-boundary": "^3.1.0",
+      "react-icons": "^4.1.0",
       "react-intl": "^5.10.16",
       "react-redux": "^7.2.2",
       "react-router": "next",

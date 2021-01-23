@@ -1,13 +1,29 @@
 import * as React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { Button, CardActionArea, CardActions, CardHeader } from '@material-ui/core';
+import { Button, ButtonBase, CardActionArea, CardActions, CardHeader, IconButton } from '@material-ui/core';
 
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import tw from 'twin.macro';
+import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
+
+interface IMonthParams {
+   monthAbreviation: string;
+}
+
+const Month = (params: IMonthParams) => {
+   return (
+      <div className="w-full h-12">
+         <ButtonBase css={tw`w-full h-12`}>
+            <div className="relative flex items-center justify-center w-full h-full font-mono border-2 border-transparent justify-items-center">
+               <div css={[tw`pt-3`, { fontVariant: 'small-caps' }]}>
+                  <strong>{params.monthAbreviation}</strong>
+               </div>
+
+               <CalendarTodayTwoToneIcon css={tw`h-full w-full absolute`}></CalendarTodayTwoToneIcon>
+            </div>
+         </ButtonBase>
+      </div>
+   );
+};
 
 const MonthScrubber = () => {
    return (
@@ -17,7 +33,7 @@ const MonthScrubber = () => {
                tw`w-full h-full`,
                { flex: '1 1 auto', overflow: 'auto', overflowScrolling: 'touch', WebkitOverflowScrolling: 'touch', WebkitScrollbar: { display: 'none' } },
             ]}>
-            <div className="w-full h-12">Jan</div>
+            <Month monthAbreviation={'Jan'}></Month>
             <div className="w-full h-12">feb</div>
             <div className="w-full h-12">feb</div>
             <div className="w-full h-12">feb</div>

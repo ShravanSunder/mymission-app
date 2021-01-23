@@ -7,7 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import { Button, CardActionArea, CardActions, CardHeader } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 
-import Favorite from '@material-ui/icons/Favorite';
+import EditIcon from '@material-ui/icons/Edit';
+import ForwardIcon from '@material-ui/icons/Forward';
+
 import tw from 'twin.macro';
 
 export const GoalSelectedCard = (): JSX.Element => {
@@ -21,12 +23,14 @@ export const GoalSelectedCard = (): JSX.Element => {
                   component="div"
                   image="https://images.unsplash.com/photo-1564410267841-915d8e4d71ea?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"></CardMedia>
                <CardActions className="z-10 w-full" disableSpacing>
-                  <div css={tw`flex justify-between w-full ml-2 mr-2`}>
-                     <IconButton size="medium" className="m-2 group-hover:shadow-sm" style={{ color: 'white' }}>
-                        <CancelIcon />
-                     </IconButton>
-                     <IconButton size="medium" className="group-hover:shadow-sm" style={{ color: 'white' }}>
-                        <Favorite />
+                  <div css={tw`flex justify-between w-full mr-1.5 ml-1.5`}>
+                     <div>
+                        <IconButton className="m-2 " style={{ color: 'white' }}>
+                           <CancelIcon fontSize="large" />
+                        </IconButton>
+                     </div>
+                     <IconButton className="m-2" style={{ color: 'white' }}>
+                        <ForwardIcon fontSize="large" />
                      </IconButton>
                   </div>
                </CardActions>

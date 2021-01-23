@@ -7263,6 +7263,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-macros@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "babel-plugin-macros@npm:3.0.1"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    cosmiconfig: ^7.0.0
+    resolve: ^1.19.0
+  checksum: f1a523136365b5bfb23bfc05d3d0b91358adc854a3440d3ea6220b6427bf43d8ea25b7f01ade618af943005d82f449389d02446a4b097a87ccd7eeab14921e03
+  languageName: node
+  linkType: hard
+
 "babel-plugin-minify-builtins@npm:^0.5.0":
   version: 0.5.0
   resolution: "babel-plugin-minify-builtins@npm:0.5.0"
@@ -7766,6 +7777,7 @@ __metadata:
   resolution: "boilerplate@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
+    "@babel/plugin-transform-react-jsx": ^7.12.12
     "@babel/preset-env": ^7.12.11
     "@babel/preset-react": ^7.12.10
     "@emotion/babel-plugin-jsx-pragmatic": ^0.1.5
@@ -7819,6 +7831,7 @@ __metadata:
     autoprefixer: ^10.2.3
     babel-eslint: ^10.1.0
     babel-loader: ^8.2.2
+    babel-plugin-macros: ^3.0.1
     clean-webpack-plugin: ^3.0.0
     clsx: ^1.1.1
     cross-env: ^7.0.3
@@ -10683,7 +10696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.4":
+"eslint-import-resolver-node@npm:*, eslint-import-resolver-node@npm:^0.3.4":
   version: 0.3.4
   resolution: "eslint-import-resolver-node@npm:0.3.4"
   dependencies:

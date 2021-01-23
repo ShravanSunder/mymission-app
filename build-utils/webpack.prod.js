@@ -67,7 +67,7 @@ module.exports = {
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
    },
-   devtool: 'none', // 'source-map',
+   //devtool: 'none', // 'source-map',
    module: {
       rules: moduleRules,
    },

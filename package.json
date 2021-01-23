@@ -1,5 +1,5 @@
 {
-   "name": "boilerplate",
+   "name": "mymission",
    "version": "1.0.0",
    "description": "",
    "main": "index.js",
@@ -57,6 +57,7 @@
       "@types/react-router-dom": "^5.1.7",
       "@types/redux-logger": "^3.0.8",
       "@types/webpack": "^4.41.26",
+      "@types/webpack-virtual-modules": "^0",
       "@types/workbox-build": "^5.0.0",
       "@types/workbox-core": "^4.3.0",
       "@types/workbox-precaching": "^4.3.0",
@@ -118,6 +119,7 @@
       "webpack-dev-server": "^3.11.2",
       "webpack-merge": "^5.7.3",
       "webpack-pwa-manifest": "^4.3.0",
+      "webpack-virtual-modules": "^0.4.2",
       "workbox-build": "^6.0.2",
       "workbox-webpack-plugin": "^6.0.2"
    },

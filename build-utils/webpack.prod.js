@@ -5,8 +5,8 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const title = 'Boilerpate-PWA';
-const name = 'Boilerpate-PWA with React|Redux|Workbox';
+const title = 'MyMission';
+const name = 'MyMission';
 const description = 'Boilerpate-PWA';
 
 const iconSrc = path.resolve(__dirname, '..', './assets/icon.png');

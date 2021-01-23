@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const title = 'MyMission';
 const name = 'MyMission';
-const description = 'Boilerpate-PWA';
+const description = 'MyMission-PWA';
 
 const iconSrc = path.resolve(__dirname, '..', './assets/icon.png');
 const pwaManifestConfig = {

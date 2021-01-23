@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const title = 'Boilerpate-PWA';
+const title = 'MyMission';
 const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
 
 console.log('------------------------------------------------------');
@@ -52,6 +52,10 @@ module.exports = {
    entry: path.resolve(__dirname, '..', './src/index.js'),
    module: {
       rules: moduleRules,
+   },
+   stats: 'minimal',
+   infrastructureLogging: {
+      level: 'warn',
    },
    resolve: {
       extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],

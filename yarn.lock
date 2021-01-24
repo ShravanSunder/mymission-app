@@ -6079,6 +6079,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wojtekmaj/date-utils@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "@wojtekmaj/date-utils@npm:1.0.3"
+  checksum: b51df8d0d29cc4f62d07cfb3c29acb621207ec4e7401834b232e0c264dc3558897128361e29ac85560cc6fb0306639a62a6a398ef22a8ccd2f25753414dbf26a
+  languageName: node
+  linkType: hard
+
 "@wordpress/jest-puppeteer-axe@npm:^1.5.0":
   version: 1.10.0
   resolution: "@wordpress/jest-puppeteer-axe@npm:1.10.0"
@@ -8231,6 +8238,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chrono-node@npm:^2.1.11":
+  version: 2.1.11
+  resolution: "chrono-node@npm:2.1.11"
+  dependencies:
+    dayjs: ^1.10.0
+  checksum: a7663e502dc665683a6b57c95f5e72d5a353d83065caff646f61231e1804fc33de8e10276fd67c12eba3585590c642866f7d0bb78e283c150f9d8cb336b01187
+  languageName: node
+  linkType: hard
+
 "ci-info@npm:^2.0.0":
   version: 2.0.0
   resolution: "ci-info@npm:2.0.0"
@@ -9220,6 +9236,13 @@ __metadata:
     whatwg-mimetype: ^2.3.0
     whatwg-url: ^8.0.0
   checksum: 42239927c6a202e2d02b7f41c94ca53e3cea036898b97b8bf6120ed1b25e0dd11c48ec7aa5c84cf807c2cb9f3a637df9fb50f3ca25a52863186a4ac46254726b
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.10.0, dayjs@npm:^1.10.4":
+  version: 1.10.4
+  resolution: "dayjs@npm:1.10.4"
+  checksum: 3b7bb2232fff808209870bc72d4b2000941a1aa45f0226e2907f9dd1dda306d4b3a1eb9058450fd2c324b01a007a37809ac6f9b525806a86902c55e2934cd5d5
   languageName: node
   linkType: hard
 
@@ -11886,6 +11909,15 @@ fsevents@~2.1.2:
   version: 6.0.0
   resolution: "get-stream@npm:6.0.0"
   checksum: 4354a4de78ebfd4340db6c7a3956ad1db7e67dbf718bcc576481697188442156f88d0d79d94b8af2615dad9920d41df85227e0c6b0fe5764d26e0df25f4035f8
+  languageName: node
+  linkType: hard
+
+"get-user-locale@npm:^1.2.0":
+  version: 1.4.0
+  resolution: "get-user-locale@npm:1.4.0"
+  dependencies:
+    lodash.once: ^4.1.1
+  checksum: 3fee33d74173732c1a3895a584b271f993171b2ecc60b0a1b985d8c4f7625432d9152ce817f2759d7d075dbf6b16f219001c32b924ffb4b918c946be82b864fb
   languageName: node
   linkType: hard
 
@@ -15039,6 +15071,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"lodash.once@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "lodash.once@npm:4.1.1"
+  checksum: 236e00ca5f20304fab5b38aa3aedb034959153dae6edf33d7f9b00406ced8f24ed232a74f1200505d9049165ceea2ce1256199e1683b0a25e9de89091d4b13c2
+  languageName: node
+  linkType: hard
+
 "lodash.sortby@npm:^4.7.0":
   version: 4.7.0
   resolution: "lodash.sortby@npm:4.7.0"
@@ -15119,6 +15158,13 @@ fsevents@~2.1.2:
   dependencies:
     yallist: ^4.0.0
   checksum: b8b78353d2391c0f135cdc245c4744ad41c2efb1a6d98f31bc57a2cf48ebf02de96e4876657c3026673576bf1f1f61fc3fdd77ab00ad1ead737537bf17d8019d
+  languageName: node
+  linkType: hard
+
+"luxon@npm:^1.25.0":
+  version: 1.25.0
+  resolution: "luxon@npm:1.25.0"
+  checksum: 3f0d64355beab707f5e8eb4e2d7e1cad90569c2a4c4dce440e0b4be4eb6833ec1a83513a4210361cd4dc5a266c0221718a9afd15f7cde3002d8fa1d0976b9e50
   languageName: node
   linkType: hard
 
@@ -15362,6 +15408,13 @@ fsevents@~2.1.2:
   version: 0.3.1
   resolution: "memorystream@npm:0.3.1"
   checksum: 825bcc7d3eb8bd021a1b0f8c81e4d7a8dc2eced1f8bb79d41ec978547cf118146d6863f5e6134f02bb55ee5d963a8689793e6e82ce8eb989bac339ae782728bb
+  languageName: node
+  linkType: hard
+
+"merge-class-names@npm:^1.1.1":
+  version: 1.4.0
+  resolution: "merge-class-names@npm:1.4.0"
+  checksum: b8453886475ac1510901437b5f3e845046389b8f3452c472aecb29a945440a934f386587d386965075afa3eebf3252d13c375a2ce0f12a71d1e5c29a57089e68
   languageName: node
   linkType: hard
 
@@ -15855,10 +15908,12 @@ fsevents@~2.1.2:
     babel-eslint: ^10.1.0
     babel-loader: ^8.2.2
     babel-plugin-macros: ^3.0.1
+    chrono-node: ^2.1.11
     clean-webpack-plugin: ^3.0.0
     clsx: ^1.1.1
     cross-env: ^7.0.3
     css-loader: ^5.0.1
+    dayjs: ^1.10.4
     dotenv-webpack: ^6.0.0
     eslint: ^7.18.0
     eslint-config-airbnb: ^18.2.1
@@ -15883,6 +15938,7 @@ fsevents@~2.1.2:
     husky: ^4.3.8
     jest: ^26.6.3
     jest-transformer-mdx: ^2.2.0
+    luxon: ^1.25.0
     material-ui-popup-state: ^1.7.1
     mini-css-extract-plugin: ^1.3.4
     notistack: ^1.0.3
@@ -15893,6 +15949,7 @@ fsevents@~2.1.2:
     pretty-quick: ^3.1.0
     puppeteer: ^5.5.0
     react: ^17.0.1
+    react-calendar: ^3.3.0
     react-dom: ^17.0.1
     react-error-boundary: ^3.1.0
     react-hot-loader: ^4.13.0
@@ -17980,6 +18037,21 @@ fsevents@~2.1.2:
   bin:
     rc: ./cli.js
   checksum: ea2b7f7cee201a67923a2240de594a5d9b59bd312b814b06536d3d609a416dfd6fb9b85ea2abfd3b8a4eb5ed33eaff946ee75a8f2b7fb10941073c5cfee6b7a5
+  languageName: node
+  linkType: hard
+
+"react-calendar@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-calendar@npm:3.3.0"
+  dependencies:
+    "@wojtekmaj/date-utils": ^1.0.2
+    get-user-locale: ^1.2.0
+    merge-class-names: ^1.1.1
+    prop-types: ^15.6.0
+  peerDependencies:
+    react: ^16.3.0 || ^17.0.0-0
+    react-dom: ^16.3.0 || ^17.0.0-0
+  checksum: 15d930b4da26d67aae2233de40b9767316bc8dea0177884c7e2e2a71d8dc4387cdbb953b6d98548cd1ace7b301e0bf89925f07e02bb249a9b353419841ed313a
   languageName: node
   linkType: hard
 

@@ -1,0 +1,35 @@
+.scrollable-element {
+   scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+   width: 0.2rem;
+}
+
+::-webkit-scrollbar-track {
+   -webkit-border-radius: 0.2rem;
+   border-radius: 0.2rem;
+   background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+   -webkit-border-radius: 0.2rem;
+   border-radius: 0.2rem;
+   background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+   background: rgba(0, 0, 0, 0.05);
+}
+
+.fill-parent {
+   @apply h-full w-full overflow-hidden;
+}
+
+.fill-parent-overflow {
+   @apply h-full w-full;
+}

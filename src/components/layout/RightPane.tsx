@@ -6,8 +6,8 @@ import { toolbarHeight, panelHeight, text } from './MainLayout';
 
 export const RightPane = (): JSX.Element => {
    return (
-      <div className="w-full h-full">
-         <div className="flex flex-col items-stretch flex-grow w-full h-full rounded-md">
+      <div className="fill-parent">
+         <div className="flex flex-col items-stretch flex-grow fill-parent rounded-md">
             <div css={[toolbarHeight, tw`flex items-center flex-grow-0 w-full  h-14 rounded-md`]}>
                <div className="flex items-center flex-grow h-full bg-yellow-100  pl-0.5 rounded-md"></div>
                <div className="flex items-center flex-none h-14">

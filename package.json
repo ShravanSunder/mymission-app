@@ -134,14 +134,18 @@
       "@types/workbox-routing": "^4.3.0",
       "@types/workbox-strategies": "^4.3.0",
       "@types/workbox-window": "^4.3.3",
+      "chrono-node": "^2.1.11",
       "clsx": "^1.1.1",
+      "dayjs": "^1.10.4",
       "formik": "^2.2.6",
       "formik-material-ui": "^3.0.1",
       "formik-material-ui-lab": "^0.0.8",
       "history": "^5.0.0",
+      "luxon": "^1.25.0",
       "material-ui-popup-state": "^1.7.1",
       "notistack": "^1.0.3",
       "react": "^17.0.1",
+      "react-calendar": "^3.3.0",
       "react-dom": "^17.0.1",
       "react-error-boundary": "^3.1.0",
       "react-icons": "^4.1.0",
@@ -172,8 +176,8 @@
    },
    "husky": {
       "hooks": {
-         "pre-commit": "yarn run commit",
-         "post-commit": "yarn run lint:quiet"
+         "post-commit": "yarn run commit",
+         "pre-push": "yarn run lint:quiet"
       }
    },
    "babelMacros": {

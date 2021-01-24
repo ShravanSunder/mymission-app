@@ -1,6 +1,7 @@
 import '~~/styles/css/tailwind-base.css';
 import '~~/styles/css/tailwind-components.css';
 import '~~/styles/css/tailwind-utilities.css';
+import '~~/styles/css/app.css';
 
 import React, { Suspense } from 'react';
 import MaterialProvider from '~~/components/app/MaterialProvider';

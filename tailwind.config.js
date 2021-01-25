@@ -8,5 +8,5 @@ module.exports = {
    corePlugins: {
       //preflight: false,
    },
-   plugins: [require('@tailwindcss/typography')],
+   plugins: [require('@tailwindcss/typography'), require('tailwindcss-elevation')(['responsive'])],
 };

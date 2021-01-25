@@ -26,7 +26,7 @@ export const GoalListItem = (): JSX.Element => {
                   </div>
                   <CardContent className="flex-grow">
                      <div>
-                        <Typography gutterBottom variant="h6">
+                        <Typography gutterBottom variant="body2">
                            This is my goal2
                         </Typography>
                      </div>

@@ -30,6 +30,6 @@
    @apply h-full w-full overflow-hidden;
 }
 
-.fill-parent-overflow {
-   @apply h-full w-full;
+.fill-parent-vertical {
+   @apply h-full overflow-hidden;
 }

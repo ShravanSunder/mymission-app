@@ -8,10 +8,9 @@ export const createAppTheme = (isDark: boolean): Theme => {
          mode: isDark ? 'dark' : 'light',
       },
       typography: {
-         fontFamily: ['sans-serif'].join(','),
-         fontSize: 12,
+         // fontFamily: ['sans-serif'].join(','),
       },
-      spacing: 12,
+      spacing: (factor: number) => `${0.5 * factor}rem`,
       components: {
          MuiPopover: {
             defaultProps: {

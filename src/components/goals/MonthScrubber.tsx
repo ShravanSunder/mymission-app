@@ -32,7 +32,7 @@ const Month = (params: IMonthParams) => {
    );
 };
 
-export const MonthScrubber = () => {
+export const MonthScrubber = (): JSX.Element => {
    return (
       <div className="rounded-l-lg fill-parent">
          <div

@@ -1826,6 +1826,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/core@npm:^11.0.0-next.10":
+  version: 11.0.0
+  resolution: "@emotion/core@npm:11.0.0"
+  checksum: 814026f08ca46fc19f1343c40f733bdfc4ffcfb7dd95f75b89353c987950db90ce181550e3d404784da764af523f3807c2e892c8859c24229789a91225906d34
+  languageName: node
+  linkType: hard
+
 "@emotion/css@npm:^10.0.27, @emotion/css@npm:^10.0.9":
   version: 10.0.27
   resolution: "@emotion/css@npm:10.0.27"
@@ -1850,6 +1857,15 @@ __metadata:
   dependencies:
     "@emotion/memoize": 0.7.4
   checksum: 4a6993c4e6a49bcdc772aa5931fa2f00ce6367f7f6fc9cfe46dd50014c9510f9c6b1e355f297655875a8bfd1481e42546900bbbc84f3c0b629a001b4d82e436e
+  languageName: node
+  linkType: hard
+
+"@emotion/is-prop-valid@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@emotion/is-prop-valid@npm:1.0.0"
+  dependencies:
+    "@emotion/memoize": ^0.7.4
+  checksum: 1d217723ad7d800ec53482645155378800b21b6a95f3af174be64bd715051e1632f5494ac48afaa15023d062ff635a0d4ed8c2e7a1d09c79c024c4a69e6c4db3
   languageName: node
   linkType: hard
 
@@ -1955,6 +1971,28 @@ __metadata:
     "@emotion/core": ^10.0.27
     react: ">=16.3.0"
   checksum: 5ae549cbe564482b9277f8f4f53b404270d9c4d826c5396ca62d7d8d07d4a69ba1826f262f506e326df6409b4dfff738d02c0c09f840b603d8cbfaf109634b3c
+  languageName: node
+  linkType: hard
+
+"@emotion/styled@npm:^11.0.0-next.19":
+  version: 11.0.0
+  resolution: "@emotion/styled@npm:11.0.0"
+  dependencies:
+    "@babel/runtime": ^7.7.2
+    "@emotion/babel-plugin": ^11.0.0
+    "@emotion/is-prop-valid": ^1.0.0
+    "@emotion/serialize": ^1.0.0
+    "@emotion/utils": ^1.0.0
+  peerDependencies:
+    "@babel/core": ^7.0.0
+    "@emotion/react": ^11.0.0-rc.0
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: 42d81040a5f593005516b68822278ca0130511881657bd8c791d265d30d6022374d07147b893439828343c99d2ba36c9609226ad7f0ee0eec2234424aea7cfa9
   languageName: node
   linkType: hard
 
@@ -11455,6 +11493,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"focus-visible@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "focus-visible@npm:5.2.0"
+  checksum: 4e60302bd84accb92d11c22f8a5f6e38d2f5a0cc1bd45e708b9f00173cc700d1f0782c78f932023479074739fd588e0dd94c0e2575b2212843955e2d4398e752
+  languageName: node
+  linkType: hard
+
 "follow-redirects@npm:^1.0.0":
   version: 1.13.1
   resolution: "follow-redirects@npm:1.13.1"
@@ -12459,6 +12504,13 @@ fsevents@~2.1.2:
   bin:
     he: bin/he
   checksum: 212122003c20c8c17ac0c83a419b4c8e835411ff6ab9195d053ea6e4a0597cc005b5b8eabcbd57b0b0c0fe676f0049e09315845fff4e051198845491cbba260e
+  languageName: node
+  linkType: hard
+
+"hex-rgb@npm:^4.1.0":
+  version: 4.2.0
+  resolution: "hex-rgb@npm:4.2.0"
+  checksum: 57b3cd8462a8b7608996522290fd3f01331833016429f9f6badee5baea09d7aeb54326326e96bb367cf0f371b429815cce7ab9be464f2e04c4bd14eabb046124
   languageName: node
   linkType: hard
 
@@ -15950,6 +16002,7 @@ fsevents@~2.1.2:
     puppeteer: ^5.5.0
     react: ^17.0.1
     react-calendar: ^3.3.0
+    react-chrono: ^1.9.1
     react-dom: ^17.0.1
     react-error-boundary: ^3.1.0
     react-hot-loader: ^4.13.0
@@ -15971,6 +16024,7 @@ fsevents@~2.1.2:
     style-loader: ^2.0.0
     stylelint-config-recommended: ^3.0.0
     tailwindcss: ^2.0.2
+    tailwindcss-elevation: ^1.0.1
     ts-jest: ^26.4.4
     ts-loader: ^8.0.14
     ts-node: ^9.1.1
@@ -18052,6 +18106,22 @@ fsevents@~2.1.2:
     react: ^16.3.0 || ^17.0.0-0
     react-dom: ^16.3.0 || ^17.0.0-0
   checksum: 15d930b4da26d67aae2233de40b9767316bc8dea0177884c7e2e2a71d8dc4387cdbb953b6d98548cd1ace7b301e0bf89925f07e02bb249a9b353419841ed313a
+  languageName: node
+  linkType: hard
+
+"react-chrono@npm:^1.9.1":
+  version: 1.9.1
+  resolution: "react-chrono@npm:1.9.1"
+  dependencies:
+    "@emotion/core": ^11.0.0-next.10
+    "@emotion/react": ^11.1.4
+    "@emotion/styled": ^11.0.0-next.19
+    classnames: ^2.2.6
+    focus-visible: ^5.2.0
+  peerDependencies:
+    react: ^16.13.1
+    react-dom: ^16.13.1
+  checksum: f7def064707c1a4ac0ef2d506cca6c6b584d3674b916658435171982c371ab489afb60d85335191757506b7c2dbccfdaa8482b2555548d044d1dea07f17477cb
   languageName: node
   linkType: hard
 
@@ -20722,6 +20792,17 @@ fsevents@~2.1.2:
     slice-ansi: ^4.0.0
     string-width: ^4.2.0
   checksum: b28d81d6063110a8e94264ff17d3b7505fd344947f2c5cdf0fa71f7a622897fb15068686652d3aed8ed1c5817ca783be8a9c3419edf27808350ad29cc7d87fdf
+  languageName: node
+  linkType: hard
+
+"tailwindcss-elevation@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "tailwindcss-elevation@npm:1.0.1"
+  dependencies:
+    hex-rgb: ^4.1.0
+  peerDependencies:
+    tailwindcss: ^2.0.1
+  checksum: 8b2c30b763fbda4ef7b2f13463a3ffbed1397b07c59d47154d2105847580dbdd365a66d8636efdb9faa36ab569017d0076eddaf6cbd514ba358262ede710080d
   languageName: node
   linkType: hard
 

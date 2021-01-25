@@ -9,7 +9,7 @@ const cache = {
    //type: 'memory',
    type: 'filesystem',
    cacheLocation: path.resolve(__dirname, '.cache'),
-   idleTimeout: 10000,
+   // idleTimeout: 10000,
    idleTimeoutForInitialStore: 10000,
 };
 

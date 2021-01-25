@@ -2,6 +2,7 @@ import { Button, Theme, ThemeProvider, createStyles, makeStyles } from '@materia
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
+import { StylesProvider } from '@material-ui/core/styles';
 
 import { grey, green, red, yellow } from '@material-ui/core/colors';
 
@@ -38,29 +39,31 @@ const MaterialProvider: FunctionComponent = ({ children }) => {
    }, [isDark]);
 
    return (
-      <ThemeProvider theme={theme}>
-         <SnackbarProvider
-            ref={notistackRef}
-            action={(key) => <Button onClick={onClickDismiss(key)}>Dismiss</Button>}
-            classes={{
-               variantSuccess: classes.success,
-               variantError: classes.error,
-               variantWarning: classes.warning,
-               variantInfo: classes.info,
-            }}
-            autoHideDuration={1200}
-            maxSnack={2}
-            dense
-            preventDuplicate
-            transitionDuration={{ enter: 200, exit: 50 }}
-            variant="info"
-            anchorOrigin={{
-               vertical: 'bottom',
-               horizontal: 'center',
-            }}>
-            {children}
-         </SnackbarProvider>
-      </ThemeProvider>
+      <StylesProvider injectFirst>
+         <ThemeProvider theme={theme}>
+            <SnackbarProvider
+               ref={notistackRef}
+               action={(key) => <Button onClick={onClickDismiss(key)}>Dismiss</Button>}
+               classes={{
+                  variantSuccess: classes.success,
+                  variantError: classes.error,
+                  variantWarning: classes.warning,
+                  variantInfo: classes.info,
+               }}
+               autoHideDuration={1200}
+               maxSnack={2}
+               dense
+               preventDuplicate
+               transitionDuration={{ enter: 200, exit: 50 }}
+               variant="info"
+               anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+               }}>
+               {children}
+            </SnackbarProvider>
+         </ThemeProvider>
+      </StylesProvider>
    );
 };
 

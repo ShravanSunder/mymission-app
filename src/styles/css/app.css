@@ -27,9 +27,9 @@
 }
 
 .fill-parent {
-   @apply h-full w-full overflow-hidden;
+   @apply h-full w-full overflow-hidden box-border;
 }
 
 .fill-parent-vertical {
-   @apply h-full overflow-hidden;
+   @apply h-full overflow-hidden box-border;
 }

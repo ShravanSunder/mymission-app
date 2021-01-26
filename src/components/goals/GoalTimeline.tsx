@@ -1,19 +1,45 @@
+import { Card, CardMedia, Typography } from '@material-ui/core';
 import * as React from 'react';
-import EditIcon from '@material-ui/icons/Edit';
 import tw, { css } from 'twin.macro';
-import { TimelineIcon } from './NavButton';
+import { PieChart, TPiceChartData } from './PieChart';
+import { TimelineIcon } from './TimelineIcon';
 
 export const GoalTimelineItem = (): JSX.Element => {
-   const itemStyle = css([tw`flex mt-2 mb-2 w-full max-h-20`]);
+   const itemStyle = css([tw`flex m-2 w-full max-h-20 box-border`]);
+
+   const data: TPiceChartData[] = [
+      {
+         id: 'done',
+         value: 10,
+      },
+      {
+         id: 'notDone',
+         value: 90,
+      },
+   ];
 
    return (
       <div css={itemStyle}>
-         <div className="flex-shrink-0 w-16 bg-blue-100 fill-parent-vertical">
+         <div className="flex-shrink-0 w-10 fill-parent-vertical">
             <div className="grid place-items-center">
                <TimelineIcon></TimelineIcon>
             </div>
          </div>
-         <div className="flex-grow bg-purple-100 fill-parent">1</div>
+         <div className="flex-grow border-gray-500 shadow-md elevation-2 border-1 fill-parent rounded-md">
+            <Card className="flex flex-grow fill-parent">
+               <div className="flex fill-parent">
+                  <div className="flex flex-col items-center justify-around flex-shrink-0 w-20 p-1 fill-parent-vertical">
+                     <div className="flex-shrink-0 w-12 h-12 overflow-hidden rounded">
+                        <PieChart data={data}></PieChart>
+                     </div>
+                     <div className="flex-grow-0 pt-1 pb-1 pl-2 pr-2 overflow-hidden truncate">
+                        <Typography variant="caption">3 this</Typography>
+                     </div>
+                  </div>
+                  <div className="flex flex-grow" css={[tw`bg-red-100`]}></div>
+               </div>
+            </Card>
+         </div>
       </div>
    );
 };

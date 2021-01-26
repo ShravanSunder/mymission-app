@@ -4,11 +4,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { Button, CardActionArea, CardActions, CardHeader, useTheme } from '@material-ui/core';
+import { CardActions, useTheme } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
-
-import EditIcon from '@material-ui/icons/Edit';
-import ForwardIcon from '@material-ui/icons/Forward';
 
 import tw from 'twin.macro';
 

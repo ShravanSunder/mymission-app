@@ -64,11 +64,11 @@ module.exports = {
       }),
       new webpack.HotModuleReplacementPlugin(),
       new ReactRefreshWebpackPlugin(),
-      new InjectManifest({
-         swSrc: path.resolve(__dirname, '..', './src/sw.js'),
-         maximumFileSizeToCacheInBytes: 50 * 1000 * 1000, //50mb,
-         exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
-      }),
+      // new InjectManifest({
+      //    swSrc: path.resolve(__dirname, '..', './src/sw.js'),
+      //    maximumFileSizeToCacheInBytes: 50 * 1000 * 1000, //50mb,
+      //    exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
+      // }),
    ],
    output: {
       path: path.resolve(__dirname, '..', './dist'),

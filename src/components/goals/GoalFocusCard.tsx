@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { Button, CardActionArea, CardActions, CardHeader } from '@material-ui/core';
+import { CardActions } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 
 import Favorite from '@material-ui/icons/Favorite';

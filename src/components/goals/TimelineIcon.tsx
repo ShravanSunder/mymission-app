@@ -1,5 +1,5 @@
-import React from 'react';
-import { IconButton, useTheme } from '@material-ui/core';
+import React, { useState } from 'react';
+import { useTheme, ToggleButton } from '@material-ui/core';
 import { Home as HomeIcon } from '@material-ui/icons';
 
 /**
@@ -7,18 +7,24 @@ import { Home as HomeIcon } from '@material-ui/icons';
  */
 export const TimelineIcon = (): JSX.Element => {
    const theme = useTheme();
+   const [selected, setSelected] = useState(false);
 
    return (
-      <div className="items-center  overflow-hidden grid rounded-2xl">
-         <IconButton
+      <div className="items-center overflow-hidden grid rounded-2xl">
+         <ToggleButton
+            value="check"
+            selected={selected}
             style={{
                paddingTop: theme.spacing(1),
                paddingRight: theme.spacing(1),
                paddingLeft: theme.spacing(1),
                paddingBottom: theme.spacing(1),
+            }}
+            onChange={() => {
+               setSelected(!selected);
             }}>
             <HomeIcon style={{ fontSize: theme.typography.h5.fontSize }} />
-         </IconButton>
+         </ToggleButton>
       </div>
    );
 };

@@ -1,11 +1,9 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
 import { MainPane } from './MainPane';
-import { RightPane } from './archive/RightPane';
 import { NavigationRight } from './Navigation';
 
 export const toolbarHeight = css([{ label: 'toolbarHeight' }, tw`h-14`]);

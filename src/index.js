@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
 import React from 'react';
-import { registerServiceWorker } from './serviceworker/registerServiceWorker.ts';
+
+// import { registerServiceWorker } from './serviceworker/registerServiceWorker.ts';
 
 (async () => {
    // dynamic imports for code splitting

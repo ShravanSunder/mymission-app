@@ -8,7 +8,7 @@ export const createAppTheme = (isDark: boolean): Theme => {
          mode: isDark ? 'dark' : 'light',
       },
       typography: {
-         fontSize: 11,
+         fontSize: 12,
          // fontFamily: ['sans-serif'].join(','),
       },
       spacing: (factor: number) => `${0.5 * factor}rem`,

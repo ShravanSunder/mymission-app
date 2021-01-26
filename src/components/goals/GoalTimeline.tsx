@@ -29,10 +29,8 @@ export const GoalTimelineItem = (): JSX.Element => {
             <Card className="flex flex-grow fill-parent">
                <div className="flex fill-parent">
                   <div className="flex flex-col items-center justify-around flex-shrink-0 w-20 p-1 fill-parent-vertical">
-                     <div className="flex-shrink-0 w-12 h-12 overflow-hidden rounded">
-                        <PieChart data={data}></PieChart>
-                     </div>
-                     <div className="flex-grow-0 pt-1 pb-1 pl-2 pr-2 overflow-hidden truncate">
+                     <PieChart data={data}></PieChart>
+                     <div className="flex-grow-0 pl-2 pr-2 overflow-hidden truncate">
                         <Typography variant="caption">3 this</Typography>
                      </div>
                   </div>

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { ResponsivePie } from '@nivo/pie';
+import { ResponsivePie, PieCustomLayerProps } from '@nivo/pie';
 import { LinearGradientDef, PatternDotsDef, Theme as NivoTheme } from '@nivo/core';
+
 import { useTheme } from '@material-ui/core';
 
 export type TPiceChartData = {
@@ -12,17 +13,28 @@ export interface IPieChartParams {
    data: TPiceChartData[];
 }
 
-export const PieChart = ({ data }: IPieChartParams): JSX.Element => {
+const CenteredMetric = ({ dataWithArc, centerX, centerY }: PieCustomLayerProps<TPiceChartData>) => {
    const theme = useTheme();
 
-   // const gradient: LinearGradientDef = {
-   //    id: 'gradientA',
-   //    type: 'linearGradient',
-   //    colors: [
-   //       { offset: 0, color: 'inherit', opacity: 0.9 },
-   //       { offset: 100, color: 'inherit', opacity: 0.1 },
-   //    ],
-   // };
+   const total = dataWithArc
+      .filter((f) => f.id === 'done')
+      .map((m) => m.value)
+      .reduce((accumulator, value) => accumulator + value);
+
+   return (
+      <text
+         x={centerX}
+         y={centerY}
+         textAnchor="middle"
+         dominantBaseline="central"
+         style={{ ...theme.typography.subtitle2, opacity: 0.66, cursor: 'default', userSelect: 'none' }}>
+         {total}
+      </text>
+   );
+};
+
+export const PieChart = ({ data }: IPieChartParams): JSX.Element => {
+   const theme = useTheme();
 
    const donePattern: PatternDotsDef = {
       id: 'donePattern',
@@ -61,31 +73,30 @@ export const PieChart = ({ data }: IPieChartParams): JSX.Element => {
    };
 
    return (
-      <ResponsivePie
-         data={data}
-         theme={graphTheme}
-         innerRadius={0.5}
-         padAngle={0}
-         cornerRadius={2}
-         colors={{ scheme: 'pastel1' }}
-         borderWidth={1}
-         borderColor={{
-            from: 'color',
-            modifiers: [
-               ['brighter', 0.2],
-               ['opacity', 0.5],
-            ],
-         }}
-         enableRadialLabels={false}
-         radialLabelsSkipAngle={10}
-         radialLabelsTextColor="#333333"
-         radialLabelsLinkColor={{ from: 'color' }}
-         enableSliceLabels={false}
-         sliceLabelsSkipAngle={10}
-         sliceLabelsTextColor="#333333"
-         isInteractive={false}
-         defs={[donePattern, notDonePattern]}
-         fill={[doneMatch, notDoneMatch]}
-      />
+      <div className="flex-shrink-0 w-12 h-12 overflow-hidden border-0 rounded-full -p-1" css={[{ borderColor: theme.palette.text.secondary }]}>
+         <ResponsivePie
+            data={data}
+            theme={graphTheme}
+            innerRadius={0.5}
+            padAngle={0}
+            cornerRadius={1}
+            colors={{ scheme: 'pastel1' }}
+            borderWidth={1}
+            borderColor={{
+               from: 'color',
+               modifiers: [['opacity', 0.8]],
+            }}
+            enableRadialLabels={false}
+            radialLabelsSkipAngle={10}
+            radialLabelsTextColor="#333333"
+            radialLabelsLinkColor={{ from: 'color' }}
+            enableSliceLabels={false}
+            sliceLabelsSkipAngle={10}
+            sliceLabelsTextColor="#333333"
+            isInteractive={false}
+            defs={[donePattern, notDonePattern]}
+            fill={[doneMatch, notDoneMatch]}
+            layers={['slices', 'sliceLabels', 'radialLabels', 'legends', CenteredMetric]}></ResponsivePie>
+      </div>
    );
 };

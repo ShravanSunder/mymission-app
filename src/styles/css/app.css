@@ -28,8 +28,10 @@
 
 .fill-parent {
    @apply h-full w-full overflow-hidden box-border;
+   user-select: 'none';
 }
 
 .fill-parent-vertical {
    @apply h-full overflow-hidden box-border;
+   user-select: 'none';
 }

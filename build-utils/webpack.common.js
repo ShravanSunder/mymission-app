@@ -34,6 +34,7 @@ const moduleRules = [
          },
          {
             loader: 'postcss-loader',
+            options: { sourceMap: false },
          },
       ],
       exclude: /node_modules/,

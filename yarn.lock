@@ -5146,6 +5146,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/emoji-regex@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "@types/emoji-regex@npm:9.2.0"
+  dependencies:
+    emoji-regex: "*"
+  checksum: 4bbb98fee63cd5fa067fd681a9d5dd5c61f5c260d46f3b365e9f35f5d60509a80843f73b7183d816a3b8a7e55e32a3d8dd73ac922bb993f5a94886c2acfe6bb2
+  languageName: node
+  linkType: hard
+
 "@types/eslint-scope@npm:^3.7.0":
   version: 3.7.0
   resolution: "@types/eslint-scope@npm:3.7.0"
@@ -5608,6 +5617,13 @@ __metadata:
   dependencies:
     "@types/jest": "*"
   checksum: 32aa324a83e67fd81eb7f0ba3e4c86406db86c1e5361b6e8091d224a1fefbfcb4e493039db3ce3faf8afa133a4f68cc7c42bcdbcae1dd91b13d741a040791038
+  languageName: node
+  linkType: hard
+
+"@types/twemoji@npm:^12.1.1":
+  version: 12.1.1
+  resolution: "@types/twemoji@npm:12.1.1"
+  checksum: 15f3c2147dbcffa8be0a34e5085bb282be2031f1d8aeccaf01673af6a5d0d0a897bc09383a881305db7778e11e3aa40b6607ba2208e17b1b7d66dc2e65e885e3
   languageName: node
   linkType: hard
 
@@ -8710,7 +8726,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.0.4, clsx@npm:^1.1.0, clsx@npm:^1.1.1":
+"clsx@npm:^1.0.4, clsx@npm:^1.1.0":
   version: 1.1.1
   resolution: "clsx@npm:1.1.1"
   checksum: d8ae10ac0546da19fe8c9516886f6582a64a382cf4d09ea7d36d5287cafbdab1192ab249adc2cdf0310e0b0aeac4f4142cf7c738c98d9cb68c19ba24b6f673d5
@@ -10357,10 +10373,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"emoji-regex@npm:*, emoji-regex@npm:^9.0.0":
+  version: 9.2.0
+  resolution: "emoji-regex@npm:9.2.0"
+  checksum: 0ccee5f5e8ffcfe084e1a7499398b1ddb3b2f0e395a9bd5711ff136fc4606f24ca8bad930d60f5a12d4b2ce38dbb2b8cd0fd3e20a0d291770123b1e12bba9f04
+  languageName: node
+  linkType: hard
+
 "emoji-regex@npm:>=6.0.0 <=6.1.1":
   version: 6.1.1
   resolution: "emoji-regex@npm:6.1.1"
   checksum: 1d35436f24d1a00d53451573271ee1ea01e8b978bcc105ac7677633c35c665a796c317086d39b19eda6261d1861415185e98e28d39d2437cd2a9fd3dfcc0f54a
+  languageName: node
+  linkType: hard
+
+"emoji-regex@npm:^6.4.1":
+  version: 6.5.1
+  resolution: "emoji-regex@npm:6.5.1"
+  checksum: 4b1bf4b7c7c1c1e972e62d49e813a3babc67eb68dd252f8802bf098b198871d165ec367e209f91c4b287b8fad5592a1996bbd795769a5ab85fa7139ee0f51a89
   languageName: node
   linkType: hard
 
@@ -10375,13 +10405,6 @@ __metadata:
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
   checksum: 87cf3f89efb8ba028075b3dc1713e2c5609af94cbc129b1f00c3113d01dbe4bf85c9d971e75a98bf8a8508131727682ce929e4bd70e9022af4fd47d75e9507de
-  languageName: node
-  linkType: hard
-
-"emoji-regex@npm:^9.0.0":
-  version: 9.2.0
-  resolution: "emoji-regex@npm:9.2.0"
-  checksum: 0ccee5f5e8ffcfe084e1a7499398b1ddb3b2f0e395a9bd5711ff136fc4606f24ca8bad930d60f5a12d4b2ce38dbb2b8cd0fd3e20a0d291770123b1e12bba9f04
   languageName: node
   linkType: hard
 
@@ -12079,17 +12102,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^8.0.1":
-  version: 8.1.0
-  resolution: "fs-extra@npm:8.1.0"
-  dependencies:
-    graceful-fs: ^4.2.0
-    jsonfile: ^4.0.0
-    universalify: ^0.1.0
-  checksum: 056a96d4f55ab8728b021e251175a4a6440d1edb5845e6c2e8e010019bde3e63de188a0eb99386c21c71804ca1a571cd6e08f507971f10a2bc4f4f7667720fa4
-  languageName: node
-  linkType: hard
-
 "fs-extra@npm:^9.0.0, fs-extra@npm:^9.0.1":
   version: 9.1.0
   resolution: "fs-extra@npm:9.1.0"
@@ -13563,7 +13575,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"invariant@npm:^2.2.2, invariant@npm:^2.2.3, invariant@npm:^2.2.4":
+"invariant@npm:^2.2.1, invariant@npm:^2.2.2, invariant@npm:^2.2.3, invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -15050,31 +15062,6 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "jsonfile@npm:4.0.0"
-  dependencies:
-    graceful-fs: ^4.1.6
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: a40b7b64da41c84b0dc7ad753737ba240bb0dc50a94be20ec0b73459707dede69a6f89eb44b4d29e6994ed93ddf8c9b6e57f6b1f09dd707567959880ad6cee7f
-  languageName: node
-  linkType: hard
-
-"jsonfile@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "jsonfile@npm:5.0.0"
-  dependencies:
-    graceful-fs: ^4.1.6
-    universalify: ^0.1.2
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: 938b5d1216572282090710986e38ff30b8ece626491b153b96a6005392a07f9acf60505bf120878d52c5f3c754d3ee41dac681ac2550d43d3572eebbca52a56d
-  languageName: node
-  linkType: hard
-
 "jsonfile@npm:^6.0.1":
   version: 6.1.0
   resolution: "jsonfile@npm:6.1.0"
@@ -15501,10 +15488,10 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"lodash.isequal@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "lodash.isequal@npm:4.5.0"
-  checksum: 5b47e094641c18a915497343894c66f7da6aebb9aaa2a3fcc5643455aaf29d19df60ebbed664c8374fb959c8b4ce96810ee6becd8a71ac58c6c2ca8d29762947
+"lodash.flatten@npm:^4.2.0, lodash.flatten@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.flatten@npm:4.4.0"
+  checksum: f22a7f6f163256d87345b07c76122e03d03abbf943b6c3aa5e5fafb7d5bce765013aedfc2aae7e649af0907287a2cf85de24237dbdd3ecd485a77d56e070b54c
   languageName: node
   linkType: hard
 
@@ -15512,6 +15499,13 @@ fsevents@~2.1.2:
   version: 4.0.6
   resolution: "lodash.isplainobject@npm:4.0.6"
   checksum: 72a114b610ec32a42b8cb47680d1729398caea0ee0631c0b220b97b21e7df19312377cb077acb6593bf6c5abdbdb43c530aa66b440e30d53324986d386808cd0
+  languageName: node
+  linkType: hard
+
+"lodash.isstring@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "lodash.isstring@npm:4.0.1"
+  checksum: 20c46960b74fd63c27b534f1725cd4141ac19b35c7250affee37c8b7899b1a4c5e9820becfafe571a4d48cd4c86206ee03c2e93fe943dbeab82ddd5cab710540
   languageName: node
   linkType: hard
 
@@ -16346,11 +16340,13 @@ fsevents@~2.1.2:
     "@tailwindcss/typography": ^0.4.0
     "@testing-library/react": ^11.2.3
     "@types/dotenv-webpack": ^5.0.0
+    "@types/emoji-regex": ^9.2.0
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
     "@types/react-redux": ^7.1.16
     "@types/react-router-dom": ^5.1.7
     "@types/redux-logger": ^3.0.8
+    "@types/twemoji": ^12.1.1
     "@types/webpack": ^4.41.26
     "@types/webpack-virtual-modules": ^0
     "@types/workbox-build": ^5.0.0
@@ -16370,7 +16366,6 @@ fsevents@~2.1.2:
     babel-plugin-macros: ^3.0.1
     chrono-node: ^2.1.11
     clean-webpack-plugin: ^3.0.0
-    clsx: ^1.1.1
     cross-env: ^7.0.3
     css-loader: ^5.0.1
     dayjs: ^1.10.4
@@ -16412,6 +16407,7 @@ fsevents@~2.1.2:
     react-calendar: ^3.3.0
     react-chrono: ^1.9.1
     react-dom: ^17.0.1
+    react-emoji-render: ^1.2.4
     react-error-boundary: ^3.1.0
     react-hot-loader: ^4.13.0
     react-icons: ^4.1.0
@@ -16421,7 +16417,6 @@ fsevents@~2.1.2:
     react-router: next
     react-router-dom: next
     react-test-renderer: ^17.0.1
-    react-twemoji: ^0.3.0
     redux: ^4.0.5
     redux-logger: ^3.0.6
     redux-mock-store: ^1.5.4
@@ -16436,7 +16431,6 @@ fsevents@~2.1.2:
     ts-jest: ^26.4.4
     ts-loader: ^8.0.14
     ts-node: ^9.1.1
-    twemoji: ^13.0.1
     twin.macro: ^2.1.0
     typescript: ^4.1.3
     webpack: ^5.17.0
@@ -18695,6 +18689,22 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"react-emoji-render@npm:^1.2.4":
+  version: 1.2.4
+  resolution: "react-emoji-render@npm:1.2.4"
+  dependencies:
+    classnames: ^2.2.5
+    emoji-regex: ^6.4.1
+    lodash.flatten: ^4.4.0
+    prop-types: ^15.5.8
+    string-replace-to-array: ^1.0.1
+  peerDependencies:
+    react: ">=0.14.0"
+    react-dom: ">=0.14.0"
+  checksum: d908bb9f6c27e36f034a1940d5468fe9c459b0cc47e2ea93fa8fbb5404f3f85dadf22833e5e553415370b654b5a47c4da8b02f1265d7774a527d3db1fdd0c512
+  languageName: node
+  linkType: hard
+
 "react-error-boundary@npm:^3.1.0":
   version: 3.1.0
   resolution: "react-error-boundary@npm:3.1.0"
@@ -19097,20 +19107,6 @@ fsevents@~2.1.2:
     react: ">=16.6.0"
     react-dom: ">=16.6.0"
   checksum: e14446123f820e804335c64be5270333c29e8cfaa43dfc33387e132c5d521cf4a0a7c2408058a147b254ae82a6569f373394d83e977ef340d6937bc2f4ff7d6c
-  languageName: node
-  linkType: hard
-
-"react-twemoji@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "react-twemoji@npm:0.3.0"
-  dependencies:
-    lodash.isequal: ^4.5.0
-    prop-types: ^15.7.2
-    twemoji: ^13.0.1
-  peerDependencies:
-    react: ^16.4.2
-    react-dom: ^16.4.2
-  checksum: af6b89bad07556276fb552cb2cd2691b52237bc998ffac198793c7da59eaf97c88c1c2832127829a63c9539838870788bca882b0dc9771d1baef2ab1fb92f324
   languageName: node
   linkType: hard
 
@@ -20896,6 +20892,17 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"string-replace-to-array@npm:^1.0.1":
+  version: 1.0.3
+  resolution: "string-replace-to-array@npm:1.0.3"
+  dependencies:
+    invariant: ^2.2.1
+    lodash.flatten: ^4.2.0
+    lodash.isstring: ^4.0.1
+  checksum: b265fecdb754fdb6a1618487f1a5f793716fdfda3c85947de7007f8dbccf6c51f3d74869a5efeb4754bed3c26f2b07795c535c94e8e80605fc91c6cb2831c307
+  languageName: node
+  linkType: hard
+
 "string-similarity@npm:^4.0.3":
   version: 4.0.4
   resolution: "string-similarity@npm:4.0.4"
@@ -21952,25 +21959,6 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"twemoji-parser@npm:13.0.0":
-  version: 13.0.0
-  resolution: "twemoji-parser@npm:13.0.0"
-  checksum: 05a4d6a8579a7a6614a081b6f1339846ae19e28efe9e304b1d094b925a3b857a6738a3be8a427ac4a95add0b6486c92f63417c670c219a80b74a81f8389c2feb
-  languageName: node
-  linkType: hard
-
-"twemoji@npm:^13.0.1":
-  version: 13.0.1
-  resolution: "twemoji@npm:13.0.1"
-  dependencies:
-    fs-extra: ^8.0.1
-    jsonfile: ^5.0.0
-    twemoji-parser: 13.0.0
-    universalify: ^0.1.2
-  checksum: a4f47f2ec39bbbbff553559b918872ea6465d726816cd921345c54260a7ee8b820aac39e69e3fb5b32771c05e833685558018e5819127cab51ff5c4c8d524369
-  languageName: node
-  linkType: hard
-
 "twin.macro@npm:^2.1.0":
   version: 2.1.0
   resolution: "twin.macro@npm:2.1.0"
@@ -22288,13 +22276,6 @@ typescript@^4.1.3:
     unist-util-is: ^4.0.0
     unist-util-visit-parents: ^3.0.0
   checksum: 7af837673e377693cf4c7bd966d5e088b52bd4a9c6e92f9b16ae5760a31243f627fbf3432ada6541e2b9091b8096007cb22aa8439cbbf04613898773743302d3
-  languageName: node
-  linkType: hard
-
-"universalify@npm:^0.1.0, universalify@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "universalify@npm:0.1.2"
-  checksum: 420fc6547357782c700d53e9a92506a8e95345b13e97684c8f9ab75237912ec2ebb6af8ac10d4f7406b7b6bd21c58f6c5c0811414fb0b4091b78b4743fa6806e
   languageName: node
   linkType: hard
 

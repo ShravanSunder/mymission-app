@@ -3,6 +3,16 @@ import * as React from 'react';
 import tw, { css } from 'twin.macro';
 import { PieChart, TPiceChartData } from './PieChart';
 import { TimelineIcon } from './TimelineIcon';
+import { TwemojiInline } from './Twemoji';
+
+const Habit = (): JSX.Element => {
+   const s = '😀 A new habit 😂😂';
+   return (
+      <Typography variant="h1">
+         <TwemojiInline text={s}></TwemojiInline>
+      </Typography>
+   );
+};
 
 export const GoalTimelineItem = (): JSX.Element => {
    const itemStyle = css([tw`flex m-2 w-full max-h-20 box-border`]);
@@ -31,10 +41,12 @@ export const GoalTimelineItem = (): JSX.Element => {
                   <div className="flex flex-col items-center justify-around flex-shrink-0 w-20 p-1 fill-parent-vertical">
                      <PieChart data={data}></PieChart>
                      <div className="flex-grow-0 pl-2 pr-2 overflow-hidden truncate">
-                        <Typography variant="caption">3 this</Typography>
+                        <Typography variant="caption">3 this week</Typography>
                      </div>
                   </div>
-                  <div className="flex flex-grow" css={[tw`bg-red-100`]}></div>
+                  <div className="flex flex-grow" css={[tw`bg-red-100`]}>
+                     <Habit></Habit>
+                  </div>
                </div>
             </Card>
          </div>

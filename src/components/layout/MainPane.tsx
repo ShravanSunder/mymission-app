@@ -1,8 +1,8 @@
 import React from 'react';
 // import tw from 'twin.macro';
-import { GoalTimeline } from '../goals/GoalTimeline';
-import { InitiativeDetails } from '../goals/InitiativeDetails';
-import { GoalTitleCard } from '../goals/GoalTitleCard';
+import { GoalTimeline } from '../routes/goals/GoalTimeline';
+import { InitiativeDetails } from '../routes/goals/InitiativeDetails';
+import { GoalTitleCard } from '../routes/goals/GoalTitleCard';
 
 export const MainPane = (): JSX.Element => {
    return (

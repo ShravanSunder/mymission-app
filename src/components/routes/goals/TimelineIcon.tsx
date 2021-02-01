@@ -15,10 +15,10 @@ export const TimelineIcon = (): JSX.Element => {
             value="check"
             selected={selected}
             style={{
-               paddingTop: theme.spacing(1),
-               paddingRight: theme.spacing(1),
-               paddingLeft: theme.spacing(1),
-               paddingBottom: theme.spacing(1),
+               paddingTop: theme.spacing(0.5),
+               paddingRight: theme.spacing(0.5),
+               paddingLeft: theme.spacing(0.5),
+               paddingBottom: theme.spacing(0.5),
             }}
             onChange={() => {
                setSelected(!selected);

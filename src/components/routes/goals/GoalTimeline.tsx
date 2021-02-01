@@ -1,9 +1,47 @@
 import { Card, CardMedia, CircularProgress, Typography } from '@material-ui/core';
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import tw, { css } from 'twin.macro';
 import { PieChart, TPiceChartData } from '../../common/PieChart';
 import { TimelineIcon } from './TimelineIcon';
 import { TwemojiInline } from './Twemoji';
+
+interface HabitCircleParams {
+   numberOfSegments: number;
+   thickness?: number;
+}
+
+const HabitCircle = ({ numberOfSegments, thickness = 3.6 }: HabitCircleParams): JSX.Element => {
+   const segments = useMemo(() => {
+      const arc: number = 360 / numberOfSegments;
+      const segments: number[] = [];
+      for (let i = 0; i < numberOfSegments; i++) {
+         segments.push(arc * i);
+      }
+
+      const SIZE = 44;
+      const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
+      const strokeDash: number[] = [circumference / numberOfSegments - 1, 1];
+
+      return (
+         <span
+            className="absolute w-11/12 text-gray-300 MuiCircularProgress-root MuiCircularProgress-determinate "
+            role="progressbar"
+            style={{ width: '82%', height: '82%', transform: 'rotate(-90deg)' }}>
+            <svg className="MuiCircularProgress-svg" viewBox="22 22 44 44">
+               <circle
+                  className="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate"
+                  cx="44"
+                  cy="44"
+                  r="19.75"
+                  fill="none"
+                  style={{ strokeDasharray: strokeDash.map((m) => m.toFixed(2)).join(', '), strokeWidth: thickness, strokeDashoffset: -1 }}></circle>
+            </svg>
+         </span>
+      );
+   }, [numberOfSegments]);
+
+   return <>{segments}</>;
+};
 
 const Habit = (): JSX.Element => {
    const emoji = '🏃🏾‍♀️';
@@ -12,15 +50,16 @@ const Habit = (): JSX.Element => {
 
    return (
       <Card className="flex flex-grow fill-parent">
-         <div tw="flex" className="fill-parent">
+         <div className="flex fill-parent">
             <div
                className="relative flex flex-col items-center justify-around flex-shrink-0 w-20 p-1 fill-parent-vertical"
                css={[{ fontSize: '2rem', width: '5rem' }]}>
                <TwemojiInline text={'🏃🏾‍♀️'}></TwemojiInline>
+               <HabitCircle numberOfSegments={3}></HabitCircle>
                <CircularProgress
                   variant="determinate"
-                  className="absolute w-11/12 text-red-300 delay-300"
-                  value={80}
+                  className="absolute w-11/12 text-red-300 delay-500"
+                  value={10}
                   style={{ width: '80%', height: '80%' }}></CircularProgress>
             </div>
             <div className="flex-grow">
@@ -46,13 +85,13 @@ export const GoalTimelineItem = (): JSX.Element => {
             `,
          ]}>
          <div className="relative flex flex-col flex-shrink-0 w-8 justify-items-center fill-parent-vertical">
-            <div className="grid place-items-center">
+            <div className="self-center grid place-items-center">
                <div className="h-2 bg-gray-500 w-0.5 justify-self-center"></div>
             </div>
             <div className="grid place-items-center">
                <TimelineIcon></TimelineIcon>
             </div>
-            <div className="flex-grow grid place-items-center">
+            <div className="flex-grow grid place-items-center ">
                <div className="h-full bg-gray-500 w-0.5 justify-self-center"></div>
             </div>
          </div>

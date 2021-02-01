@@ -10408,6 +10408,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"emoji-regex@npm:^9.2.1":
+  version: 9.2.1
+  resolution: "emoji-regex@npm:9.2.1"
+  checksum: d6b126ad5756ded4f54e7dbb859f6c352318c7a7b83bee9161965c8d9ae7fd96cfab7fc381f27f236efecc1bd9573bad0d1e0428444dae1e075dc7cc66507df1
+  languageName: node
+  linkType: hard
+
 "emojis-list@npm:^2.0.0":
   version: 2.1.0
   resolution: "emojis-list@npm:2.1.0"
@@ -16370,6 +16377,7 @@ fsevents@~2.1.2:
     css-loader: ^5.0.1
     dayjs: ^1.10.4
     dotenv-webpack: ^6.0.0
+    emoji-regex: ^9.2.1
     eslint: ^7.18.0
     eslint-config-airbnb: ^18.2.1
     eslint-config-prettier: ^7.2.0

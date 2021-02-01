@@ -141,6 +141,7 @@
       "@types/workbox-window": "^4.3.3",
       "chrono-node": "^2.1.11",
       "dayjs": "^1.10.4",
+      "emoji-regex": "^9.2.1",
       "formik": "^2.2.6",
       "formik-material-ui": "^3.0.1",
       "formik-material-ui-lab": "^0.0.8",

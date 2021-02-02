@@ -4,7 +4,6 @@ import { LinearGradientDef, PatternDotsDef, Theme as NivoTheme } from '@nivo/cor
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 import { useTheme } from '@material-ui/core';
-import { TwemojiInline } from '../routes/goals/Twemoji';
 
 export type TPiceChartData = {
    id: string | number;

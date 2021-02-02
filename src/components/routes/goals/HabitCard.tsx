@@ -1,6 +1,6 @@
 import { Card, CircularProgress, Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
-import { TwemojiInline } from './Twemoji';
+import { TwemojiImage } from './Twemoji';
 import emojiRegexRGI from 'emoji-regex';
 import { HabitMeter } from './HabitMeter';
 import tw from 'twin.macro';
@@ -26,22 +26,19 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    // <TwemojiInline text={safeEmoji}></TwemojiInline>
 
    return (
-      <Card className="flex flex-grow fill-parent">
-         <div className="flex fill-parent">
-            <div
-               className="relative flex flex-col items-center justify-around flex-shrink-0 w-20 p-2 box-border fill-parent-vertical"
-               css={[{ fontSize: '2rem', width: '5rem' }]}>
-               <div className="w-full h-full box-border">
-                  <HabitMeter numberOfSegments={3}></HabitMeter>
-               </div>
-               <div css={[tw`absolute flex-grow-0 flex flex-col w-full h-full`]}>
-                  <div className="grid place-items-center" css={[{ height: '5rem' }]}>
-                     <TwemojiInline text={safeEmoji}></TwemojiInline>
+      <Card className="grid fill-parent">
+         <div className="grid fill-parent grid-cols-3 grid-rows-3">
+            <div className="relative p-1 box-border grid row-span-3" style={{ paddingTop: '100%', width: '100%', height: 0 }}>
+               <div className="absolute w-full h-full place-items-center grid">
+                  <div className="box-border" style={{ width: '80%', height: '80%' }}>
+                     <HabitMeter numberOfSegments={3}></HabitMeter>
                   </div>
-                  <div className="flex-grow w-full h-full"></div>
+               </div>
+               <div className="absolute flex justify-center w-full h-full">
+                  <TwemojiImage text={safeEmoji} height="60%"></TwemojiImage>
                </div>
             </div>
-            <div className="flex-grow">
+            <div className="grid col-span-2 row-span-3">
                <div className="p-2 grid gap-1 grid-flow-row" css={[{ gridTemplateRows: '1fr min-content' }]}>
                   <Typography variant="h6">{title}</Typography>
                   <Typography variant="body1">{subtitle}</Typography>

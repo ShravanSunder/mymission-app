@@ -12,7 +12,7 @@ export const GoalTimelineItem = (): JSX.Element => {
       <div
          css={[
             css`
-               ${tw`grid m-1 w-full max-h-20 box-border`}
+               ${tw`grid m-1 w-full box-border`}
                grid-template-columns: 2.5rem auto
             `,
          ]}>

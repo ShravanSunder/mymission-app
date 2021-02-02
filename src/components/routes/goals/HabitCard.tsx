@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { TwemojiInline } from './Twemoji';
 import emojiRegexRGI from 'emoji-regex';
 import { HabitMeter } from './HabitMeter';
+import tw from 'twin.macro';
 
 interface HabitCardProps {
    emoji: string;
@@ -33,8 +34,11 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
                <div className="w-full h-full box-border">
                   <HabitMeter numberOfSegments={3}></HabitMeter>
                </div>
-               <div className="absolute">
-                  <TwemojiInline text={safeEmoji}></TwemojiInline>
+               <div css={[tw`absolute flex-grow-0 flex flex-col w-full h-full`]}>
+                  <div className="grid place-items-center" css={[{ height: '5rem' }]}>
+                     <TwemojiInline text={safeEmoji}></TwemojiInline>
+                  </div>
+                  <div className="flex-grow w-full h-full"></div>
                </div>
             </div>
             <div className="flex-grow">

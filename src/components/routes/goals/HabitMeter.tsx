@@ -11,7 +11,7 @@ export const HabitMeter = ({ numberOfSegments, thickness = 3.6 }: HabitMeterPara
       const strokeDash: number[] = [circumference / numberOfSegments - 2, 2];
 
       return (
-         <span className="text-gray-300 " role="progressbar" style={{ width: '82%', height: '82%', transform: 'rotate(-90deg)' }}>
+         <span className="text-gray-300 " role="progressbar" style={{ width: '100%', paddingTop: '100%', transform: 'rotate(-90deg)' }}>
             <svg viewBox="22 22 44 44" overflow="overlay">
                <circle
                   cx="44"

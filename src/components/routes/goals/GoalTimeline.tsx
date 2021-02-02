@@ -1,88 +1,8 @@
-import { Card, CardMedia, CircularProgress, Typography } from '@material-ui/core';
-import React, { useMemo } from 'react';
+import { CardMedia } from '@material-ui/core';
+import React from 'react';
 import tw, { css } from 'twin.macro';
 import { TimelineIcon } from './TimelineIcon';
-import { TwemojiInline } from './Twemoji';
-import emojiRegexRGI from 'emoji-regex';
-
-interface HabitCircleParams {
-   numberOfSegments: number;
-   thickness?: number;
-}
-
-const HabitCircle = ({ numberOfSegments, thickness = 3.6 }: HabitCircleParams): JSX.Element => {
-   const segments = useMemo(() => {
-      const arc: number = 360 / numberOfSegments;
-      const segments: number[] = [];
-      for (let i = 0; i < numberOfSegments; i++) {
-         segments.push(arc * i);
-      }
-
-      const SIZE = 44;
-      const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
-      const strokeDash: number[] = [circumference / numberOfSegments - 1, 1];
-
-      return (
-         <span
-            className="absolute w-11/12 text-gray-300 MuiCircularProgress-root MuiCircularProgress-determinate "
-            role="progressbar"
-            style={{ width: '82%', height: '82%', transform: 'rotate(-90deg)' }}>
-            <svg className="MuiCircularProgress-svg" viewBox="22 22 44 44">
-               <circle
-                  className="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate"
-                  cx="44"
-                  cy="44"
-                  r="19.75"
-                  fill="none"
-                  style={{ strokeDasharray: strokeDash.map((m) => m.toFixed(2)).join(', '), strokeWidth: thickness, strokeDashoffset: -1 }}></circle>
-            </svg>
-         </span>
-      );
-   }, [numberOfSegments]);
-
-   return <>{segments}</>;
-};
-
-interface HabitProps {
-   emoji: string;
-   title: string;
-}
-
-const Habit = ({ emoji, title }: HabitProps): JSX.Element => {
-   const safeEmoji: string = useMemo((): string => {
-      if (emoji?.length > 0) {
-         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-         const regex: RegExp = emojiRegexRGI();
-         const [result] = emoji.matchAll(regex);
-         return result?.[0] ?? '';
-      }
-      return '';
-   }, [emoji]);
-   console.log([...emoji]);
-
-   return (
-      <Card className="flex flex-grow fill-parent">
-         <div className="flex fill-parent">
-            <div
-               className="relative flex flex-col items-center justify-around flex-shrink-0 w-20 p-1 fill-parent-vertical"
-               css={[{ fontSize: '2rem', width: '5rem' }]}>
-               <TwemojiInline text={safeEmoji}></TwemojiInline>
-               <HabitCircle numberOfSegments={3}></HabitCircle>
-               <CircularProgress
-                  variant="determinate"
-                  className="absolute w-11/12 text-red-300 delay-500"
-                  value={10}
-                  style={{ width: '80%', height: '80%' }}></CircularProgress>
-            </div>
-            <div className="flex-grow">
-               <div className="pt-2 pb-2 grid gap-1 grid-flow-row" css={[{ gridTemplateRows: '1fr min-content' }]}>
-                  <Typography variant="body2">{title}</Typography>
-               </div>
-            </div>
-         </div>
-      </Card>
-   );
-};
+import { HabitCard } from './HabitCard';
 
 export const GoalTimelineItem = (): JSX.Element => {
    const firstItem = false;
@@ -108,7 +28,11 @@ export const GoalTimelineItem = (): JSX.Element => {
             </div>
          </div>
          <div className="flex-grow border-gray-500 shadow-md elevation-2 border-1 fill-parent rounded-md">
-            <Habit emoji={'🏃🏾‍♀️🏃🏾‍♀️🏃🏾‍♀️'} title="I'd like to run every day"></Habit>
+            <HabitCard
+               emoji={'🏃🏾‍♀️🏃🏾‍♀️🏃🏾‍♀️'}
+               title="I'd like to run every day"
+               subtitle="i love to run and running is in my soul and stuff"
+               schedule="2 times a week"></HabitCard>
          </div>
       </div>
    );

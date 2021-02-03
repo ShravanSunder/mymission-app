@@ -4,11 +4,11 @@ import { CSSInterpolation } from '@emotion/serialize';
 export interface ILayoutProps {
    children: JSX.Element;
    className?: string;
-   sx?: Array<CSSInterpolation> | CSSInterpolation | TemplateStringsArray;
+   cssProp?: Array<CSSInterpolation> | CSSInterpolation | TemplateStringsArray;
 }
 
 export const getLayoutProps = (props: ILayoutProps): { classNameProp: string; cssProp: any } => {
    const classNameProp = ` ${props.className ?? ''}`;
-   const cssProp = css(props.sx as any);
+   const cssProp = css(props.cssProp as any);
    return { cssProp, classNameProp };
 };

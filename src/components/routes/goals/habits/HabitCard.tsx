@@ -2,6 +2,7 @@ import { Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import emojiRegexRGI from 'emoji-regex';
 import tw from 'twin.macro';
+import { css } from '@emotion/react';
 
 import { TwemojiImage } from '~~/components/common/Twemoji';
 import { HabitMeter } from '~~/components/routes/goals/habits/HabitMeter';
@@ -27,7 +28,7 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    console.log([...emoji]);
 
    return (
-      <CardLayout>
+      <CardLayout css={tw`bg-red-500`}>
          <div className="grid grid-flow-row auto-rows-min grid-cols-3 grid-rows-3">
             <div className="relative p-1 box-border grid row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
                <div className="absolute w-full h-full place-items-center grid">

@@ -127,6 +127,7 @@
    },
    "dependencies": {
       "@emotion/react": "^11.1.4",
+      "@emotion/serialize": "^1.0.0",
       "@material-ui/core": "next",
       "@material-ui/icons": "next",
       "@material-ui/lab": "next",

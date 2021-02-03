@@ -1,4 +1,4 @@
-import { Card, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import emojiRegexRGI from 'emoji-regex';
 import tw from 'twin.macro';

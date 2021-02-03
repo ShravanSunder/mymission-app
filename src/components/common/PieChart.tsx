@@ -10,7 +10,7 @@ export type TPiceChartData = {
    value: number;
 };
 
-export interface IPieChartParams {
+export interface IPieChartProps {
    data: TPiceChartData[];
 }
 
@@ -34,7 +34,7 @@ const CenteredMetric = ({ dataWithArc, centerX, centerY }: PieCustomLayerProps<T
    );
 };
 
-export const PieChart = ({ data }: IPieChartParams): JSX.Element => {
+export const PieChart = ({ data }: IPieChartProps): JSX.Element => {
    const theme = useTheme();
 
    const donePattern: PatternDotsDef = {

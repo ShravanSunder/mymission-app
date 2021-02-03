@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 
-interface HabitMeterParams {
+interface HabitMeterProps {
    numberOfSegments: number;
    thickness?: number;
    /**
@@ -8,7 +8,7 @@ interface HabitMeterParams {
     */
    size: number;
 }
-export const HabitMeter = ({ numberOfSegments, thickness = 3.6, size = 80 }: HabitMeterParams): JSX.Element => {
+export const HabitMeter = ({ numberOfSegments, thickness = 3.6, size = 80 }: HabitMeterProps): JSX.Element => {
    const segments = useMemo(() => {
       const SIZE = 44;
       const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);

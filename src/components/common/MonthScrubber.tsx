@@ -4,16 +4,16 @@ import tw from 'twin.macro';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import { FormattedDate } from 'react-intl';
 
-interface IMonthParams {
+interface IMonthProps {
    month: number;
 }
 /**
  * A component that renders a button containing svg icon and month short name
  * in the middle of a calendar
- * @param params month as 1-12 based integer
+ * @param props month as 1-12 based integer
  */
-const Month = (params: IMonthParams) => {
-   const dateForIntl = '2020-' + params.month.toString() + '-05';
+const Month = (props: IMonthProps) => {
+   const dateForIntl = '2020-' + props.month.toString() + '-05';
 
    return (
       <div className="w-full h-12 mt-1 mb-1">

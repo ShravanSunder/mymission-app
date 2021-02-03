@@ -17476,6 +17476,7 @@ fsevents@~2.1.2:
     "@emotion/babel-plugin-jsx-pragmatic": ^0.1.5
     "@emotion/babel-preset-css-prop": ^11.0.0
     "@emotion/react": ^11.1.4
+    "@emotion/serialize": ^1.0.0
     "@emotion/types": ^0.7.0
     "@fullhuman/postcss-purgecss": ^4.0.0
     "@material-ui/core": next

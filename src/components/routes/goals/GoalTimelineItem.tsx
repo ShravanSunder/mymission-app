@@ -35,7 +35,7 @@ export const GoalTimelineItem = ({ showTopConnector = true, showBottomConnect = 
          ${tw`grid w-full box-border p-2`}
          grid-template-columns: 2rem auto
       `,
-      { maxWidth: '24rem', minWidth: '14rem' },
+      { maxWidth: '24rem', minWidth: '8rem' },
    ];
 
    return (

@@ -28,19 +28,21 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    console.log([...emoji]);
 
    return (
-      <CardLayout css={tw`bg-red-500`}>
-         <div className="grid grid-flow-row auto-rows-min grid-cols-3 grid-rows-3">
-            <div className="relative p-1 box-border grid row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
-               <div className="absolute w-full h-full place-items-center grid">
+      <CardLayout>
+         <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 grid-rows-2">
+            <div className="relative p-1 box-border grid row-span-2 sm:row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
+               <div className="absolute w-full h-full place-self-center place-items-center grid">
                   <HabitMeter numberOfSegments={3} size={80}></HabitMeter>
                </div>
                <div className="absolute flex justify-center w-full h-full">
                   <TwemojiImage text={safeEmoji} size={50}></TwemojiImage>
                </div>
             </div>
-            <div className="flex flex-col justify-between p-2 col-span-2 row-span-3">
+            <div className="flex-col justify-between p-2 row-start-3 col-start-1 sm:flex sm:col-start-2 sm:row-start-1 sm:col-span-2 sm:row-span-3">
                <Typography variant="h6">{title}</Typography>
-               <Typography variant="body1">{subtitle}</Typography>
+               <Typography className="hidden md:inline-block" variant="body1">
+                  {subtitle}
+               </Typography>
                <Typography variant="caption">{schedule}</Typography>
             </div>
          </div>

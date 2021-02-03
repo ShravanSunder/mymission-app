@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { Twemoji, Props } from 'react-emoji-render';
-import { css } from '@emotion/react';
-import tw from 'twin.macro';
 
 interface TwemojiImageProps extends Props {
-   height?: string;
+   /**
+    * the width and height in % from 0 to 100%
+    */
+   size?: number;
 }
 
 export const TwemojiImage = (props: TwemojiImageProps): JSX.Element => {
-   const height = props.height != undefined ? props.height + ' !important' : props.height;
-   const margin = props.height != undefined ? '0 !important' : '';
+   const height: string = props.size != undefined ? `${props.size.toFixed(1)}% !important` : `100%`;
+   const margin = props.size != undefined ? '0 !important' : '';
 
    return (
       <div

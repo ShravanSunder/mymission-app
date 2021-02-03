@@ -17,7 +17,7 @@ export const NavButton = (): JSX.Element => {
                paddingLeft: theme.spacing(0.5),
                paddingBottom: theme.spacing(1),
             }}>
-            <HomeIcon style={{ fontSize: theme.typography.h5.fontSize }} />
+            <HomeIcon style={{ fontSize: theme.typography.h5.fontSize?.toString() }} />
          </IconButton>
       </div>
    );

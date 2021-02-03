@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { MonthScrubber } from './MonthScrubber';
+import { MonthScrubber } from '~~/components/common/MonthScrubber';
 
 export const ActionList = (): JSX.Element => {
    return (

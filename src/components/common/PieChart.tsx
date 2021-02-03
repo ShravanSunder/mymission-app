@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ResponsivePie, PieCustomLayerProps } from '@nivo/pie';
-import { LinearGradientDef, PatternDotsDef, Theme as NivoTheme } from '@nivo/core';
+import { PatternDotsDef, Theme as NivoTheme } from '@nivo/core';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 import { useTheme } from '@material-ui/core';
@@ -12,7 +12,6 @@ export type TPiceChartData = {
 
 export interface IPieChartParams {
    data: TPiceChartData[];
-   emoji: string;
 }
 
 const CenteredMetric = ({ dataWithArc, centerX, centerY }: PieCustomLayerProps<TPiceChartData>) => {
@@ -35,7 +34,7 @@ const CenteredMetric = ({ dataWithArc, centerX, centerY }: PieCustomLayerProps<T
    );
 };
 
-export const PieChart = ({ data, emoji }: IPieChartParams): JSX.Element => {
+export const PieChart = ({ data }: IPieChartParams): JSX.Element => {
    const theme = useTheme();
 
    const donePattern: PatternDotsDef = {

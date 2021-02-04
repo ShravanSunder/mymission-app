@@ -1,4 +1,7 @@
 import React, { useMemo } from 'react';
+import tw from 'twin.macro';
+
+const tempColor = 'text-gray-400';
 
 interface HabitMeterProps {
    numberOfSegments: number;
@@ -17,21 +20,19 @@ export const HabitMeter = ({ numberOfSegments, thickness = 3.6, size = 80 }: Hab
 
       return (
          <div className="box-border" css={{ width: sizeStr, height: sizeStr }}>
-            <span className="text-gray-300 " role="progressbar" css={{ width: '100%', paddingTop: '100%', transform: 'rotate(-90deg)' }}>
-               <svg viewBox="22 22 44 44" overflow="overlay">
-                  <circle
-                     cx="44"
-                     cy="44"
-                     r="19.75"
-                     fill="none"
-                     css={{
-                        strokeDasharray: strokeDash.map((m) => m.toFixed(2)).join(', '),
-                        strokeWidth: thickness,
-                        strokeDashoffset: -1,
-                        stroke: 'currentcolor',
-                     }}></circle>
-               </svg>
-            </span>
+            <svg viewBox="22 22 44 44" overflow="overlay" css={[{ transform: 'rotate(-93deg)' }, tw`${tempColor}`]}>
+               <circle
+                  cx="44"
+                  cy="44"
+                  r="19.75"
+                  fill="none"
+                  css={{
+                     strokeDasharray: strokeDash.map((m) => m.toFixed(2)).join(', '),
+                     strokeWidth: thickness,
+                     strokeDashoffset: -2,
+                     stroke: 'currentcolor',
+                  }}></circle>
+            </svg>
          </div>
       );
    }, [numberOfSegments, thickness]);

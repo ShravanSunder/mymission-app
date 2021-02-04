@@ -7,6 +7,7 @@ import { css } from '@emotion/react';
 import { TwemojiImage } from '~~/components/common/Twemoji';
 import { HabitMeter } from '~~/components/routes/goals/habits/HabitMeter';
 import { CardLayout } from '~~/components/layout/CardLayout';
+import { HabitProgress } from '~~/components/routes/goals/habits/HabitProgress';
 
 interface HabitCardProps {
    emoji: string;
@@ -36,7 +37,10 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
          <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 grid-rows-2">
             <div className="relative p-1 place-self-center box-border grid row-span-2 sm:row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
                <div className="absolute w-full h-full place-self-center place-items-center grid">
-                  <HabitMeter numberOfSegments={3} size={80}></HabitMeter>
+                  <HabitMeter numberOfSegments={3} size={90}></HabitMeter>
+               </div>
+               <div className="absolute w-full h-full place-self-center place-items-center grid">
+                  <HabitProgress progress={33} size={90}></HabitProgress>
                </div>
                <div className="absolute flex justify-center w-full h-full">
                   <TwemojiImage text={safeEmoji} size={50}></TwemojiImage>

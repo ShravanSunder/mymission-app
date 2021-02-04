@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Typography, useMediaQuery, useTheme } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import emojiRegexRGI from 'emoji-regex';
 import tw from 'twin.macro';
@@ -27,10 +27,14 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    }, [emoji]);
    console.log([...emoji]);
 
+   const theme = useTheme();
+   const matches = useMediaQuery(theme.breakpoints.up('sm'));
+   console.log(matches);
+
    return (
-      <CardLayout>
+      <CardLayout className="p-2">
          <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 grid-rows-2">
-            <div className="relative p-1 box-border grid row-span-2 sm:row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
+            <div className="relative p-1 place-self-center box-border grid row-span-2 sm:row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
                <div className="absolute w-full h-full place-self-center place-items-center grid">
                   <HabitMeter numberOfSegments={3} size={80}></HabitMeter>
                </div>

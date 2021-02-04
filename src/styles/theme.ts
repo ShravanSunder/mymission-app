@@ -1,4 +1,6 @@
 import { createMuiTheme, responsiveFontSizes, Theme } from '@material-ui/core/styles';
+import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints';
+import facepaint from 'facepaint';
 
 declare module '@material-ui/core/styles' {
    interface BreakpointOverrides {
@@ -9,7 +11,24 @@ declare module '@material-ui/core/styles' {
       xl: true;
       '2xl': true;
    }
+
+   interface ThemeOverrides {
+      j: true;
+   }
 }
+
+type TBreakpoints = { [index: string]: number };
+const breakpointsList: TBreakpoints = {
+   xs: 0,
+   sm: 640,
+   md: 768,
+   lg: 960,
+   xl: 1280,
+   '2xl': 1920,
+};
+
+const bpMediaQueries = Object.keys(breakpointsList).map((key) => `@media (min-width: ${breakpointsList[key].toFixed(0)}px)`);
+export const cssMq = facepaint(bpMediaQueries);
 
 export const createAppTheme = (isDark: boolean): Theme => {
    const background: string = isDark ? '#2f3437' : '#ffffff';
@@ -19,14 +38,7 @@ export const createAppTheme = (isDark: boolean): Theme => {
          mode: isDark ? 'dark' : 'light',
       },
       breakpoints: {
-         values: {
-            xs: 0,
-            sm: 640,
-            md: 768,
-            lg: 960,
-            xl: 1280,
-            '2xl': 1920,
-         },
+         values: breakpointsList as BreakpointValues,
       },
       typography: {
          fontSize: 12,

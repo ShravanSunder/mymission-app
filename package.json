@@ -4,8 +4,8 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --config build-utils/webpack.config.js --env env=dev",
-      "build:prod": "webpack --config build-utils/webpack.config.js --env env=prod",
+      "start": "cross-env NODE_ENV=development NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --config build-utils/webpack.config.js --env env=dev",
+      "build:prod": "cross-env NODE_ENV=production webpack --config build-utils/webpack.config.js --env env=prod",
       "build:workbox-simple": "workbox injectManifest workbox-config.js",
       "build:analyze": "yarn run build:webpack --env addon=bundleanalyze",
       "test": "jest",
@@ -48,6 +48,9 @@
       "@storybook/addon-storysource": "^6.1.16",
       "@storybook/addon-toolbars": "^6.1.16",
       "@storybook/react": "^6.1.16",
+      "@tailwindcss/aspect-ratio": "^0.2.0",
+      "@tailwindcss/forms": "^0.2.1",
+      "@tailwindcss/line-clamp": "^0.2.0",
       "@tailwindcss/typography": "^0.4.0",
       "@testing-library/react": "^11.2.5",
       "@types/dotenv-webpack": "^5.0.0",
@@ -69,6 +72,7 @@
       "@typescript-eslint/eslint-plugin": "^4.14.2",
       "@typescript-eslint/parser": "^4.14.2",
       "@whitespace/storybook-addon-html": "^4.2.0",
+      "add": "^2.0.6",
       "autoprefixer": "^10.2.4",
       "babel-eslint": "^10.1.0",
       "babel-loader": "^8.2.2",
@@ -124,7 +128,8 @@
       "webpack-pwa-manifest": "^4.3.0",
       "webpack-virtual-modules": "^0.4.2",
       "workbox-build": "^6.1.0",
-      "workbox-webpack-plugin": "^6.1.0"
+      "workbox-webpack-plugin": "^6.1.0",
+      "yarn": "^1.22.10"
    },
    "dependencies": {
       "@emotion/react": "^11.1.4",

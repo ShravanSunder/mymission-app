@@ -49,7 +49,7 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
                </div>
                <div className="flex-col justify-between p-2 row-start-3 col-start-1 sm:flex sm:col-start-2 sm:row-start-1 sm:col-span-2 sm:row-span-3">
                   <Typography variant="h4">{title}</Typography>
-                  <Typography className="hidden md:inline-block" variant="body1">
+                  <Typography className="hidden md:inline-block" variant="body2">
                      {subtitle}
                   </Typography>
                   <Typography variant="caption">{schedule}</Typography>

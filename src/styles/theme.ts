@@ -85,49 +85,58 @@ export const createAppTheme = (isDark: boolean): Theme => {
    theme.typography.h1 = {
       ...theme.typography.h1,
       fontSize: '2.25rem',
-      lineHeight: '2.5rem',
+      // lineHeight: '2.5rem',
+      lineHeight: '1.1',
    };
 
    theme.typography.h2 = {
       ...theme.typography.h3,
       fontSize: '1.875rem',
-      lineHeight: '2.25rem',
+      // lineHeight: '2.25rem',
+      lineHeight: '1.2',
    };
    theme.typography.h3 = {
       ...theme.typography.h4,
       fontSize: '1.5rem',
-      lineHeight: '2rem',
+      // lineHeight: '2rem',
+      lineHeight: '1.3',
    };
    theme.typography.h4 = {
       ...theme.typography.h6,
       fontSize: '1.125rem',
-      lineHeight: '1.5rem',
+      // lineHeight: '1.5rem',
+      lineHeight: '1.33',
    };
    theme.typography.body1 = {
       ...theme.typography.body1,
       fontSize: '1rem',
-      lineHeight: '1.5rem',
+      // lineHeight: '1.5rem',
+      lineHeight: '1.5',
    };
    theme.typography.body2 = {
       ...theme.typography.body2,
       fontSize: '0.875rem',
-      lineHeight: '1.25rem',
+      // lineHeight: '1.25rem',
+      lineHeight: '1.42',
    };
    theme.typography.subtitle1 = {
       ...theme.typography.subtitle1,
       fontSize: '1rem',
-      lineHeight: '1.5rem',
+      // lineHeight: '1.5rem',
+      lineHeight: '1.5',
    };
    theme.typography.subtitle2 = {
       ...theme.typography.subtitle2,
       fontSize: '0.875rem',
-      lineHeight: '1.25rem',
+      // lineHeight: '1.25rem',
+      lineHeight: '1.42',
    };
    theme.typography.caption = {
       ...theme.typography.caption,
       fontSize: '0.75rem',
-      lineHeight: '1rem',
+      // lineHeight: '1rem',
+      lineHeight: '1.33',
    };
 
-   return theme; // responsiveFontSizes(theme, { factor: 3, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] });
+   return responsiveFontSizes(theme, { factor: 1.75, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'] });
 };

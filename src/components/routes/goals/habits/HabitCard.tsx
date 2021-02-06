@@ -35,8 +35,16 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    return (
       <Card>
          <CardLayout className="p-2">
-            <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 grid-rows-2">
-               <div className="relative p-1 place-self-center box-border grid row-span-2 sm:row-span-3" css={{ paddingTop: '100%', width: '100%', height: 0 }}>
+            <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 ">
+               <div className="content-between p-2 grid auto-rows-min grid-cols-1 gap-1 sm:hidden">
+                  <Typography variant="h4" className="truncate">
+                     {title}
+                  </Typography>
+                  <Typography variant="caption">{schedule}</Typography>
+               </div>
+               <div
+                  className="relative border-l-8 border-r-8 border-transparent sm:p-1 sm:border-0 place-self-center box-border grid row-span-3 sm:row-span-3"
+                  css={{ paddingTop: '100%', width: '100%', height: 0 }}>
                   <div className="absolute w-full h-full place-self-center place-items-center grid">
                      <HabitMeter numberOfSegments={3} size={90}></HabitMeter>
                   </div>
@@ -47,7 +55,7 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
                      <TwemojiImage text={safeEmoji} size={50}></TwemojiImage>
                   </div>
                </div>
-               <div className="flex-col justify-between p-2 row-start-3 col-start-1 sm:flex sm:col-start-2 sm:row-start-1 sm:col-span-2 sm:row-span-3">
+               <div className="flex-col justify-between hidden p-2 sm:flex sm:col-start-2 sm:row-start-1 sm:col-span-2 sm:row-span-3">
                   <Typography variant="h4">{title}</Typography>
                   <Typography className="hidden md:inline-block" variant="body2">
                      {subtitle}

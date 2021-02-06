@@ -19,7 +19,7 @@ export const HabitMeter = ({ numberOfSegments, thickness = 3.6, size = 80 }: Hab
       const sizeStr = size.toFixed(1) + '%';
 
       return (
-         <div className="box-border" css={{ width: sizeStr, height: sizeStr }}>
+         <div className="box-border" css={{ width: sizeStr }}>
             <svg viewBox="22 22 44 44" overflow="overlay" css={[{ transform: 'rotate(-93deg)' }, tw`${tempColor}`]}>
                <circle
                   cx="44"

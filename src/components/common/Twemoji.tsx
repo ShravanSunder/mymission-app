@@ -14,7 +14,7 @@ export const TwemojiImage = (props: TwemojiImageProps): JSX.Element => {
 
    return (
       <div
-         className="w-full h-full p-1 pb-2 bg-transparent box-border"
+         className="w-full h-full p-1 bg-transparent box-border"
          css={[
             {
                img: { display: 'inline', height: height, margin: margin, width: height, backgroundColor: 'transparent' },

@@ -24,7 +24,7 @@ export const HabitProgress = ({ progress, thickness = 3.6, size = 80 }: IHabitPr
       const strokeOffset: number = clamp((100 - progress) / 100, 0, 1) * strokeDash;
 
       return (
-         <div className="box-border" css={{ width: sizeStr, height: sizeStr }}>
+         <div className="box-border" css={{ width: sizeStr }}>
             <svg viewBox="22 22 44 44" overflow="overlay" css={[{ transform: 'rotate(-91deg)' }, tw`${tempColor}`]}>
                <circle
                   cx="44"

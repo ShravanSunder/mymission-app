@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
    purge: ['./src/**/*.{jsx,tsx,html}', './src/index.html'],
    // purge: {
@@ -16,4 +18,10 @@ module.exports = {
       require('@tailwindcss/forms'),
       require('@tailwindcss/line-clamp'),
    ],
+   theme: {
+      screens: {
+         sm: '600px',
+         ...defaultTheme.screens,
+      },
+   },
 };

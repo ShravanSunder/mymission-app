@@ -83,39 +83,48 @@ export const createAppTheme = (isDark: boolean): Theme => {
    // Check app.css for theme typography.
    // the values are based on tailwind
    theme.typography.h1 = {
+      ...theme.typography.h1,
       fontSize: '2.25rem',
       lineHeight: '2.5rem',
    };
 
    theme.typography.h2 = {
+      ...theme.typography.h3,
       fontSize: '1.875rem',
       lineHeight: '2.25rem',
    };
    theme.typography.h3 = {
+      ...theme.typography.h4,
       fontSize: '1.5rem',
       lineHeight: '2rem',
    };
    theme.typography.h4 = {
+      ...theme.typography.h6,
       fontSize: '1.125rem',
       lineHeight: '1.5rem',
    };
    theme.typography.body1 = {
+      ...theme.typography.body1,
       fontSize: '1rem',
       lineHeight: '1.5rem',
    };
    theme.typography.body2 = {
+      ...theme.typography.body2,
       fontSize: '0.875rem',
       lineHeight: '1.25rem',
    };
    theme.typography.subtitle1 = {
+      ...theme.typography.subtitle1,
       fontSize: '1rem',
       lineHeight: '1.5rem',
    };
    theme.typography.subtitle2 = {
+      ...theme.typography.subtitle2,
       fontSize: '0.875rem',
       lineHeight: '1.25rem',
    };
    theme.typography.caption = {
+      ...theme.typography.caption,
       fontSize: '0.75rem',
       lineHeight: '1rem',
    };

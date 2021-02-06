@@ -12,13 +12,13 @@ export const TwTypography = (props: ITwTypographyProps): JSX.Element => {
    let textSize = ' overflow-ellipsis break-words ';
    switch (props.variant) {
       case 'title':
-         textSize += ' text-2xl font-bold';
+         textSize += ' text-xl font-bold';
          break;
       case 'body1':
-         textSize += ' text-lg';
+         textSize += ' text-base';
          break;
       case 'body2':
-         textSize += ' text-base';
+         textSize += ' text-sm';
          break;
       case 'caption':
          textSize += ' text-xs font-light tracking wide';

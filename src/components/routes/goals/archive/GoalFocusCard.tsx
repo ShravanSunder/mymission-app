@@ -41,7 +41,7 @@ export const GoalSelectedCard = (): JSX.Element => {
                </div>
                <div className="z-10">
                   <div>
-                     <Typography gutterBottom variant="h6">
+                     <Typography gutterBottom variant="body1">
                         This is my goal2 and its very long and i want to see what it does and what
                      </Typography>
                   </div>

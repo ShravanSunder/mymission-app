@@ -42,7 +42,7 @@ export const GoalTitleCard = (): JSX.Element => {
                         <CardContent style={{ paddingBottom: 16 }}>
                            <div className="overflow-y-auto text-white max-h-20">
                               <strong>
-                                 <Typography variant="h6">{text1}</Typography>
+                                 <Typography variant="h2">{text1}</Typography>
                               </strong>
                            </div>
                         </CardContent>

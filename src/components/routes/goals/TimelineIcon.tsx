@@ -23,7 +23,7 @@ export const TimelineIcon = (): JSX.Element => {
             onChange={() => {
                setSelected(!selected);
             }}>
-            <HomeIcon style={{ fontSize: theme.typography.h6.fontSize }} />
+            <HomeIcon style={{ fontSize: theme.typography.h4.fontSize }} />
          </ToggleButton>
       </div>
    );

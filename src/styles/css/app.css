@@ -35,3 +35,33 @@
    @apply h-full overflow-hidden box-border;
    user-select: 'none';
 }
+
+@layer base {
+   .MuiTypography-h1,
+   .h1 {
+      @apply text-4xl;
+   }
+   .MuiTypography-h2,
+   .h2 {
+      @apply text-3xl;
+   }
+   .MuiTypography-h3,
+   .h3 {
+      @apply text-2xl;
+   }
+   .MuiTypography-h4,
+   .h4 {
+      @apply text-lg;
+   }
+   .MuiTypography-subtitle1,
+   .MuiTypography-body1 {
+      @apply text-base;
+   }
+   .MuiTypography-body2,
+   .MuiTypography-subtitle2 {
+      @apply text-sm;
+   }
+   .MuiTypography-caption {
+      @apply text-xs;
+   }
+}

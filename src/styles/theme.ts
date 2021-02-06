@@ -41,7 +41,7 @@ export const createAppTheme = (isDark: boolean): Theme => {
          values: breakpointsList as BreakpointValues,
       },
       typography: {
-         fontSize: 12,
+         fontSize: 10,
          // fontFamily: ['sans-serif'].join(','),
       },
       spacing: (factor: number) => `${0.5 * factor}rem`,
@@ -79,5 +79,46 @@ export const createAppTheme = (isDark: boolean): Theme => {
          },
       },
    });
-   return responsiveFontSizes(theme);
+
+   // Check app.css for theme typography.
+   // the values are based on tailwind
+   theme.typography.h1 = {
+      fontSize: '2.25rem',
+      lineHeight: '2.5rem',
+   };
+
+   theme.typography.h2 = {
+      fontSize: '1.875rem',
+      lineHeight: '2.25rem',
+   };
+   theme.typography.h3 = {
+      fontSize: '1.5rem',
+      lineHeight: '2rem',
+   };
+   theme.typography.h4 = {
+      fontSize: '1.125rem',
+      lineHeight: '1.5rem',
+   };
+   theme.typography.body1 = {
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+   };
+   theme.typography.body2 = {
+      fontSize: '0.875rem',
+      lineHeight: '1.25rem',
+   };
+   theme.typography.subtitle1 = {
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+   };
+   theme.typography.subtitle2 = {
+      fontSize: '0.875rem',
+      lineHeight: '1.25rem',
+   };
+   theme.typography.caption = {
+      fontSize: '0.75rem',
+      lineHeight: '1rem',
+   };
+
+   return theme; // responsiveFontSizes(theme, { factor: 3, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] });
 };

@@ -36,11 +36,13 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
       <Card>
          <CardLayout className="p-2">
             <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 ">
-               <div className="content-between p-2 grid auto-rows-min grid-cols-1 gap-1 sm:hidden">
-                  <Typography variant="h4" className="truncate">
+               <div className="content-between p-2 pb-0 grid auto-rows-min grid-cols-1 gap-1 sm:hidden justify-items-center">
+                  <Typography variant="h4" className="text-center">
                      {title}
                   </Typography>
-                  <Typography variant="caption">{schedule}</Typography>
+                  <Typography variant="caption" className="text-center">
+                     {schedule}
+                  </Typography>
                </div>
                <div
                   className="relative border-l-8 border-r-8 border-transparent sm:p-1 sm:border-0 place-self-center box-border grid row-span-3 sm:row-span-3"

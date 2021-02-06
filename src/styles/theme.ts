@@ -20,7 +20,7 @@ declare module '@material-ui/core/styles' {
 type TBreakpoints = { [index: string]: number };
 const breakpointsList: TBreakpoints = {
    xs: 0,
-   sm: 640,
+   sm: 600,
    md: 768,
    lg: 960,
    xl: 1280,

@@ -46,6 +46,10 @@
    "typescript.tsdk": ".yarn/sdks/typescript/lib",
    "typescript.enablePromptUseWorkspaceTsdk": true,
    "html-css-class-completion.CSSLanguages": ["css", "sass", "scss"],
-   "html-css-class-completion.enableEmmetSupport": true,
-   "html-css-class-completion.JavaScriptLanguages": ["javascriptreact", "typescriptreact"]
+   "html-css-class-completion.JavaScriptLanguages": [
+      "javascriptreact",
+      "typescriptreact"
+   ],
+   "gitHistory.showFileHistorySplit": false,
+   "gitHistory.showEditorTitleMenuBarIcons": false
 }

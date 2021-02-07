@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButton, Typography } from '@material-ui/core';
 import tw from 'twin.macro';
 import { Alarm as AlarmIcon } from '@material-ui/icons';
-import { toolbarHeight, panelHeight } from '../MainLayout';
+import { toolbarHeight, panelHeight } from '../MainAppLayout';
 
 export const text = `November kicks off the holiday season with high expectations for a cozy and festive time of year. However, for many this time of year is tinged with sadness, anxiety, or depression. Certainly, major depression or a severe anxiety disorder benefits most from professional help. But what about those who just feel lost or overwhelmed or down at this time of year? Research (and common sense) suggests that one aspect of the Thanksgiving season can actually lift the spirits, and it's built right into the holiday — expressing gratitude.
 

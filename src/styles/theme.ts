@@ -1,3 +1,4 @@
+import { grey } from '@material-ui/core/colors';
 import { createMuiTheme, responsiveFontSizes, Theme } from '@material-ui/core/styles';
 import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints';
 import facepaint from 'facepaint';
@@ -17,71 +18,51 @@ declare module '@material-ui/core/styles' {
    }
 }
 
-type TBreakpoints = { [index: string]: number };
-const breakpointsList: TBreakpoints = {
-   xs: 0,
-   sm: 600,
-   md: 768,
-   lg: 960,
-   xl: 1280,
-   '2xl': 1920,
+const modifyComponents = (theme: Theme, background: string) => {
+   theme.components = {
+      MuiPopover: {
+         defaultProps: {
+            anchorOrigin: {
+               vertical: 'bottom',
+               horizontal: 'left',
+            },
+            transformOrigin: {
+               vertical: 'top',
+               horizontal: 'left',
+            },
+         },
+      },
+      MuiTooltip: {
+         styleOverrides: {
+            tooltip: {
+               backgroundColor: '#f5f5f599',
+               color: grey[900],
+               fontSize: 9,
+               boxShadow: theme.shadows[1],
+            },
+            tooltipPlacementTop: {
+               position: 'relative',
+               top: 9,
+               left: 9,
+            },
+            tooltipPlacementBottom: {
+               position: 'relative',
+               top: -9,
+               left: 9,
+            },
+         },
+      },
+      MuiPaper: {
+         styleOverrides: {
+            root: {
+               backgroundColor: background,
+            },
+         },
+      },
+   };
 };
 
-const bpMediaQueries = Object.keys(breakpointsList).map((key) => `@media (min-width: ${breakpointsList[key].toFixed(0)}px)`);
-export const cssMq = facepaint(bpMediaQueries);
-
-export const createAppTheme = (isDark: boolean): Theme => {
-   const background: string = isDark ? '#2f3437' : '#ffffff';
-
-   const theme = createMuiTheme({
-      palette: {
-         mode: isDark ? 'dark' : 'light',
-      },
-      breakpoints: {
-         values: breakpointsList as BreakpointValues,
-      },
-      typography: {
-         fontSize: 10,
-         // fontFamily: ['sans-serif'].join(','),
-      },
-      spacing: (factor: number) => `${0.5 * factor}rem`,
-      components: {
-         MuiPopover: {
-            defaultProps: {
-               // anchorOrigin: {
-               //    vertical: 'bottom',
-               //    horizontal: 'left',
-               // },
-               // transformOrigin: {
-               //    vertical: 'top',
-               //    horizontal: 'left',
-               // },
-            },
-         },
-         MuiTooltip: {
-            styleOverrides: {
-               tooltipPlacementTop: {
-                  position: 'relative',
-                  top: 9,
-               },
-               tooltipPlacementBottom: {
-                  position: 'relative',
-                  top: -9,
-               },
-            },
-         },
-         MuiPaper: {
-            styleOverrides: {
-               root: {
-                  backgroundColor: background,
-               },
-            },
-         },
-      },
-   });
-
-   // Check app.css for theme typography.
-   // the values are based on tailwind
+const modifyTypography = (theme: Theme) => {
    theme.typography.h1 = {
       ...theme.typography.h1,
       fontSize: '2.25rem',
@@ -137,6 +118,43 @@ export const createAppTheme = (isDark: boolean): Theme => {
       // lineHeight: '1rem',
       lineHeight: '1.33',
    };
+};
 
-   return responsiveFontSizes(theme, { factor: 1.75, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'] });
+type TBreakpoints = { [index: string]: number };
+const breakpointsList: TBreakpoints = {
+   xs: 0,
+   sm: 600,
+   md: 768,
+   lg: 960,
+   xl: 1280,
+   '2xl': 1920,
+};
+
+const bpMediaQueries = Object.keys(breakpointsList).map((key) => `@media (min-width: ${breakpointsList[key].toFixed(0)}px)`);
+export const cssMq = facepaint(bpMediaQueries);
+
+export const createAppTheme = (isDark: boolean): Theme => {
+   const background: string = isDark ? '#2f3437' : '#ffffff';
+
+   const theme = createMuiTheme({
+      palette: {
+         mode: isDark ? 'dark' : 'light',
+      },
+      breakpoints: {
+         values: breakpointsList as BreakpointValues,
+      },
+      typography: {
+         fontSize: 10,
+         // fontFamily: ['sans-serif'].join(','),
+      },
+      spacing: (factor: number) => `${0.5 * factor}rem`,
+   });
+
+   // Check app.css for theme typography.
+   // the values are based on tailwind
+   modifyTypography(theme);
+
+   modifyComponents(theme, background);
+
+   return responsiveFontSizes(createMuiTheme(theme), { factor: 1.75, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'] });
 };

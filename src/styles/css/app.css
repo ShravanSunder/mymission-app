@@ -1,3 +1,5 @@
+/*************************************/
+/** Scrollbar styling */
 .scrollable-element {
    scrollbar-width: thin;
 }
@@ -26,6 +28,9 @@
    background: rgba(0, 0, 0, 0.05);
 }
 
+/*************************************/
+/** layout */
+
 .fill-parent {
    @apply h-full w-full overflow-hidden box-border;
    user-select: 'none';
@@ -35,6 +40,9 @@
    @apply h-full overflow-hidden box-border;
    user-select: 'none';
 }
+
+/*************************************/
+/** Typography */
 
 @layer base {
    .MuiTypography-h1,

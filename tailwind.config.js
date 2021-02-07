@@ -1,5 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+//defaultTheme.screens.sm = '600px';
+
 module.exports = {
    purge: ['./src/**/*.{jsx,tsx,html}', './src/index.html'],
    // purge: {
@@ -19,9 +21,17 @@ module.exports = {
       require('@tailwindcss/line-clamp'),
    ],
    theme: {
+      /**
+       * a copy of breakpoints from theme.ts
+       * keep them in sync
+       */
       screens: {
-         sm: '600px',
-         ...defaultTheme.screens,
+         xs: 0,
+         sm: 600,
+         md: 768,
+         lg: 960,
+         xl: 1280,
+         '2xl': 1920,
       },
    },
 };

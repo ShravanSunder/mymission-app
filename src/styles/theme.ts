@@ -121,7 +121,11 @@ const modifyTypography = (theme: Theme) => {
 };
 
 type TBreakpoints = { [index: string]: number };
-const breakpointsList: TBreakpoints = {
+/**
+ * a copy of the breakpoints from tailwind config.
+ * keep them in sync
+ */
+export const breakpointsList: TBreakpoints = {
    xs: 0,
    sm: 600,
    md: 768,

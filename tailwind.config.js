@@ -24,14 +24,31 @@ module.exports = {
       /**
        * a copy of breakpoints from theme.ts
        * keep them in sync
+       * don't use xs in tailwind, system assumes mobile first
+       * tailwind requires px
        */
       screens: {
-         xs: 0,
-         sm: 600,
-         md: 768,
-         lg: 960,
-         xl: 1280,
-         '2xl': 1920,
+         //xs: 0,
+         sm: '600px',
+         md: '768px',
+         lg: '960px',
+         xl: '1280px',
+         '2xl': '1920px',
+      },
+      extend: {
+         // ...
+         maxWidth: {
+            '2xs': '16rem',
+            12: '12rem',
+            10: '10rem',
+            8: '8rem',
+            6: '6rem',
+            5: '5rem',
+            4: '4rem',
+            3: '3rem',
+            2: '2rem',
+            1: '1rem',
+         },
       },
    },
 };

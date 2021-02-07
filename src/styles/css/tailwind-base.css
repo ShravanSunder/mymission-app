@@ -4,4 +4,8 @@
    button:focus {
       outline: none;
    }
+
+   text-overflow {
+      white-space: pre-wrap;
+   }
 }

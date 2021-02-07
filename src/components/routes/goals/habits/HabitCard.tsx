@@ -30,23 +30,15 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    const size = 90;
 
    return (
-      <Card>
-         <CardLayout className="p-2">
-            <div className="grid grid-flow-row auto-rows-min grid-cols-1 sm:grid-cols-3 ">
-               <div
-                  className="relative p-1 border-0 border-transparent place-self-center box-border grid row-span-3"
-                  css={{ paddingTop: '100%', width: '100%', height: 0 }}>
-                  <HabitMeter numberOfSegments={numberOfSegments} size={size} progress={progress} safeEmoji={safeEmoji}></HabitMeter>
-               </div>
-               <div className="flex flex-col justify-between p-2 col-start-2 row-start-1 col-span-2 row-span-3">
-                  <Typography variant="h4">{title}</Typography>
-                  <Typography className="" variant="body2">
-                     {subtitle}
-                  </Typography>
-                  <Typography variant="caption">{schedule}</Typography>
-               </div>
+      <Card className="flex-grow p-1 m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md">
+         <div className="w-full h-full grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
+            <HabitMeter css={[tw`place-self-center `]} numberOfSegments={numberOfSegments} size={size} progress={progress} safeEmoji={safeEmoji}></HabitMeter>
+            <div className="flex flex-col justify-between w-full h-full p-2">
+               <Typography variant="h4">{title}</Typography>
+               <Typography variant="body2">{subtitle}</Typography>
+               <Typography variant="caption">{schedule}</Typography>
             </div>
-         </CardLayout>
+         </div>
       </Card>
    );
 };

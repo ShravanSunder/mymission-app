@@ -3,7 +3,7 @@ import React from 'react';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
-import { MainPane as MainView } from './MainView';
+import { ContentLayout as ContentLayout } from './MainView';
 import { NavigationBottom, NavigationRight } from './Navigation';
 import { Theme, useMediaQuery, useTheme } from '@material-ui/core';
 
@@ -38,7 +38,7 @@ const AppXs = (prop: IAppLayoutProps): JSX.Element => {
 
 export const MainAppLayout = (): JSX.Element => {
    // const classes = useStyles();
-   const mainView = <MainView></MainView>;
+   const mainView = <ContentLayout></ContentLayout>;
    const theme: Theme = useTheme();
    const isSizeSm = useMediaQuery(theme.breakpoints.up('sm'));
 

@@ -128,7 +128,7 @@ type TBreakpoints = { [index: string]: number };
 export const breakpointsList: TBreakpoints = {
    xs: 0,
    sm: 600,
-   md: 768,
+   md: 740,
    lg: 960,
    xl: 1280,
    '2xl': 1920,
@@ -160,5 +160,5 @@ export const createAppTheme = (isDark: boolean): Theme => {
 
    modifyComponents(theme, background);
 
-   return responsiveFontSizes(createMuiTheme(theme), { factor: 1.75, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'] });
+   return responsiveFontSizes(createMuiTheme(theme), { factor: 2.5, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] });
 };

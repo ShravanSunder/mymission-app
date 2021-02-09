@@ -28,9 +28,9 @@ module.exports = {
        * tailwind requires px
        */
       screens: {
-         //xs: 0,
+         xs: { min: '0px', max: '599px' },
          sm: '600px',
-         md: '768px',
+         md: '740px',
          lg: '960px',
          xl: '1280px',
          '2xl': '1920px',

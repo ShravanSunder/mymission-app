@@ -1,4 +1,3 @@
-import { CardMedia } from '@material-ui/core';
 import React from 'react';
 import { GoalTimelineItem } from '~~/components/routes/goals/GoalTimelineItem';
 

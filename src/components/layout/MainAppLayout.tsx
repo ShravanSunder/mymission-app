@@ -6,68 +6,35 @@ import { css } from '@emotion/react';
 import { ContentLayout as ContentLayout } from './ContentLayout';
 import { NavigationBottom, NavigationRight } from './Navigation';
 import { Theme, useMediaQuery, useTheme } from '@material-ui/core';
+import { cssMq } from '~~/styles/theme';
 
 export const toolbarHeight = css([{ label: 'toolbarHeight' }, tw`h-14`]);
 export const panelHeight = css({ height: 'calc(100vh - 4.7rem)', label: 'panelHeight' });
 
-interface IAppLayoutProps {
-   mainView: React.ReactNode;
-}
-
-const AppSm = (prop: IAppLayoutProps): JSX.Element => {
-   return (
-      <div className="w-full h-full grid grid-cols-2 gap-2 grid-rows-1 fill-parent" css={[{ gridTemplateColumns: 'min-content auto' }]}>
-         <div className="p-1 fill-parent">
-            <NavigationRight></NavigationRight>
-         </div>
-         <div className="fill-parent">{prop.mainView}</div>
-      </div>
-   );
-};
-
-const AppXs = (prop: IAppLayoutProps): JSX.Element => {
-   return (
-      <div className="w-full h-full grid grid-cols-1 gap-2 grid-rows-2 fill-parent" css={[{ gridTemplateRows: 'auto min-content' }]}>
-         <div className="fill-parent">{prop.mainView}</div>
-         <div className="p-1 fill-parent">
-            <NavigationBottom></NavigationBottom>
-         </div>
-      </div>
-   );
-};
-
 export const MainAppLayout = (): JSX.Element => {
-   // const classes = useStyles();
-
-   const theme: Theme = useTheme();
-   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-
    const mainView = <ContentLayout></ContentLayout>;
-   // const appSX = <AppXs mainView={mainView}></AppXs>;
-   // const appSm = <AppSm mainView={mainView}></AppSm>;
+
+   const gridTemplate = css([
+      cssMq({
+         gridTemplateRows: ['auto min-content', 'auto min-content', 'auto 0'],
+         gridTemplateColumns: ['0 auto', '0 auto', 'min-content auto'],
+      }),
+      tw`grid-cols-2 gap-2 grid-rows-2`,
+   ]);
 
    return (
       <div css={[{ height: '100vh', width: '100vw', overflow: 'hidden' }]} className="p-1 grid grid-rows-1 grid-cols-1 box-border">
-         {!isDesktop && (
-            <>
-               <div className="w-full h-full grid grid-cols-1 gap-2 grid-rows-2 fill-parent" css={[{ gridTemplateRows: 'auto min-content' }]}>
-                  <div className="fill-parent">{mainView}</div>
-                  <div className="p-1 fill-parent">
-                     <NavigationBottom></NavigationBottom>
-                  </div>
+         <>
+            <div className="grid fill-parent" css={gridTemplate}>
+               <div className="p-1 fill-parent row-start-1 col-start-1">
+                  <NavigationRight></NavigationRight>
                </div>
-            </>
-         )}
-         {isDesktop && (
-            <>
-               <div className="w-full h-full grid grid-cols-2 gap-2 grid-rows-1 fill-parent" css={[{ gridTemplateColumns: 'min-content auto' }]}>
-                  <div className="p-1 fill-parent">
-                     <NavigationRight></NavigationRight>
-                  </div>
-                  <div className="fill-parent">{mainView}</div>
+               <div className="fill-parent row-start-1 col-start-2">{mainView}</div>
+               <div className="p-1 fill-parent row-start-2 col-start-1 col-span-2">
+                  <NavigationBottom></NavigationBottom>
                </div>
-            </>
-         )}
+            </div>
+         </>
       </div>
    );
 };

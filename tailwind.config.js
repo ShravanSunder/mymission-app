@@ -29,26 +29,20 @@ module.exports = {
        */
       screens: {
          xs: { min: '0px', max: '679px' },
-         sm: '680px',
+         sm: '700px',
          md: '820px',
          lg: '960px',
          xl: '1280px',
          '2xl': '1920px',
       },
       extend: {
-         // ...
-         maxWidth: {
-            '2xs': '16rem',
-            12: '12rem',
-            10: '10rem',
-            8: '8rem',
-            6: '6rem',
-            5: '5rem',
-            4: '4rem',
-            3: '3rem',
-            2: '2rem',
-            1: '1rem',
-         },
+         /**
+          *  added the default spacing values to max width
+          * @param theme
+          */
+         maxWidth: (theme) => ({
+            ...theme('spacing'),
+         }),
       },
    },
 };

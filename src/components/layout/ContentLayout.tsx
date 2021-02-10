@@ -56,9 +56,9 @@ export const ContentLayout = (): JSX.Element => {
    );
    const detailContent = <HabitDetails></HabitDetails>;
 
-   const columnsGrid = css([
+   const mainGrid = css([
       cssMq({
-         gridTemplateColumns: ['1fr', '9fr 11fr', 'fit-content(28rem) 1fr'],
+         gridTemplateColumns: ['1fr 0', '9fr 11fr', 'fit-content(24rem) 1fr', 'fit-content(28rem) 1fr'],
       }),
    ]);
 
@@ -68,14 +68,15 @@ export const ContentLayout = (): JSX.Element => {
             <GoalTitleCard></GoalTitleCard>
          </div>
          <div className="relative row-start-2 fill-parent">
-            <div className="grid fill-parent" css={columnsGrid} ref={containerRef}>
+            <div className="grid fill-parent" css={mainGrid} ref={containerRef}>
                {mainContent}
-               {isSizeMd && detailContent}
+               {detailContent}
+               {/* {isSizeMd && detailContent}
                {!isSizeMd && (
                   <DetailsDrawer containerRef={containerRef} open={openDetails} toggleDrawer={toggleDrawer}>
                      {detailContent}
                   </DetailsDrawer>
-               )}
+               )} */}
             </div>
          </div>
       </div>

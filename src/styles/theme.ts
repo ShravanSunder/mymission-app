@@ -127,14 +127,16 @@ type TBreakpoints = { [index: string]: number };
  */
 export const breakpointsList: TBreakpoints = {
    xs: 0, // 1
-   sm: 680, // 2
+   sm: 700, // 2
    md: 820, // 3
    lg: 960, // 4
    xl: 1280, // 5
    '2xl': 1920, // 6
 };
 
-const bpMediaQueries = Object.keys(breakpointsList).map((key) => `@media (min-width: ${breakpointsList[key].toFixed(0)}px)`);
+const bpMediaQueries = Object.keys(breakpointsList).map((key) => {
+   return `@media (min-width: ${breakpointsList[key].toFixed(0)}px)`;
+});
 export const cssMq = facepaint(bpMediaQueries, { literal: true });
 
 export const createAppTheme = (isDark: boolean): Theme => {

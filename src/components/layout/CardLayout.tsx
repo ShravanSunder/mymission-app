@@ -1,6 +1,10 @@
 import React from 'react';
 import { ICssProps, getCssProps } from '~~/components/common/cssProps';
 
+/**
+ * TODO: delete
+ * @param props
+ */
 export const CardLayout = (props: ICssProps): JSX.Element => {
    const { cssProp, classNameProp } = getCssProps(props);
 

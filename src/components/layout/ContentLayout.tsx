@@ -1,11 +1,11 @@
 import React, { useCallback, useRef, useState } from 'react';
 // import tw from 'twin.macro';
-import { GoalTimeline } from '../routes/goals/GoalTimeline';
-import { GoalTitleCard } from '../routes/goals/GoalTitleCard';
+import { GoalTimeline } from '../routes/goal-details/GoalTimeline';
+import { GoalTitleCard } from '../routes/goal-details/GoalTitleCard';
 import { Button, SwipeableDrawer, useMediaQuery, useTheme } from '@material-ui/core';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
-import { HabitDetails } from '../routes/goals/habits/HabitDetails';
+import { HabitDetails } from '../routes/goal-details/habits/HabitDetails';
 import { cssMq } from '~~/styles/theme';
 
 interface IPane2 {

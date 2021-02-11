@@ -1,7 +1,7 @@
 import React from 'react';
 import { TwemojiImage } from '~~/components/common/Twemoji';
-import { HabitRequirement as HabitRequirement } from '~~/components/routes/goals/habits/HabitRequirement';
-import { HabitProgress } from '~~/components/routes/goals/habits/HabitProgress';
+import { HabitRequirement as HabitRequirement } from '~~/components/routes/goal-details/habits/HabitRequirement';
+import { HabitProgress } from '~~/components/routes/goal-details/habits/HabitProgress';
 import tw from 'twin.macro';
 
 interface IHabitMeterProps {

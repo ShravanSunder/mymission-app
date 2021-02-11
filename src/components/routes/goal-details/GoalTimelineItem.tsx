@@ -1,7 +1,7 @@
 import React from 'react';
 import tw, { css } from 'twin.macro';
 import { TimelineIcon } from './TimelineIcon';
-import { HabitCard } from '~~/components/routes/goals/habits/HabitCard';
+import { HabitCard } from '~~/components/routes/goal-details/habits/HabitCard';
 
 interface TimelineStreamProps {
    showTopConnector: boolean;

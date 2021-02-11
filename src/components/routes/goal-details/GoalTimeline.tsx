@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoalTimelineItem } from '~~/components/routes/goals/GoalTimelineItem';
+import { GoalTimelineItem } from '~~/components/routes/goal-details/GoalTimelineItem';
 
 export const GoalTimeline = (): JSX.Element => {
    return (

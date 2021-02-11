@@ -10,32 +10,38 @@ import { cssMq } from '~~/styles/theme';
 
 interface IPane2 {
    open: boolean;
-   toggleDrawer: (open: boolean) => void;
+   setDrawerOpen: (open: boolean, checkForUnsavedEdits: boolean) => void;
    containerRef: React.RefObject<HTMLDivElement>;
    children?: React.ReactNode | React.ReactNodeArray;
 }
 
-const DetailsDrawer = ({ open, containerRef, toggleDrawer, children }: IPane2) => {
+const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: IPane2) => {
    // This is used only for the example
    const container: HTMLDivElement | null = containerRef.current;
 
    return (
       <SwipeableDrawer
          css={{ '.MuiPaper-root': css([tw`bg-transparent shadow-none w-11/12 box-border h-full`]) }}
-         disableBackdropTransition={true}
+         disableBackdropTransition={false}
          container={container}
          anchor="right"
          open={open}
          hideBackdrop={true}
-         onClose={() => toggleDrawer(false)}
-         onOpen={() => toggleDrawer(true)}
-         // swipeAreaWidth={drawerBleeding}
+         onBackdropClick={() => setDrawerOpen(false, true)}
+         onClose={() => setDrawerOpen(false, false)}
+         onOpen={() => setDrawerOpen(true, false)}
          disableSwipeToOpen={false}
          ModalProps={{
             keepMounted: true,
          }}>
-         <div className="flex w-full h-full pt-16 pb-16 overflow-hidden rounded-xl ">
-            <div className="flex-grow w-full h-full overflow-hidden rounded-xl">{children}</div>
+         <div className="flex flex-col w-full h-full overflow-hidden bg-transparent">
+            <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}>
+               {/* spacer */}
+            </div>
+            <div className="flex-grow w-full h-full overflow-hidden rounded-lg">{children}</div>
+            <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}>
+               {/* spacer */}
+            </div>
          </div>
       </SwipeableDrawer>
    );
@@ -45,9 +51,18 @@ export const ContentLayout = (): JSX.Element => {
    const theme = useTheme();
    const isSizeMd = useMediaQuery(theme.breakpoints.up('sm'));
    const containerRef = useRef<HTMLDivElement>(null);
-   const [openDetails, setOpenDetails] = useState(false);
+   const [openDetails, setOpenDetails] = useState(true);
 
-   const toggleDrawer = useCallback((value: boolean) => setOpenDetails(value), [setOpenDetails]);
+   const setDrawerOpen = useCallback(
+      (value: boolean, checkForUnsavedEdits = false) => {
+         if (checkForUnsavedEdits) {
+            // check for unsaved edits first
+         }
+
+         setOpenDetails(value);
+      },
+      [setOpenDetails]
+   );
 
    const mainContent = (
       <div className="">
@@ -66,17 +81,18 @@ export const ContentLayout = (): JSX.Element => {
       <div className="grid grid-rows-2 fill-parent" css={{ gridTemplateRows: 'auto 1fr' }}>
          <div className="row-start-1 max-h-32">
             <GoalTitleCard></GoalTitleCard>
+            <Button onClick={() => setDrawerOpen(true)}>Drawer</Button>
          </div>
+
          <div className="relative row-start-2 fill-parent">
             <div className="grid fill-parent" css={mainGrid} ref={containerRef}>
                {mainContent}
-               {detailContent}
-               {/* {isSizeMd && detailContent}
+               {isSizeMd && detailContent}
                {!isSizeMd && (
-                  <DetailsDrawer containerRef={containerRef} open={openDetails} toggleDrawer={toggleDrawer}>
+                  <DetailsDrawer containerRef={containerRef} open={openDetails} setDrawerOpen={setDrawerOpen}>
                      {detailContent}
                   </DetailsDrawer>
-               )} */}
+               )}
             </div>
          </div>
       </div>

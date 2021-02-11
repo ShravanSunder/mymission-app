@@ -1,4 +1,4 @@
-import { Card, Typography } from '@material-ui/core';
+import { Card, CardActionArea, Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import emojiRegexRGI from 'emoji-regex';
 import tw from 'twin.macro';
@@ -28,15 +28,22 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
    const size = 90;
 
    return (
-      <Card className="flex-grow p-1 m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md">
-         <div className="w-full h-full grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
-            <HabitMeter css={[tw`place-self-center `]} numberOfSegments={numberOfSegments} size={size} progress={progress} safeEmoji={safeEmoji}></HabitMeter>
-            <div className="flex flex-col justify-between w-full h-full p-2">
-               <Typography variant="h4">{title}</Typography>
-               <Typography variant="body2">{subtitle}</Typography>
-               <Typography variant="caption">{schedule}</Typography>
+      <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md ">
+         <CardActionArea className="p-1">
+            <div className="w-full h-full grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
+               <HabitMeter
+                  css={[tw`place-self-center `]}
+                  numberOfSegments={numberOfSegments}
+                  size={size}
+                  progress={progress}
+                  safeEmoji={safeEmoji}></HabitMeter>
+               <div className="flex flex-col justify-between w-full h-full p-2">
+                  <Typography variant="h4">{title}</Typography>
+                  <Typography variant="body2">{subtitle}</Typography>
+                  <Typography variant="caption">{schedule}</Typography>
+               </div>
             </div>
-         </div>
+         </CardActionArea>
       </Card>
    );
 };

@@ -152,6 +152,8 @@ export const createAppTheme = (isDark: boolean): Theme => {
       typography: {
          fontSize: 10,
          // fontFamily: ['sans-serif'].join(','),
+         h5: undefined,
+         h6: undefined,
       },
       spacing: (factor: number) => `${0.5 * factor}rem`,
    });
@@ -162,5 +164,9 @@ export const createAppTheme = (isDark: boolean): Theme => {
 
    modifyComponents(theme, background);
 
-   return responsiveFontSizes(createMuiTheme(theme), { factor: 2.5, breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] });
+   return responsiveFontSizes(createMuiTheme(theme), {
+      factor: 2.5,
+      breakpoints: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+      variants: ['h1', 'h2', 'h3', 'h4', 'body1', 'body2', 'caption', 'subtitle1', 'subtitle2'],
+   });
 };

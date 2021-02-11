@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Children } from 'react';
 import tw, { css } from 'twin.macro';
 import { TimelineIcon } from './TimelineIcon';
-import { HabitCard } from '~~/components/routes/goal-details/habits/HabitCard';
 
 interface TimelineStreamProps {
    showTopConnector: boolean;
@@ -27,9 +26,11 @@ const TimelineStream = (props: TimelineStreamProps): JSX.Element => {
 interface GoalTimelineItemProps {
    showTopConnector?: boolean;
    showBottomConnect?: boolean;
+   children?: React.ReactNode;
+   className?: string;
 }
 
-export const GoalTimelineItem = ({ showTopConnector = true, showBottomConnect = true }: GoalTimelineItemProps): JSX.Element => {
+export const GoalTimelineItem = ({ showTopConnector = true, showBottomConnect = true, children, className }: GoalTimelineItemProps): JSX.Element => {
    const timelineGridStyle = [
       css`
          ${tw`grid w-full box-border`}
@@ -39,15 +40,9 @@ export const GoalTimelineItem = ({ showTopConnector = true, showBottomConnect = 
    ];
 
    return (
-      <div css={timelineGridStyle}>
+      <div className={className} css={timelineGridStyle}>
          <TimelineStream showTopConnector={showTopConnector} showBottomConnect={showBottomConnect}></TimelineStream>
-         <div className="pt-2 pb-2 pl-1 pr-2">
-            <HabitCard
-               emoji={'🏃🏾‍♀️'}
-               title="I'd like to run every day"
-               subtitle="i love to run and running is in my soul and stuff"
-               schedule="2 times a week"></HabitCard>
-         </div>
+         <div className="pt-2 pb-2 pl-1 pr-2">{children}</div>
       </div>
    );
 };

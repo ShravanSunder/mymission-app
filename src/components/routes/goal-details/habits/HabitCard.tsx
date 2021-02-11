@@ -1,27 +1,19 @@
 import { Card, CardActionArea, Typography } from '@material-ui/core';
-import React, { useMemo } from 'react';
-import emojiRegexRGI from 'emoji-regex';
+import React from 'react';
 import tw from 'twin.macro';
 
 import { HabitMeter } from './HabitMeter';
+import { useSafeEmoji } from '~~/components/hooks/useSafeEmoji';
 
-interface HabitCardProps {
+interface IHabitCardProps {
    emoji: string;
    title: string;
    subtitle: string;
    schedule: string;
 }
 
-export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps): JSX.Element => {
-   const safeEmoji: string = useMemo((): string => {
-      if (emoji?.length > 0) {
-         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-         const regex: RegExp = emojiRegexRGI();
-         const [result] = emoji.matchAll(regex);
-         return result?.[0] ?? '';
-      }
-      return '';
-   }, [emoji]);
+export const HabitCard = ({ emoji, title, subtitle, schedule }: IHabitCardProps): JSX.Element => {
+   const safeEmoji: string = useSafeEmoji(emoji);
 
    const numberOfSegments = 3;
    const progress = 33;
@@ -29,8 +21,8 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: HabitCardProps):
 
    return (
       <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md ">
-         <CardActionArea className="p-1">
-            <div className="w-full h-full grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
+         <CardActionArea className="fill-parent">
+            <div className="p-2 fill-parent grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
                <HabitMeter
                   css={[tw`place-self-center `]}
                   numberOfSegments={numberOfSegments}

@@ -4,14 +4,14 @@ import '~~/styles/css/tailwind-utilities.css';
 import '~~/styles/css/app.css';
 
 import React, { Suspense } from 'react';
-import MaterialProvider from '~~/components/app/MaterialProvider';
+import ThemeProvider from '~~/components/app/ThemeProvider';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { MainAppLayout } from '../layout/MainAppLayout';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 const RootRoutes = (): JSX.Element => {
    return (
-      <MaterialProvider>
+      <ThemeProvider>
          <BrowserRouter>
             <Suspense fallback={<div></div>}>
                <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -24,7 +24,7 @@ const RootRoutes = (): JSX.Element => {
                </ErrorBoundary>
             </Suspense>
          </BrowserRouter>
-      </MaterialProvider>
+      </ThemeProvider>
    );
 };
 

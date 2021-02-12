@@ -39,7 +39,7 @@ export const ContentLayout = (): JSX.Element => {
    ]);
 
    return (
-      <div className="grid grid-rows-2 fill-parent" css={{ gridTemplateRows: 'auto 1fr' }}>
+      <div className="grid fill-parent" css={{ gridTemplateRows: 'min-content 1fr' }}>
          <div className="row-start-1 max-h-32">
             <GoalTitleCard></GoalTitleCard>
             <Button onClick={() => setDrawerOpen(true)}>Drawer</Button>

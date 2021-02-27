@@ -1,7 +1,20 @@
 {
-  "recommendations": [
-    "arcanis.vscode-zipfs",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
-  ]
+   "recommendations": [
+      "arcanis.vscode-zipfs",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "donjayamanne.githistory",
+      "codestream.codestream",
+      "naumovs.color-highlight",
+      "dsznajder.es7-react-js-snippets",
+      "sburg.vscode-javascript-booster",
+      "zignd.html-css-class-completion",
+      "bradlc.vscode-tailwindcss",
+      "stylelint.vscode-stylelint",
+      "wayou.vscode-todo-highlight",
+      "gruntfuggly.todo-tree",
+      "christian-kohler.path-intellisense",
+      "pkief.material-icon-theme",
+      "aaron-bond.better-comments"
+   ]
 }

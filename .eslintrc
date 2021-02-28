@@ -17,8 +17,6 @@
    },
    "extends": [
       "prettier",
-      "prettier/react",
-      "prettier/@typescript-eslint",
       "plugin:import/errors",
       "plugin:import/warnings",
       "plugin:import/typescript",

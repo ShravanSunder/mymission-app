@@ -17,7 +17,7 @@ export const NavigationRight = (): JSX.Element => {
 
 export const NavigationBottom = (): JSX.Element => {
    return (
-      <div className="h-10 rounded-lg p-0.5 grid fill-parent elevation-2 grid-cols-5 grid-row-1">
+      <div className="h-10 rounded-lg p-0.5 grid fill-parent-viewport-full elevation-2 grid-cols-5 grid-row-1">
          <NavButton></NavButton>
          <NavButton></NavButton>
          <NavButton></NavButton>

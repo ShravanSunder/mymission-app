@@ -18,7 +18,7 @@ const Month = (props: IMonthProps) => {
    return (
       <div className="w-full h-12 mt-1 mb-1">
          <ButtonBase css={tw`w-full h-12 hover:shadow-md  hover:border-transparent`}>
-            <div className="relative flex items-center justify-center font-mono border-2 border-transparent m-0.5 fill-parent justify-items-center">
+            <div className="relative flex items-center justify-center font-mono border-2 border-transparent m-0.5 fill-parent-viewport-full  justify-items-center">
                <div css={[tw`pt-2 text-opacity-90`, { fontVariant: 'small-caps' }]}>
                   <strong>
                      <FormattedDate value={dateForIntl} month="short" />
@@ -34,7 +34,7 @@ const Month = (props: IMonthProps) => {
 
 export const MonthScrubber = (): JSX.Element => {
    return (
-      <div className="rounded-l-lg fill-parent">
+      <div className="rounded-l-lg fill-parent-viewport-full ">
          <div
             css={[
                tw`w-full h-full pt-2 pb-2 overflow-auto`,

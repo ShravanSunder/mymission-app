@@ -22,11 +22,14 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
 
    return (
       <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md ">
-         <CardActionArea className="fill-parent">
-            <div className="p-2 fill-parent grid gap-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto', gridTemplateRows: 'min-content auto auto' }}>
-               <div className="fill-parent grid row-start-1 col-start-1 col-span-2" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
+         <CardActionArea className="fill-parent-viewport-full ">
+            <div
+               className="p-2 fill-parent-viewport-full grid gap-1"
+               css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto', gridTemplateRows: 'min-content auto auto' }}>
+               <div className="fill-parent-viewport-full grid row-start-1 col-start-1 col-span-2" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
                   <ProjectMeter
-                     css={[tw`place-self-center`, { composes: 'fill-parent' }]}
+                     className="fill-parent-viewport-full "
+                     css={[tw`place-self-center`]}
                      numberOfSegments={numberOfSegments}
                      numberOfMilestones={numberOfMilestones}
                      milestonesCompleted={3}

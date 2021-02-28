@@ -31,12 +31,12 @@
 /*************************************/
 /** layout */
 
-.fill-parent {
+.fill-parent-viewport-full {
    @apply h-full w-full overflow-hidden box-border;
    user-select: 'none';
 }
 
-.fill-parent-vertical {
+.fill-parent-viewport-vertical {
    @apply h-full overflow-hidden box-border;
    user-select: 'none';
 }

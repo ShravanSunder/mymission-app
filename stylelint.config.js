@@ -4,18 +4,18 @@ module.exports = {
       'at-rule-no-unknown': [
          true,
          {
-            ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'layer', 'extends'],
+            ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'layer', 'extends', /\.Mui/, /Mui.*/],
          },
       ],
       'property-no-unknown': [
          true,
          {
-            ignoreProperties: ['label'],
+            ignoreProperties: ['label', /\.Mui.*/, /Mui.*/],
          },
       ],
       'selector-type-no-unknown': null,
       'declaration-block-trailing-semicolon': null,
       'no-descending-specificity': null,
    },
-   ignoreFiles: ['**/*.ts', '**/*.tsx', '**/*.test.*', '**/*.stories.*', '**/*.js'],
+   ignoreFiles: ['**/*.ts', '**/*.test.*', '**/*.stories.*', '**/*.js'],
 };

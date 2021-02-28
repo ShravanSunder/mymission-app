@@ -5,7 +5,7 @@ import { ProjectCard } from '~~/components/routes/goal-details/projects/ProjectC
 
 export const GoalTimeline = (): JSX.Element => {
    return (
-      <div className="flex flex-col content-start fill-parent box-border">
+      <div className="flex flex-col content-start fill-parent-viewport-full box-border">
          <div className="flex-none w-full box-border">
             <GoalTimelineItem>
                <HabitCard

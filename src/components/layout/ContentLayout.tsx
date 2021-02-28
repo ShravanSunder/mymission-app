@@ -39,16 +39,16 @@ export const ContentLayout = (): JSX.Element => {
    ]);
 
    return (
-      <div className="grid fill-parent" css={{ gridTemplateRows: 'min-content 1fr' }}>
+      <div className="grid fill-parent-viewport-full " css={{ gridTemplateRows: 'min-content 1fr' }}>
          <div className="row-start-1 max-h-32">
             <GoalTitleCard></GoalTitleCard>
             <Button onClick={() => setDrawerOpen(true)}>Drawer</Button>
          </div>
 
-         <div className="relative row-start-2 fill-parent">
-            <div className="w-full h-full overflow-x-hidden overflow-y-auto grid" css={mainGrid} ref={containerRef}>
+         <div className="relative row-start-2 fill-parent-viewport-full ">
+            <div className="fill-parent-viewport-full grid" css={mainGrid} ref={containerRef}>
                {mainContent}
-               {isTwoColumnLayout && detailContent}
+               {isTwoColumnLayout && <div>{detailContent}</div>}
                {!isTwoColumnLayout && (
                   <DetailsDrawer containerRef={containerRef} open={openDetails} setDrawerOpen={setDrawerOpen}>
                      {detailContent}

@@ -4,6 +4,7 @@ import { CircularProgressSegments } from '~~/components/routes/goal-details/prog
 import tw from 'twin.macro';
 import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
 import { CircularMilestoneSegments } from '../progress/CircularMilestoneSegments';
+import { ICommonProps } from '~~/components/common/ICommonProps';
 
 interface IProjectMeterProps {
    numberOfSegments: number;
@@ -12,9 +13,8 @@ interface IProjectMeterProps {
    progress: number;
    milestonesCompleted: number;
    safeEmoji: string;
-   className?: string;
 }
-export const ProjectMeter: React.FC<IProjectMeterProps> = ({
+export const ProjectMeter: React.FC<IProjectMeterProps & ICommonProps> = ({
    numberOfSegments,
    size,
    numberOfMilestones,
@@ -31,7 +31,7 @@ export const ProjectMeter: React.FC<IProjectMeterProps> = ({
             <CircularMilestoneSegments numberOfMilestones={numberOfMilestones} size={size}></CircularMilestoneSegments>
          </div>
          <div className="absolute w-10/12 h-10/12 place-self-center place-items-center grid">
-            <CircularProgress progress={milestoneProgress} size={size} strokeColor={'#98FB98'}></CircularProgress>
+            <CircularProgress progress={milestoneProgress} size={size} color={'#98FB98'}></CircularProgress>
          </div>
          <div className="absolute w-full h-full place-self-center place-items-center grid">
             <CircularProgressSegments numberOfSegments={numberOfSegments} size={size}></CircularProgressSegments>

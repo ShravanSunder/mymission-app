@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import tw from 'twin.macro';
+import tw, { theme, css } from 'twin.macro';
+
 import { clamp } from '~~/helpers';
 
 const tempColor = 'text-red-200';
@@ -14,9 +15,9 @@ interface ICircularProgressProps {
     * the width and height in % from 0 to 100%
     */
    size: number;
-   strokeColor?: string;
+   color?: string;
 }
-export const CircularProgress = ({ progress, thickness = 3.6, size = 80, strokeColor = 'currentcolor' }: ICircularProgressProps): JSX.Element => {
+export const CircularProgress = ({ progress, thickness = 3.6, size = 80 }: ICircularProgressProps): JSX.Element => {
    const progresss = useMemo(() => {
       const SIZE = 44;
       const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
@@ -36,7 +37,7 @@ export const CircularProgress = ({ progress, thickness = 3.6, size = 80, strokeC
                      strokeDasharray: strokeDash.toFixed(1),
                      strokeWidth: thickness,
                      strokeDashoffset: strokeOffset.toFixed(1),
-                     stroke: strokeColor,
+                     stroke: 'currentcolor',
                   }}></circle>
             </svg>
          </div>

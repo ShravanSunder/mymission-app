@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import tw from 'twin.macro';
 
-const tempColor = 'text-gray-400';
+const tempColor = 'text-gray-500';
 
 interface ICircularMilestoneSegmentsProps {
    numberOfMilestones: number;
@@ -35,7 +35,7 @@ export const CircularMilestoneSegments = ({ numberOfMilestones, thickness = 3.6,
                      strokeDasharray: strokeDash.map((m) => m.toFixed(2)).join(', '),
                      strokeWidth: thickness,
                      strokeDashoffset: 2,
-                     stroke: '#dd2e44',
+                     stroke: 'currentcolor',
                   }}></circle>
             </svg>
          </div>

@@ -1,5 +1,6 @@
 import React, { Children } from 'react';
 import tw, { css } from 'twin.macro';
+import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TimelineIcon } from './TimelineIcon';
 
 interface TimelineStreamProps {
@@ -9,7 +10,7 @@ interface TimelineStreamProps {
 
 const TimelineStream = (props: TimelineStreamProps): JSX.Element => {
    return (
-      <div className={'relative flex flex-col flex-shrink-0 w-6 justify-items-center fill-parent-vertical'}>
+      <div className={'relative flex flex-col flex-shrink-0 w-6 justify-items-center fill-parent-viewport-vertical'}>
          <div className="self-center grid place-items-center">
             <div className="h-4 w-0.5 justify-self-center" css={props.showTopConnector ? tw`bg-gray-400` : {}}></div>
          </div>
@@ -23,14 +24,17 @@ const TimelineStream = (props: TimelineStreamProps): JSX.Element => {
    );
 };
 
-interface GoalTimelineItemProps {
+interface IGoalTimelineItemProps {
    showTopConnector?: boolean;
    showBottomConnect?: boolean;
-   children?: React.ReactNode;
-   className?: string;
 }
 
-export const GoalTimelineItem = ({ showTopConnector = true, showBottomConnect = true, children, className }: GoalTimelineItemProps): JSX.Element => {
+export const GoalTimelineItem: React.FC<IGoalTimelineItemProps & ICommonProps> = ({
+   showTopConnector = true,
+   showBottomConnect = true,
+   children,
+   className,
+}) => {
    const timelineGridStyle = [
       css`
          ${tw`grid w-full box-border`}

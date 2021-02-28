@@ -30,7 +30,7 @@ export const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: I
          }}>
          <div className="flex flex-col w-full h-full overflow-hidden bg-transparent">
             <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}></div>
-            <div className="flex-grow w-full h-full overflow-hidden rounded-lg">{children}</div>
+            <div className="flex-grow w-full h-full overflow-x-hidden overflow-y-auto rounded-lg fdsfs">{children}</div>
             <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}></div>
          </div>
       </SwipeableDrawer>

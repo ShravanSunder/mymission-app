@@ -29,7 +29,7 @@ export const GoalTimeline = (): JSX.Element => {
                   schedule="2 times a week"></HabitCard>
             </GoalTimelineItem>
             <GoalTimelineItem>
-               <ProjectCard emoji={'🐒'}></ProjectCard>
+               <ProjectCard emoji={'🐒'} title="Project 1" subtitle="Lets have a great project" schedule="something"></ProjectCard>
             </GoalTimelineItem>
          </div>
       </div>

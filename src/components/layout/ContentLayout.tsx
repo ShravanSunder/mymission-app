@@ -46,7 +46,7 @@ export const ContentLayout = (): JSX.Element => {
          </div>
 
          <div className="relative row-start-2 fill-parent">
-            <div className="grid fill-parent" css={mainGrid} ref={containerRef}>
+            <div className="w-full h-full overflow-x-hidden overflow-y-auto grid" css={mainGrid} ref={containerRef}>
                {mainContent}
                {isTwoColumnLayout && detailContent}
                {!isTwoColumnLayout && (

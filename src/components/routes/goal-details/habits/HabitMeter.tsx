@@ -1,7 +1,7 @@
 import React from 'react';
 import { TwemojiImage } from '~~/components/common/Twemoji';
-import { HabitRequirement as HabitRequirement } from '~~/components/routes/goal-details/habits/HabitRequirement';
-import { HabitProgress } from '~~/components/routes/goal-details/habits/HabitProgress';
+import { CircularProgressSegments as CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
+import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
 import tw from 'twin.macro';
 
 interface IHabitMeterProps {
@@ -15,13 +15,13 @@ export const HabitMeter = ({ numberOfSegments, size, progress, safeEmoji, classN
    return (
       <div className={className ?? ''} css={[tw`box-border grid row-span-3 relative`, { paddingTop: '100%', width: '100%', height: 0 }]}>
          <div className="absolute w-full h-full place-self-center place-items-center grid">
-            <HabitRequirement numberOfSegments={numberOfSegments} size={size}></HabitRequirement>
+            <CircularProgressSegments numberOfSegments={numberOfSegments} size={size}></CircularProgressSegments>
          </div>
          <div className="absolute w-full h-full place-self-center place-items-center grid">
-            <HabitProgress progress={progress} size={size}></HabitProgress>
+            <CircularProgress progress={progress} size={size}></CircularProgress>
          </div>
          <div className="absolute flex justify-center w-full h-full">
-            <TwemojiImage text={safeEmoji} size={size / 1.9}></TwemojiImage>
+            <TwemojiImage text={safeEmoji} size={size / 2.1}></TwemojiImage>
          </div>
       </div>
    );

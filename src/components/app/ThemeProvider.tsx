@@ -2,7 +2,7 @@ import { Button, Theme, ThemeProvider as MuiThemeProvider, createStyles, makeSty
 import React, { FunctionComponent, useMemo, useState } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
-import { StylesProvider } from '@material-ui/core/styles';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import { grey, green, red, yellow } from '@material-ui/core/colors';
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 
@@ -39,7 +39,7 @@ const ThemeProvider: FunctionComponent = ({ children }) => {
    }, [isDark]);
 
    return (
-      <StylesProvider injectFirst>
+      <StyledEngineProvider injectFirst>
          <MuiThemeProvider theme={theme}>
             <EmotionThemeProvider theme={theme}>
                <SnackbarProvider
@@ -65,7 +65,7 @@ const ThemeProvider: FunctionComponent = ({ children }) => {
                </SnackbarProvider>
             </EmotionThemeProvider>
          </MuiThemeProvider>
-      </StylesProvider>
+      </StyledEngineProvider>
    );
 };
 

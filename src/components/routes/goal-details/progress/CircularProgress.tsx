@@ -4,7 +4,7 @@ import { clamp } from '~~/helpers';
 
 const tempColor = 'text-red-200';
 
-interface IHabitProgressProps {
+interface ICircularProgressProps {
    /**
     * progress in % from 0 to 100%
     */
@@ -14,8 +14,9 @@ interface IHabitProgressProps {
     * the width and height in % from 0 to 100%
     */
    size: number;
+   strokeColor?: string;
 }
-export const HabitProgress = ({ progress, thickness = 3.6, size = 80 }: IHabitProgressProps): JSX.Element => {
+export const CircularProgress = ({ progress, thickness = 3.6, size = 80, strokeColor = 'currentcolor' }: ICircularProgressProps): JSX.Element => {
    const progresss = useMemo(() => {
       const SIZE = 44;
       const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
@@ -35,7 +36,7 @@ export const HabitProgress = ({ progress, thickness = 3.6, size = 80 }: IHabitPr
                      strokeDasharray: strokeDash.toFixed(1),
                      strokeWidth: thickness,
                      strokeDashoffset: strokeOffset.toFixed(1),
-                     stroke: 'currentcolor',
+                     stroke: strokeColor,
                   }}></circle>
             </svg>
          </div>

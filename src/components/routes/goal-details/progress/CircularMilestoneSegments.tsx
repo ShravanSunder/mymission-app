@@ -3,19 +3,24 @@ import tw from 'twin.macro';
 
 const tempColor = 'text-gray-400';
 
-interface IHabitRequirementProps {
-   numberOfSegments: number;
+interface ICircularMilestoneSegmentsProps {
+   numberOfMilestones: number;
    thickness?: number;
    /**
     * the width and height in % from 0 to 100%
     */
    size: number;
 }
-export const HabitRequirement = ({ numberOfSegments, thickness = 3.6, size = 80 }: IHabitRequirementProps): JSX.Element => {
+
+/**
+ * The marks in circlular progress that show milestones
+ * @param param0
+ */
+export const CircularMilestoneSegments = ({ numberOfMilestones, thickness = 3.6, size = 80 }: ICircularMilestoneSegmentsProps): JSX.Element => {
    const segments = useMemo(() => {
       const SIZE = 44;
       const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
-      const strokeDash: number[] = [circumference / numberOfSegments - 2, 2];
+      const strokeDash: number[] = [2, circumference / (numberOfMilestones + 1) - 2];
       const sizeStr = size.toFixed(1) + '%';
 
       return (
@@ -29,13 +34,13 @@ export const HabitRequirement = ({ numberOfSegments, thickness = 3.6, size = 80 
                   css={{
                      strokeDasharray: strokeDash.map((m) => m.toFixed(2)).join(', '),
                      strokeWidth: thickness,
-                     strokeDashoffset: -2,
-                     stroke: 'currentcolor',
+                     strokeDashoffset: 2,
+                     stroke: '#dd2e44',
                   }}></circle>
             </svg>
          </div>
       );
-   }, [numberOfSegments, thickness]);
+   }, [numberOfMilestones, thickness]);
 
    return <>{segments}</>;
 };

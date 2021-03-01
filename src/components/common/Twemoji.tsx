@@ -38,7 +38,12 @@ export const TwemojiInline = (props: TwemojiProps): JSX.Element => {
          props={props.props}
          onlyEmojiClassName={props.onlyEmojiClassName}
          text={props.text}
-         css={{ img: { display: 'inline' }, ...(props.fontSize && { fontsize: props.fontSize }) }}
+         css={{
+            display: 'inline-block',
+            span: { display: 'inline-block' },
+            img: { display: 'inline-block' },
+            ...(props.fontSize && { fontsize: props.fontSize }),
+         }}
       />
    );
 };

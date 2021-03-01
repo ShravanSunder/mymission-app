@@ -17,7 +17,8 @@ export const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: I
 
    return (
       <SwipeableDrawer
-         css={{ '.MuiPaper-root': css([tw`bg-transparent shadow-none w-11/12 box-border h-full`]) }}
+         className="app-drawer"
+         css={{ '.MuiDrawer-paper': css([tw`bg-transparent shadow-none w-11/12 box-border h-full`]) }}
          disableBackdropTransition={false}
          container={container}
          anchor="right"
@@ -32,7 +33,7 @@ export const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: I
          }}>
          <div className="flex flex-col w-full h-full overflow-hidden bg-transparent">
             <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}></div>
-            <div className="flex-grow w-full h-full overflow-x-hidden overflow-y-auto rounded-lg bg" css={tw`${tempColorDrawerBackground}`}>
+            <div className="flex-grow w-full h-full overflow-x-hidden overflow-y-auto rounded-l-lg rounded-r-sm bg" css={tw`${tempColorDrawerBackground}`}>
                {children}
             </div>
             <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}></div>

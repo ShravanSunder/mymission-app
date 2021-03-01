@@ -32,18 +32,15 @@
 /** layout */
 
 .container-fill-viewport-full {
-   @apply h-full w-full overflow-hidden box-border;
-   user-select: 'none';
+   @apply h-full w-full overflow-hidden box-border select-none;
 }
 
 .container-viewport-fill-only-vertical {
-   @apply h-full overflow-hidden box-border;
-   user-select: 'none';
+   @apply h-full overflow-hidden box-border select-none;
 }
 
 .container-viewport-scroll-vertical {
-   @apply h-full w-full overflow-x-hidden overflow-y-auto box-border;
-   user-select: 'none';
+   @apply h-full w-full overflow-x-hidden overflow-y-auto box-border select-none;
 }
 
 /*************************************/

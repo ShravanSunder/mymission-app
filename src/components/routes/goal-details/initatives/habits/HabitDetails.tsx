@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TwemojiImage } from '~~/components/common/Twemoji';
 import { useSafeEmoji } from '~~/components/hooks/useSafeEmoji';
+import { InitativeSchedule } from '../properties/InitativeSchedule';
 
 const tempColorIcon = 'border-red-200 bg-red-100';
 
@@ -20,7 +21,9 @@ export const HabitDetails: React.FC<ICommonProps> = () => {
                <TwemojiImage text={safeEmoji} size={70}></TwemojiImage>
             </div>
          </div>
-         <div className="relative flex w-full p-4 rounded-lg justify-items-stretch"></div>
+         <div className="relative flex w-full p-4 rounded-md justify-items-stretch">
+            <InitativeSchedule></InitativeSchedule>
+         </div>
       </div>
    );
 };

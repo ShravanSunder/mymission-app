@@ -10,6 +10,8 @@ export interface IDetailsDrawerProps {
    children?: React.ReactNode | React.ReactNodeArray;
 }
 
+const tempColorDrawerBackground = 'bg-gray-100';
+
 export const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: IDetailsDrawerProps): JSX.Element => {
    const container: HTMLDivElement | null = containerRef.current;
 
@@ -30,7 +32,9 @@ export const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: I
          }}>
          <div className="flex flex-col w-full h-full overflow-hidden bg-transparent">
             <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}></div>
-            <div className="flex-grow w-full h-full overflow-x-hidden overflow-y-auto rounded-lg fdsfs">{children}</div>
+            <div className="flex-grow w-full h-full overflow-x-hidden overflow-y-auto rounded-lg bg" css={tw`${tempColorDrawerBackground}`}>
+               {children}
+            </div>
             <div className="flex flex-grow-0 flex-shrink-0 w-full h-16" onClick={() => setDrawerOpen(false, true)}></div>
          </div>
       </SwipeableDrawer>

@@ -25,12 +25,12 @@ export const MainAppLayout = (): JSX.Element => {
    return (
       <div css={[{ height: '100vh', width: '100vw', overflow: 'hidden' }]} className="p-1 grid grid-rows-1 grid-cols-1 box-border">
          <>
-            <div className="grid fill-parent-viewport-full " css={gridTemplate}>
-               <div className="p-1 fill-parent-viewport-full row-start-1 col-start-1">
+            <div className="grid container-fill-viewport-full " css={gridTemplate}>
+               <div className="p-1 container-fill-viewport-full row-start-1 col-start-1">
                   <NavigationRight></NavigationRight>
                </div>
-               <div className="fill-parent-viewport-full row-start-1 col-start-2">{mainView}</div>
-               <div className="p-1 fill-parent-viewport-full row-start-2 col-start-1 col-span-2">
+               <div className="container-fill-viewport-full row-start-1 col-start-2">{mainView}</div>
+               <div className="p-1 container-fill-viewport-full row-start-2 col-start-1 col-span-2">
                   <NavigationBottom></NavigationBottom>
                </div>
             </div>

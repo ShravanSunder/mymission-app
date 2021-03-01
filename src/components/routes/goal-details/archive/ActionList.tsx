@@ -4,7 +4,7 @@ import { MonthScrubber } from '~~/components/common/MonthScrubber';
 
 export const ActionList = (): JSX.Element => {
    return (
-      <div className="flex rounded-l-lg fill-parent-viewport-full ">
+      <div className="flex rounded-l-lg container-fill-viewport-full ">
          <div className="flex-shrink-0 w-12 h-full">
             <MonthScrubber></MonthScrubber>
          </div>

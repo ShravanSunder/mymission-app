@@ -1,11 +1,11 @@
 import React from 'react';
 import { GoalTimelineItem } from '~~/components/routes/goal-details/GoalTimelineItem';
-import { HabitCard } from './habits/HabitCard';
-import { ProjectCard } from '~~/components/routes/goal-details/projects/ProjectCard';
+import { HabitCard } from './initatives/habits/HabitCard';
+import { ProjectCard } from '~~/components/routes/goal-details/initatives/projects/ProjectCard';
 
 export const GoalTimeline = (): JSX.Element => {
    return (
-      <div className="flex flex-col content-start fill-parent-viewport-full box-border">
+      <div className="flex flex-col content-start container-fill-viewport-full box-border">
          <div className="flex-none w-full box-border">
             <GoalTimelineItem>
                <HabitCard

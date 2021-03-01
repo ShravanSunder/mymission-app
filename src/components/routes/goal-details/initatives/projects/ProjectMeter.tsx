@@ -3,7 +3,7 @@ import { TwemojiImage } from '~~/components/common/Twemoji';
 import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 import tw from 'twin.macro';
 import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
-import { CircularMilestoneSegments } from '../progress/CircularMilestoneSegments';
+import { CircularMilestoneSegments } from '../../progress/CircularMilestoneSegments';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 
 interface IProjectMeterProps {

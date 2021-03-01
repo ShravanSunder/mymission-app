@@ -31,13 +31,18 @@
 /*************************************/
 /** layout */
 
-.fill-parent-viewport-full {
+.container-fill-viewport-full {
    @apply h-full w-full overflow-hidden box-border;
    user-select: 'none';
 }
 
-.fill-parent-viewport-vertical {
+.container-viewport-fill-only-vertical {
    @apply h-full overflow-hidden box-border;
+   user-select: 'none';
+}
+
+.container-viewport-scroll-vertical {
+   @apply h-full w-full overflow-x-hidden overflow-y-auto box-border;
    user-select: 'none';
 }
 

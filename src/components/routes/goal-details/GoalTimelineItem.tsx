@@ -10,7 +10,7 @@ interface TimelineStreamProps {
 
 const TimelineStream = (props: TimelineStreamProps): JSX.Element => {
    return (
-      <div className={'relative flex flex-col flex-shrink-0 w-6 justify-items-center fill-parent-viewport-vertical'}>
+      <div className={'relative flex flex-col flex-shrink-0 w-6 justify-items-center container-viewport-fill-only-vertical'}>
          <div className="self-center grid place-items-center">
             <div className="h-4 w-0.5 justify-self-center" css={props.showTopConnector ? tw`bg-gray-400` : {}}></div>
          </div>

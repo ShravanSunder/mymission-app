@@ -4,7 +4,7 @@ import { GoalTimeline } from '../routes/goal-details/GoalTimeline';
 import { GoalTitleCard } from '../routes/goal-details/GoalTitleCard';
 import { Button, useMediaQuery, useTheme } from '@material-ui/core';
 import { css } from '@emotion/react';
-import { HabitDetails } from '../routes/goal-details/habits/HabitDetails';
+import { HabitDetails } from '../routes/goal-details/initatives/habits/HabitDetails';
 import { cssMq } from '~~/styles/theme';
 import { DetailsDrawer } from './DetailsDrawer';
 
@@ -39,16 +39,16 @@ export const ContentLayout = (): JSX.Element => {
    ]);
 
    return (
-      <div className="grid fill-parent-viewport-full " css={{ gridTemplateRows: 'min-content 1fr' }}>
+      <div className="grid container-fill-viewport-full " css={{ gridTemplateRows: 'min-content 1fr' }}>
          <div className="row-start-1 max-h-32">
             <GoalTitleCard></GoalTitleCard>
             <Button onClick={() => setDrawerOpen(true)}>Drawer</Button>
          </div>
 
-         <div className="relative row-start-2 fill-parent-viewport-full ">
-            <div className="fill-parent-viewport-full grid" css={mainGrid} ref={containerRef}>
+         <div className="relative row-start-2 container-fill-viewport-full ">
+            <div className="container-fill-viewport-full grid" css={mainGrid} ref={containerRef}>
                {mainContent}
-               {isTwoColumnLayout && <div>{detailContent}</div>}
+               {isTwoColumnLayout && <div className="container-fill-viewport-full">{detailContent}</div>}
                {!isTwoColumnLayout && (
                   <DetailsDrawer containerRef={containerRef} open={openDetails} setDrawerOpen={setDrawerOpen}>
                      {detailContent}

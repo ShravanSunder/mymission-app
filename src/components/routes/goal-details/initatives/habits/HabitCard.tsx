@@ -22,9 +22,9 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: IHabitCardProps)
    return (
       <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md">
          <CardActionArea css={tw`w-full h-full box-border place-self-center rounded-md`}>
-            <div className="p-2 fill-parent-viewport-full grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
+            <div className="p-2 container-fill-viewport-full grid grid-rows-1" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
                <HabitMeter
-                  className="fill-parent-viewport-full "
+                  className="container-fill-viewport-full "
                   css={[tw`place-self-center`]}
                   numberOfSegments={numberOfSegments}
                   size={size}

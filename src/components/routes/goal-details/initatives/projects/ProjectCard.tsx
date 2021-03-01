@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import tw from 'twin.macro';
 import { TwemojiInline } from '~~/components/common/Twemoji';
 import { useSafeEmoji } from '~~/components/hooks/useSafeEmoji';
-import { ProjectMeter } from '~~/components/routes/goal-details/projects/ProjectMeter';
+import { ProjectMeter } from '~~/components/routes/goal-details/initatives/projects/ProjectMeter';
 
 interface IProjectCardProps {
    emoji: string;
@@ -22,13 +22,13 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
 
    return (
       <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md ">
-         <CardActionArea className="fill-parent-viewport-full ">
+         <CardActionArea className="container-fill-viewport-full ">
             <div
-               className="p-2 fill-parent-viewport-full grid gap-1"
+               className="p-2 container-fill-viewport-full grid gap-1"
                css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto', gridTemplateRows: 'min-content auto auto' }}>
-               <div className="fill-parent-viewport-full grid row-start-1 col-start-1 col-span-2" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
+               <div className="container-fill-viewport-full grid row-start-1 col-start-1 col-span-2" css={{ gridTemplateColumns: 'minmax(auto, 6rem) auto' }}>
                   <ProjectMeter
-                     className="fill-parent-viewport-full "
+                     className="container-fill-viewport-full "
                      css={[tw`place-self-center`]}
                      numberOfSegments={numberOfSegments}
                      numberOfMilestones={numberOfMilestones}

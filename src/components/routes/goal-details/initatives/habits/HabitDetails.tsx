@@ -15,7 +15,7 @@ export const HabitDetails: React.FC<ICommonProps> = () => {
    const size = 20;
 
    return (
-      <div className="flex flex-col justify-start w-full h-full">
+      <div className="flex flex-col justify-start w-full h-full max-w-md">
          <div className="relative flex justify-center w-full p-4 ">
             <div className="w-20 h-20 border-4 rounded-full" css={tw`${tempColorIcon}`}>
                <TwemojiImage text={safeEmoji} size={70}></TwemojiImage>

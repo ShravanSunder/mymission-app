@@ -5861,6 +5861,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-calendar@npm:^3.1.3":
+  version: 3.1.3
+  resolution: "@types/react-calendar@npm:3.1.3"
+  checksum: 02ce519f89bc98e88aa4dbc387ef44752d08372b31532bbbdca3f61f7c737b3fb5c5d41da4f15bc7b749ffa731177afb1524409392120ab17193f4304c3d0671
+  languageName: node
+  linkType: hard
+
 "@types/react-color@npm:^3.0.1":
   version: 3.0.4
   resolution: "@types/react-color@npm:3.0.4"
@@ -16307,6 +16314,7 @@ fsevents@^1.2.7:
     "@types/emoji-regex": ^9.2.0
     "@types/facepaint": ^1.2.1
     "@types/react": ^17.0.2
+    "@types/react-calendar": ^3.1.3
     "@types/react-dom": ^17.0.1
     "@types/react-redux": ^7.1.16
     "@types/react-router-dom": ^5.1.7

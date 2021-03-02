@@ -15,6 +15,12 @@
       "gruntfuggly.todo-tree",
       "christian-kohler.path-intellisense",
       "pkief.material-icon-theme",
-      "aaron-bond.better-comments"
+      "aaron-bond.better-comments",
+      "editorconfig.editorconfig",
+      "usernamehw.errorlens",
+      "oderwat.indent-rainbow",
+      "vscodeshift.material-ui-snippets",
+      "natqe.reload",
+      "planbcoding.vscode-react-refactor"
    ]
 }

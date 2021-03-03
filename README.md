@@ -6,7 +6,8 @@
 -  yarn start
 
 ## Structure
-![image](https://user-images.githubusercontent.com/5294949/109812240-d4ab4780-7bf9-11eb-8af8-c813fe261089.png)
+![image](https://user-images.githubusercontent.com/5294949/109813301-2c967e00-7bfb-11eb-8718-62ecaaebd147.png)
+
 
 ### Project Features
 -  Platform

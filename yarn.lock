@@ -10296,6 +10296,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dexie@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "dexie@npm:3.0.3"
+  checksum: f2fcb5df163e221121e5e37f1cc25465261de28e1a18dcfba5da7e2870d0791d8f8b693b57f99e5377c29fdc25e358b4eb8cd97320d34b3c6c3715c9acb3607c
+  languageName: node
+  linkType: hard
+
 "didyoumean@npm:^1.2.1":
   version: 1.2.1
   resolution: "didyoumean@npm:1.2.1"
@@ -16343,6 +16350,7 @@ fsevents@^1.2.7:
     cross-env: ^7.0.3
     css-loader: ^5.1.0
     dayjs: ^1.10.4
+    dexie: ^3.0.3
     dotenv-webpack: ^6.0.2
     emoji-regex: ^9.2.1
     eslint: ^7.21.0

@@ -148,6 +148,7 @@
       "@types/workbox-window": "^4.3.3",
       "chrono-node": "^2.2.1",
       "dayjs": "^1.10.4",
+      "dexie": "^3.0.3",
       "emoji-regex": "^9.2.1",
       "facepaint": "^1.2.1",
       "formik": "^2.2.6",

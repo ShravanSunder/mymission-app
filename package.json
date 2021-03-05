@@ -8,7 +8,7 @@
       "build:prod": "cross-env NODE_ENV=production webpack --config build-utils/webpack.config.js --env env=prod",
       "build:workbox-simple": "workbox injectManifest workbox-config.js",
       "build:analyze": "yarn run build:webpack --env addon=bundleanalyze",
-      "test": "jest",
+      "test": "jest --runInBand",
       "test:update": "jest -u",
       "test:generate-output": "jest --json --outputFile=.jest-test-results.json",
       "lint": "eslint 'src/*.{js,ts,tsx}' --fix",

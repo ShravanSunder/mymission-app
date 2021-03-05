@@ -1,5 +1,7 @@
 dist/*
 node_modules/*
-.yarn
 .cache
 build
+.yarn/cache
+.yarn/install-state.gz
+.yarn/build-state.yml

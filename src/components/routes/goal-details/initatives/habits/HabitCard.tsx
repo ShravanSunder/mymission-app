@@ -3,7 +3,7 @@ import React from 'react';
 import tw from 'twin.macro';
 
 import { HabitMeter } from './HabitMeter';
-import { useSafeEmoji } from '~~/components/hooks/useSafeEmoji';
+import { useSafeEmoji } from '~~/components/common/hooks/useSafeEmoji';
 
 interface IHabitCardProps {
    emoji: string;

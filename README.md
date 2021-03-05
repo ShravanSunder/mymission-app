@@ -1,33 +1,34 @@
 # My Mission App
 
+## Build and Run
 
-## Installation
 -  yarn install
 -  yarn start
+-  default dev: localhost:7035
 
 ## Structure
+
 ![image](https://user-images.githubusercontent.com/5294949/109813301-2c967e00-7bfb-11eb-8718-62ecaaebd147.png)
 
-
 ### Project Features
--  Platform
-  -  Yarn Package manager
-  -  React 17
-  -  Webpack 5
-  -  Workbox for PWA
--  Testing
-  -  Storybook
-  -  Jest
-  -  react-testing-framework
--  UX Framework
-  -  Material UI 
-  -  Tailwind
--  Data & Persistance
-  -  Redux | Redux Tooklit
-  -  RxJS | React-Observable
-  -  Dexie 
-  -  YJS (proposed)
 
+-  Platform
+-  Yarn Package manager
+-  React 17
+-  Webpack 5
+-  Workbox for PWA
+-  Testing
+-  Storybook
+-  Jest
+-  react-testing-framework
+-  UX Framework
+-  Material UI
+-  Tailwind
+-  Data & Persistance
+-  Redux | Redux Tooklit
+-  RxJS | React-Observable
+-  Dexie
+-  YJS (proposed)
 
 ## Useful libraries
 

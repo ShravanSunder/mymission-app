@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { TwemojiInline } from '~~/components/common/Twemoji';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Calendar from 'react-calendar';
+import { ScheduleReoccurance } from './ScheduleReoccurance';
 
 const tempColorIcons = 'bg-gray-200';
 
@@ -23,7 +24,7 @@ const InitiativeScheduleSummary = () => (
    </div>
 );
 
-export const InitativeSchedule: React.FC = (params) => {
+export const InitativeSchedule: React.FC = (props) => {
    return (
       <div className="w-full">
          <Accordion className="w-full h-full">
@@ -31,12 +32,7 @@ export const InitativeSchedule: React.FC = (params) => {
                <InitiativeScheduleSummary></InitiativeScheduleSummary>
             </AccordionSummary>
             <AccordionDetails>
-               <Calendar
-                  selectRange={true}
-                  defaultView={'year'}
-                  formatShortWeekday={(locale, date) => ''}
-                  showNeighboringMonth={false}
-                  value={[new Date('2021-03-01'), new Date('2021-03-03')]}></Calendar>
+               <ScheduleReoccurance></ScheduleReoccurance>
             </AccordionDetails>
          </Accordion>
       </div>

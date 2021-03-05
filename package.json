@@ -155,7 +155,6 @@
       "formik-material-ui": "^3.0.1",
       "formik-material-ui-lab": "^0.0.8",
       "history": "^5.0.0",
-      "luxon": "^1.26.0",
       "material-ui-popup-state": "^1.7.1",
       "notistack": "^1.0.4",
       "react": "^17.0.1",

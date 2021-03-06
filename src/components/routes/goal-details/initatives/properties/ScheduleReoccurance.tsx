@@ -6,7 +6,7 @@ import tw from 'twin.macro';
 import CheckIcon from '@material-ui/icons/Check';
 import { css } from '@emotion/react';
 
-const tempColorSelectedDay = 'bg-gray-300';
+const tempColorSelectedDay = 'bg-gray-200';
 
 /**
  * Match the Dayjs standard
@@ -68,7 +68,7 @@ const SchedulePerPeriod: React.FC<IScheduleReoccurrenceProps> = ({ reoccurrence,
          for (let i = 1; i <= availableDays; i++) {
             let selectStyle = css();
             if (selectedNumberOfDays === i) {
-               selectStyle = css(tw`${tempColorSelectedDay}`);
+               selectStyle = css(tw`${tempColorSelectedDay} shadow-sm`);
             }
 
             result.push(
@@ -87,7 +87,11 @@ const SchedulePerPeriod: React.FC<IScheduleReoccurrenceProps> = ({ reoccurrence,
       return null;
    }, [reoccurrence, selectedNumberOfDays]);
 
-   return <div className="flex flex-wrap content-center w-full h-full justify-items-start">{days}</div>;
+   return (
+      <div className="w-full overflow-hidden overflow-y-auto grid max-h-80">
+         <div className="flex flex-wrap content-center w-full h-full place-self-center justify-items-start">{days}</div>{' '}
+      </div>
+   );
 };
 
 export const ScheduleReoccurance: React.FC<IScheduleReoccurrenceProps> = (props) => {

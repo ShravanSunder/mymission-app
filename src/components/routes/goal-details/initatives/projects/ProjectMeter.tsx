@@ -23,7 +23,7 @@ export const ProjectMeter: React.FC<IProjectMeterProps & ICommonProps> = ({
    milestonesCompleted,
    className,
 }) => {
-   const milestoneProgress = (milestonesCompleted / numberOfMilestones) * 100;
+   const milestoneProgress = (milestonesCompleted / (numberOfMilestones + 1)) * 100;
 
    return (
       <div className={className ?? ''} css={[tw`box-border grid row-span-3 relative`, { paddingTop: '100%', width: '100%', height: 0 }]}>

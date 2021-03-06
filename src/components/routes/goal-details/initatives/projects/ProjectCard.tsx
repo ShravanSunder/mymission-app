@@ -19,6 +19,7 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
    const numberOfSegments = 33;
    const progress = 15;
    const size = 90;
+   const milestonesCompleted = 1;
 
    return (
       <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md ">
@@ -32,7 +33,7 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
                      css={[tw`place-self-center`]}
                      numberOfSegments={numberOfSegments}
                      numberOfMilestones={numberOfMilestones}
-                     milestonesCompleted={3}
+                     milestonesCompleted={milestonesCompleted}
                      size={size}
                      progress={progress}
                      safeEmoji={safeEmoji}></ProjectMeter>
@@ -49,7 +50,7 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
                      <TwemojiInline text="✔" /> 20/40
                   </Typography>
                   <Typography variant="caption">
-                     <TwemojiInline text="🚩" /> 3/5
+                     <TwemojiInline text="🚩" /> {`${milestonesCompleted}/${numberOfMilestones}`}
                   </Typography>
                   <Typography variant="caption">
                      <TwemojiInline text="📅" /> June 40

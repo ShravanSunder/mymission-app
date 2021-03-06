@@ -32,7 +32,7 @@ export const InitativeSchedule: React.FC = (props) => {
                <InitiativeScheduleSummary></InitiativeScheduleSummary>
             </AccordionSummary>
             <AccordionDetails>
-               <ScheduleReoccurance currentSchedule={5} reoccurrence={ReoccurrenceTypes.DaysPerMonth}></ScheduleReoccurance>
+               <ScheduleReoccurance currentSchedule={5} reoccurrence={ReoccurrenceTypes.DaysPerQuarter}></ScheduleReoccurance>
             </AccordionDetails>
          </Accordion>
       </div>

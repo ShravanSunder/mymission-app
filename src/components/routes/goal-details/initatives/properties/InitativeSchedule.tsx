@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import { TwemojiInline } from '~~/components/common/Twemoji';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Calendar from 'react-calendar';
-import { ScheduleReoccurance } from './ScheduleReoccurance';
+import { ScheduleReoccurance, ReoccurrenceTypes } from './ScheduleReoccurance';
 
 const tempColorIcons = 'bg-gray-200';
 
@@ -32,7 +32,7 @@ export const InitativeSchedule: React.FC = (props) => {
                <InitiativeScheduleSummary></InitiativeScheduleSummary>
             </AccordionSummary>
             <AccordionDetails>
-               <ScheduleReoccurance></ScheduleReoccurance>
+               <ScheduleReoccurance currentSchedule={5} reoccurrence={ReoccurrenceTypes.DaysPerMonth}></ScheduleReoccurance>
             </AccordionDetails>
          </Accordion>
       </div>

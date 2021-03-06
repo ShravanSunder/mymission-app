@@ -1,11 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import * as dayjs from 'dayjs';
-import { Typography } from '@material-ui/core';
+import { IconButton, ButtonBase, ToggleButton, ToggleButtonGroup, Typography } from '@material-ui/core';
+
+import tw from 'twin.macro';
+import CheckIcon from '@material-ui/icons/Check';
+import { css } from '@emotion/react';
+
+const tempColorSelectedDay = 'bg-gray-300';
 
 /**
  * Match the Dayjs standard
  */
-enum DaysOfWeek {
+export enum DaysOfWeek {
    Sunday = 0,
    Monday = 1,
    Tuesday = 2,
@@ -15,14 +21,14 @@ enum DaysOfWeek {
    Saturday = 6,
 }
 
-enum QuartersOfYear {
+export enum QuartersOfYear {
    Q1 = 1,
    Q2 = 2,
    Q3 = 3,
    Q4 = 4,
 }
 
-enum ReoccurrenceTypes {
+export enum ReoccurrenceTypes {
    'DaysPerWeek',
    'SpecificDaysOfWeek',
    'DaysPerMonth',
@@ -35,34 +41,53 @@ interface IScheduleReoccurrenceProps {
    currentSchedule: number | DaysOfWeek[];
 }
 
-const DaysMap: Map<ReoccurrenceTypes, number> = new Map([
+export const DaysMap: Map<ReoccurrenceTypes, number> = new Map([
    [ReoccurrenceTypes.DaysPerWeek, 7],
    [ReoccurrenceTypes.DaysPerMonth, 31],
    [ReoccurrenceTypes.DaysPerQuarter, 90],
 ]);
 
 const SchedulePerPeriod: React.FC<IScheduleReoccurrenceProps> = ({ reoccurrence, currentSchedule }) => {
-   const [numberOfDays, setNumberOfDays] = useState<number>();
+   const [selectedNumberOfDays, setSelectedNumberOfDays] = useState<number>();
 
    useEffect(() => {
-      setNumberOfDays(currentSchedule as number);
+      setSelectedNumberOfDays(currentSchedule as number);
    }, [currentSchedule]);
 
-   const data = useMemo(() => {
-      if (numberOfDays && numberOfDays > 0) {
-         const availableDays = DaysMap.get(reoccurrence);
+   const handleChange = (event: React.MouseEvent<HTMLElement> | null, newValue: number | null) => {
+      if (newValue) {
+         setSelectedNumberOfDays(newValue);
+      }
+   };
 
-         for (let i = 0; i < numberOfDays; i++) {
-            return (
-               <div className="rounded-full m-0.5">
-                  <Typography variant="body2">{i}</Typography>
+   const days = useMemo(() => {
+      const availableDays = DaysMap.get(reoccurrence);
+      if (availableDays != null && availableDays > 0) {
+         const result: React.ReactNode[] = [];
+
+         for (let i = 1; i <= availableDays; i++) {
+            let selectStyle = css();
+            if (selectedNumberOfDays === i) {
+               selectStyle = css(tw`${tempColorSelectedDay}`);
+            }
+
+            result.push(
+               <div css={selectStyle} key={i} className="rounded-full w-11 h-11 grid">
+                  <IconButton className="place-self-center" value={i} onClick={() => handleChange(null, i)}>
+                     <Typography className="w-5 h-5" variant="subtitle2">
+                        {i}
+                     </Typography>
+                  </IconButton>
                </div>
             );
          }
-      }
-   }, [reoccurrence, numberOfDays]);
 
-   return <div className="flex justify-items-start">{data}</div>;
+         return result;
+      }
+      return null;
+   }, [reoccurrence, selectedNumberOfDays]);
+
+   return <div className="flex flex-wrap content-center w-full h-full justify-items-start">{days}</div>;
 };
 
 export const ScheduleReoccurance: React.FC<IScheduleReoccurrenceProps> = (props) => {

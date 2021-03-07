@@ -18,6 +18,26 @@
       "**/obj": true,
       ".yarn": true
    },
+   "search.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/.cache": true,
+      "**/.vs": true,
+      "**/*.cs": true,
+      "**/*.orig": true,
+      "**/bin": true,
+      "**/build": true,
+      "**/debug": true,
+      "**/dist": true,
+      "**/node_modules": true,
+      "**/obj": true,
+      ".yarn": true,
+      "**/.yarn": true,
+      "**/.pnp.*": true
+   },
    "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
    },
@@ -37,19 +57,12 @@
       "typescriptreact": "javascript",
       "javascriptreact": "javascript"
    },
-   "search.exclude": {
-      "**/.yarn": true,
-      "**/.pnp.*": true
-   },
    "eslint.nodePath": ".yarn/sdks",
    "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
    "typescript.tsdk": ".yarn/sdks/typescript/lib",
    "typescript.enablePromptUseWorkspaceTsdk": true,
    "html-css-class-completion.CSSLanguages": ["css", "sass", "scss"],
-   "html-css-class-completion.JavaScriptLanguages": [
-      "javascriptreact",
-      "typescriptreact"
-   ],
+   "html-css-class-completion.JavaScriptLanguages": ["javascriptreact", "typescriptreact"],
    "gitHistory.showFileHistorySplit": false,
    "gitHistory.showEditorTitleMenuBarIcons": false
 }

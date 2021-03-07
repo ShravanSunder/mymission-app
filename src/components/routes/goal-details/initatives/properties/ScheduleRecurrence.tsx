@@ -5,49 +5,23 @@ import { IconButton, ButtonBase, ToggleButton, ToggleButtonGroup, Typography } f
 import tw from 'twin.macro';
 import CheckIcon from '@material-ui/icons/Check';
 import { css } from '@emotion/react';
+import { RecurrenceTypes, DaysOfWeek, recurrenceToNumberOfDaysMap } from './scheduleDefinitions';
 
 const tempColorSelectedDay = 'bg-gray-200';
 
-/**
- * Match the Dayjs standard
- */
-export enum DaysOfWeek {
-   Sunday = 0,
-   Monday = 1,
-   Tuesday = 2,
-   Wednesday = 3,
-   Thursday = 4,
-   Friday = 5,
-   Saturday = 6,
-}
-
-export enum QuartersOfYear {
-   Q1 = 1,
-   Q2 = 2,
-   Q3 = 3,
-   Q4 = 4,
-}
-
-export enum ReoccurrenceTypes {
-   'DaysPerWeek',
-   'SpecificDaysOfWeek',
-   'DaysPerMonth',
-   'PerCustomNumberOfDays',
-   'DaysPerQuarter',
-}
-
-interface IScheduleReoccurrenceProps {
-   reoccurrence: ReoccurrenceTypes;
+export interface IScheduleRecurrenceProps {
+   /**
+    * The type of repetition.  ie Days per week, days per month
+    */
+   recurrence: RecurrenceTypes;
+   /**
+    * Number: Number of times per repetition.
+    * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
+    */
    currentSchedule: number | DaysOfWeek[];
 }
 
-export const DaysMap: Map<ReoccurrenceTypes, number> = new Map([
-   [ReoccurrenceTypes.DaysPerWeek, 7],
-   [ReoccurrenceTypes.DaysPerMonth, 31],
-   [ReoccurrenceTypes.DaysPerQuarter, 90],
-]);
-
-const SchedulePerPeriod: React.FC<IScheduleReoccurrenceProps> = ({ reoccurrence, currentSchedule }) => {
+const SchedulePerPeriod: React.FC<IScheduleRecurrenceProps> = ({ recurrence, currentSchedule }) => {
    const [selectedNumberOfDays, setSelectedNumberOfDays] = useState<number>();
 
    useEffect(() => {
@@ -62,7 +36,7 @@ const SchedulePerPeriod: React.FC<IScheduleReoccurrenceProps> = ({ reoccurrence,
 
    let days: React.ReactNode[] | null = null;
 
-   const availableDays = DaysMap.get(reoccurrence);
+   const availableDays = recurrenceToNumberOfDaysMap.get(recurrence);
    if (availableDays != null && availableDays > 0) {
       const result: React.ReactNode[] = [];
 
@@ -93,6 +67,6 @@ const SchedulePerPeriod: React.FC<IScheduleReoccurrenceProps> = ({ reoccurrence,
    );
 };
 
-export const ScheduleReoccurance: React.FC<IScheduleReoccurrenceProps> = (props) => {
+export const ScheduleRecurrence: React.FC<IScheduleRecurrenceProps> = (props) => {
    return <SchedulePerPeriod {...props}></SchedulePerPeriod>;
 };

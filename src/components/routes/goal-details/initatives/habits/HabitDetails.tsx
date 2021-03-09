@@ -3,7 +3,7 @@ import React from 'react';
 import tw from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TwemojiImage } from '~~/components/common/Twemoji';
-import { useSafeEmoji } from '~~/components/hooks/useSafeEmoji';
+import { useSafeEmoji } from '~~/components/common/hooks/useSafeEmoji';
 import { InitativeSchedule } from '../properties/InitativeSchedule';
 
 const tempColorIcon = 'border-red-200 bg-red-100';

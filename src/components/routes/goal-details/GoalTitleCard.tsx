@@ -8,7 +8,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 
 import tw from 'twin.macro';
 
-const text1 = `Make a life worth livign and happy`;
+const tempText1 = `Make a life worth living and happy`;
 
 export const GoalTitleCard = (): JSX.Element => {
    const theme = useTheme();
@@ -38,7 +38,7 @@ export const GoalTitleCard = (): JSX.Element => {
                   <div className="absolute w-full h-full bg-gray-500 border-transparent shadow-md opacity-10  rounded-md border-opacity-90 border-12 max-h-32"></div>
                   <div className="relative z-10 w-full pt-3 pb-3 pl-1 pr-3 overflow-hidden box-border">
                      <Typography className="w-full text-white truncate box-border max-h-20" variant="h2">
-                        <strong className="truncate">{text1}</strong>
+                        <strong className="truncate">{tempText1}</strong>
                      </Typography>
                   </div>
                </div>

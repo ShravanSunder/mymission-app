@@ -64,6 +64,18 @@ export default {
       'ts-jest': {
          babel: true,
          tsConfig: 'tsconfig.json',
+         astTransformers: {
+            before: [
+               {
+                  path: '@formatjs/ts-transformer/ts-jest-integration',
+                  options: {
+                     // options
+                     overrideIdFn: '[sha512:contenthash:base64:6]',
+                     ast: true,
+                  },
+               },
+            ],
+         },
       },
    },
 

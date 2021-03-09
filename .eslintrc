@@ -27,8 +27,14 @@
       "plugin:jest/recommended",
       "plugin:tailwind/recommended"
    ],
-   "plugins": ["prettier"],
+   "plugins": ["prettier", "formatjs"],
    "rules": {
+      "formatjs/no-offset": "error",
+      "formatjs/enforce-description": "off",
+      "formatjs/enforce-default-message": "off",
+      "formatjs/enforce-placeholders": "error",
+      "formatjs/no-multiple-whitespaces": "error",
+      "formatjs/no-multiple-plurals": "error",
       "prettier/prettier": 0,
       "react/jsx-filename-extension": 0,
       "react/jsx-indent": 0,

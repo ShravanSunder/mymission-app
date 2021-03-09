@@ -2,7 +2,6 @@
  * Match the Dayjs standard
  */
 
-import { map } from 'rxjs/operators';
 import { createException, ExceptionTypes } from '~~/models/Exception';
 
 export enum DaysOfWeek {
@@ -22,12 +21,20 @@ export enum QuartersOfYear {
    Q4 = 4,
 }
 
+export enum CycleDurationTypes {
+   PerDay = 'day',
+   PerWeek = 'week',
+   PerMonth = 'month',
+   PerQuarter = 'quarter',
+}
+
 export enum RecurrenceTypes {
-   'DaysPerWeek',
-   'SpecificDaysOfWeek',
-   'DaysPerMonth',
-   'PerCustomNumberOfDays',
-   'DaysPerQuarter',
+   SpecificDaysOfWeek,
+   TotalPerDay,
+   TotalPerWeek,
+   TotalPerMonth,
+   TotalPerQuarter,
+   PerNumberOfDays,
 }
 
 export const recurrenceToNumberOfDaysMap: Map<RecurrenceTypes, number> = new Map([
@@ -36,11 +43,12 @@ export const recurrenceToNumberOfDaysMap: Map<RecurrenceTypes, number> = new Map
    [RecurrenceTypes.DaysPerQuarter, 90],
 ]);
 
-export const recurrenceToDisplayString = (recurrence: RecurrenceTypes, data: number): string => {
+export const recurrenceToDisplayString = (cycleDuration: CycleDurationTypes, recurrence: RecurrenceTypes, data: number): string => {
    const recurrenceToDisplayMap: Map<RecurrenceTypes, string> = new Map([
-      [RecurrenceTypes.DaysPerWeek, `${data} days/week`],
-      [RecurrenceTypes.DaysPerMonth, `${data} days/month`],
-      [RecurrenceTypes.DaysPerQuarter, `${data} days/quarter`],
+      [RecurrenceTypes.PerNumberOfDays, `Every ${data} days`],
+      [RecurrenceTypes.TotalPerMonth, `${data} times a ${cycleDuration}`],
+      [RecurrenceTypes.totalper, `${data} times a month`],
+      [RecurrenceTypes.TotalPerMonth, `${data} times a quarter`],
    ]);
 
    const result = recurrenceToDisplayMap.get(recurrence);

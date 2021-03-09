@@ -4,7 +4,7 @@ import { ValidationError } from 'yup';
  * Validation, to be utilized with Yup schema validation.
  * NOTE: perhaps its unecessary and can only use Yup Validation Error
  */
-export type ValidationData = {
+export type TValidation = {
    validationType: ValidationTypes;
    error?: ValidationError;
 };

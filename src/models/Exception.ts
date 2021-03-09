@@ -5,7 +5,7 @@
  * If the situation is based on external library or JS hard errors, use and include the JS Error
  * Exception type to be used with js: throw in application
  */
-export type Exception<T> = {
+export type TException<T> = {
    exeptionType: ExceptionTypes;
    data?: T;
    error?: Error;
@@ -21,7 +21,7 @@ export enum ExceptionTypes {
    Schedule_RecurrenceUseIsInvalid = 'Invalid Recurrence is passed to reoccurrenceToDisplay',
 }
 
-export const createException = <T>(errorType: ExceptionTypes, data?: T, error?: Error): Exception<T> => {
+export const createException = <T>(errorType: ExceptionTypes, data?: T, error?: Error): TException<T> => {
    return {
       exeptionType: errorType,
       data,

@@ -1,10 +1,47 @@
-import React, { useMemo } from 'react';
-import * as dayjs from 'dayjs';
-import { ButtonBase, ToggleButton, ToggleButtonGroup } from '@material-ui/core';
+import React, { useEffect, useMemo } from 'react';
 
-import CheckIcon from '@material-ui/icons/Check';
-import { RecurrenceTypes, DaysOfWeek } from './scheduleDefinitions';
-import { ScheduleDaysPerPeriod } from './ScheduleDaysPerPeriod';
+import { RecurrenceTypes, DaysOfWeek, recurrenceToNumberOfDaysMap, recurrenceToDisplayString } from './scheduleDefinitions';
+import { css } from '@emotion/react';
+import tw from 'twin.macro';
+import { IconButton, Typography } from '@material-ui/core';
+import { TwemojiInline } from '~~/components/common/Twemoji';
+
+const tempColorSelectedDay = 'bg-gray-200';
+
+/**
+ * @see IScheduleRecurrenceProps
+ */
+
+export interface IScheduleRecurrenceSummaryProps {
+   recurrenceType: RecurrenceTypes;
+   recurrenceSchedule: number | DaysOfWeek[];
+}
+export const ScheduleRecurrenceSummary: React.FC<IScheduleRecurrenceSummaryProps> = (props) => {
+   const summary = useMemo(() => {
+      if (recurrenceToNumberOfDaysMap.has(props.recurrenceType)) {
+         return recurrenceToDisplayString(props.recurrenceType, props.recurrenceSchedule as number);
+      } else {
+         // Todo:finish me
+         return '';
+      }
+   }, [props.recurrenceType, props.recurrenceSchedule]);
+
+   return (
+      <div
+         className="w-full select-none grid grid-row-3 "
+         css={{
+            gridTemplateColumns: 'auto 1fr 1fr ',
+         }}>
+         <div className="w-full rounded-full">
+            <TwemojiInline text="📅"></TwemojiInline>
+         </div>
+         <Typography className="pl-2 capitalize">
+            <strong>Days</strong>
+         </Typography>
+         <Typography className="pr-2 text-right justify-self-end">{summary}</Typography>
+      </div>
+   );
+};
 
 export interface IScheduleRecurrenceProps {
    /**
@@ -21,6 +58,51 @@ export interface IScheduleRecurrenceProps {
    setRecurrenceSchedule: React.Dispatch<React.SetStateAction<number | DaysOfWeek[]>>;
 }
 
+const PickPeriod: React.FC<IScheduleRecurrenceProps> = (props) => {
+   useEffect(() => {
+      props.setRecurrenceSchedule(props.recurrenceSchedule as number);
+   }, [props.recurrenceSchedule]);
+
+   const handleChange = (event: React.MouseEvent<HTMLElement> | null, newValue: number | null) => {
+      if (newValue) {
+         props.setRecurrenceSchedule(newValue);
+      }
+   };
+
+   let days: React.ReactNode[] | null = null;
+
+   const availableDays = recurrenceToNumberOfDaysMap.get(props.recurrenceType);
+   if (availableDays != null && availableDays > 0) {
+      const result: React.ReactNode[] = [];
+
+      for (let i = 1; i <= availableDays; i++) {
+         let selectStyle = css();
+         if (props.recurrenceSchedule === i) {
+            selectStyle = css(tw`${tempColorSelectedDay} shadow-sm`);
+         }
+
+         result.push(
+            <div css={selectStyle} key={i} className="rounded-full w-11 h-11">
+               <IconButton className="" value={i} onClick={() => handleChange(null, i)}>
+                  <Typography className="w-5 h-5" variant="subtitle2">
+                     {i}
+                  </Typography>
+               </IconButton>
+            </div>
+         );
+      }
+
+      days = result;
+   }
+
+   return <div className="flex flex-wrap content-center w-full h-full place-self-center justify-items-start">{days}</div>;
+};
+
 export const ScheduleRecurrence: React.FC<IScheduleRecurrenceProps> = (props) => {
-   return <ScheduleDaysPerPeriod {...props}></ScheduleDaysPerPeriod>;
+   return (
+      <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
+         <div className="">{props.recurrenceType}</div>
+         <PickPeriod {...props}></PickPeriod>;
+      </div>
+   );
 };

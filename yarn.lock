@@ -2724,6 +2724,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/ecma402-abstract@npm:1.6.2":
+  version: 1.6.2
+  resolution: "@formatjs/ecma402-abstract@npm:1.6.2"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: f9ff24e6de43e068b66dacba51032f0fe68d0d1fda9e8d643fee45bb413a8c1d9641b65fbe6e5ec69a5ae2608f5f986f6016fe8bdf227ffacb51a725d99b1bc7
+  languageName: node
+  linkType: hard
+
 "@formatjs/intl-datetimeformat@npm:3.2.11":
   version: 3.2.11
   resolution: "@formatjs/intl-datetimeformat@npm:3.2.11"
@@ -2778,6 +2787,22 @@ __metadata:
     intl-messageformat-parser: 6.4.1
     tslib: ^2.1.0
   checksum: df24f505c415a04b2aa1cc7e9365cfab940ba9cd11e3c1d296cf25823f694369f14032935fceb9ee5ed7813ad7065daed4d7d7f5d6a165f7de562abaa8d63678
+  languageName: node
+  linkType: hard
+
+"@formatjs/ts-transformer@npm:3.2.0, @formatjs/ts-transformer@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@formatjs/ts-transformer@npm:3.2.0"
+  dependencies:
+    intl-messageformat-parser: 6.4.2
+    tslib: ^2.1.0
+    typescript: ^4.0
+  peerDependencies:
+    ts-jest: ^26.4.0
+  peerDependenciesMeta:
+    ts-jest:
+      optional: true
+  checksum: 7a45a29260b2cb7634be531a3d9a9dad6fbd2d32636968bc534eb62b0bb43b8f8b79483fe1c15af61f620633c02dbdaddc852448dd8d981ebd63b94c1ef46a80
   languageName: node
   linkType: hard
 
@@ -5526,6 +5551,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/emoji-regex@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@types/emoji-regex@npm:8.0.0"
+  checksum: 66659e5e80f2fb4beef7305e2865121df5ea0a028bda1b000b2ff0930e2cb214b4ded35988479992904e01226dd07b036bfc99f15986ff4189f5b666c9a768cd
+  languageName: node
+  linkType: hard
+
 "@types/emoji-regex@npm:^9.2.0":
   version: 9.2.0
   resolution: "@types/emoji-regex@npm:9.2.0"
@@ -5552,6 +5584,16 @@ __metadata:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: 3a89e63d02c447b7182a30b80925ccfbd46661aa3e7262a61aa8de9b90d1de4b0b722f681f7473b35258e110ef726d73df406374abdac8435358dd13ca74251d
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^7.2.0":
+  version: 7.2.7
+  resolution: "@types/eslint@npm:7.2.7"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: cb7b820d887b51c9d620005a74cf223ec834565c366035cfaf4cc31d5681cc72d2fc421465f648019145e50f11222e35f0910139a13c2e46ff399e72cad0e431
   languageName: node
   linkType: hard
 
@@ -6339,6 +6381,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/types@npm:3.10.1":
+  version: 3.10.1
+  resolution: "@typescript-eslint/types@npm:3.10.1"
+  checksum: cc075f8da439ae50a09da950532a8a369855e937e4502cd859829f6dab549e197a2ff2765a193b925e8caa3e16fc3f52bc3d53af0c8cf667c17b0424227055c4
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/types@npm:4.15.0":
   version: 4.15.0
   resolution: "@typescript-eslint/types@npm:4.15.0"
@@ -6386,6 +6435,34 @@ __metadata:
     typescript:
       optional: true
   checksum: 01ece3245265df90b9dc2856f887dd261ddfa22edf0bb6cc8b54e54886c82b6fd1eb46405fca9dba7793fc682ef3e8766319aeb28d5910048a596ea76d13675c
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/typescript-estree@npm:^3.6.0":
+  version: 3.10.1
+  resolution: "@typescript-eslint/typescript-estree@npm:3.10.1"
+  dependencies:
+    "@typescript-eslint/types": 3.10.1
+    "@typescript-eslint/visitor-keys": 3.10.1
+    debug: ^4.1.1
+    glob: ^7.1.6
+    is-glob: ^4.0.1
+    lodash: ^4.17.15
+    semver: ^7.3.2
+    tsutils: ^3.17.1
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: c048aa8b80129e0672ba57775072f1d4d9ea1216dee8fd23d224b9064dfebe48b12c1eb8efd823420c35598c423bddd2ec92b49d8c3f04860b91822f104e079f
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:3.10.1":
+  version: 3.10.1
+  resolution: "@typescript-eslint/visitor-keys@npm:3.10.1"
+  dependencies:
+    eslint-visitor-keys: ^1.1.0
+  checksum: 58890dc003211e47caf05a1ab19cf6d3945d0ee7267ef09bdcf0ff53514a8b93ed778ccf52ae14538fc4e9a03897374efd6e359f6483e8e2f76bb495bb874379
   languageName: node
   linkType: hard
 
@@ -11101,6 +11178,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-formatjs@npm:^2.12.7":
+  version: 2.12.7
+  resolution: "eslint-plugin-formatjs@npm:2.12.7"
+  dependencies:
+    "@formatjs/ts-transformer": 3.2.0
+    "@types/emoji-regex": ^8.0.0
+    "@types/eslint": ^7.2.0
+    "@typescript-eslint/typescript-estree": ^3.6.0
+    emoji-regex: ^9.0.0
+    intl-messageformat-parser: 6.4.2
+    tslib: ^2.1.0
+  peerDependencies:
+    eslint: ^7.0.0
+  checksum: db9a763545a148ed113caa23a4a27bd42c389cfc5aa968a3cdd739f4e69b662e8c6c1f85808b28e12800cb1b761c66831a3790cb9ee90989430e3f8eac514187
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-import@npm:^2.22.1":
   version: 2.22.1
   resolution: "eslint-plugin-import@npm:2.22.1"
@@ -13673,6 +13767,16 @@ fsevents@^1.2.7:
     "@formatjs/ecma402-abstract": 1.6.1
     tslib: ^2.1.0
   checksum: 6fef300f9517559d87f611f6447189c875b16dd6c91d8c62b34167c6d38e89b4fe2751605cf574fc841fc30314cfaa368c5c975738c34a4983a5bac6810d59c9
+  languageName: node
+  linkType: hard
+
+"intl-messageformat-parser@npm:6.4.2":
+  version: 6.4.2
+  resolution: "intl-messageformat-parser@npm:6.4.2"
+  dependencies:
+    "@formatjs/ecma402-abstract": 1.6.2
+    tslib: ^2.1.0
+  checksum: f506d5e467e82e973e77a643c4c8886603f8026f4713a9d4956a7e6d331db211ec70783ca7b76a5ef048bc50c49667609163da06562227b0a267d951a4ec42ea
   languageName: node
   linkType: hard
 
@@ -16286,6 +16390,7 @@ fsevents@^1.2.7:
     "@emotion/react": ^11.1.5
     "@emotion/serialize": ^1.0.0
     "@emotion/types": ^0.7.0
+    "@formatjs/ts-transformer": ^3.2.0
     "@fullhuman/postcss-purgecss": ^4.0.2
     "@material-ui/core": next
     "@material-ui/icons": next
@@ -16356,6 +16461,7 @@ fsevents@^1.2.7:
     eslint: ^7.21.0
     eslint-config-airbnb: ^18.2.1
     eslint-config-prettier: ^8.1.0
+    eslint-plugin-formatjs: ^2.12.7
     eslint-plugin-import: ^2.22.1
     eslint-plugin-jest: ^24.1.5
     eslint-plugin-jsx-a11y: ^6.4.1

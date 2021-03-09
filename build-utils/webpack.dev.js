@@ -4,6 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
+const { transform } = require('@formatjs/ts-transformer');
 
 const cache = {
    //type: 'memory',
@@ -14,6 +15,36 @@ const cache = {
 };
 
 const moduleRules = [
+   {
+      test: /\.tsx?$/,
+      exclude: [/node_modules/, /\.test\.[tj]sx?$/, /\.stories\.tsx?$/],
+      use: [
+         {
+            loader: require.resolve('babel-loader'),
+            options: {
+               cacheCompression: false,
+               cacheDirectory: true,
+               plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+            },
+         },
+         {
+            loader: 'ts-loader',
+            options: {
+               transpileOnly: true,
+               configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
+               getCustomTransformers() {
+                  return {
+                     before: [
+                        transform({
+                           overrideIdFn: '[sha512:contenthash:base64:6]',
+                        }),
+                     ],
+                  };
+               },
+            },
+         },
+      ],
+   },
    {
       test: /\.[tj]sx?$/,
       exclude: [/node_modules/, /\.test\.[tj]sx?$/, /\.stories\.tsx?$/],

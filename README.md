@@ -28,6 +28,13 @@
   -  Dexie 
   -  YJS (proposed)
 
+### React & State Management
+- Will be using rxjs with observable-hooks in conjunction with either (Redux or recoil).  See
+  -   [React hooks + rxjs](https://thomasburlesonia.medium.com/https-medium-com-thomasburlesonia-react-hooks-rxjs-facades-4e116330bbe1)
+  -   [Rxjs hooks and observable-hooks]( https://blog.crimx.com/2020/02/26/rxjs-hooks-and-suspense-the-ultimate-guide/)
+  -   [observable-hooks](https://observable-hooks.js.org/guide/)
+-   Thinking about using recoil instead of redux (+redux-toolkit) for state management
+  -    still to be decided
 
 ## Useful libraries
 

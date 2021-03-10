@@ -4071,16 +4071,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-rxjs/core@npm:^0.6.5":
-  version: 0.6.5
-  resolution: "@react-rxjs/core@npm:0.6.5"
-  peerDependencies:
-    react: ">=16.8.0"
-    rxjs: ">=6"
-  checksum: a8ccc50b188df7f5cd85704e50b2e12f5f693a66c81aefb067be5ba6608b36c8d09f12a088393509a432d10c67590ac2202d73f9dab189f59f7ab15f6b0f9d29
-  languageName: node
-  linkType: hard
-
 "@react-spring/animated@npm:9.0.0-rc.3":
   version: 9.0.0-rc.3
   resolution: "@react-spring/animated@npm:9.0.0-rc.3"
@@ -16393,7 +16383,6 @@ fsevents@^1.2.7:
     "@nivo/pie": ^0.67.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.4.3
     "@react-hook/window-size": ^3.0.7
-    "@react-rxjs/core": ^0.6.5
     "@reduxjs/toolkit": ^1.5.0
     "@storybook/addon-a11y": ^6.1.20
     "@storybook/addon-actions": ^6.1.20
@@ -16480,6 +16469,7 @@ fsevents@^1.2.7:
     mini-css-extract-plugin: ^1.3.9
     notistack: ^1.0.4
     npm-run-all: ^4.1.5
+    observable-hooks: ^4.0.3
     postcss: ^8.2.6
     postcss-loader: ^5.0.0
     prettier: ^2.2.1
@@ -16498,11 +16488,10 @@ fsevents@^1.2.7:
     react-router: next
     react-router-dom: next
     react-test-renderer: ^17.0.1
+    recoil: ^0.1.3
     redux: ^4.0.5
     redux-logger: ^3.0.6
     redux-mock-store: ^1.5.4
-    redux-observable: ^1.2.0
-    reselect: ^4.0.0
     rxjs: ^6.6.6
     storybook-addon-performance: ^0.14.0
     style-loader: ^2.0.0
@@ -17045,6 +17034,17 @@ fsevents@^1.2.7:
   version: 1.0.4
   resolution: "objectorarray@npm:1.0.4"
   checksum: e27b5b1d4ac17712ee2eeb67efef94f3609faff0202a986a788ce125fc0c323c81688d73250386f18689b84eb981c1f2d33dffb49468bb8bd53ed6519f828743
+  languageName: node
+  linkType: hard
+
+"observable-hooks@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "observable-hooks@npm:4.0.3"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+    rxjs: ">=6.0.0"
+  checksum: 5d2e3182a795b40280ef79522c3cb3ac8a4408b39eee487900ed28c607c9dfeee8590ed6007757e90f14dcae7c6c91454c754960decb55ae960ec73c186ffd12
   languageName: node
   linkType: hard
 
@@ -19184,6 +19184,20 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"recoil@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "recoil@npm:0.1.3"
+  peerDependencies:
+    react: ">=16.13.1"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 7522cf89cf5f2829e166909912613b0e9db9fb385512eb5a6a7925730719cef47ff3fa398d1d9b62c3bec5fcbf68ef3cb000975e17b6b9e5934078abb3a1bed2
+  languageName: node
+  linkType: hard
+
 "recompose@npm:^0.30.0":
   version: 0.30.0
   resolution: "recompose@npm:0.30.0"
@@ -19244,16 +19258,6 @@ fsevents@^1.2.7:
   dependencies:
     lodash.isplainobject: ^4.0.6
   checksum: 4ddc3c5bec8717614c1cb9cabf822938dd45e02afe0acde9f5a74da9361a2792cc768526c87f058ea52d5252e991ed046159602152e56057bedab2a1b9512598
-  languageName: node
-  linkType: hard
-
-"redux-observable@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "redux-observable@npm:1.2.0"
-  peerDependencies:
-    redux: ">=4 <5"
-    rxjs: ">=6.0.0-beta.0 <7"
-  checksum: e9405ed5f9725dda0afbcc2a0a4693be2a08836bc5ee591748c778331c0530b055dca6068f1b280e3a1516f4a1af137f8a35558fa77632bbe016adcef4bf98bb
   languageName: node
   linkType: hard
 

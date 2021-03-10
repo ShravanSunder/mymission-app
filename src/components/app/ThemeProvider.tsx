@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => {
    });
 });
 
-const ThemeProvider: FunctionComponent = ({ children }) => {
+const ThemeProvider: React.FC = ({ children }) => {
    const classes = useStyles();
    const notistackRef = React.createRef() as any;
    const onClickDismiss = (key: string | number) => () => {

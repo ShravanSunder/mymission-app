@@ -1,5 +1,5 @@
 import { ThunkDispatch, AnyAction } from '@reduxjs/toolkit';
-import { RootState } from './reduxRoot';
+import { RootState } from './reduxRootState';
 import { reduxStore } from './reduxStore';
 
 export type TAppDispatch = typeof reduxStore.dispatch;

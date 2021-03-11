@@ -8,6 +8,7 @@ import ThemeProvider from '~~/components/app/ThemeProvider';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { MainAppLayout } from '../layout/MainAppLayout';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
+import { IntlProvider } from 'react-intl';
 
 /**
  * App Root that also has the Root Routes required for navigation
@@ -18,16 +19,18 @@ const AppRoot: React.FC = () => {
    return (
       <ThemeProvider>
          <BrowserRouter>
-            <Suspense fallback={<div></div>}>
+            <IntlProvider locale="en" defaultLocale="en">
                <ErrorBoundary FallbackComponent={ErrorFallback}>
-                  <Routes>
-                     <Route path="/" element={<MainAppLayout></MainAppLayout>} />
-                     <Route path="/users/*" element={<div>test users path</div>}></Route>
-                     <Route path="/noworkie/:id" element={<div>test not workie</div>}></Route>
-                     <Route path="/*" element={<div>notfound</div>} />
-                  </Routes>
+                  <Suspense fallback={<div></div>}>
+                     <Routes>
+                        <Route path="/" element={<MainAppLayout></MainAppLayout>} />
+                        <Route path="/users/*" element={<div>test users path</div>}></Route>
+                        <Route path="/noworkie/:id" element={<div>test not workie</div>}></Route>
+                        <Route path="/*" element={<div>notfound</div>} />
+                     </Routes>
+                  </Suspense>
                </ErrorBoundary>
-            </Suspense>
+            </IntlProvider>
          </BrowserRouter>
       </ThemeProvider>
    );

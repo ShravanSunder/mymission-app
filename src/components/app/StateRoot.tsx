@@ -2,9 +2,7 @@ import { reduxStore } from '~~/providers/reduxStore';
 import { Provider } from 'react-redux';
 import React, { Suspense } from 'react';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-import { IntlProvider } from 'react-intl';
 import { RecoilRoot } from 'recoil';
-import { recoilRootState } from '~~/providers/recoilRootState';
 
 const AppRoot = React.lazy(() => import('~~/components/app/AppRoot'));
 
@@ -18,11 +16,9 @@ const StateRoot: React.FC = () => {
       <Provider store={reduxStore}>
          <RecoilRoot>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-               <IntlProvider locale={navigator.language}>
-                  <Suspense fallback={<div></div>}>
-                     <AppRoot />
-                  </Suspense>
-               </IntlProvider>
+               <Suspense fallback={<div></div>}>
+                  <AppRoot />
+               </Suspense>
             </ErrorBoundary>
          </RecoilRoot>
       </Provider>

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 
-import { RecurrenceTypes, DaysOfWeek, recurrenceToNumberOfDaysMap, recurrenceToDisplayString } from './scheduleDefinitions';
+import { DaysOfWeek } from './scheduleDefinitions';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, recurrenceToNumberOfDaysMap, useRecurrenceString } from './recurrenceDefinitions';
 import { css } from '@emotion/react';
 import tw from 'twin.macro';
 import { IconButton, Typography } from '@material-ui/core';
@@ -13,18 +14,19 @@ const tempColorSelectedDay = 'bg-gray-200';
  */
 
 export interface IScheduleRecurrenceSummaryProps {
-   recurrenceType: RecurrenceTypes;
+   recurrenceAggregationPeriod: RecurrenceAggregationPeriods;
+   recurrenceDuration: RecurrenceDurationTypes;
    recurrenceSchedule: number | DaysOfWeek[];
 }
 export const ScheduleRecurrenceSummary: React.FC<IScheduleRecurrenceSummaryProps> = (props) => {
    const summary = useMemo(() => {
-      if (recurrenceToNumberOfDaysMap.has(props.recurrenceType)) {
-         return recurrenceToDisplayString(props.recurrenceType, props.recurrenceSchedule as number);
+      if (recurrenceToNumberOfDaysMap.has(props.recurrenceDuration)) {
+         return useRecurrenceString(props.recurrenceAggregationPeriod, props.recurrenceDuration, props.recurrenceSchedule as number);
       } else {
          // Todo:finish me
          return '';
       }
-   }, [props.recurrenceType, props.recurrenceSchedule]);
+   }, [props.recurrenceDuration, props.recurrenceSchedule]);
 
    return (
       <div
@@ -47,14 +49,14 @@ export interface IScheduleRecurrenceProps {
    /**
     * The type of repetition.  ie Days per week, days per month
     */
-   recurrenceType: RecurrenceTypes;
+   recurrenceType: RecurrenceDurationTypes;
    /**
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
    recurrenceSchedule: number | DaysOfWeek[];
 
-   setRecurrence: React.Dispatch<React.SetStateAction<RecurrenceTypes>>;
+   setRecurrence: React.Dispatch<React.SetStateAction<RecurrenceDurationTypes>>;
    setRecurrenceSchedule: React.Dispatch<React.SetStateAction<number | DaysOfWeek[]>>;
 }
 

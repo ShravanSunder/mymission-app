@@ -18,7 +18,7 @@ export type TException<T> = {
 export enum ExceptionTypes {
    General_Unknown = 'Unknown Error',
    General_External = 'External Library Error',
-   Schedule_RecurrenceUseIsInvalid = 'Invalid Recurrence is passed to reoccurrenceToDisplay',
+   Schedule_RecurrenceConfigurationIsInvalid = 'Invalid recurrence is passed as configuration',
 }
 
 export const createException = <T>(errorType: ExceptionTypes, data?: T, error?: Error): TException<T> => {

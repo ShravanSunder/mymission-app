@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl';
 import { createException, ExceptionTypes } from '~~/models/Exception';
 import { DaysOfWeek } from './scheduleDefinitions';
 import dayjs from 'dayjs';
-import weekday from 'dayjs/plugin/weekday';
 
 /**
  * The period for which you are aggregating (counting) your habit?
@@ -12,10 +11,10 @@ import weekday from 'dayjs/plugin/weekday';
  * - aggegate over a quarter
  */
 export enum RecurrenceAggregationPeriods {
-   TotalPerDay = 'day',
-   TotalPerWeek = 'week',
-   TotalPerMonth = 'month',
-   TotalPerQuarter = 'quarter',
+   PerDay = 'day',
+   PerWeek = 'week',
+   PerMonth = 'month',
+   PerQuarter = 'quarter',
 }
 /**
  * How long is the duration of time over which you are tracking your habit
@@ -61,7 +60,7 @@ export const useRecurrenceString = (
 ): string => {
    const intl = useIntl();
 
-   if (aggregationPeriod === RecurrenceAggregationPeriods.TotalPerDay) {
+   if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       if (
          typeof target === 'number' &&
          (durationType === RecurrenceDurationTypes.Weekly ||
@@ -92,7 +91,7 @@ export const useRecurrenceString = (
             { target }
          );
       }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.TotalPerWeek) {
+   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
       if (typeof target === 'number' && (durationType === RecurrenceDurationTypes.Monthly || durationType === RecurrenceDurationTypes.Quarterly)) {
          return intl.formatMessage(
             {
@@ -108,7 +107,7 @@ export const useRecurrenceString = (
             { target }
          );
       }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.TotalPerMonth) {
+   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
       if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly) {
          return intl.formatMessage(
             {

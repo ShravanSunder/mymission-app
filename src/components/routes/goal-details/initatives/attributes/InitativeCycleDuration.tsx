@@ -1,10 +1,10 @@
 import { Typography } from '@material-ui/core';
 import React, { useMemo } from 'react';
 import { TwemojiInline } from '~~/components/common/Twemoji';
-import { RecurrenceTypes, recurrenceToDisplayString, recurrenceToNumberOfDaysMap, DaysOfWeek } from './scheduleDefinitions';
+import { RecurrenceDurationTypes } from './recurrenceDefinitions';
 
 export interface IInitativeCycleDurationProps {
-   recurrenceType?: RecurrenceTypes;
+   recurrenceType?: RecurrenceDurationTypes;
 }
 export const InitativeCycleDurationSummary: React.FC<IInitativeCycleDurationProps> = (props) => {
    const summary = useMemo(() => {

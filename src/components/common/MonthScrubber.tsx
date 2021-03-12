@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ButtonBase } from '@material-ui/core';
 import tw from 'twin.macro';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';

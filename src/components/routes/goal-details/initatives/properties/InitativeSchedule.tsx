@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, IconButton, Typography } from '@material-ui/core';
-import React from 'react';
+import { FC } from 'react';
 import tw from 'twin.macro';
 import { TwemojiInline } from '~~/components/common/Twemoji';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -23,7 +23,7 @@ const InitiativeScheduleSummary = () => (
    </div>
 );
 
-export const InitativeSchedule: React.FC = (params) => {
+export const InitativeSchedule: FC = (params) => {
    return (
       <div className="w-full">
          <Accordion className="w-full h-full">

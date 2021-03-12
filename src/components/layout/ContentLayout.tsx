@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 // import tw from 'twin.macro';
 import { GoalTimeline } from '../routes/goal-details/GoalTimeline';
 import { GoalTitleCard } from '../routes/goal-details/GoalTitleCard';

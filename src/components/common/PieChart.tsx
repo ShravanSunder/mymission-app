@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ResponsivePie, PieCustomLayerProps } from '@nivo/pie';
 import { PatternDotsDef, Theme as NivoTheme } from '@nivo/core';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';

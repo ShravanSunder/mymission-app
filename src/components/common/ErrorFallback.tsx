@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography, IconButton, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';

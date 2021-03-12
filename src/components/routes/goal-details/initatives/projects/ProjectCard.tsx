@@ -1,5 +1,5 @@
 import { Card, CardActionArea, Typography } from '@material-ui/core';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import tw from 'twin.macro';
 import { TwemojiInline } from '~~/components/common/Twemoji';
 import { useSafeEmoji } from '~~/components/common/hooks/useSafeEmoji';

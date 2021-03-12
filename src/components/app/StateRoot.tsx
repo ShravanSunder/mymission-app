@@ -1,18 +1,18 @@
 import { reduxStore } from '~~/providers/reduxStore';
 import { Provider } from 'react-redux';
-import React, { Suspense } from 'react';
+import { Suspense, FC, lazy } from 'react';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { IntlProvider } from 'react-intl';
 import { RecoilRoot } from 'recoil';
 
-const AppRoot = React.lazy(() => import('~~/components/app/AppRoot'));
+const AppRoot = lazy(() => import('~~/components/app/AppRoot'));
 
 /**
  * Currently deciding between redux and recoil.
  * Will be using observable-hooks (rxjs) for local state, see readme
  * @param props
  */
-const StateRoot: React.FC = () => {
+const StateRoot: FC = () => {
    return (
       <Provider store={reduxStore}>
          <RecoilRoot>

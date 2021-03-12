@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import tw from 'twin.macro';
 
 const tempColor = 'text-gray-400';

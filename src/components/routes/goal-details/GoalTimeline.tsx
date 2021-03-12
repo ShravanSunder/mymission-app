@@ -1,4 +1,3 @@
-import React from 'react';
 import { GoalTimelineItem } from '~~/components/routes/goal-details/GoalTimelineItem';
 import { HabitCard } from './initatives/habits/HabitCard';
 import { ProjectCard } from '~~/components/routes/goal-details/initatives/projects/ProjectCard';

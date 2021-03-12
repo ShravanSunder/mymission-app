@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { TwemojiImage } from '~~/components/common/Twemoji';
 import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 import tw from 'twin.macro';
@@ -14,7 +14,7 @@ interface IProjectMeterProps {
    milestonesCompleted: number;
    safeEmoji: string;
 }
-export const ProjectMeter: React.FC<IProjectMeterProps & ICommonProps> = ({
+export const ProjectMeter: FC<IProjectMeterProps & ICommonProps> = ({
    numberOfSegments,
    size,
    numberOfMilestones,

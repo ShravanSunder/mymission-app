@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Twemoji, Props } from 'react-emoji-render';
 
 interface TwemojiImageProps extends Props {

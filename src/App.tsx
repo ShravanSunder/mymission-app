@@ -1,8 +1,8 @@
-import React, { StrictMode, Suspense } from 'react';
+import { lazy, StrictMode, Suspense } from 'react';
 import StateRoot from './components/app/StateRoot';
 import { ErrorBoundary, ErrorFallback } from './components/common/ErrorFallback';
 
-const AppRoot = React.lazy(() => import('~~/components/app/AppRoot'));
+const AppRoot = lazy(() => import('~~/components/app/AppRoot'));
 
 export const App = (): JSX.Element => {
    return (

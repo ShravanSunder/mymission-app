@@ -63,7 +63,7 @@ export default {
    globals: {
       'ts-jest': {
          babel: true,
-         tsConfig: 'tsconfig.json',
+         tsconfig: 'tsconfig.json',
          astTransformers: {
             before: [
                {
@@ -92,7 +92,7 @@ export default {
 
    // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
    moduleNameMapper: {
-      '^@/(.*)$': '<rootDir>/src/$1',
+      '^~~/(.*)': '<rootDir>/$1',
    },
 
    // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -105,7 +105,7 @@ export default {
    // notifyMode: "failure-change",
 
    // A preset that is used as a base for Jest's configuration
-   // preset: undefined,
+   preset: 'ts-jest',
 
    // Run tests from one or more projects
    // projects: undefined,
@@ -167,7 +167,7 @@ export default {
    // ],
 
    // The regexp pattern or array of patterns that Jest uses to detect test files
-   // testRegex: [],
+   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?|ts|js)$',
 
    // This option allows the use of a custom results processor
    // testResultsProcessor: undefined,
@@ -183,8 +183,9 @@ export default {
 
    // A map from regular expressions to paths to transformers
    transform: {
-      '^.+\\.jsx?$': 'babel-jest',
-      '^.+\\.tsx?$': 'ts-jest',
+      '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
+      // '^.+\\.jsx?$': 'ts-jest',
+      // '^.+\\.tsx?$': 'ts-jest',
       '^.+\\.mdx?$': '@storybook/addon-docs/jest-transform-mdx',
    },
 

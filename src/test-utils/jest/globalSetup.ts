@@ -1,1 +1,3 @@
-module.exports = {};
+module.exports = async () => {
+   /* add jest globals here */
+};

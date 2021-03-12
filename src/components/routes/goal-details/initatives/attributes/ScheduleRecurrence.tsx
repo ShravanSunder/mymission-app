@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 
 import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, recurrenceToNumberOfDaysMap, useRecurrenceString } from './recurrenceDefinitions';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, recurrenceToNumberOfDaysMap } from './recurrenceDefinitions';
+import { useRecurrenceSummary } from './useRecurrenceSummary';
 import { css } from '@emotion/react';
 import tw from 'twin.macro';
 import { IconButton, Typography } from '@material-ui/core';
@@ -21,7 +22,7 @@ export interface IScheduleRecurrenceSummaryProps {
 export const ScheduleRecurrenceSummary: React.FC<IScheduleRecurrenceSummaryProps> = (props) => {
    const summary = useMemo(() => {
       if (recurrenceToNumberOfDaysMap.has(props.recurrenceDuration)) {
-         return useRecurrenceString(props.recurrenceAggregationPeriod, props.recurrenceDuration, props.recurrenceSchedule as number);
+         return useRecurrenceSummary(props.recurrenceAggregationPeriod, props.recurrenceDuration, props.recurrenceSchedule as number);
       } else {
          // Todo:finish me
          return '';

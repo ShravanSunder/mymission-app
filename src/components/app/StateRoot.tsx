@@ -4,7 +4,6 @@ import React, { Suspense } from 'react';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { IntlProvider } from 'react-intl';
 import { RecoilRoot } from 'recoil';
-import { recoilRootState } from '~~/providers/recoilRootState';
 
 const AppRoot = React.lazy(() => import('~~/components/app/AppRoot'));
 

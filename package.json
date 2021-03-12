@@ -24,11 +24,8 @@
    "license": "",
    "devDependencies": {
       "@babel/core": "^7.13.8",
-      "@babel/plugin-transform-react-jsx": "^7.12.17",
       "@babel/preset-env": "^7.13.8",
       "@babel/preset-react": "^7.12.13",
-      "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5",
-      "@emotion/babel-preset-css-prop": "^11.2.0",
       "@emotion/types": "^0.7.0",
       "@formatjs/ts-transformer": "^3.2.0",
       "@fullhuman/postcss-purgecss": "^4.0.2",
@@ -135,6 +132,7 @@
       "yarn": "^1.22.10"
    },
    "dependencies": {
+      "@emotion/babel-plugin": "^11.2.0",
       "@emotion/react": "^11.1.5",
       "@emotion/serialize": "^1.0.0",
       "@material-ui/core": "next",

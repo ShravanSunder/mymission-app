@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { createException, ExceptionTypes } from '~~/models/Exception';
 import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, DaysOfWeekToString } from './recurrenceDefinitions';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToString, isEveryDayOfWeek } from './recurrenceDefinitions';
 
 /**
  * Hook to get a display string that represents the recurrence
@@ -33,12 +33,12 @@ export const useRecurrenceSummary = (
          );
       } else if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek && Array.isArray(target)) {
          // naive logic to know its all days of the week
-         if (target.length === 7) {
+         if (isEveryDayOfWeek(target)) {
             return intl.formatMessage({
                defaultMessage: 'Every day',
             });
          } else {
-            const selectedWeekdays = DaysOfWeekToString(target);
+            const selectedWeekdays = daysOfWeekToString(target);
             return selectedWeekdays;
          }
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfDays && typeof target == 'number') {

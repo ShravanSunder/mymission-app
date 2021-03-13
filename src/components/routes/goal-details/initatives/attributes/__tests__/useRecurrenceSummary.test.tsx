@@ -68,6 +68,7 @@ describe('routes=>goal-details=>initatives [useReccurenceSummary]', () => {
       });
 
       it('When duration is specificDaysOfWeek with 6 of 7 days , then you get a range', () => {
+         // target1: missing sunday
          const target1: DaysOfWeek[] = [
             DaysOfWeek.Monday,
             DaysOfWeek.Tuesday,
@@ -83,6 +84,7 @@ describe('routes=>goal-details=>initatives [useReccurenceSummary]', () => {
 
          expect(result1.current).toBe(`Mon - Sat`);
 
+         // target2: missing monday
          const target2: DaysOfWeek[] = [
             DaysOfWeek.Tuesday,
             DaysOfWeek.Wednesday,
@@ -97,6 +99,31 @@ describe('routes=>goal-details=>initatives [useReccurenceSummary]', () => {
          });
 
          expect(result2.current).toBe(`Tue - Sun`);
+
+         // target3: missing saturday
+         const target3: DaysOfWeek[] = [DaysOfWeek.Monday, DaysOfWeek.Tuesday, DaysOfWeek.Wednesday, DaysOfWeek.Thursday, DaysOfWeek.Friday, DaysOfWeek.Sunday];
+
+         const { result: result3 } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.SpecificDaysOfWeek, target3), {
+            wrapper: HookWrapper,
+         });
+
+         expect(result3.current).toBe(`Sun - Fri`);
+
+         // target2: missing friday
+         const target4: DaysOfWeek[] = [
+            DaysOfWeek.Monday,
+            DaysOfWeek.Tuesday,
+            DaysOfWeek.Wednesday,
+            DaysOfWeek.Thursday,
+            DaysOfWeek.Saturday,
+            DaysOfWeek.Sunday,
+         ];
+
+         const { result: result4 } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.SpecificDaysOfWeek, target4), {
+            wrapper: HookWrapper,
+         });
+
+         expect(result4.current).toBe(`Sat - Thu`);
       });
    });
 });

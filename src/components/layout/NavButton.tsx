@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconButton, Tooltip, useTheme } from '@material-ui/core';
 import { Home as HomeIcon } from '@material-ui/icons';
 

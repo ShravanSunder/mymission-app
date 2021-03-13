@@ -35,6 +35,8 @@
       "formatjs/enforce-placeholders": "error",
       "formatjs/no-multiple-whitespaces": "error",
       "formatjs/no-multiple-plurals": "error",
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
       "prettier/prettier": 0,
       "react/jsx-filename-extension": 0,
       "react/jsx-indent": 0,

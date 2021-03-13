@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
+import { useState, FC } from 'react';
 import tw from 'twin.macro';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DaysOfWeek } from './scheduleDefinitions';
@@ -9,7 +9,7 @@ import { InitativeCycleDurationSummary } from './InitativeCycleDuration';
 
 const tempColorIcons = 'bg-gray-200';
 
-export const InitativeSchedule: React.FC = (props) => {
+export const InitativeSchedule: FC = (props) => {
    const [recurrence, setRecurrence] = useState<RecurrenceDurationTypes>(RecurrenceDurationTypes.Monthly);
    const [recurrenceSchedule, setRecurrenceSchedule] = useState<number | DaysOfWeek[]>(5);
    const [recurrenceAggregationPeriod, setRecurrenceAggregationPeriod] = useState(RecurrenceAggregationPeriods.PerDay);

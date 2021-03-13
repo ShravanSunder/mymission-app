@@ -1,4 +1,5 @@
-import React, { Children } from 'react';
+import { Children, FC } from 'react';
+
 import tw, { css } from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TimelineIcon } from './TimelineIcon';
@@ -29,12 +30,7 @@ interface IGoalTimelineItemProps {
    showBottomConnect?: boolean;
 }
 
-export const GoalTimelineItem: React.FC<IGoalTimelineItemProps & ICommonProps> = ({
-   showTopConnector = true,
-   showBottomConnect = true,
-   children,
-   className,
-}) => {
+export const GoalTimelineItem: FC<IGoalTimelineItemProps & ICommonProps> = ({ showTopConnector = true, showBottomConnect = true, children, className }) => {
    const timelineGridStyle = [
       css`
          ${tw`grid w-full box-border`}

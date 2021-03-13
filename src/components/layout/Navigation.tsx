@@ -1,6 +1,3 @@
-import React from 'react';
-// import { IconButton } from '@material-ui/core';
-// import tw from 'twin.macro';
 import { NavButton } from './NavButton';
 
 export const NavigationRight = (): JSX.Element => {

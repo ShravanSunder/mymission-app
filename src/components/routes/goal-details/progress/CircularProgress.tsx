@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import tw, { theme, css } from 'twin.macro';
 
 import { clamp } from '~~/helpers';

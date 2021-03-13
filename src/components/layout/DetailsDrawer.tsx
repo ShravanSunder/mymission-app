@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode, RefObject, ReactNodeArray } from 'react';
 import { SwipeableDrawer } from '@material-ui/core';
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
@@ -6,8 +6,8 @@ import { css } from '@emotion/react';
 export interface IDetailsDrawerProps {
    open: boolean;
    setDrawerOpen: (open: boolean, checkForUnsavedEdits: boolean) => void;
-   containerRef: React.RefObject<HTMLDivElement>;
-   children?: React.ReactNode | React.ReactNodeArray;
+   containerRef: RefObject<HTMLDivElement>;
+   children?: ReactNode | ReactNodeArray;
 }
 
 const tempColorDrawerBackground = 'bg-gray-100';

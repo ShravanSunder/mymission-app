@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTheme, ToggleButton } from '@material-ui/core';
 import { Home as HomeIcon } from '@material-ui/icons';
 

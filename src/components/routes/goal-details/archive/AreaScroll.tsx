@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { CardMedia, Typography } from '@material-ui/core';
 import tw from 'twin.macro';
 

@@ -1,10 +1,7 @@
 // @ts-nocheck
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
-import React from 'react';
-
 // import { registerServiceWorker } from './serviceworker/registerServiceWorker.ts';
-
 (async () => {
    // dynamic imports for code splitting
    const ReactDOM = await import('react-dom');

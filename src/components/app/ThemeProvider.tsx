@@ -1,5 +1,5 @@
 import { Button, Theme, ThemeProvider as MuiThemeProvider, createStyles, makeStyles } from '@material-ui/core';
-import React, { FunctionComponent, useMemo, useState } from 'react';
+import { FC, useMemo, useState, createRef } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
 import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
@@ -24,9 +24,9 @@ const useStyles = makeStyles(() => {
    });
 });
 
-const ThemeProvider: React.FC = ({ children }) => {
+const ThemeProvider: FC = ({ children }) => {
    const classes = useStyles();
-   const notistackRef = React.createRef() as any;
+   const notistackRef = createRef() as any;
    const onClickDismiss = (key: string | number) => () => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       notistackRef?.current?.closeSnackbar(key);

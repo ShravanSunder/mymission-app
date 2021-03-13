@@ -3,7 +3,7 @@ import '~~/styles/css/tailwind-components.css';
 import '~~/styles/css/tailwind-utilities.css';
 import '~~/styles/css/app.css';
 
-import React, { Suspense } from 'react';
+import { Suspense, FC } from 'react';
 import ThemeProvider from '~~/components/app/ThemeProvider';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { MainAppLayout } from '../layout/MainAppLayout';
@@ -15,7 +15,7 @@ import { IntlProvider } from 'react-intl';
  * Intatiates ThemeProvider as well as a Suspense and Errorboundary
  * @see ThemeProvider
  */
-const AppRoot: React.FC = () => {
+const AppRoot: FC = () => {
    return (
       <ThemeProvider>
          <BrowserRouter>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { CardActions, useTheme, Card, CardContent, IconButton, Typography, CardMedia } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
 

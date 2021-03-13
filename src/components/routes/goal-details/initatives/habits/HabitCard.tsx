@@ -1,5 +1,4 @@
 import { Card, CardActionArea, Typography } from '@material-ui/core';
-import React from 'react';
 import tw from 'twin.macro';
 
 import { HabitMeter } from './HabitMeter';

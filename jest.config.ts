@@ -63,7 +63,7 @@ export default {
    globals: {
       'ts-jest': {
          babel: true,
-         tsconfig: 'tsconfig.json',
+         tsconfig: 'tsconfig.jest.json',
          astTransformers: {
             before: [
                {
@@ -105,7 +105,7 @@ export default {
    // notifyMode: "failure-change",
 
    // A preset that is used as a base for Jest's configuration
-   preset: 'ts-jest',
+   preset: 'ts-jest/presets/js-with-ts',
 
    // Run tests from one or more projects
    // projects: undefined,
@@ -183,7 +183,8 @@ export default {
 
    // A map from regular expressions to paths to transformers
    transform: {
-      '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
+      '^.+\\.(ts|tsx)$': 'ts-jest',
+      '^.+\\.(js|jsx)$': '../babel.config.jest.js',
       // '^.+\\.jsx?$': 'ts-jest',
       // '^.+\\.tsx?$': 'ts-jest',
       '^.+\\.mdx?$': '@storybook/addon-docs/jest-transform-mdx',

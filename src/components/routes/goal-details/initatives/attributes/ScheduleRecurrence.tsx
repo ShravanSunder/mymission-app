@@ -20,20 +20,19 @@ export interface IScheduleRecurrenceSummaryProps {
    recurrenceSchedule: number | DaysOfWeek[];
 }
 export const ScheduleRecurrenceSummary: React.FC<IScheduleRecurrenceSummaryProps> = (props) => {
-   const summary = useMemo(() => {
-      if (recurrenceToNumberOfDaysMap.has(props.recurrenceDuration)) {
-         return useRecurrenceSummary(props.recurrenceAggregationPeriod, props.recurrenceDuration, props.recurrenceSchedule as number);
-      } else {
-         // Todo:finish me
-         return '';
-      }
-   }, [props.recurrenceDuration, props.recurrenceSchedule]);
+   let summary = '';
+   if (recurrenceToNumberOfDaysMap.has(props.recurrenceDuration)) {
+      summary = useRecurrenceSummary(props.recurrenceAggregationPeriod, props.recurrenceDuration, props.recurrenceSchedule as number);
+   } else {
+      // Todo:finish me
+      summary = '';
+   }
 
    return (
       <div
          className="w-full select-none grid grid-row-3 "
          css={{
-            gridTemplateColumns: 'auto 1fr 1fr ',
+            gridTemplateColumns: 'auto 1fr 1fr',
          }}>
          <div className="w-full rounded-full">
             <TwemojiInline text="📅"></TwemojiInline>

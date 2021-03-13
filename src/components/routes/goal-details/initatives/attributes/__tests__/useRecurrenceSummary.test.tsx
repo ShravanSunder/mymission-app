@@ -1,7 +1,7 @@
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from '../recurrenceDefinitions';
 import { useRecurrenceSummary } from '../useRecurrenceSummary';
 import { renderHook } from '@testing-library/react-hooks';
-import { HookWrapper } from '~~/test-utils/testing-library/wrappers';
+import { HookWrapper, IntlWrapper } from '~~/test-utils/testing-library/wrappers';
 import { render } from '@testing-library/react';
 import { HabitDetails } from '../../habits/HabitDetails';
 
@@ -16,7 +16,7 @@ describe('routes=>goal-details=>initatives [useReccurenceSummary]', () => {
       });
       it('trial', () => {
          const target = 10;
-         const { debug } = render(<HabitDetails />);
+         const { debug } = render(<HabitDetails />, { wrapper: IntlWrapper });
 
          debug();
       });

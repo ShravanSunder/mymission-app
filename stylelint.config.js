@@ -15,7 +15,8 @@ module.exports = {
       ],
       'selector-type-no-unknown': null,
       'declaration-block-trailing-semicolon': null,
-      'no-descending-specificity': null,
+      //'no-descending-specificity': null,
+      'declaration-block-no-duplicate-custom-properties': null,
    },
    ignoreFiles: ['**/*.ts', '**/*.test.*', '**/*.stories.*', '**/*.js'],
 };

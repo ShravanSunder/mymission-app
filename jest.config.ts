@@ -183,8 +183,8 @@ export default {
 
    // A map from regular expressions to paths to transformers
    transform: {
-      '^.+\\.(ts|tsx)$': 'ts-jest',
-      '^.+\\.(js|jsx)$': '../babel.config.jest.js',
+      '^.+\\.(ts|tsx|js|jsx)$': '../babel.config.jest.js',
+      //'^.+\\.(js|jsx)$': '../babel.config.jest.js',
       // '^.+\\.jsx?$': 'ts-jest',
       // '^.+\\.tsx?$': 'ts-jest',
       '^.+\\.mdx?$': '@storybook/addon-docs/jest-transform-mdx',

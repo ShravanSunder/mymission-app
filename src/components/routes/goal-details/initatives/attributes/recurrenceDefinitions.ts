@@ -26,9 +26,9 @@ export enum RecurrenceDurationTypes {
    SpecificDaysOfWeek,
    PerNumberOfDays,
    PerNumberOfWeeks,
-   Weekly = 'Week',
-   Monthly = 'Month',
-   Quarterly = 'Quarter',
+   Weekly = 'week',
+   Monthly = 'month',
+   Quarterly = 'quarter',
 }
 
 export const recurrenceToNumberOfDaysMap: Map<RecurrenceDurationTypes, number> = new Map([

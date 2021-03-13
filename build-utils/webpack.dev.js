@@ -16,7 +16,7 @@ const cache = {
 
 const moduleRules = [
    {
-      test: /\.tsx?$/,
+      test: /\.[tj]sx?$/,
       exclude: [/node_modules/, /\.test\.[tj]sx?$/, /\.stories\.tsx?$/],
       use: [
          {
@@ -24,7 +24,7 @@ const moduleRules = [
             options: {
                cacheCompression: false,
                cacheDirectory: true,
-               plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+               plugins: [require.resolve('react-refresh/babel')],
             },
          },
          {
@@ -41,27 +41,6 @@ const moduleRules = [
                      ],
                   };
                },
-            },
-         },
-      ],
-   },
-   {
-      test: /\.[tj]sx?$/,
-      exclude: [/node_modules/, /\.test\.[tj]sx?$/, /\.stories\.tsx?$/],
-      use: [
-         {
-            loader: require.resolve('babel-loader'),
-            options: {
-               cacheCompression: false,
-               cacheDirectory: true,
-               plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
-            },
-         },
-         {
-            loader: 'ts-loader',
-            options: {
-               transpileOnly: true,
-               configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
             },
          },
       ],

@@ -32,15 +32,15 @@ const moduleRules = [
             options: {
                transpileOnly: true,
                configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
-               getCustomTransformers() {
-                  return {
-                     before: [
-                        transform({
-                           overrideIdFn: '[sha512:contenthash:base64:6]',
-                        }),
-                     ],
-                  };
-               },
+               // getCustomTransformers() {
+               //    return {
+               //       before: [
+               //          transform({
+               //             overrideIdFn: '[sha512:contenthash:base64:6]',
+               //          }),
+               //       ],
+               //    };
+               // },
             },
          },
       ],

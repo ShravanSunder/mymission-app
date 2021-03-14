@@ -2,27 +2,23 @@ name: Update PR Title & Body with Clubhouse Info
 
 on:
    pull_request:
-      types: [opened, reopened, synchronize, edited]
+      types: [opened, reopened]
 
 jobs:
-   updateClubhouseLinks:
+   updateLinks:
       runs-on: ubuntu-latest
-      name: Add clubhouse links
       steps:
-      - name: Update PR
-        uses: actions/clubhouse-pr@v2
-        with:  
-         ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
-         chToken: ${{ secrets.CLUBHOUSE_TOKEN }}
+         - uses: actions/checkout@v2
+           with:
+              ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+              chToken: ${{ secrets.CLUBHOUSE_TOKEN }}
    updatePrWithClubhouseDetails:
-    runs-on: ubuntu-latest
-    name: Add Clubhouse Info to PR
-    steps:
-      - name: Update PR
-        uses: blakeworsley/action-test@v4.0.19
-        with:
-          descriptionHeader: '### What does this pull request do?'
-          urlHeader: '### What is the relevant story?'
-          delimiter: '___'
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
-          CLUBHOUSE_TOKEN: ${{ secrets.CLUBHOUSE_TOKEN }}
+      runs-on: ubuntu-latest
+      steps:
+         - uses: blakeworsley/action-test@v4.0.19
+           with:
+              descriptionHeader: '### What does this pull request do?'
+              urlHeader: '### What is the relevant story?'
+              delimiter: '___'
+              GITHUB_TOKEN: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+              CLUBHOUSE_TOKEN: ${{ secrets.CLUBHOUSE_TOKEN }}/

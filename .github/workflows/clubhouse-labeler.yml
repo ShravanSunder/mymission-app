@@ -1,13 +1,13 @@
-name: "Clubhouse Labeler"
-on:
-  pull_request:
-    types: [labeled, unlabeled, edited]
+# name: "Clubhouse Labeler"
+# on:
+#   pull_request:
+#     types: [labeled, unlabeled, edited]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: amblerhq/gh-actions-clubhouse-labeler@v1
-        with:
-          github-token: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
-          clubhouse-token: ${{ secrets.CLUBHOUSE_TOKEN }}
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: amblerhq/gh-actions-clubhouse-labeler@v1
+#         with:
+#           github-token: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+#           clubhouse-token: ${{ secrets.CLUBHOUSE_TOKEN }}

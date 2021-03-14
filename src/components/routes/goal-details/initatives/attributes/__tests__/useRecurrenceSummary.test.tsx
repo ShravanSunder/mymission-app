@@ -137,5 +137,37 @@ describe('routes > goal-details', () => {
             expect(result4.current).toBe(`Sat - Thu`);
          });
       });
+
+      describe('Where aggregationPeriod is a week', () => {
+         const aggregationPeriod = RecurrenceAggregationPeriods.PerDay;
+         it('When duration is day, then you get an 🚫 error', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} days/week`);
+         });
+
+         it('When duration is weekly, then you get an error', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} day/week`);
+         });
+         it('When duration is monthly, then you get day per month', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} days/month`);
+         });
+
+         it('When duration is monthly and target is singular, then you get day per month', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} day/month`);
+         });
+      });
    });
 });

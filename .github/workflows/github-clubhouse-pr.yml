@@ -5,7 +5,16 @@ on:
       types: [opened, reopened, synchronize, edited]
 
 jobs:
-  updatePrWithClubhouseDetails:
+   updateClubhouseLinks:
+      runs-on: ubuntu-latest
+      name: Add clubhouse links
+      steps:
+      - name: Update PR
+        uses: actions/clubhouse-pr@v2
+        with:  
+         ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+         chToken: ${{ secrets.CLUBHOUSE_TOKEN }}
+   updatePrWithClubhouseDetails:
     runs-on: ubuntu-latest
     name: Add Clubhouse Info to PR
     steps:

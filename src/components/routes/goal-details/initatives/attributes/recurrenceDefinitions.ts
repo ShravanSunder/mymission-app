@@ -15,7 +15,6 @@ export enum RecurrenceAggregationPeriods {
    PerDay = 'day',
    PerWeek = 'week',
    PerMonth = 'month',
-   PerQuarter = 'quarter',
 }
 /**
  * How long is the duration of time over which you are tracking your habit
@@ -29,6 +28,7 @@ export enum RecurrenceDurationTypes {
    SpecificDaysOfWeek,
    PerNumberOfDays,
    PerNumberOfWeeks,
+   PerNumberOfMonths,
    Weekly = 'week',
    Monthly = 'month',
    Quarterly = 'quarter',

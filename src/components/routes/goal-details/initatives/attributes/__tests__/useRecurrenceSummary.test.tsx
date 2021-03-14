@@ -3,11 +3,13 @@ import { useRecurrenceSummary } from '../useRecurrenceSummary';
 import { renderHook } from '@testing-library/react-hooks';
 import { HookWrapper, IntlWrapper } from '~~/test-utils/testing-library/wrappers';
 import { DaysOfWeek } from '../scheduleDefinitions';
+import { Exception, ExceptionTypes } from '~~/models/Exception';
 
 describe('routes > goal-details', () => {
    describe('> initatives [useReccurenceSummary]', () => {
       describe('Where aggregationPeriod is a day', () => {
          const aggregationPeriod = RecurrenceAggregationPeriods.PerDay;
+
          it('When duration is weekly, then you get day per week', () => {
             const target = 10;
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
@@ -15,7 +17,7 @@ describe('routes > goal-details', () => {
             expect(result.current).toBe(`${target} days/week`);
          });
 
-         it('When duration is weekly and target is singular, then you get day per week', () => {
+         it('When duration is weekly and target is 1, then you get day per week', () => {
             const target = 1;
 
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
@@ -29,12 +31,27 @@ describe('routes > goal-details', () => {
             expect(result.current).toBe(`${target} days/month`);
          });
 
-         it('When duration is monthly and target is singular, then you get day per month', () => {
+         it('When duration is monthly and target is 1, then you get day per month', () => {
             const target = 1;
 
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
 
             expect(result.current).toBe(`${target} day/month`);
+         });
+
+         it('When duration is quarterly, then you get day per quarter', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} days/quarter`);
+         });
+
+         it('When duration is quarter and target is 1, then you get day per quarter', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} day/quarter`);
          });
 
          it('When duration is specific days of the week, then you get the days of the week', () => {
@@ -45,6 +62,24 @@ describe('routes > goal-details', () => {
             });
 
             expect(result.current).toBe(`Mon Fri`);
+         });
+
+         it('When duration is PerNumberOfDays, then you get every x days', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfDays, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(result.current).toBe(`Every ${target} days`);
+         });
+
+         it('When duration is PerNumberOfWeeks, then you get an ⚠ error', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfWeeks, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
          });
 
          it('When duration is specificDaysOfWeek with all the days, then you get every day', () => {
@@ -139,34 +174,175 @@ describe('routes > goal-details', () => {
       });
 
       describe('Where aggregationPeriod is a week', () => {
-         const aggregationPeriod = RecurrenceAggregationPeriods.PerDay;
-         it('When duration is day, then you get an 🚫 error', () => {
+         const aggregationPeriod = RecurrenceAggregationPeriods.PerWeek;
+
+         it('When duration is day, then you get an ⚠ error', () => {
             const target = 10;
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
 
-            expect(result.current).toBe(`${target} days/week`);
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
          });
 
-         it('When duration is weekly, then you get an error', () => {
+         it('When duration is weekly, then you get an ⚠ error', () => {
             const target = 1;
 
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
 
-            expect(result.current).toBe(`${target} day/week`);
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
          });
-         it('When duration is monthly, then you get day per month', () => {
+         it('When duration is monthly and target <=4, then you get weeks per month', () => {
+            const target = 4;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} weeks/month`);
+         });
+         it('When duration is monthly and target is out of bounds, then you get an ⚠ error', () => {
             const target = 10;
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
 
-            expect(result.current).toBe(`${target} days/month`);
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
          });
 
-         it('When duration is monthly and target is singular, then you get day per month', () => {
+         it('When duration is monthly and target is 1, then you get week per month', () => {
             const target = 1;
 
             const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
 
-            expect(result.current).toBe(`${target} day/month`);
+            expect(result.current).toBe(`${target} week/month`);
+         });
+
+         it('When duration is quarterly and target <=13, then you get weeks per quarter', () => {
+            const target = 13;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} weeks/quarter`);
+         });
+
+         it('When duration is quarterly and target is out of bounds, then you get an ⚠ error', () => {
+            const target = 14;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is quarterly and target is 1, then you get week per quarter', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} week/quarter`);
+         });
+
+         it('When duration is PerNumberOfDays, then you get an ⚠ error', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfDays, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is PerNumberOfWeeks, then you get every x weeks', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfWeeks, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(result.current).toBe(`Every ${target} weeks`);
+         });
+
+         it('When duration is PerNumberOfWeeks and target is 1, then you get times a week', () => {
+            const target = 1;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfWeeks, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(result.current).toBe(`Times a week`);
+         });
+      });
+
+      describe('Where aggregationPeriod is a month', () => {
+         const aggregationPeriod = RecurrenceAggregationPeriods.PerMonth;
+
+         it('When duration is day, then you get an ⚠ error', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is weekly, then you get an ⚠ error', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Weekly, target), { wrapper: HookWrapper });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is monthly, then you get an ⚠ error', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Monthly, target), { wrapper: HookWrapper });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is quarterly and target <=3, then you get months per quarter', () => {
+            const target = 3;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} months/quarter`);
+         });
+
+         it('When duration is quarterly and target is out of bounds, then you get an ⚠ error', () => {
+            const target = 4;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is quarterly and target is 1, then you get month per quarter', () => {
+            const target = 1;
+
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.Quarterly, target), { wrapper: HookWrapper });
+
+            expect(result.current).toBe(`${target} month/quarter`);
+         });
+
+         it('When duration is PerNumberOfDays, then you get an ⚠ error', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfDays, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is PerNumberOfWeeks, then you get an ⚠ error', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfWeeks, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(() => result.current).toThrow(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid);
+         });
+
+         it('When duration is PerNumberOfMonths, then you get every x months', () => {
+            const target = 10;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfMonths, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(result.current).toBe(`Every ${target} months`);
+         });
+
+         it('When duration is PerNumberOfMonths and target is 1, then you get times a week', () => {
+            const target = 1;
+            const { result } = renderHook(() => useRecurrenceSummary(aggregationPeriod, RecurrenceDurationTypes.PerNumberOfMonths, target), {
+               wrapper: HookWrapper,
+            });
+
+            expect(result.current).toBe(`Times a month`);
          });
       });
    });

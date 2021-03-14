@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl';
-import { createException, ExceptionTypes } from '~~/models/Exception';
+import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { DaysOfWeek } from './scheduleDefinitions';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToString, isEveryDayOfWeek } from './recurrenceDefinitions';
 
@@ -32,7 +32,6 @@ export const useRecurrenceSummary = (
             { target, durationType }
          );
       } else if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek && Array.isArray(target)) {
-         // naive logic to know its all days of the week
          if (isEveryDayOfWeek(target)) {
             return intl.formatMessage({
                defaultMessage: 'Every day',
@@ -42,15 +41,24 @@ export const useRecurrenceSummary = (
             return selectedWeekdays;
          }
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfDays && typeof target == 'number') {
-         return intl.formatMessage(
-            {
-               defaultMessage: 'Every {target} days',
-            },
-            { target }
-         );
+         if (target > 1) {
+            return intl.formatMessage(
+               {
+                  defaultMessage: 'Every {target} days',
+               },
+               { target }
+            );
+         }
       }
    } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
-      if (typeof target === 'number' && (durationType === RecurrenceDurationTypes.Monthly || durationType === RecurrenceDurationTypes.Quarterly)) {
+      if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Monthly && target <= 4) {
+         return intl.formatMessage(
+            {
+               defaultMessage: '{target} {target, plural, one {week} other {weeks}}/{durationType}',
+            },
+            { target, durationType }
+         );
+      } else if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly && target <= 13) {
          return intl.formatMessage(
             {
                defaultMessage: '{target} {target, plural, one {week} other {weeks}}/{durationType}',
@@ -58,23 +66,48 @@ export const useRecurrenceSummary = (
             { target, durationType }
          );
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfWeeks && typeof target == 'number') {
-         return intl.formatMessage(
-            {
-               defaultMessage: 'Every {target} weeks',
-            },
-            { target }
-         );
+         if (target > 1) {
+            return intl.formatMessage(
+               {
+                  defaultMessage: 'Every {target} weeks',
+               },
+               { target }
+            );
+         } else {
+            return intl.formatMessage(
+               {
+                  defaultMessage: 'Times a week',
+               },
+               { target, durationType }
+            );
+         }
       }
    } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
-      if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly) {
+      if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly && target <= 3) {
          return intl.formatMessage(
             {
                defaultMessage: '{target} {target, plural, one {month} other {months}}/{durationType}',
             },
             { target, durationType }
          );
+      } else if (durationType === RecurrenceDurationTypes.PerNumberOfMonths && typeof target == 'number') {
+         if (target > 1) {
+            return intl.formatMessage(
+               {
+                  defaultMessage: 'Every {target} months',
+               },
+               { target }
+            );
+         } else {
+            return intl.formatMessage(
+               {
+                  defaultMessage: 'Times a month',
+               },
+               { target, durationType }
+            );
+         }
       }
    }
 
-   throw createException(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { recurrence: durationType });
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType, aggregationPeriod, target });
 };

@@ -2,7 +2,7 @@ name: Update PR Title & Body with Clubhouse Info
 
 on:
    pull_request:
-      types: [opened, reopened]
+      types: [opened, reopened, synchronize, edited]
 
 jobs:
   updatePrWithClubhouseDetails:

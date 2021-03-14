@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: amblerhq/gh-actions-clubhouse-labeler@v1
         with:
-          ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
-          chToken: ${{ secrets.CLUBHOUSE_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+          clubhouse-token: ${{ secrets.CLUBHOUSE_TOKEN }}

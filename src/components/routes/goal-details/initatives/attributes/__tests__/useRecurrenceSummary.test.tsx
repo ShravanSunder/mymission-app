@@ -49,7 +49,6 @@ describe('routes > goal-details', () => {
 
          it('When duration is specificDaysOfWeek with all the days, then you get every day', () => {
             const target: DaysOfWeek[] = [
-               DaysOfWeek.Friday,
                DaysOfWeek.Monday,
                DaysOfWeek.Tuesday,
                DaysOfWeek.Wednesday,

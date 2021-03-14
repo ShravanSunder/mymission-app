@@ -15,3 +15,5 @@ jobs:
           descriptionHeader: '### What does this pull request do?'
           urlHeader: '### What is the relevant story?'
           delimiter: '___'
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+          CLUBHOUSE_TOKEN: ${{ secrets.CLUBHOUSE_TOKEN }}

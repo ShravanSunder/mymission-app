@@ -10,7 +10,7 @@ jobs:
       steps:
          - uses: farmersdog/clubhouse-pr@v2.0.0
            with:
-              ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
+              ghToken: ${{ secrets.GITHUB_TOKEN }}
               chToken: ${{ secrets.CLUBHOUSE_TOKEN }}
    # updatePrWithClubhouseDetails:
    #    runs-on: ubuntu-latest

@@ -10,10 +10,5 @@ jobs:
       steps:
          - uses: actions/checkout@v2
            with:
-              path: action
-
-         - name: Update PR
-           uses: './action'
-           with:
               ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
               chToken: ${{ secrets.CLUBHOUSE_TOKEN }}

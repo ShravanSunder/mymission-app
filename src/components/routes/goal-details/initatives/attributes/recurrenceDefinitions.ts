@@ -1,6 +1,6 @@
 import { DaysOfWeek } from './scheduleDefinitions';
 import dayjs from 'dayjs';
-const weekday = require('dayjs/plugin/weekday');
+import weekday from 'dayjs/plugin/weekday';
 
 dayjs.extend(weekday);
 

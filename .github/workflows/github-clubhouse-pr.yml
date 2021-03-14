@@ -5,10 +5,13 @@ on:
       types: [opened, reopened]
 
 jobs:
-   update:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: actions/checkout@v2
-           with:
-              ghToken: ${{ secrets.GH_TOKEN_FOR_CLUBHOUSE }}
-              chToken: ${{ secrets.CLUBHOUSE_TOKEN }}
+  updatePrWithClubhouseDetails:
+    runs-on: ubuntu-latest
+    name: Add Clubhouse Info to PR
+    steps:
+      - name: Update PR
+        uses: blakeworsley/action-test@v4.0.19
+        with:
+          descriptionHeader: '### What does this pull request do?'
+          urlHeader: '### What is the relevant story?'
+          delimiter: '___'

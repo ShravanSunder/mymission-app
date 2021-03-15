@@ -1,8 +1,10 @@
 import { DaysOfWeek } from './scheduleDefinitions';
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
+import duration from 'dayjs/plugin/duration';
 
 dayjs.extend(weekday);
+dayjs.extend(duration);
 
 /**
  * The period for which you are aggregating (counting) your habit?
@@ -16,6 +18,7 @@ export enum RecurrenceAggregationPeriods {
    PerWeek = 'week',
    PerMonth = 'month',
 }
+
 /**
  * How long is the duration of time over which you are tracking your habit
  * for example?
@@ -23,7 +26,6 @@ export enum RecurrenceAggregationPeriods {
  * - Number of successfull days a month
  * - Number of successful weeks a month?
  */
-
 export enum RecurrenceDurationTypes {
    SpecificDaysOfWeek,
    PerNumberOfDays,
@@ -34,10 +36,19 @@ export enum RecurrenceDurationTypes {
    Quarterly = 'quarter',
 }
 
-export const recurrenceToNumberOfDaysMap: Map<RecurrenceDurationTypes, number> = new Map([
+export const daysToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
    [RecurrenceDurationTypes.Weekly, 7],
-   [RecurrenceDurationTypes.Monthly, 31],
-   [RecurrenceDurationTypes.Quarterly, 90],
+   [RecurrenceDurationTypes.Monthly, dayjs.duration({ months: 1 }).asDays()],
+   [RecurrenceDurationTypes.Quarterly, dayjs.duration({ months: 3 }).asDays()],
+]);
+
+export const weeksToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
+   [RecurrenceDurationTypes.Monthly, dayjs.duration({ months: 1 }).asWeeks()],
+   [RecurrenceDurationTypes.Quarterly, dayjs.duration({ months: 3 }).asWeeks()],
+]);
+
+export const monthsToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
+   [RecurrenceDurationTypes.Quarterly, dayjs.duration({ months: 3 }).asMonths()],
 ]);
 
 /**

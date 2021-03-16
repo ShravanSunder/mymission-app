@@ -1,4 +1,4 @@
-name: Update PR Title & Body with Clubhouse Info
+name: 'Clubhouse: Update pull request'
 
 on:
    pull_request:

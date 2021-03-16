@@ -1,0 +1,18 @@
+name: 'Tests: run tests'
+on:
+   pull_request:
+      types: [opened, reopened, ready_for_review, synchronize]
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v2
+
+         - name: NPM or Yarn install with caching
+           uses: bahmutov/npm-install@v1.6.0
+           with:
+              install-command: yarn install --immutable --silent
+              useRollingCache: true
+
+         - name: Run tests
+           run: yarn test

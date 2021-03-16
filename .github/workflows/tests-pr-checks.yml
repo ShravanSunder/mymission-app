@@ -8,22 +8,29 @@ jobs:
       steps:
          - uses: actions/checkout@v2
 
-         - name: Get yarn cache directory path
-           id: yarn-cache-dir-path
-           run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-         - uses: actions/cache@v2
-           id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+         - name: 'cache .yarn/cache'
+           uses: actions/cache@v2
            with:
-              path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+              path: ~/.yarn/cache
               key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
               restore-keys: |
                  ${{ runner.os }}-yarn-
+                  - uses: actions/cache@v2
 
-         - name: NPM or Yarn install with caching
-           uses: bahmutov/npm-install@v1.6.0
+         - name: 'cache node_modules'
+           uses: actions/cache@v2
            with:
-              install-command: yarn install --immutable --silent
+              path: ~/node_modules
+              key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+              restore-keys: |
+                 ${{ runner.os }}-yarn-//////
 
+         # - name: NPM or Yarn install with caching
+         #   uses: bahmutov/npm-install@v1.6.0
+         #   with:
+         #      install-command: yarn install --immutable --silent
+
+         - name: yarn install
+           run: yarn install --immutable --silent
          - name: Run tests
            run: yarn test

@@ -14,7 +14,7 @@ jobs:
               path: ~/.yarn/cache
               key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
               restore-keys: |
-                 ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                 ${{ runner.os }}-yarn-
 
          - name: 'cache node_modules'
            uses: actions/cache@v2
@@ -22,12 +22,7 @@ jobs:
               path: ~/node_modules
               key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
               restore-keys: |
-                 ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-         # - name: NPM or Yarn install with caching
-         #   uses: bahmutov/npm-install@v1.6.0
-         #   with:
-         #      install-command: yarn install --immutable --silent
+                 ${{ runner.os }}-yarn-
 
          - name: yarn install
            run: yarn install --immutable --silent

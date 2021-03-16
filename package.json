@@ -158,6 +158,7 @@
       "formik": "^2.2.6",
       "formik-material-ui": "^3.0.1",
       "formik-material-ui-lab": "^0.0.8",
+      "framer-motion": "^3.10.4",
       "history": "^5.0.0",
       "material-ui-popup-state": "^1.7.2",
       "notistack": "^1.0.5",

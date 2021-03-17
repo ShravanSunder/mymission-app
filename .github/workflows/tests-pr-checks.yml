@@ -10,18 +10,12 @@ jobs:
          - name: checkout
            uses: actions/checkout@v2
 
-         - name: 'cache .yarn'
+         - name: 'cache'
            uses: actions/cache@v2
            with:
-              path: ~/.yarn
-              key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-              restore-keys: |
-                 ${{ runner.os }}-yarn-
-
-         - name: 'cache node_modules'
-           uses: actions/cache@v2
-           with:
-              path: ~/node_modules
+              path: |
+                 ~/.yarn
+                 ~/node_modules
               key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
               restore-keys: |
                  ${{ runner.os }}-yarn-

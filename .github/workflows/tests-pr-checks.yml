@@ -4,17 +4,12 @@ on:
    pull_request:
       types: [opened, reopened, ready_for_review, synchronize]
 jobs:
-   checkout:
+   build:
       runs-on: ubuntu-latest
-
       steps:
-         - name: Checkout
+         - name: checkout
            uses: actions/checkout@v2
 
-   yarn_cache:
-      runs-on: ubuntu-latest
-
-      steps:
          - name: 'cache .yarn'
            uses: actions/cache@v2
            with:
@@ -23,10 +18,6 @@ jobs:
               restore-keys: |
                  ${{ runner.os }}-yarn-
 
-   node_modules:
-      runs-on: ubuntu-latest
-
-      steps:
          - name: 'cache node_modules'
            uses: actions/cache@v2
            with:
@@ -35,11 +26,6 @@ jobs:
               restore-keys: |
                  ${{ runner.os }}-yarn-
 
-   test:
-      runs-on: ubuntu-latest
-      needs: [node_modules, checkout, yarn_cache]
-
-      steps:
          - name: 'yarn install'
            run: yarn install --immutable --silent
 

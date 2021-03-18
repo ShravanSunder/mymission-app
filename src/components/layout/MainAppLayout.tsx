@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 import { css } from '@emotion/react';
 
-import { ContentLayout as ContentLayout } from './ContentLayout';
+import { ContentLayout } from './ContentLayout';
 import { NavigationBottom, NavigationRight } from './Navigation';
 import { Theme, useMediaQuery, useTheme } from '@material-ui/core';
 import { cssMq } from '~~/styles/theme';

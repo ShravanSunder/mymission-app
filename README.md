@@ -6,6 +6,9 @@
 -  yarn start
 -  default dev: localhost:7035
 
+## Status
+[![Tests: run tests](https://github.com/ShravanSunder/mymyssion-app/actions/workflows/tests-pr-checks.yml/badge.svg)](https://github.com/ShravanSunder/mymyssion-app/actions/workflows/tests-pr-checks.yml)
+
 ## Structure
 
 ![image](https://user-images.githubusercontent.com/5294949/109813301-2c967e00-7bfb-11eb-8718-62ecaaebd147.png)

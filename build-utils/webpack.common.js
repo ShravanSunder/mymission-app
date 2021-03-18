@@ -42,10 +42,7 @@ const moduleRules = [
    },
    {
       test: new RegExp(`.(${fileExtensions.join('|')})$`),
-      loader: 'file-loader',
-      options: {
-         name: '[path][name].[ext]',
-      },
+      type: 'asset/resource',
       exclude: /node_modules/,
    },
 ];

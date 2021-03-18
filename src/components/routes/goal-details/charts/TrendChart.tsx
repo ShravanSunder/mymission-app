@@ -1,5 +1,5 @@
 import { ResponsiveLine, Datum } from '@nivo/line';
-import React from 'react';
+import { FC } from 'react';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 import { useTheme } from '@material-ui/core';
@@ -9,7 +9,7 @@ interface ITrendChartProps {
    dataPoints: Datum[];
 }
 
-export const TrendChart = ({ title, dataPoints }: ITrendChartProps): JSX.Element => {
+export const TrendChart: FC<ITrendChartProps> = ({ title, dataPoints }) => {
    const theme = useTheme();
    const data = [
       {

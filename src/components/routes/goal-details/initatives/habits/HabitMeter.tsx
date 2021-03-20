@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TwemojiImage } from '~~/components/common/Twemoji';
-import { CircularProgressSegments as CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
+import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
 import tw from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';

@@ -7701,15 +7701,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.1":
-  version: 0.21.1
-  resolution: "axios@npm:0.21.1"
-  dependencies:
-    follow-redirects: ^1.10.0
-  checksum: 864fb7b5d077d236737f10adca53bf451a93f35a15271f56fba8da07265a02d26b7d881b935a6697dc6adb0549ea3e56d2eecb403edaa3bb78f6479901c10f69
-  languageName: node
-  linkType: hard
-
 "axobject-query@npm:^2.2.0":
   version: 2.2.0
   resolution: "axobject-query@npm:2.2.0"
@@ -9066,13 +9057,6 @@ __metadata:
   dependencies:
     dayjs: ^1.10.0
   checksum: 4797abc31dc7d130a68272385dea7884cf8688e54771cbd74e7de16dd92a0649a0fbcc8208f700bc408eb34f5e544b8983cd0c3e8de2d1726f8065e00aaeb519
-  languageName: node
-  linkType: hard
-
-"ci-env@npm:^1.9.0":
-  version: 1.16.0
-  resolution: "ci-env@npm:1.16.0"
-  checksum: 1f1819cc4ad63c4f38222210b3712e6286201694347261cc2e79b0608fbf0965b4d2725333d97eeb6c6dc36ef7aabf6ff6fff6bb50ccf3ccdc6e01c7d311478d
   languageName: node
   linkType: hard
 
@@ -12349,25 +12333,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.10.0":
-  version: 1.13.3
-  resolution: "follow-redirects@npm:1.13.3"
-  peerDependenciesMeta:
-    debug:
-      optional: true
-  checksum: 9ad74c3b66ad5c32d8c009a2afb4e5c1b9e5dbe1f631419296c21f8e4f9976ed2c52f9a676c4acdd1d7f41a8f17a03dfaa3704993b25b5965eb11bc9dc9a8ef5
-  languageName: node
-  linkType: hard
-
-"for-each@npm:^0.3.3":
-  version: 0.3.3
-  resolution: "for-each@npm:0.3.3"
-  dependencies:
-    is-callable: ^1.1.3
-  checksum: 691c38d0e525c3e7e5d00b155bbe0021ee8b6ff22f225b1ec2fcabc8fd969ea24c1d2ca3a57c7ddebda304355127ac23e741f801591d1eb9b49b810da47794dc
-  languageName: node
-  linkType: hard
-
 "for-in@npm:^1.0.2":
   version: 1.0.2
   resolution: "for-in@npm:1.0.2"
@@ -14093,7 +14058,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"is-callable@npm:^1.1.3, is-callable@npm:^1.1.4, is-callable@npm:^1.2.2":
+"is-callable@npm:^1.1.4, is-callable@npm:^1.2.2":
   version: 1.2.3
   resolution: "is-callable@npm:1.2.3"
   checksum: 8180a1c4e227e204e199ff355c4f24a80f74536898e16716583aa6a09167f2cceecc188cea750a2f3ae3b163577691595ae8d22bf7bb94b4bbb9fbdfea1bc5c3
@@ -16666,7 +16631,6 @@ fsevents@^1.2.7:
     redux-logger: ^3.0.6
     redux-mock-store: ^1.5.4
     rxjs: ^6.6.6
-    size-plugin: ^3.0.0
     storybook-addon-performance: ^0.14.0
     style-loader: ^2.0.0
     stylelint-config-recommended: ^4.0.0
@@ -17159,17 +17123,6 @@ fsevents@^1.2.7:
     define-properties: ^1.1.3
     es-abstract: ^1.18.0-next.1
   checksum: 0d43ad1bce8a751eaee4456e33d3b0a12cf3d166b54c8bba89e4bc1be01c3e45b588e2a5a1c7ddc43f01d07261768bf7dbaff8f8ef593a6750e4b5e58e3a2ede
-  languageName: node
-  linkType: hard
-
-"object.getownpropertydescriptors@npm:^2.1.1":
-  version: 2.1.2
-  resolution: "object.getownpropertydescriptors@npm:2.1.2"
-  dependencies:
-    call-bind: ^1.0.2
-    define-properties: ^1.1.3
-    es-abstract: ^1.18.0-next.2
-  checksum: 56087f3cbe5745c3e2933e3f27fd2b10f81f72ac6c8e187544e822f086ed6abc650c0f4388028c4889848af75a14f4ee2016bf9cff455173f66bf2997d973802
   languageName: node
   linkType: hard
 
@@ -20442,24 +20395,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"size-plugin@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "size-plugin@npm:3.0.0"
-  dependencies:
-    axios: ^0.21.1
-    chalk: ^2.4.2
-    ci-env: ^1.9.0
-    escape-string-regexp: ^1.0.5
-    glob: ^7.1.4
-    minimatch: ^3.0.4
-    pretty-bytes: ^5.3.0
-    util.promisify: ^1.0.0
-  peerDependencies:
-    webpack: "*"
-  checksum: c634c9ceb4f186465683f066438a024d43fb67cec536fb673234e9f8cc26a4cc2c68ce8ad9bdca48cdd7075e8221f561bf69cea0844cf2e243f4ad3f6fc94276
-  languageName: node
-  linkType: hard
-
 "slash@npm:^2.0.0":
   version: 2.0.0
   resolution: "slash@npm:2.0.0"
@@ -22432,19 +22367,6 @@ typescript@^4.1.3:
     define-properties: ^1.1.2
     object.getownpropertydescriptors: ^2.0.3
   checksum: 0dffbe1af61c9c034b5e7b411461e46c17c788d855fb02bcbf96cd0f603c086eb83160a3c878c4d69bede9a42118a7ce2b3cc05ed5a235e1c1c04c93bd5608e7
-  languageName: node
-  linkType: hard
-
-"util.promisify@npm:^1.0.0":
-  version: 1.1.1
-  resolution: "util.promisify@npm:1.1.1"
-  dependencies:
-    call-bind: ^1.0.0
-    define-properties: ^1.1.3
-    for-each: ^0.3.3
-    has-symbols: ^1.0.1
-    object.getownpropertydescriptors: ^2.1.1
-  checksum: 5a6c33c88de7cea4fa313fc31f6d594d41fd75dbd27ced41f87763fd7972c4b618feb5478ce47fed6ff2d681b1157eeae966b22e290c4834714d526280408304
   languageName: node
   linkType: hard
 

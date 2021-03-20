@@ -4,7 +4,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SizePlugin = require('size-plugin');
 
 const title = 'MyMission';
 const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
@@ -63,7 +62,6 @@ module.exports = {
       },
    },
    plugins: [
-      new SizePlugin(),
       new ESLintPlugin({ cache: true }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
@@ -87,7 +85,7 @@ module.exports = {
                   // or node_modules/packageName
                   const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
                   // npm package names are URL-safe, but some servers don't like @ symbols
-                  return `vendor.npm.${packageName.replace('@', '_')}`;
+                  return `vendor.${packageName.replace('@', '_')}`;
                },
             },
          },

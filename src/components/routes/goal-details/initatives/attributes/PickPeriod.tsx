@@ -3,11 +3,11 @@ import { daysToRecurrenceTypeMap } from './recurrenceDefinitions';
 import { css } from '@emotion/react';
 import tw from 'twin.macro';
 import { IconButton, Typography } from '@material-ui/core';
-import { IRecurrenceScheduleProps } from './RecurrenceSchedule';
+import { IRecurrenceDurationProps } from './RecurrenceDuration';
 
 export const tempColorSelectedDay = 'bg-gray-200';
 
-export const PickPeriod: React.FC<IRecurrenceScheduleProps> = (props) => {
+export const PickPeriod: React.FC<IRecurrenceDurationProps> = (props) => {
    useEffect(() => {
       props.setRecurrenceSchedule(props.recurrenceSchedule as number);
    }, [props.recurrenceSchedule]);

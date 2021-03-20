@@ -4,9 +4,10 @@ import tw from 'twin.macro';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DaysOfWeek } from './scheduleDefinitions';
 import { daysToRecurrenceTypeMap, RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceDefinitions';
-import { RecurrenceSchedule } from './RecurrenceSchedule';
+import { RecurrenceDuration } from './RecurrenceDuration';
 import { ScheduleAccordionSummary } from './ScheduleAccordionSummary';
 import { useRecurrenceSummary } from './useRecurrenceSummary';
+import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 
 const tempColorIcons = 'bg-gray-200';
 
@@ -15,29 +16,34 @@ export const InitativeSchedule: FC = (props) => {
    const [recurrenceTarget, setRecurrenceSchedule] = useState<number | DaysOfWeek[]>(5);
    const [recurrenceAggregationPeriod, setRecurrenceAggregationPeriod] = useState(RecurrenceAggregationPeriods.PerDay);
 
-   const scheduleSummaryName = 'Days';
-   let scheduleSummaryValue = '';
+   const durationSummaryName = 'Days';
+   let durationSummaryValue = '';
    if (daysToRecurrenceTypeMap.has(recurrenceDuration)) {
-      scheduleSummaryValue = useRecurrenceSummary(recurrenceAggregationPeriod, recurrenceDuration, recurrenceTarget);
+      durationSummaryValue = useRecurrenceSummary(recurrenceAggregationPeriod, recurrenceDuration, recurrenceTarget);
    }
+
    return (
       <div className="w-full">
-         <Accordion className="w-full h-full">
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-               <ScheduleAccordionSummary summaryName={scheduleSummaryName} summaryValue={scheduleSummaryValue}></ScheduleAccordionSummary>
-            </AccordionSummary>
-            <AccordionDetails></AccordionDetails>
-         </Accordion>
-         <Accordion className="w-full h-full">
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-               <ScheduleAccordionSummary summaryName={scheduleSummaryName} summaryValue={scheduleSummaryValue}></ScheduleAccordionSummary>
+         <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
+               <ScheduleAccordionSummary summaryName={durationSummaryName} summaryValue={durationSummaryValue}></ScheduleAccordionSummary>
             </AccordionSummary>
             <AccordionDetails>
-               <RecurrenceSchedule
+               <RecurrenceAggregationPeriod
+                  aggregationPeriod={recurrenceAggregationPeriod}
+                  setAggregationPeriod={setRecurrenceAggregationPeriod}></RecurrenceAggregationPeriod>
+            </AccordionDetails>
+         </Accordion>
+         <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
+               {/* <ScheduleAccordionSummary summaryName={durationSummaryName} summaryValue={durationSummaryValue}></ScheduleAccordionSummary> */}
+            </AccordionSummary>
+            <AccordionDetails>
+               <RecurrenceDuration
                   recurrenceSchedule={recurrenceTarget}
                   recurrenceType={recurrenceDuration}
                   setRecurrence={setRecurrence}
-                  setRecurrenceSchedule={setRecurrenceSchedule}></RecurrenceSchedule>
+                  setRecurrenceSchedule={setRecurrenceSchedule}></RecurrenceDuration>
             </AccordionDetails>
          </Accordion>
       </div>

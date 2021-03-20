@@ -19,6 +19,12 @@ export enum RecurrenceAggregationPeriods {
    PerMonth = 'month',
 }
 
+export const RecurrenceAggregationPeriodList = [
+   RecurrenceAggregationPeriods.PerDay,
+   RecurrenceAggregationPeriods.PerWeek,
+   RecurrenceAggregationPeriods.PerMonth,
+];
+
 /**
  * How long is the duration of time over which you are tracking your habit
  * for example?

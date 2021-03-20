@@ -80,6 +80,7 @@ module.exports = {
       contentBase: path.resolve(__dirname, '..', './dist'),
       hot: true,
       overlay: false,
+      clientLogLevel: 'trace',
       //noInfo: true,
       //writeToDisk: true,
       publicPath: '/',

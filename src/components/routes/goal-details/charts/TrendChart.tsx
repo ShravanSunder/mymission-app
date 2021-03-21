@@ -25,7 +25,7 @@ export const TrendChart: FC<ITrendChartProps> = ({ title, dataPoints }) => {
    };
    return (
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-         <div className="flex w-full overflow-hidden h-80" css={[{ borderColor: theme.palette.text.secondary }]}>
+         <div className="flex w-full h-full overflow-hidden" css={[{ borderColor: theme.palette.text.secondary }]}>
             <ResponsiveLine
                data={data}
                margin={{ top: 50, right: 30, bottom: 60, left: 50 }}

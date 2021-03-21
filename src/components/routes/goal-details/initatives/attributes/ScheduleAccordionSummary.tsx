@@ -13,15 +13,17 @@ export const ScheduleAccordionSummary: FC<IScheduleAccordionSummary> = (props) =
       <div
          className="w-full select-none grid grid-row-3 "
          css={{
-            gridTemplateColumns: 'auto 1fr 1fr',
+            gridTemplateColumns: 'auto 1fr auto',
          }}>
-         <div className="w-full rounded-full">
+         <Typography variant="h3" className="w-full rounded-full">
             <TwemojiInline text="📅"></TwemojiInline>
-         </div>
-         <Typography className="pl-2 capitalize">
-            <strong>{props.summaryName}</strong>
          </Typography>
-         <Typography className="pr-2 text-right justify-self-end">{props.summaryValue}</Typography>
+         <Typography variant="h3" className="pl-2 capitalize">
+            {props.summaryName}
+         </Typography>
+         <Typography variant="h3" className="pr-2 text-right justify-self-end">
+            {props.summaryValue}
+         </Typography>
       </div>
    );
 };

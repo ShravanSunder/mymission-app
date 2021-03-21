@@ -1,10 +1,7 @@
-import React, { useMemo } from 'react';
+import { FC, SetStateAction, Dispatch } from 'react';
 
 import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysToRecurrenceTypeMap } from './recurrenceDefinitions';
-import { useRecurrenceSummary } from './useRecurrenceSummary';
-import { Typography } from '@material-ui/core';
-import { TwemojiInline } from '~~/components/common/Twemoji';
+import { RecurrenceDurationTypes } from './recurrenceDefinitions';
 import { PickPeriod } from './PickPeriod';
 
 export const tempColorSelectedDay = 'bg-gray-200';
@@ -20,11 +17,11 @@ export interface IRecurrenceDurationProps {
     */
    recurrenceSchedule: number | DaysOfWeek[];
 
-   setRecurrence: React.Dispatch<React.SetStateAction<RecurrenceDurationTypes>>;
-   setRecurrenceSchedule: React.Dispatch<React.SetStateAction<number | DaysOfWeek[]>>;
+   setRecurrence: Dispatch<SetStateAction<RecurrenceDurationTypes>>;
+   setRecurrenceSchedule: Dispatch<SetStateAction<number | DaysOfWeek[]>>;
 }
 
-export const RecurrenceDuration: React.FC<IRecurrenceDurationProps> = (props) => {
+export const RecurrenceDuration: FC<IRecurrenceDurationProps> = (props) => {
    return (
       <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
          <div className="">{props.recurrenceType}</div>

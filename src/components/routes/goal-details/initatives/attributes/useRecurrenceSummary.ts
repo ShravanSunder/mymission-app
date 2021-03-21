@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToString, isEveryDayOfWeek } from './recurrenceDefinitions';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToString, isEveryDayOfWeek, daysToRecurrenceTypeMap } from './recurrenceDefinitions';
 
 /**
  * Hook to get a display string that represents the recurrence

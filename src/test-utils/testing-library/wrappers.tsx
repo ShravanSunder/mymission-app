@@ -1,7 +1,7 @@
-import React from 'react';
+import { FC } from 'react';
 import { IntlProvider } from 'react-intl';
 
-export const HookWrapper: React.FC = (props) => {
+export const HookWrapper: FC = (props) => {
    return (
       <IntlProvider locale="en" defaultLocale="en">
          {props.children}
@@ -9,7 +9,7 @@ export const HookWrapper: React.FC = (props) => {
    );
 };
 
-export const IntlWrapper: React.FC = (props) => {
+export const IntlWrapper: FC = (props) => {
    return (
       <IntlProvider locale="en" defaultLocale="en">
          {props.children}

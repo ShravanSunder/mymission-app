@@ -3,11 +3,10 @@ import { css } from '@emotion/react';
 
 import { ContentLayout } from './ContentLayout';
 import { NavigationBottom, NavigationRight } from './Navigation';
-import { Theme, useMediaQuery, useTheme } from '@material-ui/core';
 import { cssMq } from '~~/styles/theme';
 
 export const toolbarHeight = css([{ label: 'toolbarHeight' }, tw`h-14`]);
-export const panelHeight = css({ height: 'calc(100vh - 4.7rem)', label: 'panelHeight' });
+export const panelHeight = css([{ height: 'calc(100vh - 4.7rem)', label: 'panelHeight' }]);
 
 export const MainAppLayout = (): JSX.Element => {
    const mainView = <ContentLayout></ContentLayout>;

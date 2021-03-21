@@ -6,6 +6,7 @@ export enum ExceptionTypes {
    General_Unknown = 'Unknown Error',
    General_External = 'External Library Error',
    Schedule_RecurrenceConfigurationIsInvalid = 'Invalid recurrence is passed as configuration',
+   Schedule_RecurrenceAggregationPeriods = 'Invalid recurrence in aggregation period',
 }
 
 /**
@@ -21,7 +22,7 @@ export class Exception<T> extends Error {
 
    constructor(exceptionType: ExceptionTypes, data?: T, message?: string) {
       if (message == undefined) {
-         super(exceptionType);
+         super(exceptionType.toString());
       } else {
          super(message);
       }

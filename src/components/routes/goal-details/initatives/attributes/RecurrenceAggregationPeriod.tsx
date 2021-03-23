@@ -5,6 +5,7 @@ import { RecurrenceAggregationPeriods, RecurrenceAggregationPeriodList } from '.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarWeek, faCalendarDay, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { useAggregationText } from './useAggregationText';
+import { ObservableWithState } from './useInitiativeSchedule';
 
 export const tempColorSelectedDay = 'bg-gray-200';
 
@@ -13,8 +14,7 @@ export interface IRecurrenceAggregationPeriodProps {
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
-   aggregationPeriod: RecurrenceAggregationPeriods;
-   setAggregationPeriod: Dispatch<SetStateAction<RecurrenceAggregationPeriods>>;
+   aggregationPeriod: ObservableWithState<RecurrenceAggregationPeriods>;
 }
 
 const AggregationIcons: FC<{ period: RecurrenceAggregationPeriods }> = (props) => {
@@ -37,11 +37,11 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
          {RecurrenceAggregationPeriodList.map((m: RecurrenceAggregationPeriods, i: number) => {
             const text = getAggregationText(m);
             const handleClick = () => {
-               props.setAggregationPeriod(m);
+               // do something
             };
 
             return (
-               <ListItem key={m.toString() + i.toString()} selected={m === props.aggregationPeriod} button onClick={() => handleClick()}>
+               <ListItem key={m.toString() + i.toString()} selected={m === props.aggregationPeriod.state} button onClick={() => handleClick()}>
                   <ListItemAvatar>
                      <Avatar>
                         <AggregationIcons period={m}></AggregationIcons>

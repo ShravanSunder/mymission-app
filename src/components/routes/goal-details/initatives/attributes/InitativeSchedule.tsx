@@ -10,6 +10,7 @@ import { useRecurrenceSummary } from './useRecurrenceSummary';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { useIntl } from 'react-intl';
 import { useAggregationText } from './useAggregationText';
+import { IRecurrenceObservables, useInitiativeScheduleRecurrenceObservables } from './useInitiativeSchedule';
 
 const tempColorIcons = 'bg-gray-200';
 
@@ -17,10 +18,11 @@ export const InitativeSchedule: FC = (props) => {
    const { formatMessage } = useIntl();
    const getAggregationText = useAggregationText();
 
-   const [recurrenceAggregationPeriod, setRecurrenceAggregationPeriod] = useState(RecurrenceAggregationPeriods.PerDay);
+   const recurrenceState: IRecurrenceObservables = useInitiativeScheduleRecurrenceObservables();
 
+   const durationSummaryValue = useRecurrenceSummary(recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
    const aggregationName = formatMessage({ defaultMessage: 'Habit counting' });
-   const aggregationValue = getAggregationText(recurrenceAggregationPeriod);
+   const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.state);
 
    const aggregateAccordion = (
       <Accordion>
@@ -28,26 +30,16 @@ export const InitativeSchedule: FC = (props) => {
             <ScheduleAccordionSummary summaryName={aggregationName} summaryValue={aggregationValue.primary}></ScheduleAccordionSummary>
          </AccordionSummary>
          <AccordionDetails>
-            <RecurrenceAggregationPeriod
-               aggregationPeriod={recurrenceAggregationPeriod}
-               setAggregationPeriod={setRecurrenceAggregationPeriod}></RecurrenceAggregationPeriod>
+            <RecurrenceAggregationPeriod aggregationPeriod={recurrenceState.aggregationPeriod}></RecurrenceAggregationPeriod>
          </AccordionDetails>
       </Accordion>
    );
-
-   const [recurrenceDuration, setRecurrence] = useState<RecurrenceDurationTypes>(RecurrenceDurationTypes.Monthly);
-   const [recurrenceTarget, setRecurrenceSchedule] = useState<number | DaysOfWeek[]>(5);
-   const durationSummaryValue = useRecurrenceSummary(recurrenceAggregationPeriod, recurrenceDuration, recurrenceTarget);
 
    const durationAccordion = (
       <Accordion>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header"></AccordionSummary>
          <AccordionDetails>
-            <RecurrenceDuration
-               recurrenceSchedule={recurrenceTarget}
-               recurrenceType={recurrenceDuration}
-               setRecurrence={setRecurrence}
-               setRecurrenceSchedule={setRecurrenceSchedule}></RecurrenceDuration>
+            <RecurrenceDuration target={recurrenceState.target} durationType={recurrenceState.durationType}></RecurrenceDuration>
          </AccordionDetails>
       </Accordion>
    );

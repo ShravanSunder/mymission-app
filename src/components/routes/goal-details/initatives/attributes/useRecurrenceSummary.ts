@@ -5,7 +5,6 @@ import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToStri
 
 /**
  * Hook to get a display string that represents the recurrence
- * TODO: move to seperate file, make a test
  * @param aggregationPeriod
  * @param durationType
  * @param target

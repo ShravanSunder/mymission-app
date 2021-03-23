@@ -9,8 +9,8 @@ export const tempColorSelectedDay = 'bg-gray-200';
 
 export const PickPeriod: FC<IRecurrenceDurationProps> = (props) => {
    useEffect(() => {
-      props.setRecurrenceSchedule(props.recurrenceSchedule as number);
-   }, [props.recurrenceSchedule]);
+      props.setRecurrenceSchedule(props.target as number);
+   }, [props.target]);
 
    const handleChange = (event: MouseEvent<HTMLElement> | null, newValue: number | null) => {
       if (newValue) {
@@ -20,13 +20,13 @@ export const PickPeriod: FC<IRecurrenceDurationProps> = (props) => {
 
    let days: ReactNode[] | null = null;
 
-   const availableDays = daysToRecurrenceTypeMap.get(props.recurrenceType);
+   const availableDays = daysToRecurrenceTypeMap.get(props.durationType);
    if (availableDays != null && availableDays > 0) {
       const result: ReactNode[] = [];
 
       for (let i = 1; i <= availableDays; i++) {
          let selectStyle = css();
-         if (props.recurrenceSchedule === i) {
+         if (props.target === i) {
             selectStyle = css(tw`${tempColorSelectedDay} shadow-sm`);
          }
 

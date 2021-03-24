@@ -1,7 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, FC } from 'react';
 import tw from 'twin.macro';
-
-const tempColor = 'text-gray-400';
 
 interface ICircularProgressSegmentsProps {
    numberOfSegments: number;
@@ -14,9 +12,18 @@ interface ICircularProgressSegmentsProps {
 
 /**
  * The segments shown in progress meter that depicts tasks in or habits counts
- * @param param0
+ * @param props
  */
-export const CircularProgressSegments = ({ numberOfSegments, thickness = 3.6, size = 80 }: ICircularProgressSegmentsProps): JSX.Element => {
+export const CircularProgressSegments: FC<ICircularProgressSegmentsProps> = ({
+   numberOfSegments,
+   thickness = 3.6,
+   size = 80,
+}: ICircularProgressSegmentsProps) => {
+   /**
+    * Todo: replace color
+    */
+   const tempColor = 'text-gray-400';
+
    const segments = useMemo(() => {
       const SIZE = 44;
       const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);

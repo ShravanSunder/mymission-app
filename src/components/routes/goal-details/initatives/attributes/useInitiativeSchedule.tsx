@@ -1,4 +1,4 @@
-import { from, Observable, observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, from, Observable, observable, of, Subject } from 'rxjs';
 import { map, switchMap, startWith, catchError } from 'rxjs/operators';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceDefinitions';
@@ -12,29 +12,29 @@ import { useRecurrenceSummary } from './useRecurrenceSummary';
  * 1. an observable of a value
  * 2. the current state
  */
-export type ObservableWithState<T> = { observable$: Observable<T>; state: T };
+export type SubjectWithState<T> = { subject$: BehaviorSubject<T>; state: T };
 
 /**
  * Returns an observable from initial state and current state
  * @param value
  */
-const useCreateObservable = <T,>(value: T): ObservableWithState<T> => {
+const useCreateSubject = <T1,>(value: T1): SubjectWithState<T1> => {
    const observable$ = useObservable(pluckFirst, [value]);
    const state = useObservableState(observable$, value);
 
-   return { observable$, state };
+   return { subject$: observable$ as BehaviorSubject<T1>, state };
 };
 
 export interface IRecurrenceObservables {
-   aggregationPeriod: ObservableWithState<RecurrenceAggregationPeriods>;
-   durationType: ObservableWithState<RecurrenceDurationTypes>;
-   target: ObservableWithState<number | DaysOfWeek[]>;
+   aggregationPeriod: SubjectWithState<RecurrenceAggregationPeriods>;
+   durationType: SubjectWithState<RecurrenceDurationTypes>;
+   target: SubjectWithState<number | DaysOfWeek[]>;
 }
 
 export const useInitiativeScheduleRecurrenceObservables = (): IRecurrenceObservables => {
    return {
-      aggregationPeriod: useCreateObservable(RecurrenceAggregationPeriods.PerDay),
-      durationType: useCreateObservable<RecurrenceDurationTypes>(RecurrenceDurationTypes.Monthly),
-      target: useCreateObservable<number | DaysOfWeek[]>(5),
+      aggregationPeriod: useCreateSubject<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay),
+      durationType: useCreateSubject<RecurrenceDurationTypes>(RecurrenceDurationTypes.Monthly),
+      target: useCreateSubject<number | DaysOfWeek[]>(5),
    };
 };

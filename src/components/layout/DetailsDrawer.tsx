@@ -10,10 +10,13 @@ export interface IDetailsDrawerProps {
    children?: ReactNode | ReactNodeArray;
 }
 
-const tempColorDrawerBackground = 'bg-gray-100';
-
 export const DetailsDrawer = ({ open, containerRef, setDrawerOpen, children }: IDetailsDrawerProps): JSX.Element => {
    const container: HTMLDivElement | null = containerRef.current;
+
+   /**
+    * TODO: replace color
+    */
+   const tempColorDrawerBackground = 'bg-gray-100';
 
    return (
       <SwipeableDrawer

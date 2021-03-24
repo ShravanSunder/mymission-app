@@ -43,6 +43,7 @@ module.exports = {
          maxWidth: (theme) => ({
             ...theme('spacing'),
          }),
+         backgroundColor: ['group-focus'],
       },
    },
 };

@@ -12,15 +12,19 @@ import { useIntl } from 'react-intl';
 import { useAggregationText } from './useAggregationText';
 import { IRecurrenceObservables, useInitiativeScheduleRecurrenceObservables } from './useInitiativeSchedule';
 
-const tempColorIcons = 'bg-gray-200';
-
 export const InitativeSchedule: FC = (props) => {
    const { formatMessage } = useIntl();
    const getAggregationText = useAggregationText();
 
+   /**
+    * TODO: replace color
+    */
+   const tempColorIcons = 'bg-gray-200';
+
    const recurrenceState: IRecurrenceObservables = useInitiativeScheduleRecurrenceObservables();
 
    const durationSummaryValue = useRecurrenceSummary(recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
+
    const aggregationName = formatMessage({ defaultMessage: 'Habit counting' });
    const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.state);
 
@@ -46,7 +50,7 @@ export const InitativeSchedule: FC = (props) => {
    return (
       <div className="w-full">
          {aggregateAccordion}
-         {durationAccordion}
+         {/* {durationAccordion} */}
       </div>
    );
 };

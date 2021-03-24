@@ -1,7 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, FC } from 'react';
 import tw from 'twin.macro';
-
-const tempColor = 'text-gray-500';
 
 interface ICircularMilestoneSegmentsProps {
    numberOfMilestones: number;
@@ -16,7 +14,16 @@ interface ICircularMilestoneSegmentsProps {
  * The marks in circlular progress that show milestones
  * @param param0
  */
-export const CircularMilestoneSegments = ({ numberOfMilestones, thickness = 3.6, size = 80 }: ICircularMilestoneSegmentsProps): JSX.Element => {
+export const CircularMilestoneSegments: FC<ICircularMilestoneSegmentsProps> = ({
+   numberOfMilestones,
+   thickness = 3.6,
+   size = 80,
+}: ICircularMilestoneSegmentsProps) => {
+   /**
+    * TODO: replace color
+    */
+   const tempColor = 'text-gray-500';
+
    const segments = useMemo(() => {
       const SIZE = 44;
       const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);

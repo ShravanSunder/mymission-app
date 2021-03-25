@@ -11,6 +11,7 @@ import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { useIntl } from 'react-intl';
 import { useAggregationText } from './useAggregationText';
 import { IRecurrenceObservables, useInitiativeScheduleRecurrenceObservables } from './useInitiativeSchedule';
+import { useSubscription } from 'observable-hooks';
 
 export const InitativeSchedule: FC = (props) => {
    const { formatMessage } = useIntl();
@@ -27,6 +28,8 @@ export const InitativeSchedule: FC = (props) => {
 
    const aggregationName = formatMessage({ defaultMessage: 'Habit counting' });
    const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.state);
+
+   useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
 
    const aggregateAccordion = (
       <Accordion>

@@ -5,14 +5,14 @@ import { RecurrenceAggregationPeriods, RecurrenceAggregationPeriodList } from '.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarWeek, faCalendarDay, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { useAggregationText } from './useAggregationText';
-import { SubjectWithState } from './useInitiativeSchedule';
+import { ObservableWithState } from '../../../../common/hooks/useObservableWithState';
 
 export interface IRecurrenceAggregationPeriodProps {
    /**
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
-   aggregationPeriod: SubjectWithState<RecurrenceAggregationPeriods>;
+   aggregationPeriod: ObservableWithState<RecurrenceAggregationPeriods>;
 }
 
 const AggregationIcons: FC<{ period: RecurrenceAggregationPeriods }> = (props) => {
@@ -35,7 +35,7 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
          {RecurrenceAggregationPeriodList.map((m: RecurrenceAggregationPeriods, i: number) => {
             const text = getAggregationText(m);
             const handleClick = () => {
-               props.aggregationPeriod.subject$.next(m);
+               props.aggregationPeriod.pushState(m);
             };
 
             return (

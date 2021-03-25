@@ -13,7 +13,7 @@ export const PickPeriod: FC<IRecurrenceDurationProps> = (props) => {
 
    const handleChange = (event: MouseEvent<HTMLElement> | null, newValue: number | null) => {
       if (newValue) {
-         props.target.subject$.next(newValue);
+         props.target.pushState(newValue);
       }
    };
 

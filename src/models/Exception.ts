@@ -5,8 +5,8 @@
 export enum ExceptionTypes {
    General_Unknown = 'Unknown Error',
    General_External = 'External Library Error',
-   Schedule_RecurrenceConfigurationIsInvalid = 'Invalid recurrence is passed as configuration',
-   Schedule_RecurrenceAggregationPeriods = 'Invalid recurrence in aggregation period',
+   Schedule_RecurrenceConfigurationIsInvalid = 'Recurrence configuration is invalid',
+   Schedule_RecurrenceAggregationPeriods = 'Invalid aggregation period',
 }
 
 /**
@@ -29,5 +29,9 @@ export class Exception<T> extends Error {
 
       this.exeptionType = exceptionType;
       this.data = data;
+      if (process.env.NODE_ENV !== 'production') {
+         console.log(exceptionType);
+         console.log(data);
+      }
    }
 }

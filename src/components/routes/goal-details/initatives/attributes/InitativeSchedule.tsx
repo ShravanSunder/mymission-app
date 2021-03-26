@@ -27,7 +27,7 @@ export const InitativeSchedule: FC = (props) => {
    // const durationSummaryValue = useRecurrenceSummary(intl, recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
 
    const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
-   const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.state);
+   const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.value);
 
    // useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
 

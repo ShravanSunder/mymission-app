@@ -3,18 +3,18 @@ import { FC } from 'react';
 import { DaysOfWeek } from './scheduleDefinitions';
 import { RecurrenceDurationTypes } from './recurrenceDefinitions';
 import { PickPeriod } from './PickPeriod';
-import { ObservableWithState } from '../../../../common/hooks/useObservableWithState';
+import { ObservableWithValue } from '../../../../common/hooks/useObservableWithState';
 
 export interface IRecurrenceDurationProps {
    /**
     * The type of repetition.  ie Days per week, days per month
     */
-   durationType: ObservableWithState<RecurrenceDurationTypes>;
+   durationType: ObservableWithValue<RecurrenceDurationTypes>;
    /**
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
-   target: ObservableWithState<number | DaysOfWeek[]>;
+   target: ObservableWithValue<number | DaysOfWeek[]>;
 }
 
 export const RecurrenceDuration: FC<IRecurrenceDurationProps> = (props) => {

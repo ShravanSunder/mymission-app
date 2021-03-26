@@ -13,19 +13,19 @@ export const PickPeriod: FC<IRecurrenceDurationProps> = (props) => {
 
    const handleChange = (event: MouseEvent<HTMLElement> | null, newValue: number | null) => {
       if (newValue) {
-         props.target.next(newValue);
+         props.target.push(newValue);
       }
    };
 
    let days: ReactNode[] | null = null;
 
-   const availableDays = daysToRecurrenceTypeMap.get(props.durationType.state);
+   const availableDays = daysToRecurrenceTypeMap.get(props.durationType.value);
    if (availableDays != null && availableDays > 0) {
       const resultDays: ReactNode[] = [];
 
       for (let i = 1; i <= availableDays; i++) {
          let selectStyle = css();
-         if (props.target.state === i) {
+         if (props.target.value === i) {
             selectStyle = css(tw`${tempColorSelectedDay} shadow-sm`);
          }
 

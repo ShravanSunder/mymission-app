@@ -13,25 +13,33 @@ export type ObservableWithState<T> = { observable$: Observable<T>; state: T; nex
 
 /**
  * Returns an observable from initial state and current state
- * @param value
+ * @param initValue
  */
-export const useObservableWithState = <T1,>(value: T1): ObservableWithState<T1> => {
-   const [pushState, observable$] = useObservableCallback<T1>(() => new BehaviorSubject(value));
-   const state = useObservableState(observable$, value);
+export const useObservableWithState = <T1,>(initValue: T1): ObservableWithState<T1> => {
+   const [pushState, pushObservable$] = useObservableCallback<T1>(identity);
+   const state = useObservableState(pushObservable$, initValue);
 
-   return { observable$, next: pushState, state };
+   useEffect(() => {
+      pushState(initValue);
+   }, [pushState, pushObservable$]);
+
+   return { observable$: pushObservable$, next: pushState, state };
 };
 
 export type TOperator<T1, T2> = (o1$: Observable<T1>, o2$: Observable<T2>) => Observable<T1>;
 
 /**
  * Returns an observable from initial state and current state
- * @param value
+ * @param initValue
  */
-export const useTransformedObservableWithState = <T1, T2>(value: T1, input$: Observable<T2>, operator: TOperator<T1, T2>): ObservableWithState<T1> => {
-   const [pushState, observable$] = useObservableCallback<T1>(() => new BehaviorSubject(value));
-   const combinedObservable$ = useObservable<T1>(() => operator(observable$, input$));
-   const state = useObservableState(combinedObservable$, value);
+export const useTransformedObservableWithState = <T1, T2>(initValue: T1, input$: Observable<T2>, operator: TOperator<T1, T2>): ObservableWithState<T1> => {
+   const [pushState, pushObservable$] = useObservableCallback<T1>(identity);
+   const observable$ = useObservable<T1>(() => operator(pushObservable$, input$));
+   const state = useObservableState(observable$, initValue);
 
-   return { observable$: combinedObservable$, next: pushState, state };
+   useEffect(() => {
+      pushState(initValue);
+   }, [pushState, pushObservable$, observable$, input$]);
+
+   return { observable$, next: pushState, state };
 };

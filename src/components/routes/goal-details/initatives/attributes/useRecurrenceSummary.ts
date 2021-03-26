@@ -1,4 +1,4 @@
-import { useIntl } from 'react-intl';
+import { IntlShape, useIntl } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { DaysOfWeek } from './scheduleDefinitions';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToString, isEveryDayOfWeek, daysToRecurrenceTypeMap } from './recurrenceDefinitions';
@@ -11,12 +11,11 @@ import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToStri
  */
 
 export const useRecurrenceSummary = (
+   intl: IntlShape,
    aggregationPeriod: RecurrenceAggregationPeriods,
    durationType: RecurrenceDurationTypes,
    target: number | DaysOfWeek[]
 ): string => {
-   const intl = useIntl();
-
    if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       if (
          typeof target === 'number' &&

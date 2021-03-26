@@ -10,11 +10,11 @@ import { useRecurrenceSummary } from './useRecurrenceSummary';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { useIntl } from 'react-intl';
 import { useAggregationText } from './useAggregationText';
-import { IRecurrenceObservables, useInitiativeScheduleRecurrenceObservables } from './useInitiativeSchedule';
+import { IRecurrenceObservables, useRecurrenceObservables } from './useInitiativeSchedule';
 import { useSubscription } from 'observable-hooks';
 
 export const InitativeSchedule: FC = (props) => {
-   const { formatMessage } = useIntl();
+   const intl = useIntl();
    const getAggregationText = useAggregationText();
 
    /**
@@ -22,14 +22,14 @@ export const InitativeSchedule: FC = (props) => {
     */
    const tempColorIcons = 'bg-gray-200';
 
-   const recurrenceState: IRecurrenceObservables = useInitiativeScheduleRecurrenceObservables();
+   const recurrenceState: IRecurrenceObservables = useRecurrenceObservables();
 
-   const durationSummaryValue = useRecurrenceSummary(recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
+   // const durationSummaryValue = useRecurrenceSummary(intl, recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
 
-   const aggregationName = formatMessage({ defaultMessage: 'Habit counting' });
+   const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
    const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.state);
 
-   useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
+   // useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
 
    const aggregateAccordion = (
       <Accordion>

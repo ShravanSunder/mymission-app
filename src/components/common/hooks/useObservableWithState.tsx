@@ -33,13 +33,12 @@ export type TOperator<T1, T2> = (o1$: Observable<T1>, o2$: Observable<T2>) => Ob
  * @param initValue
  */
 export const useTransformedObservableWithState = <T1, T2>(initValue: T1, input$: Observable<T2>, operator: TOperator<T1, T2>): ObservableWithState<T1> => {
-   const [pushState, pushObservable$] = useObservableCallback<T1>(identity);
-   const observable$ = useObservable<T1>(() => operator(pushObservable$, input$));
-   const state = useObservableState(observable$, initValue);
+   const [pushState, pushObservable$] = useObservableCallback<T1>((event$) => operator(event$, input$));
+   const state = useObservableState(pushObservable$, initValue);
 
    useEffect(() => {
       pushState(initValue);
-   }, [pushState, pushObservable$, observable$, input$]);
+   }, [pushState, pushObservable$, pushObservable$, input$]);
 
-   return { observable$, next: pushState, state };
+   return { observable$: pushObservable$, next: pushState, state };
 };

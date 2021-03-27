@@ -1,7 +1,7 @@
-import { IntlShape, useIntl } from 'react-intl';
+import { RecurrenceDurationTypes, RecurrenceAggregationPeriods, daysOfWeekToString, isEveryDayOfWeek, daysToRecurrenceTypeMap } from './recurrenceTypes';
+import { IntlShape } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
-import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, daysOfWeekToString, isEveryDayOfWeek, daysToRecurrenceTypeMap } from './recurrenceDefinitions';
+import { DaysOfWeek } from './scheduleTypes';
 
 /**
  * Hook to get a display string that represents the recurrence
@@ -108,4 +108,60 @@ export const useRecurrenceSummary = (
    }
 
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType, aggregationPeriod, target });
+};
+
+export const updateDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
+   if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
+      switch (durationType) {
+         case RecurrenceDurationTypes.PerNumberOfWeeks:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+            return RecurrenceDurationTypes.PerNumberOfDays;
+      }
+   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
+      switch (durationType) {
+         case RecurrenceDurationTypes.SpecificDaysOfWeek:
+         case RecurrenceDurationTypes.PerNumberOfDays:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+         case RecurrenceDurationTypes.Weekly:
+            return RecurrenceDurationTypes.PerNumberOfWeeks;
+      }
+   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
+      switch (durationType) {
+         case RecurrenceDurationTypes.SpecificDaysOfWeek:
+         case RecurrenceDurationTypes.PerNumberOfDays:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+         case RecurrenceDurationTypes.Weekly:
+         case RecurrenceDurationTypes.Monthly:
+            return RecurrenceDurationTypes.PerNumberOfMonths;
+      }
+   }
+   return durationType;
+};
+
+export const updateTarget = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
+   if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
+      switch (durationType) {
+         case RecurrenceDurationTypes.PerNumberOfWeeks:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+            return RecurrenceDurationTypes.PerNumberOfDays;
+      }
+   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
+      switch (durationType) {
+         case RecurrenceDurationTypes.SpecificDaysOfWeek:
+         case RecurrenceDurationTypes.PerNumberOfDays:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+         case RecurrenceDurationTypes.Weekly:
+            return RecurrenceDurationTypes.PerNumberOfWeeks;
+      }
+   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
+      switch (durationType) {
+         case RecurrenceDurationTypes.SpecificDaysOfWeek:
+         case RecurrenceDurationTypes.PerNumberOfDays:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+         case RecurrenceDurationTypes.Weekly:
+         case RecurrenceDurationTypes.Monthly:
+            return RecurrenceDurationTypes.PerNumberOfMonths;
+      }
+   }
+   return durationType;
 };

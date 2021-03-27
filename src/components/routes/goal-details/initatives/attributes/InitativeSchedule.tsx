@@ -6,8 +6,8 @@ import { RecurrenceDuration } from './RecurrenceDuration';
 import { ScheduleAccordionSummary } from './ScheduleAccordionSummary';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { useIntl } from 'react-intl';
-import { useAggregationText } from './useAggregationText';
-import { IRecurrenceObservables, useRecurrenceObservables } from './useInitiativeSchedule';
+import { useAggregationText } from './core/useAggregationText';
+import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 
 export const InitativeSchedule: FC = (props) => {
    const intl = useIntl();

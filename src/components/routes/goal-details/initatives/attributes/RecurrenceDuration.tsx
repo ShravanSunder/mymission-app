@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceDurationTypes } from './recurrenceDefinitions';
+import { DaysOfWeek } from './core/scheduleTypes';
+import { RecurrenceDurationTypes } from './core/recurrenceTypes';
 import { PickPeriod } from './PickPeriod';
 import { ObservableWithValue } from '../../../../common/hooks/useObservableValue';
 

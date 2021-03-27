@@ -1,5 +1,5 @@
 import { useEffect, ReactNode, MouseEvent, FC } from 'react';
-import { daysToRecurrenceTypeMap } from './recurrenceDefinitions';
+import { daysToRecurrenceTypeMap } from './core/recurrenceTypes';
 import { css } from '@emotion/react';
 import tw from 'twin.macro';
 import { IconButton, Typography } from '@material-ui/core';

@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography } from '@material-ui/core';
 
-import { RecurrenceAggregationPeriods, RecurrenceAggregationPeriodList } from './recurrenceDefinitions';
+import { RecurrenceAggregationPeriods, RecurrenceAggregationPeriodList } from './core/recurrenceTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarWeek, faCalendarDay, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-import { useAggregationText } from './useAggregationText';
+import { useAggregationText } from './core/useAggregationText';
 import { ObservableWithValue } from '~~/components/common/hooks/useObservableValue';
 
 export interface IRecurrenceAggregationPeriodProps {

@@ -1,4 +1,4 @@
-import { RecurrenceAggregationPeriods } from './recurrenceDefinitions';
+import { RecurrenceAggregationPeriods } from './recurrenceTypes';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { useIntl } from 'react-intl';
 
@@ -14,6 +14,7 @@ type TUseAggregationText = (
     */
    secondary: string;
 };
+
 export const useAggregationText = (): TUseAggregationText => {
    const { formatMessage } = useIntl();
 

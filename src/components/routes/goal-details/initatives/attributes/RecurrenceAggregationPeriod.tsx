@@ -5,7 +5,7 @@ import { RecurrenceAggregationPeriods, RecurrenceAggregationPeriodList } from '.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarWeek, faCalendarDay, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { useAggregationText } from './useAggregationText';
-import { ObservableWithValue } from '~~/components/common/hooks/useObservableWithState';
+import { ObservableWithValue } from '~~/components/common/hooks/useObservableValue';
 
 export interface IRecurrenceAggregationPeriodProps {
    /**

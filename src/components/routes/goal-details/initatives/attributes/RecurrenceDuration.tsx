@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { DaysOfWeek } from './scheduleDefinitions';
 import { RecurrenceDurationTypes } from './recurrenceDefinitions';
 import { PickPeriod } from './PickPeriod';
-import { ObservableWithValue } from '../../../../common/hooks/useObservableWithState';
+import { ObservableWithValue } from '../../../../common/hooks/useObservableValue';
 
 export interface IRecurrenceDurationProps {
    /**

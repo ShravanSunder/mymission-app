@@ -1,8 +1,11 @@
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceDefinitions';
 import { DaysOfWeek } from './scheduleDefinitions';
-import { ObservableWithValue, useObservableWithTransform, useObservableWithValue, TOperator } from '~~/components/common/hooks/useObservableWithState';
+import { ObservableWithValue, useObservableValue } from '~~/components/common/hooks/useObservableValue';
+import { useObservableTransform, TOperator } from '~~/components/common/hooks/useObservableTransform';
 import { map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
+import { atom, useRecoilValue } from 'recoil';
+import { useObservableRecoilState } from '~~/components/common/hooks/useObservableRecoilState';
 
 export interface IRecurrenceObservables {
    aggregationPeriod: ObservableWithValue<RecurrenceAggregationPeriods>;
@@ -14,18 +17,27 @@ const updateDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod
    return RecurrenceDurationTypes.Monthly;
 };
 
+const tryBlah = atom<RecurrenceAggregationPeriods>({
+   key: 'todoListState',
+   default: RecurrenceAggregationPeriods.PerDay,
+});
+
 export const useRecurrenceObservables = (): IRecurrenceObservables => {
-   const aggregationPeriod = useObservableWithValue<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay);
+   const aggregationPeriod = useObservableValue<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay);
+
+   const tryStuff = useObservableRecoilState<RecurrenceAggregationPeriods>(tryBlah);
+
+   const data = useRecoilValue(tryBlah);
 
    const durationOperator: TOperator<RecurrenceDurationTypes, RecurrenceAggregationPeriods> = (o1$, o2$) =>
       combineLatest([o1$, o2$]).pipe(map(([state1, state2]) => updateDuration(state1, state2)));
 
-   const durationType = useObservableWithTransform<RecurrenceDurationTypes, RecurrenceAggregationPeriods>(
+   const durationType = useObservableTransform<RecurrenceDurationTypes, RecurrenceAggregationPeriods>(
       RecurrenceDurationTypes.Weekly,
       aggregationPeriod.observable$,
       durationOperator
    );
-   const target = useObservableWithValue<number | DaysOfWeek[]>(5);
+   const target = useObservableValue<number | DaysOfWeek[]>(5);
 
    return { aggregationPeriod, durationType, target };
 };

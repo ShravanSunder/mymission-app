@@ -3,8 +3,12 @@ import { Provider } from 'react-redux';
 import { Suspense, FC, lazy } from 'react';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { RecoilRoot } from 'recoil';
+import RecoilizeDebugger from 'recoilize';
 
 const AppRoot = lazy(() => import('~~/components/app/AppRoot'));
+
+const isDev = process.env.NODE_ENV === 'development';
+console.log(`isDev=${isDev.toString()}`);
 
 /**
  * Currently deciding between redux and recoil.
@@ -13,15 +17,13 @@ const AppRoot = lazy(() => import('~~/components/app/AppRoot'));
  */
 const StateRoot: FC = () => {
    return (
-      <Provider store={reduxStore}>
-         <RecoilRoot>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-               <Suspense fallback={<div></div>}>
-                  <AppRoot />
-               </Suspense>
-            </ErrorBoundary>
-         </RecoilRoot>
-      </Provider>
+      <RecoilRoot>
+         <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Suspense fallback={<div></div>}>
+               <AppRoot />
+            </Suspense>
+         </ErrorBoundary>
+      </RecoilRoot>
    );
 };
 export default StateRoot;

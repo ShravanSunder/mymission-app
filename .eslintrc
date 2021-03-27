@@ -46,6 +46,13 @@
       "react/jsx-indent-props": 0,
       "react/jsx-closing-bracket-location": 0,
       "react/prop-types": 0,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": [
+         "warn",
+         {
+            "additionalHooks": "useRecoilCallback"
+         }
+      ],
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-empty-function": "warn",
       "@typescript-eslint/no-unused-vars": "warn",

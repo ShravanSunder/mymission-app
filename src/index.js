@@ -12,7 +12,7 @@
    // ReactDOM.unstable_createRoot(document.getElementById('app')).render(<App />);
 
    // legacy mode
-   ReactDOM.render(<App />, document.getElementById('app'));
+   ReactDOM.render(<App />, document.getElementById('root'));
 })();
 
 if ('serviceWorker' in navigator) {

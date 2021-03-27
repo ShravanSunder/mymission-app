@@ -4,8 +4,9 @@ import { ObservableWithValue, useObservableValue } from '~~/components/common/ho
 import { useObservableTransform, TOperator } from '~~/components/common/hooks/useObservableTransform';
 import { map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
-import { atom, useRecoilValue } from 'recoil';
+import { atom, useRecoilState, useRecoilValue } from 'recoil';
 import { useObservableRecoilState } from '~~/components/common/hooks/useObservableRecoilState';
+import { useEffect } from 'react';
 
 export interface IRecurrenceObservables {
    aggregationPeriod: ObservableWithValue<RecurrenceAggregationPeriods>;
@@ -17,17 +18,23 @@ const updateDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod
    return RecurrenceDurationTypes.Monthly;
 };
 
-const tryBlah = atom<RecurrenceAggregationPeriods>({
+const tryBlah = atom<string>({
    key: 'todoListState',
-   default: RecurrenceAggregationPeriods.PerDay,
+   default: '',
 });
 
 export const useRecurrenceObservables = (): IRecurrenceObservables => {
+   const [text, setText] = useRecoilState(tryBlah);
+
+   useEffect(() => {
+      setText(RecurrenceAggregationPeriods.PerMonth);
+   }, []);
+
    const aggregationPeriod = useObservableValue<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay);
 
-   const tryStuff = useObservableRecoilState<RecurrenceAggregationPeriods>(tryBlah);
+   // const tryStuff = useObservableRecoilState<RecurrenceAggregationPeriods>(tryBlah);
 
-   const data = useRecoilValue(tryBlah);
+   // const data = useRecoilValue(tryBlah);
 
    const durationOperator: TOperator<RecurrenceDurationTypes, RecurrenceAggregationPeriods> = (o1$, o2$) =>
       combineLatest([o1$, o2$]).pipe(map(([state1, state2]) => updateDuration(state1, state2)));

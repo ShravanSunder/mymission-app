@@ -6206,6 +6206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/recoilize@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@types/recoilize@npm:0.8.0"
+  checksum: 243bd94721a92e6aa376bb198d1222fd23bb4e8b0f38963cffb879882e453f548249aa9ede80400010ee8f783d9af8b12019b7dadab2ca4e0d25be27912363d0
+  languageName: node
+  linkType: hard
+
 "@types/redux-logger@npm:^3.0.8":
   version: 3.0.8
   resolution: "@types/redux-logger@npm:3.0.8"
@@ -16690,6 +16697,7 @@ fsevents@^1.2.7:
     "@types/react-dom": ^17.0.2
     "@types/react-redux": ^7.1.16
     "@types/react-router-dom": ^5.1.7
+    "@types/recoilize": ^0.8.0
     "@types/redux-logger": ^3.0.8
     "@types/twemoji": ^12.1.1
     "@types/webpack": ^4.41.26
@@ -16765,6 +16773,7 @@ fsevents@^1.2.7:
     react-router-dom: next
     react-test-renderer: ^17.0.1
     recoil: ^0.1.3
+    recoilize: ^1.0.0
     redux: ^4.0.5
     redux-logger: ^3.0.6
     redux-mock-store: ^1.5.4
@@ -19441,6 +19450,17 @@ fsevents@^1.2.7:
     react-native:
       optional: true
   checksum: 7522cf89cf5f2829e166909912613b0e9db9fb385512eb5a6a7925730719cef47ff3fa398d1d9b62c3bec5fcbf68ef3cb000975e17b6b9e5934078abb3a1bed2
+  languageName: node
+  linkType: hard
+
+"recoilize@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "recoilize@npm:1.0.0"
+  peerDependencies:
+    react: ^16.13.1
+    react-dom: ^16.13.1
+    recoil: ^0.1.2
+  checksum: a8edd34fc0dccf118e64207168c0f6b3336ca02cf1e9a32b7ca9b84f956ce30540761eee730201bdbf659358304d2c22139af3ddf2366983a663c09d909aa6f1
   languageName: node
   linkType: hard
 

@@ -1,17 +1,13 @@
 import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@material-ui/core';
-import { useState, FC } from 'react';
+import { FC } from 'react';
 import tw from 'twin.macro';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { DaysOfWeek } from './scheduleDefinitions';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceDefinitions';
 import { RecurrenceDuration } from './RecurrenceDuration';
 import { ScheduleAccordionSummary } from './ScheduleAccordionSummary';
-import { useRecurrenceSummary } from './useRecurrenceSummary';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { useIntl } from 'react-intl';
 import { useAggregationText } from './useAggregationText';
 import { IRecurrenceObservables, useRecurrenceObservables } from './useInitiativeSchedule';
-import { useSubscription } from 'observable-hooks';
 
 export const InitativeSchedule: FC = (props) => {
    const intl = useIntl();

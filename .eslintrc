@@ -27,7 +27,7 @@
       "plugin:jest/recommended",
       "plugin:tailwind/recommended"
    ],
-   "plugins": ["prettier", "formatjs"],
+   "plugins": ["prettier", "formatjs", "react", "react-hooks"],
    "rules": {
       "formatjs/no-offset": "error",
       "formatjs/enforce-description": "off",
@@ -50,7 +50,7 @@
       "react-hooks/exhaustive-deps": [
          "warn",
          {
-            "additionalHooks": "useRecoilCallback"
+            "additionalHooks": "(useRecoilCallback)"
          }
       ],
       "@typescript-eslint/ban-ts-comment": "off",

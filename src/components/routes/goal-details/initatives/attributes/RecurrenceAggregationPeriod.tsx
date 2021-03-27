@@ -36,6 +36,7 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
             const text = getAggregationText(m);
             const handleClick = () => {
                props.aggregationPeriod.push(m);
+               setText(m);
             };
 
             return (

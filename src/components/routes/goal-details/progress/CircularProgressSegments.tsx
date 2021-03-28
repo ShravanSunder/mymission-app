@@ -47,7 +47,7 @@ export const CircularProgressSegments: FC<ICircularProgressSegmentsProps> = ({
             </svg>
          </div>
       );
-   }, [numberOfSegments, thickness]);
+   }, [numberOfSegments, size, thickness]);
 
    return <>{segments}</>;
 };

@@ -1,7 +1,7 @@
-import { useObservableCallback } from 'observable-hooks';
-import { useEffect } from 'react';
+import { useObservable } from 'observable-hooks';
+import { useCallback, useEffect } from 'react';
 import { RecoilState, useRecoilState } from 'recoil';
-import { identity } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ObservableWithValue } from './useObservableValue';
 
 /**
@@ -12,11 +12,12 @@ import { ObservableWithValue } from './useObservableValue';
  * @template T1 observable type
  * @param atom recoil state.  typically output of atom.
  */
-export const useObservableRecoilState = <T1>(atom: RecoilState<T1>): ObservableWithValue<T1> => {
+export const useObservableRecoilState = <T>(atom: RecoilState<T>): ObservableWithValue<T> => {
    const [recoilState, setRecoilState] = useRecoilState(atom);
-   const [push, pushObservable$] = useObservableCallback<T1>(identity);
+   const observable$ = useObservable<T>(() => new BehaviorSubject(recoilState));
+   const push = useCallback((newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue), [observable$]);
 
-   useEffect(() => push(recoilState), [recoilState, push]);
+   useEffect(() => push(recoilState), [push, recoilState]);
 
-   return { observable$: pushObservable$, push: (value: T1) => setRecoilState(value), value: recoilState };
+   return { observable$, push: (value: T) => setRecoilState(value), value: recoilState };
 };

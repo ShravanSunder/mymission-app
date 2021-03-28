@@ -1,4 +1,4 @@
-import { useMemo, FC } from 'react';
+import { FC, useMemo } from 'react';
 import tw from 'twin.macro';
 
 interface ICircularMilestoneSegmentsProps {
@@ -47,7 +47,7 @@ export const CircularMilestoneSegments: FC<ICircularMilestoneSegmentsProps> = ({
             </svg>
          </div>
       );
-   }, [numberOfMilestones, thickness]);
+   }, [numberOfMilestones, size, thickness]);
 
    return <>{segments}</>;
 };

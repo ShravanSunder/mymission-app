@@ -1,7 +1,6 @@
-import { BehaviorSubject, identity, Observable } from 'rxjs';
-import { useObservable, useObservableCallback, useObservableState } from 'observable-hooks';
-import { useEffect } from 'react';
-import { startWith } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { useObservable, useObservableState } from 'observable-hooks';
+import { useCallback } from 'react';
 
 /**
  * returns
@@ -18,7 +17,7 @@ export type ObservableWithValue<T> = { observable$: Observable<T>; value: T; pus
 export const useObservableValue = <T>(initValue: T): ObservableWithValue<T> => {
    const observable$ = useObservable<T>(() => new BehaviorSubject(initValue));
    const value = useObservableState(observable$, initValue);
-   const push = (newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue);
+   const push = useCallback((newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue), [observable$]);
 
    return { observable$, push, value };
 };

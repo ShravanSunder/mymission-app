@@ -1,6 +1,6 @@
-import { RecurrenceDurationTypes, RecurrenceAggregationPeriods, daysOfWeekToString, isEveryDayOfWeek, daysToRecurrenceTypeMap } from './recurrenceTypes';
 import { IntlShape } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
+import { daysOfWeekToString, isEveryDayOfWeek, RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceTypes';
 import { DaysOfWeek } from './scheduleTypes';
 
 /**

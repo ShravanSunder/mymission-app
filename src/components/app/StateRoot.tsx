@@ -1,9 +1,6 @@
-import { reduxStore } from '~~/providers/reduxStore';
-import { Provider } from 'react-redux';
-import { Suspense, FC, lazy } from 'react';
-import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
+import { FC, lazy, Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
-import RecoilizeDebugger from 'recoilize';
+import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
 const AppRoot = lazy(() => import('~~/components/app/AppRoot'));
 

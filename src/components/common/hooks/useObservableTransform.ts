@@ -1,8 +1,7 @@
-import { BehaviorSubject, identity, Observable } from 'rxjs';
-import { useObservable, useObservableCallback, useObservableState, useSubscription } from 'observable-hooks';
-import { useEffect } from 'react';
+import { useObservable, useObservableState } from 'observable-hooks';
+import { useCallback } from 'react';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ObservableWithValue } from './useObservableValue';
-import { startWith } from 'rxjs/operators';
 
 export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: [Observable<any>]) => Observable<T1>;
 /**
@@ -17,7 +16,7 @@ export const useObservableTransform = <T>(initValue: T, operator: TOperator<T>, 
    const observable$ = useObservable<T>(() => new BehaviorSubject(initValue));
    const transform$ = useObservable(() => operator(observable$, ...otherObservables$));
    const value = useObservableState(transform$, initValue);
-   const push = (newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue);
+   const push = useCallback((newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue), [observable$]);
 
    return { observable$: transform$, push, value };
 };

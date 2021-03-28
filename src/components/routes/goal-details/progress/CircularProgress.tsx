@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
-import tw, { theme, css } from 'twin.macro';
-
+import tw from 'twin.macro';
 import { clamp } from '~~/helpers';
 
 const tempColor = 'text-red-200';
@@ -42,7 +41,7 @@ export const CircularProgress = ({ progress, thickness = 3.6, size = 80 }: ICirc
             </svg>
          </div>
       );
-   }, [progress, thickness]);
+   }, [progress, size, thickness]);
 
    return <>{progresss}</>;
 };

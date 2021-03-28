@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import weekday from 'dayjs/plugin/weekday';
+import { GetValues as GetEnumValues } from '~~/helpers/enums';
 
 dayjs.extend(weekday);
 dayjs.extend(duration);
@@ -18,11 +19,7 @@ export enum RecurrenceAggregationPeriods {
    PerMonth = 'month',
 }
 
-export const RecurrenceAggregationPeriodList = [
-   RecurrenceAggregationPeriods.PerDay,
-   RecurrenceAggregationPeriods.PerWeek,
-   RecurrenceAggregationPeriods.PerMonth,
-];
+export const RecurrenceAggregationPeriodList = GetEnumValues<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods);
 
 /**
  * How long is the duration of time over which you are tracking your habit
@@ -40,6 +37,8 @@ export enum RecurrenceDurationTypes {
    Monthly = 'month',
    Quarterly = 'quarter',
 }
+
+export const RecurrenceDurationList = GetEnumValues<RecurrenceDurationTypes>(RecurrenceDurationTypes);
 
 export const daysToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
    [RecurrenceDurationTypes.Weekly, 7],

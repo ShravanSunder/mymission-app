@@ -16,7 +16,7 @@ export enum ExceptionTypes {
  * If the situation is based on external library or JS hard errors, use and include the JS Error
  * Exception type to be used with js: throw in application
  */
-export class Exception<T> extends Error {
+export class Exception<T extends Record<string, any>> extends Error {
    data?: T;
    exeptionType: ExceptionTypes;
 

@@ -162,6 +162,42 @@ export const formatAggregationText = (intl: IntlShape, period: RecurrenceAggrega
          secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a month, x/month' }),
       };
    } else {
-      throw new Exception(ExceptionTypes.Schedule_RecurrenceAggregationPeriods);
+      throw new Exception(ExceptionTypes.Schedule_RecurrenceAggregationPeriods, { period });
+   }
+};
+
+export const formatGoalText = (
+   intl: IntlShape,
+   period: RecurrenceAggregationPeriods,
+   duration: RecurrenceDurationTypes,
+   target: number | DaysOfWeek[]
+): IUiText => {
+   const periodText = intl.formatMessage({ defaultMessage: '{period, select, day {Days} week {Weeks} month {Months} }' }, { period });
+
+   if (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: '{periodText} per {duration}' }, { periodText, duration }),
+         secondary: intl.formatMessage(
+            { defaultMessage: 'How many {periodText} a {duration} is your goal?' },
+            { periodText: periodText.toLowerCase(), duration }
+         ),
+      };
+   } else if (
+      typeof target === 'number' &&
+      (duration === RecurrenceDurationTypes.PerNumberOfDays ||
+         duration === RecurrenceDurationTypes.PerNumberOfMonths ||
+         duration === RecurrenceDurationTypes.PerNumberOfWeeks)
+   ) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Every {target} other {duration}' }, { periodText, duration, target }),
+         secondary: intl.formatMessage({ defaultMessage: 'How often is your goal?' }, { duration }),
+      };
+   } else if (Array.isArray(target) && duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Specific days of the week?' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Which days of the week is your goal?' }, { duration }),
+      };
+   } else {
+      throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration, target });
    }
 };

@@ -1,8 +1,8 @@
-import { useEffect, ReactNode, MouseEvent, FC } from 'react';
-import { daysToRecurrenceTypeMap } from './core/recurrence.types';
 import { css } from '@emotion/react';
-import tw from 'twin.macro';
 import { IconButton, Typography } from '@material-ui/core';
+import { FC, MouseEvent, ReactNode } from 'react';
+import tw from 'twin.macro';
+import { daysToRecurrenceTypeMap } from './core/recurrence.types';
 import { IRecurrenceDurationProps } from './RecurrenceDuration';
 
 export const PickPeriod: FC<IRecurrenceDurationProps> = (props) => {

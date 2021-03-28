@@ -1,16 +1,16 @@
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
 import { DaysOfWeek } from './schedule.types';
-import { ObservableWithValue, useObservableValue } from '~~/components/common/core/hooks/useObservableValue';
-import { useObservableTransform, TOperator } from '~~/components/common/core/hooks/useObservableTransform';
+import { SubjectWithValue, useSubjectValue } from '~~/components/common/core/hooks/useSubjectValue';
+import { useSubjectTransform, TOperator } from '~~/components/common/core/hooks/useSubjectTransform';
 import { map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { updateDuration, updateTarget } from './recurrence.operators';
 import { useSubscription } from 'observable-hooks';
 
 export interface IRecurrenceObservables {
-   aggregationPeriod: ObservableWithValue<RecurrenceAggregationPeriods>;
-   durationType: ObservableWithValue<RecurrenceDurationTypes>;
-   target: ObservableWithValue<number | DaysOfWeek[]>;
+   aggregationPeriod: SubjectWithValue<RecurrenceAggregationPeriods>;
+   durationType: SubjectWithValue<RecurrenceDurationTypes>;
+   target: SubjectWithValue<number | DaysOfWeek[]>;
 }
 
 const durationOperator: TOperator<RecurrenceDurationTypes> = (o1$, o2$) =>
@@ -19,16 +19,16 @@ const durationOperator: TOperator<RecurrenceDurationTypes> = (o1$, o2$) =>
 const targetOperator: TOperator<number | DaysOfWeek[]> = (o1$, o2$) => combineLatest([o1$, o2$]).pipe(map(([state1, state2]) => updateTarget(state1, state2)));
 
 export const useRecurrenceObservables = (): IRecurrenceObservables => {
-   const aggregationPeriod = useObservableValue<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay);
+   const aggregationPeriod = useSubjectValue<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay);
 
-   const durationType = useObservableTransform<RecurrenceDurationTypes>(RecurrenceDurationTypes.Weekly, durationOperator, aggregationPeriod.observable$);
+   const durationType = useSubjectTransform<RecurrenceDurationTypes>(RecurrenceDurationTypes.Weekly, durationOperator, aggregationPeriod.subject$);
 
    // const target = useObservableValue<number | DaysOfWeek[]>(5);
-   const target = useObservableTransform<number | DaysOfWeek[]>(5, targetOperator, durationType.observable$);
+   const target = useSubjectTransform<number | DaysOfWeek[]>(5, targetOperator, durationType.subject$);
 
    // useSubscription(durationType.observable$, (e) => console.log(e));
    // useSubscription(aggregationPeriod.observable$, (e) => console.log(e));
-   useSubscription(target.observable$, (e) => console.log(e));
+   useSubscription(target.subject$, (e) => console.log(e));
 
    return { aggregationPeriod, durationType, target };
 };

@@ -1,23 +1,23 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { useObservable, useObservableState } from 'observable-hooks';
 import { useCallback } from 'react';
 
 /**
  * returns
- * 1. observable$
+ * 1. subject$
  * 2. value: the current value of observable$
  * 3. push: a callback to push a new value to the observable$
  */
-export type ObservableWithValue<T> = { observable$: Observable<T>; value: T; push: (newState: T) => void; obs?: () => Observable<T> };
+export type SubjectWithValue<T> = { subject$: Subject<T>; value: T; push: (newState: T) => void };
 
 /**
  * Creates and returns an @see ObservableWithValue from initial value
  * @param initValue
  */
-export const useObservableValue = <T>(initValue: T): ObservableWithValue<T> => {
+export const useSubjectValue = <T>(initValue: T): SubjectWithValue<T> => {
    const observable$ = useObservable<T>(() => new BehaviorSubject(initValue));
    const value = useObservableState(observable$, initValue);
-   const push = useCallback((newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue), [observable$]);
+   const push = useCallback((newValue: T) => (observable$ as Subject<T>).next(newValue), [observable$]);
 
-   return { observable$, push, value };
+   return { subject$: observable$ as Subject<T>, push, value };
 };

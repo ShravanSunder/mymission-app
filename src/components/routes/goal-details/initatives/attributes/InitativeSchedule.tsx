@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
-import { formatAggregationText } from './core/recurrence.facade';
+import { formatAggregationText, formatRecurrenceSummary } from './core/recurrence.facade';
 import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { RecurrenceDuration } from './RecurrenceDuration';
@@ -18,12 +18,17 @@ export const InitativeSchedule: FC = () => {
 
    const recurrenceState: IRecurrenceObservables = useRecurrenceObservables();
 
-   // const durationSummaryValue = useRecurrenceSummary(intl, recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
+   const durationSummaryValue = formatRecurrenceSummary(
+      intl,
+      recurrenceState.aggregationPeriod.value,
+      recurrenceState.durationType.value,
+      recurrenceState.target.value
+   );
 
    const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
    const aggregationValue = formatAggregationText(intl, recurrenceState.aggregationPeriod.value);
 
-   // useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
+   // / useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
 
    const aggregateAccordion = (
       <Accordion>

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
-import { ObservableWithValue } from '~~/components/common/core/hooks/useObservableValue';
+import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { formatAggregationText } from './core/recurrence.facade';
 import { RecurrenceAggregationPeriodList, RecurrenceAggregationPeriods } from './core/recurrence.types';
 
@@ -12,7 +12,7 @@ export interface IRecurrenceAggregationPeriodProps {
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
-   aggregationPeriod: ObservableWithValue<RecurrenceAggregationPeriods>;
+   aggregationPeriod: SubjectWithValue<RecurrenceAggregationPeriods>;
 }
 
 const AggregationIcons: FC<{ period: RecurrenceAggregationPeriods }> = (props) => {

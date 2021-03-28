@@ -127,17 +127,17 @@ export const formatAggregationText = (
    if (period === RecurrenceAggregationPeriods.PerDay) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Daily' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Count your habits daily, x times a day' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a day, x/day' }),
       };
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Weekly' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Count your habits weekly, x times a week' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a week, x/week' }),
       };
    } else if (period === RecurrenceAggregationPeriods.PerMonth) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Monthly' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Count your habits monthly, x times a month' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a month, x/month' }),
       };
    } else {
       throw new Exception(ExceptionTypes.Schedule_RecurrenceAggregationPeriods);

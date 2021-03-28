@@ -4,7 +4,7 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "cross-env NODE_ENV=development NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --config build-utils/webpack.config.js --env env=dev",
+      "start": "cross-env NODE_ENV=development NODE_OPTIONS=--max-old-space-size=4096 && webpack serve --progress --config build-utils/webpack.config.js --env env=dev",
       "build:prod": "cross-env NODE_ENV=production webpack --config build-utils/webpack.config.js --env env=prod",
       "build:workbox-simple": "workbox injectManifest workbox-config.js",
       "build:analyze": "yarn run build:prod --env addon=bundleanalyze",

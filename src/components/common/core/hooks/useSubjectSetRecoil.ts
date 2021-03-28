@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
  * @param observable$
  * @param atom recoil state
  */
-export const useObservableSetRecoilState = <T1>(observable$: Observable<T1>, atom: RecoilState<T1>): void => {
+export const useSubjectSetRecoil = <T1>(observable$: Observable<T1>, atom: RecoilState<T1>): void => {
    const setRecoilState = useSetRecoilState(atom);
    useSubscription(observable$, (value) => setRecoilState(value));
 };

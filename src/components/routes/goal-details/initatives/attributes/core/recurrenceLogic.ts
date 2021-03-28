@@ -111,6 +111,7 @@ export const useRecurrenceSummary = (
 };
 
 export const updateDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
+   console.log('updateDuration');
    if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       switch (durationType) {
          case RecurrenceDurationTypes.PerNumberOfWeeks:
@@ -138,30 +139,10 @@ export const updateDuration = (durationType: RecurrenceDurationTypes, aggregatio
    return durationType;
 };
 
-export const updateTarget = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
-   if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
-      switch (durationType) {
-         case RecurrenceDurationTypes.PerNumberOfWeeks:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-            return RecurrenceDurationTypes.PerNumberOfDays;
-      }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
-      switch (durationType) {
-         case RecurrenceDurationTypes.SpecificDaysOfWeek:
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-         case RecurrenceDurationTypes.Weekly:
-            return RecurrenceDurationTypes.PerNumberOfWeeks;
-      }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
-      switch (durationType) {
-         case RecurrenceDurationTypes.SpecificDaysOfWeek:
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-         case RecurrenceDurationTypes.Weekly:
-         case RecurrenceDurationTypes.Monthly:
-            return RecurrenceDurationTypes.PerNumberOfMonths;
-      }
+export const updateTarget = (target: DaysOfWeek[] | number, durationType: RecurrenceDurationTypes): DaysOfWeek[] | number => {
+   console.log('updateTarget');
+   if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek) {
    }
-   return durationType;
+
+   return 4;
 };

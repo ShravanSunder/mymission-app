@@ -16,7 +16,7 @@ export const useObservableRecoilState = <T1>(atom: RecoilState<T1>): ObservableW
    const [recoilState, setRecoilState] = useRecoilState(atom);
    const [push, pushObservable$] = useObservableCallback<T1>(identity);
 
-   useEffect(() => push(recoilState), [recoilState]);
+   useEffect(() => push(recoilState), [recoilState, push]);
 
    return { observable$: pushObservable$, push: (value: T1) => setRecoilState(value), value: recoilState };
 };

@@ -20,6 +20,9 @@ export const useObservableTransform = <T1, T2>(initValue: T1, second$: Observabl
    useEffect(() => {
       push(initValue);
    }, [push, observable$, second$]);
+      console.log('effect transform');
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
 
    return { observable$: observable$, push: push, value };
 };

@@ -33,10 +33,10 @@ export const RecurrenceAggregationPeriodList = [
  * - Number of successful weeks a month?
  */
 export enum RecurrenceDurationTypes {
-   SpecificDaysOfWeek,
-   PerNumberOfDays,
-   PerNumberOfWeeks,
-   PerNumberOfMonths,
+   SpecificDaysOfWeek = 'SpecificDaysOfWeek',
+   PerNumberOfDays = 'PerNumberOfDays',
+   PerNumberOfWeeks = 'PerNumberOfWeeks',
+   PerNumberOfMonths = 'PerNumberOfMonths',
    Weekly = 'week',
    Monthly = 'month',
    Quarterly = 'quarter',

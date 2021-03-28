@@ -1,4 +1,4 @@
-export interface IUiText {
+export interface IDisplayText {
    /**
     * primary description
     */

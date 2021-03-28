@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
-import { formatAggregationText, formatRecurrenceSummary, formatGoalText } from './core/recurrence.facade';
+import { formatAggregationPeriodForDisplay, formatRecurrenceSummaryForDisplay, formatGoalForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { RecurrenceGoal } from './RecurrenceGoal';
@@ -18,12 +18,17 @@ export const InitativeSchedule: FC = () => {
 
    const recurrenceState: IRecurrenceObservables = useRecurrenceObservables();
    const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
-   const aggregationValue = formatAggregationText(intl, recurrenceState.aggregationPeriod.value);
+   const aggregationValue = formatAggregationPeriodForDisplay(intl, recurrenceState.aggregationPeriod.value);
 
    const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
-   const goalValue = formatRecurrenceSummary(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value, recurrenceState.target.value);
+   const goalValue = formatRecurrenceSummaryForDisplay(
+      intl,
+      recurrenceState.aggregationPeriod.value,
+      recurrenceState.durationType.value,
+      recurrenceState.target.value
+   );
 
-   const data = formatGoalText(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value, recurrenceState.target.value);
+   const data = formatGoalForDisplay(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value);
 
    console.log(data);
 
@@ -44,7 +49,10 @@ export const InitativeSchedule: FC = () => {
             <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
-            <RecurrenceGoal target={recurrenceState.target} durationType={recurrenceState.durationType}></RecurrenceGoal>
+            <RecurrenceGoal
+               aggregationPeriod={recurrenceState.aggregationPeriod}
+               target={recurrenceState.target}
+               durationType={recurrenceState.durationType}></RecurrenceGoal>
          </AccordionDetails>
       </Accordion>
    );

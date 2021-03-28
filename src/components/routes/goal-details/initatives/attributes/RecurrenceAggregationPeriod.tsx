@@ -4,7 +4,7 @@ import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
-import { formatAggregationText } from './core/recurrence.facade';
+import { formatAggregationPeriodForDisplay } from './core/recurrence.facade';
 import { RecurrenceAggregationPeriodList, RecurrenceAggregationPeriods } from './core/recurrence.types';
 
 export interface IRecurrenceAggregationPeriodProps {
@@ -33,7 +33,7 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
    const periods = (
       <>
          {RecurrenceAggregationPeriodList.map((m: RecurrenceAggregationPeriods, i: number) => {
-            const text = formatAggregationText(intl, m);
+            const text = formatAggregationPeriodForDisplay(intl, m);
             const handleClick = () => {
                props.aggregationPeriod.push(m);
             };
@@ -55,7 +55,7 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
    return (
       <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
          <Typography variant="h4" className="text-center">
-            How you want to count your habits?
+            {intl.formatMessage({ defaultMessage: 'How you want to count your habits?' })}
          </Typography>
          <List>{periods}</List>
       </div>

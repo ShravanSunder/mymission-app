@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
-import { IUiText } from '../../../../../../models/IUiText';
+import { IDisplayText } from '~~/models/IDisplayText';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek } from './schedule.funcs';
 import { DaysOfWeek } from './schedule.types';
@@ -12,12 +12,12 @@ import { DaysOfWeek } from './schedule.types';
  * @param target
  */
 
-export const formatRecurrenceSummary = (
+export const formatRecurrenceSummaryForDisplay = (
    intl: IntlShape,
    aggregationPeriod: RecurrenceAggregationPeriods,
    durationType: RecurrenceDurationTypes,
    target: number | DaysOfWeek[]
-): IUiText => {
+): IDisplayText => {
    if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       if (
          typeof target === 'number' &&
@@ -145,7 +145,7 @@ export const formatRecurrenceSummary = (
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType, aggregationPeriod, target });
 };
 
-export const formatAggregationText = (intl: IntlShape, period: RecurrenceAggregationPeriods): IUiText => {
+export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: RecurrenceAggregationPeriods): IDisplayText => {
    if (period === RecurrenceAggregationPeriods.PerDay) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Daily' }),
@@ -166,38 +166,61 @@ export const formatAggregationText = (intl: IntlShape, period: RecurrenceAggrega
    }
 };
 
-export const formatGoalText = (
-   intl: IntlShape,
-   period: RecurrenceAggregationPeriods,
-   duration: RecurrenceDurationTypes,
-   target: number | DaysOfWeek[]
-): IUiText => {
-   const periodText = intl.formatMessage({ defaultMessage: '{period, select, day {Days} week {Weeks} month {Months} }' }, { period });
+export const formatAggregationPeriodForUnits = (intl: IntlShape, period: RecurrenceAggregationPeriods, count = 1): string => {
+   switch (period) {
+      case RecurrenceAggregationPeriods.PerDay:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Day} other {Days}}' }, { count });
+      case RecurrenceAggregationPeriods.PerWeek:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Week} other {Weeks}}' }, { count });
+      case RecurrenceAggregationPeriods.PerMonth:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Month} other {Months}}' }, { count });
+   }
+};
+
+export const formatDurationForUnits = (intl: IntlShape, period: RecurrenceDurationTypes, count = 1): string => {
+   switch (period) {
+      case RecurrenceDurationTypes.Weekly:
+      case RecurrenceDurationTypes.PerNumberOfWeeks:
+      case RecurrenceDurationTypes.SpecificDaysOfWeek:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Week} other {Weeks}}' }, { count });
+      case RecurrenceDurationTypes.Monthly:
+      case RecurrenceDurationTypes.PerNumberOfMonths:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Month} other {Months}}' }, { count });
+      case RecurrenceDurationTypes.PerNumberOfDays:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Day} other {Days}}' }, { count });
+      case RecurrenceDurationTypes.Quarterly:
+         return intl.formatMessage({ defaultMessage: '{count, plural, one {Quarter} other {Quarters}}' }, { count });
+   }
+};
+
+export const formatGoalForDisplay = (intl: IntlShape, period: RecurrenceAggregationPeriods, duration: RecurrenceDurationTypes): IDisplayText => {
+   const periodText = formatAggregationPeriodForUnits(intl, period);
+   const durationText = formatDurationForUnits(intl, duration).toLowerCase();
 
    if (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
       return {
-         primary: intl.formatMessage({ defaultMessage: '{periodText} per {duration}' }, { periodText, duration }),
+         primary: intl.formatMessage({ defaultMessage: '{periodText} per {durationText}' }, { periodText, durationText }),
          secondary: intl.formatMessage(
-            { defaultMessage: 'How many {periodText} a {duration} is your goal?' },
-            { periodText: periodText.toLowerCase(), duration }
+            { defaultMessage: 'How many {periodText} a {durationText} is your goal?' },
+            { periodText: periodText.toLowerCase(), durationText }
          ),
       };
    } else if (
-      typeof target === 'number' &&
-      (duration === RecurrenceDurationTypes.PerNumberOfDays ||
-         duration === RecurrenceDurationTypes.PerNumberOfMonths ||
-         duration === RecurrenceDurationTypes.PerNumberOfWeeks)
+      duration === RecurrenceDurationTypes.PerNumberOfDays ||
+      duration === RecurrenceDurationTypes.PerNumberOfMonths ||
+      duration === RecurrenceDurationTypes.PerNumberOfWeeks
    ) {
+      const tempTarget = 2;
       return {
-         primary: intl.formatMessage({ defaultMessage: 'Every {target} other {duration}' }, { periodText, duration, target }),
-         secondary: intl.formatMessage({ defaultMessage: 'How often is your goal?' }, { duration }),
+         primary: intl.formatMessage({ defaultMessage: 'Every {tempTarget} other {durationText}' }, { durationText, tempTarget }),
+         secondary: intl.formatMessage({ defaultMessage: 'How often is your goal?' }),
       };
-   } else if (Array.isArray(target) && duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
+   } else if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific days of the week?' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Which days of the week is your goal?' }, { duration }),
+         secondary: intl.formatMessage({ defaultMessage: 'Which days of the week is your goal?' }),
       };
    } else {
-      throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration, target });
+      throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration });
    }
 };

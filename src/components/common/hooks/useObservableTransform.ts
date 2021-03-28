@@ -1,4 +1,4 @@
-import { identity, Observable } from 'rxjs';
+import { BehaviorSubject, identity, Observable } from 'rxjs';
 import { useObservable, useObservableCallback, useObservableState, useSubscription } from 'observable-hooks';
 import { useEffect } from 'react';
 import { ObservableWithValue } from './useObservableValue';
@@ -13,10 +13,11 @@ export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: [Observa
  * @param operator Accepts two arguments, 1. the current observable, 2. second input observable
  */
 
-export const useObservableTransform = <T1>(initValue: T1, operator: TOperator<T1>, ...otherObservables$: [Observable<any>]): ObservableWithValue<T1> => {
-   const [push, observable$] = useObservableCallback<T1>((push$) => push$.pipe(startWith(initValue)));
+export const useObservableTransform = <T>(initValue: T, operator: TOperator<T>, ...otherObservables$: [Observable<any>]): ObservableWithValue<T> => {
+   const observable$ = useObservable<T>(() => new BehaviorSubject(initValue));
    const transform$ = useObservable(() => operator(observable$, ...otherObservables$));
-   const value = useObservableState(observable$, initValue);
+   const value = useObservableState(transform$, initValue);
+   const push = (newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue);
 
-   return { observable$: transform$, push: push, value };
+   return { observable$: transform$, push, value };
 };

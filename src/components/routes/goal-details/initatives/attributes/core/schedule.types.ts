@@ -12,6 +12,8 @@ export enum DaysOfWeek {
    Saturday = 6,
 }
 
+export const DaysOfWeekList = Object.values(DaysOfWeek).filter((f) => typeof f !== 'string') as DaysOfWeek[];
+
 export enum QuartersOfYear {
    Q1 = 1,
    Q2 = 2,

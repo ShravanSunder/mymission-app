@@ -2,7 +2,7 @@ import { Card, CardActionArea, Typography } from '@material-ui/core';
 import tw from 'twin.macro';
 
 import { HabitMeter } from './HabitMeter';
-import { useSafeEmoji } from '~~/components/common/hooks/useSafeEmoji';
+import { useSafeEmoji } from '~~/components/common/core/hooks/useSafeEmoji';
 
 interface IHabitCardProps {
    emoji: string;

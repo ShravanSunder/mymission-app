@@ -2,7 +2,7 @@ import { FC } from 'react';
 import tw from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TwemojiImage } from '~~/components/common/Twemoji';
-import { useSafeEmoji } from '~~/components/common/hooks/useSafeEmoji';
+import { useSafeEmoji } from '~~/components/common/core/hooks/useSafeEmoji';
 import { InitativeSchedule } from '../attributes/InitativeSchedule';
 import { TrendChart } from '~~/components/routes/goal-details/charts/TrendChart';
 

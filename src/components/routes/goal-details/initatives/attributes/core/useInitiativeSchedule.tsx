@@ -1,10 +1,10 @@
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceTypes';
-import { DaysOfWeek } from './scheduleTypes';
-import { ObservableWithValue, useObservableValue } from '~~/components/common/hooks/useObservableValue';
-import { useObservableTransform, TOperator } from '~~/components/common/hooks/useObservableTransform';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
+import { DaysOfWeek } from './schedule.types';
+import { ObservableWithValue, useObservableValue } from '~~/components/common/core/hooks/useObservableValue';
+import { useObservableTransform, TOperator } from '~~/components/common/core/hooks/useObservableTransform';
 import { map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
-import { updateDuration, updateTarget } from './recurrenceLogic';
+import { updateDuration, updateTarget } from './recurrence.operators';
 import { useSubscription } from 'observable-hooks';
 
 export interface IRecurrenceObservables {

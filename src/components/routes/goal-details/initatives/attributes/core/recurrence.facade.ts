@@ -1,16 +1,17 @@
 import { IntlShape } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
-import { daysOfWeekToString, isEveryDayOfWeek, RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrenceTypes';
-import { DaysOfWeek } from './scheduleTypes';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
+import { daysOfWeekToString, isEveryDayOfWeek } from './schedule.funcs';
+import { DaysOfWeek } from './schedule.types';
 
 /**
- * Hook to get a display string that represents the recurrence
+ * function to get a display string that represents the recurrence
  * @param aggregationPeriod
  * @param durationType
  * @param target
  */
 
-export const useRecurrenceSummary = (
+export const formatRecurrenceSummary = (
    intl: IntlShape,
    aggregationPeriod: RecurrenceAggregationPeriods,
    durationType: RecurrenceDurationTypes,
@@ -110,39 +111,35 @@ export const useRecurrenceSummary = (
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType, aggregationPeriod, target });
 };
 
-export const updateDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
-   console.log('updateDuration');
-   if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
-      switch (durationType) {
-         case RecurrenceDurationTypes.PerNumberOfWeeks:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-            return RecurrenceDurationTypes.PerNumberOfDays;
-      }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
-      switch (durationType) {
-         case RecurrenceDurationTypes.SpecificDaysOfWeek:
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-         case RecurrenceDurationTypes.Weekly:
-            return RecurrenceDurationTypes.PerNumberOfWeeks;
-      }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
-      switch (durationType) {
-         case RecurrenceDurationTypes.SpecificDaysOfWeek:
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-         case RecurrenceDurationTypes.Weekly:
-         case RecurrenceDurationTypes.Monthly:
-            return RecurrenceDurationTypes.PerNumberOfMonths;
-      }
+export const formatAggregationText = (
+   intl: IntlShape,
+   period: RecurrenceAggregationPeriods
+): {
+   /**
+    * primary description
+    */
+   primary: string;
+   /**
+    * secondary description
+    */
+   secondary: string;
+} => {
+   if (period === RecurrenceAggregationPeriods.PerDay) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Daily' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Count your habits daily, x times a day' }),
+      };
+   } else if (period === RecurrenceAggregationPeriods.PerWeek) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Weekly' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Count your habits weekly, x times a week' }),
+      };
+   } else if (period === RecurrenceAggregationPeriods.PerMonth) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Monthly' }),
+         secondary: intl.formatMessage({ defaultMessage: 'Count your habits monthly, x times a month' }),
+      };
+   } else {
+      throw new Exception(ExceptionTypes.Schedule_RecurrenceAggregationPeriods);
    }
-   return durationType;
-};
-
-export const updateTarget = (target: DaysOfWeek[] | number, durationType: RecurrenceDurationTypes): DaysOfWeek[] | number => {
-   console.log('updateTarget');
-   if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek) {
-   }
-
-   return 4;
 };

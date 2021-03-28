@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography } from '@material-ui/core';
-
-import { RecurrenceAggregationPeriods, RecurrenceAggregationPeriodList } from './core/recurrenceTypes';
+import { faCalendarAlt, faCalendarDay, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarWeek, faCalendarDay, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-import { useAggregationText } from './core/useAggregationText';
-import { ObservableWithValue } from '~~/components/common/hooks/useObservableValue';
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import { FC } from 'react';
+import { useIntl } from 'react-intl';
+import { ObservableWithValue } from '~~/components/common/core/hooks/useObservableValue';
+import { formatAggregationText } from './core/recurrence.facade';
+import { RecurrenceAggregationPeriodList, RecurrenceAggregationPeriods } from './core/recurrence.types';
 
 export interface IRecurrenceAggregationPeriodProps {
    /**
@@ -28,12 +28,12 @@ const AggregationIcons: FC<{ period: RecurrenceAggregationPeriods }> = (props) =
 };
 
 export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> = (props) => {
-   const getAggregationText = useAggregationText();
+   const intl = useIntl();
 
    const periods = (
       <>
          {RecurrenceAggregationPeriodList.map((m: RecurrenceAggregationPeriods, i: number) => {
-            const text = getAggregationText(m);
+            const text = formatAggregationText(intl, m);
             const handleClick = () => {
                props.aggregationPeriod.push(m);
             };

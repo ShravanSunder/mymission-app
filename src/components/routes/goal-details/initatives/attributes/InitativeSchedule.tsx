@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
-import { useAggregationText } from './core/useAggregationText';
+import { formatAggregationText } from './core/recurrence.facade';
 import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { RecurrenceDuration } from './RecurrenceDuration';
@@ -10,7 +10,6 @@ import { ScheduleAccordionSummary } from './ScheduleAccordionSummary';
 
 export const InitativeSchedule: FC = () => {
    const intl = useIntl();
-   const getAggregationText = useAggregationText();
 
    /**
     * TODO: replace color
@@ -22,7 +21,7 @@ export const InitativeSchedule: FC = () => {
    // const durationSummaryValue = useRecurrenceSummary(intl, recurrenceState.aggregationPeriod.state, recurrenceState.durationType.state, recurrenceState.target.state);
 
    const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
-   const aggregationValue = getAggregationText(recurrenceState.aggregationPeriod.value);
+   const aggregationValue = formatAggregationText(intl, recurrenceState.aggregationPeriod.value);
 
    // useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
 

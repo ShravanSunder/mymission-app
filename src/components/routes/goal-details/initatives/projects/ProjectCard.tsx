@@ -2,7 +2,7 @@ import { Card, CardActionArea, Typography } from '@material-ui/core';
 import { useMemo } from 'react';
 import tw from 'twin.macro';
 import { TwemojiInline } from '~~/components/common/Twemoji';
-import { useSafeEmoji } from '~~/components/common/hooks/useSafeEmoji';
+import { useSafeEmoji } from '~~/components/common/core/hooks/useSafeEmoji';
 import { ProjectMeter } from '~~/components/routes/goal-details/initatives/projects/ProjectMeter';
 
 interface IProjectCardProps {

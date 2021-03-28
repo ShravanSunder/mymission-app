@@ -1,7 +1,8 @@
 import { identity, Observable } from 'rxjs';
-import { useObservableCallback, useObservableState, useSubscription } from 'observable-hooks';
+import { useObservable, useObservableCallback, useObservableState, useSubscription } from 'observable-hooks';
 import { useEffect } from 'react';
 import { ObservableWithValue } from './useObservableValue';
+import { startWith } from 'rxjs/operators';
 
 export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: [Observable<any>]) => Observable<T1>;
 /**
@@ -13,16 +14,9 @@ export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: [Observa
  */
 
 export const useObservableTransform = <T1>(initValue: T1, operator: TOperator<T1>, ...otherObservables$: [Observable<any>]): ObservableWithValue<T1> => {
-   const [push, observable$] = useObservableCallback<T1>((event$) => operator(event$, ...otherObservables$));
+   const [push, observable$] = useObservableCallback<T1>((push$) => push$.pipe(startWith(initValue)));
+   const transform$ = useObservable(() => operator(observable$, ...otherObservables$));
    const value = useObservableState(observable$, initValue);
 
-   useEffect(() => {
-      push(initValue);
-      console.log('effect transform');
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
-
-   useSubscription(observable$, (e) => console.log(e));
-
-   return { observable$: observable$, push: push, value };
+   return { observable$: transform$, push: push, value };
 };

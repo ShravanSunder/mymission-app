@@ -4,11 +4,12 @@ import { Typography } from '@material-ui/core';
 import { TwemojiInline } from '~~/components/common/Twemoji';
 
 interface IScheduleAccordionSummary {
+   icon: string;
    summaryName: string;
    summaryValue: string;
 }
 
-export const ScheduleAccordionSummary: FC<IScheduleAccordionSummary> = (props) => {
+export const ScheduleSummary: FC<IScheduleAccordionSummary> = (props) => {
    return (
       <div
          className="w-full select-none grid grid-row-3 "
@@ -16,7 +17,7 @@ export const ScheduleAccordionSummary: FC<IScheduleAccordionSummary> = (props) =
             gridTemplateColumns: 'auto 1fr auto',
          }}>
          <Typography variant="h3" className="w-full rounded-full">
-            <TwemojiInline text="📅"></TwemojiInline>
+            <TwemojiInline text={props.icon}></TwemojiInline>
          </Typography>
          <Typography variant="h3" className="pl-2 capitalize">
             {props.summaryName}

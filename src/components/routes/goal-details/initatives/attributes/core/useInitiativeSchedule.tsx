@@ -20,15 +20,8 @@ const targetOperator: TOperator<number | DaysOfWeek[]> = (o1$, o2$) => combineLa
 
 export const useRecurrenceObservables = (): IRecurrenceObservables => {
    const aggregationPeriod = useSubjectValue<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods.PerDay);
-
    const durationType = useSubjectTransform<RecurrenceDurationTypes>(RecurrenceDurationTypes.Weekly, durationOperator, aggregationPeriod.subject$);
-
-   // const target = useObservableValue<number | DaysOfWeek[]>(5);
    const target = useSubjectTransform<number | DaysOfWeek[]>(5, targetOperator, durationType.subject$);
-
-   // useSubscription(durationType.observable$, (e) => console.log(e));
-   // useSubscription(aggregationPeriod.observable$, (e) => console.log(e));
-   useSubscription(target.subject$, (e) => console.log(e));
 
    return { aggregationPeriod, durationType, target };
 };

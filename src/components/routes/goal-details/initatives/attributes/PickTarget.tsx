@@ -3,9 +3,9 @@ import { IconButton, Typography } from '@material-ui/core';
 import { FC, MouseEvent, ReactNode } from 'react';
 import tw from 'twin.macro';
 import { daysToRecurrenceTypeMap } from './core/recurrence.types';
-import { IRecurrenceDurationProps } from './RecurrenceDuration';
+import { IRecurrenceGoalProps } from './RecurrenceGoal';
 
-export const PickPeriod: FC<IRecurrenceDurationProps> = (props) => {
+export const PickTarget: FC<IRecurrenceGoalProps> = (props) => {
    /**
     * todo: replace colors
     */

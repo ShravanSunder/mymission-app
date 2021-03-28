@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import { DaysOfWeek } from './core/schedule.types';
 import { RecurrenceDurationTypes } from './core/recurrence.types';
-import { PickPeriod } from './PickPeriod';
+import { PickTarget as PickTarget } from './PickTarget';
 import { SubjectWithValue } from '../../../../common/core/hooks/useSubjectValue';
 
-export interface IRecurrenceDurationProps {
+export interface IRecurrenceGoalProps {
    /**
     * The type of repetition.  ie Days per week, days per month
     */
@@ -17,7 +17,7 @@ export interface IRecurrenceDurationProps {
    target: SubjectWithValue<number | DaysOfWeek[]>;
 }
 
-export const RecurrenceDuration: FC<IRecurrenceDurationProps> = (props) => {
+export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    /**
     * TODO: replace colors
     */
@@ -25,8 +25,9 @@ export const RecurrenceDuration: FC<IRecurrenceDurationProps> = (props) => {
 
    return (
       <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
-         <div className="">{props.durationType}</div>
-         <PickPeriod {...props}></PickPeriod>;
+         <div className="">{props.durationType.value}</div>
+         <div className="">{props.target.value}</div>
+         <PickTarget {...props}></PickTarget>
       </div>
    );
 };

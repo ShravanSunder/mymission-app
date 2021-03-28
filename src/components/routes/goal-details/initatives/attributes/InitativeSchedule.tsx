@@ -5,35 +5,28 @@ import { useIntl } from 'react-intl';
 import { formatAggregationText, formatRecurrenceSummary } from './core/recurrence.facade';
 import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
-import { RecurrenceDuration } from './RecurrenceDuration';
-import { ScheduleAccordionSummary } from './ScheduleAccordionSummary';
+import { RecurrenceGoal } from './RecurrenceGoal';
+import { ScheduleSummary } from './ScheduleSummary';
 
 export const InitativeSchedule: FC = () => {
-   const intl = useIntl();
-
    /**
     * TODO: replace color
     */
    const tempColorIcons = 'bg-gray-200';
 
+   const intl = useIntl();
+
    const recurrenceState: IRecurrenceObservables = useRecurrenceObservables();
-
-   const durationSummaryValue = formatRecurrenceSummary(
-      intl,
-      recurrenceState.aggregationPeriod.value,
-      recurrenceState.durationType.value,
-      recurrenceState.target.value
-   );
-
    const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
    const aggregationValue = formatAggregationText(intl, recurrenceState.aggregationPeriod.value);
 
-   // / useSubscription(recurrenceState.aggregationPeriod.observable$, (e) => console.log(e));
+   const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
+   const goalValue = formatRecurrenceSummary(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value, recurrenceState.target.value);
 
    const aggregateAccordion = (
       <Accordion>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
-            <ScheduleAccordionSummary summaryName={aggregationName} summaryValue={aggregationValue.primary}></ScheduleAccordionSummary>
+            <ScheduleSummary icon={'📅'} summaryName={aggregationName} summaryValue={aggregationValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
             <RecurrenceAggregationPeriod aggregationPeriod={recurrenceState.aggregationPeriod}></RecurrenceAggregationPeriod>
@@ -41,18 +34,20 @@ export const InitativeSchedule: FC = () => {
       </Accordion>
    );
 
-   const durationAccordion = (
+   const goalAccordion = (
       <Accordion>
-         <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header"></AccordionSummary>
+         <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
+            <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalValue.primary}></ScheduleSummary>
+         </AccordionSummary>
          <AccordionDetails>
-            <RecurrenceDuration target={recurrenceState.target} durationType={recurrenceState.durationType}></RecurrenceDuration>
+            <RecurrenceGoal target={recurrenceState.target} durationType={recurrenceState.durationType}></RecurrenceGoal>
          </AccordionDetails>
       </Accordion>
    );
    return (
       <div className="w-full">
          {aggregateAccordion}
-         {/* {durationAccordion} */}
+         {goalAccordion}
       </div>
    );
 };

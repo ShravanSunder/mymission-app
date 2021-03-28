@@ -1,5 +1,6 @@
 import { IntlShape } from 'react-intl';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
+import { IUiText } from '../../../../../../models/IUiText';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek } from './schedule.funcs';
 import { DaysOfWeek } from './schedule.types';
@@ -16,7 +17,7 @@ export const formatRecurrenceSummary = (
    aggregationPeriod: RecurrenceAggregationPeriods,
    durationType: RecurrenceDurationTypes,
    target: number | DaysOfWeek[]
-): string => {
+): IUiText => {
    if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       if (
          typeof target === 'number' &&
@@ -24,86 +25,119 @@ export const formatRecurrenceSummary = (
             durationType === RecurrenceDurationTypes.Monthly ||
             durationType === RecurrenceDurationTypes.Quarterly)
       ) {
-         return intl.formatMessage(
-            {
-               defaultMessage: '{target} {target, plural, one {day} other {days}}/{durationType}',
-            },
-            { target, durationType }
-         );
+         return {
+            primary: intl.formatMessage(
+               {
+                  defaultMessage: '{target} {target, plural, one {day} other {days}}/{durationType}',
+               },
+               { target, durationType }
+            ),
+            secondary: '',
+         };
       } else if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek && Array.isArray(target)) {
          if (isEveryDayOfWeek(target)) {
-            return intl.formatMessage({
-               defaultMessage: 'Every day',
-            });
+            return {
+               primary: intl.formatMessage({
+                  defaultMessage: 'Every day',
+               }),
+               secondary: '',
+            };
          } else {
             const selectedWeekdays = daysOfWeekToString(target);
-            return selectedWeekdays;
+            return {
+               primary: selectedWeekdays,
+               secondary: '',
+            };
          }
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfDays && typeof target == 'number') {
          if (target > 1) {
-            return intl.formatMessage(
-               {
-                  defaultMessage: 'Every {target} days',
-               },
-               { target }
-            );
+            return {
+               primary: intl.formatMessage(
+                  {
+                     defaultMessage: 'Every {target} days',
+                  },
+                  { target }
+               ),
+               secondary: '',
+            };
          }
       }
    } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
       if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Monthly && target <= 4) {
-         return intl.formatMessage(
-            {
-               defaultMessage: '{target} {target, plural, one {week} other {weeks}}/{durationType}',
-            },
-            { target, durationType }
-         );
-      } else if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly && target <= 13) {
-         return intl.formatMessage(
-            {
-               defaultMessage: '{target} {target, plural, one {week} other {weeks}}/{durationType}',
-            },
-            { target, durationType }
-         );
-      } else if (durationType === RecurrenceDurationTypes.PerNumberOfWeeks && typeof target == 'number') {
-         if (target > 1) {
-            return intl.formatMessage(
+         return {
+            primary: intl.formatMessage(
                {
-                  defaultMessage: 'Every {target} weeks',
-               },
-               { target }
-            );
-         } else {
-            return intl.formatMessage(
-               {
-                  defaultMessage: 'Times a week',
+                  defaultMessage: '{target} {target, plural, one {week} other {weeks}}/{durationType}',
                },
                { target, durationType }
-            );
+            ),
+            secondary: '',
+         };
+      } else if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly && target <= 13) {
+         return {
+            primary: intl.formatMessage(
+               {
+                  defaultMessage: '{target} {target, plural, one {week} other {weeks}}/{durationType}',
+               },
+               { target, durationType }
+            ),
+            secondary: '',
+         };
+      } else if (durationType === RecurrenceDurationTypes.PerNumberOfWeeks && typeof target == 'number') {
+         if (target > 1) {
+            return {
+               primary: intl.formatMessage(
+                  {
+                     defaultMessage: 'Every {target} weeks',
+                  },
+                  { target }
+               ),
+               secondary: '',
+            };
+         } else {
+            return {
+               primary: intl.formatMessage(
+                  {
+                     defaultMessage: 'Times a week',
+                  },
+                  { target, durationType }
+               ),
+               secondary: '',
+            };
          }
       }
    } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
       if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly && target <= 3) {
-         return intl.formatMessage(
-            {
-               defaultMessage: '{target} {target, plural, one {month} other {months}}/{durationType}',
-            },
-            { target, durationType }
-         );
-      } else if (durationType === RecurrenceDurationTypes.PerNumberOfMonths && typeof target == 'number') {
-         if (target > 1) {
-            return intl.formatMessage(
+         return {
+            primary: intl.formatMessage(
                {
-                  defaultMessage: 'Every {target} months',
-               },
-               { target }
-            );
-         } else {
-            return intl.formatMessage(
-               {
-                  defaultMessage: 'Times a month',
+                  defaultMessage: '{target} {target, plural, one {month} other {months}}/{durationType}',
                },
                { target, durationType }
-            );
+            ),
+            secondary: '',
+         };
+      } else if (durationType === RecurrenceDurationTypes.PerNumberOfMonths && typeof target == 'number') {
+         if (target > 1) {
+            return {
+               primary: intl.formatMessage(
+                  {
+                     defaultMessage: 'Every {target} months',
+                  },
+                  { target }
+               ),
+               secondary: '',
+            };
+         } else {
+            return {
+               primary: intl.formatMessage(
+                  {
+                     defaultMessage: 'Times a month',
+                  },
+                  { target, durationType }
+               ),
+               secondary: '',
+            };
          }
       }
    }
@@ -111,19 +145,7 @@ export const formatRecurrenceSummary = (
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType, aggregationPeriod, target });
 };
 
-export const formatAggregationText = (
-   intl: IntlShape,
-   period: RecurrenceAggregationPeriods
-): {
-   /**
-    * primary description
-    */
-   primary: string;
-   /**
-    * secondary description
-    */
-   secondary: string;
-} => {
+export const formatAggregationText = (intl: IntlShape, period: RecurrenceAggregationPeriods): IUiText => {
    if (period === RecurrenceAggregationPeriods.PerDay) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Daily' }),

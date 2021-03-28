@@ -1,7 +1,7 @@
 // import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from '../recurrenceDefinitions';
 // import { useRecurrenceSummary } from '../useRecurrenceSummary';
 // import { renderHook } from '@testing-library/react-hooks';
-// import { HookWrapper, IntlWrapper } from '~~/test-utils/testing-library/wrappers';
+// import { HookWrapper, IntlWrapper } from '~~/testing/utils/testing-library/wrappers';
 // import { DaysOfWeek } from '../scheduleDefinitions';
 // import { Exception, ExceptionTypes } from '~~/models/Exception';
 

@@ -1,4 +1,4 @@
-export enum thunkStatus {
+export enum asyncStatus {
    idle = 'idle',
    pending = 'pending',
    fulfilled = 'fulfilled',

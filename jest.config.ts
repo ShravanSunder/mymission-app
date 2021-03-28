@@ -54,7 +54,7 @@ export default {
    // forceCoverageMatch: [],
 
    // A path to a module which exports an async function that is triggered once before all test suites
-   globalSetup: '<rootDir>/test-utils/jest/globalSetup.ts',
+   globalSetup: '<rootDir>/testing/jest/globalSetup.ts',
 
    // A path to a module which exports an async function that is triggered once after all test suites
    // globalTeardown: undefined,
@@ -135,10 +135,10 @@ export default {
    // runner: "jest-runner",
 
    // The paths to modules that run some code to configure or set up the testing environment before each test
-   setupFiles: ['<rootDir>/test-utils/jest/setupFiles.ts'],
+   setupFiles: ['<rootDir>/testing/jest/setupFiles.ts'],
 
    // A list of paths to modules that run some code to configure or set up the testing framework before each test
-   setupFilesAfterEnv: ['<rootDir>/test-utils/jest/setupFilesAfterEnv.ts'],
+   setupFilesAfterEnv: ['<rootDir>/testing/jest/setupFilesAfterEnv.ts'],
 
    // The number of seconds after which a test is considered as slow and reported as such in the results.
    slowTestThreshold: 5,

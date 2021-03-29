@@ -2,9 +2,12 @@ import { Button, Theme, ThemeProvider as MuiThemeProvider, createStyles, makeSty
 import { FC, useMemo, useState, createRef } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { StyledEngineProvider } from '@material-ui/styled-engine';
 import { grey, green, red, yellow } from '@material-ui/core/colors';
-import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
+import { ThemeProvider as EmotionThemeProvider, CacheProvider } from '@emotion/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import createCache from '@emotion/cache';
 
 const useStyles = makeStyles(() => {
    const snackbarRoot = {
@@ -24,6 +27,11 @@ const useStyles = makeStyles(() => {
    });
 });
 
+const cache = createCache({
+   key: 'css',
+   prepend: true,
+});
+
 const ThemeProvider: FC = ({ children }) => {
    const classes = useStyles();
    const notistackRef = createRef() as any;
@@ -39,32 +47,34 @@ const ThemeProvider: FC = ({ children }) => {
    }, [isDark]);
 
    return (
-      <StyledEngineProvider injectFirst>
-         <MuiThemeProvider theme={theme}>
-            <EmotionThemeProvider theme={theme}>
-               <SnackbarProvider
-                  ref={notistackRef}
-                  action={(key) => <Button onClick={onClickDismiss(key)}>Dismiss</Button>}
-                  classes={{
-                     variantSuccess: classes.success,
-                     variantError: classes.error,
-                     variantWarning: classes.warning,
-                     variantInfo: classes.info,
-                  }}
-                  autoHideDuration={1200}
-                  maxSnack={2}
-                  dense
-                  preventDuplicate
-                  transitionDuration={{ enter: 200, exit: 50 }}
-                  variant="info"
-                  anchorOrigin={{
-                     vertical: 'bottom',
-                     horizontal: 'center',
-                  }}>
-                  {children}
-               </SnackbarProvider>
-            </EmotionThemeProvider>
-         </MuiThemeProvider>
+      <StyledEngineProvider injectFirst={true}>
+         <CacheProvider value={cache}>
+            <MuiThemeProvider theme={theme}>
+               <EmotionThemeProvider theme={theme}>
+                  <SnackbarProvider
+                     ref={notistackRef}
+                     action={(key) => <Button onClick={onClickDismiss(key)}>Dismiss</Button>}
+                     classes={{
+                        variantSuccess: classes.success,
+                        variantError: classes.error,
+                        variantWarning: classes.warning,
+                        variantInfo: classes.info,
+                     }}
+                     autoHideDuration={1200}
+                     maxSnack={2}
+                     dense
+                     preventDuplicate
+                     transitionDuration={{ enter: 200, exit: 50 }}
+                     variant="info"
+                     anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                     }}>
+                     {children}
+                  </SnackbarProvider>
+               </EmotionThemeProvider>
+            </MuiThemeProvider>
+         </CacheProvider>
       </StyledEngineProvider>
    );
 };

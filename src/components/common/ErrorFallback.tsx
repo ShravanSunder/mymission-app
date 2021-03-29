@@ -46,7 +46,7 @@ export const ErrorFallback = ({ error }: FallbackProps): JSX.Element => {
                </AccordionSummary>
                <AccordionDetails>
                   <Typography variant="caption">
-                     <pre style={{ fontFamily: 'inherit' }}>{msgDetails}</pre>
+                     <pre css={{ fontFamily: 'inherit' }}>{msgDetails}</pre>
                   </Typography>
                </AccordionDetails>
             </Accordion>

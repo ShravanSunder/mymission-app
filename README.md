@@ -7,6 +7,7 @@
 -  default dev: localhost:7035
 
 ## Status
+
 [![Tests: run tests](https://github.com/ShravanSunder/mymyssion-app/actions/workflows/tests-pr-checks.yml/badge.svg)](https://github.com/ShravanSunder/mymyssion-app/actions/workflows/tests-pr-checks.yml)
 
 ## Structure
@@ -28,18 +29,20 @@
 -  Material UI
 -  Tailwind
 -  Data & Persistance
--  Redux | Redux Tooklit
--  RxJS | React-Observable
+-  Recoil
+-  RxJS | observable-hooks
 -  Dexie
 -  YJS (proposed)
 
 ### React & State Management
-- Will be using rxjs with observable-hooks in conjunction with either (Redux or recoil).  See
-  -   [React hooks + rxjs](https://thomasburlesonia.medium.com/https-medium-com-thomasburlesonia-react-hooks-rxjs-facades-4e116330bbe1)
-  -   [Rxjs hooks and observable-hooks]( https://blog.crimx.com/2020/02/26/rxjs-hooks-and-suspense-the-ultimate-guide/)
-  -   [observable-hooks](https://observable-hooks.js.org/guide/)
--   Thinking about using recoil instead of redux (+redux-toolkit) for state management
-  -    still to be decided
+
+-  Will be using rxjs with observable-hooks in conjunction with either (Redux or recoil). See
+   -  [React hooks + rxjs](https://thomasburlesonia.medium.com/https-medium-com-thomasburlesonia-react-hooks-rxjs-facades-4e116330bbe1)
+   -  [Rxjs hooks and observable-hooks](https://blog.crimx.com/2020/02/26/rxjs-hooks-and-suspense-the-ultimate-guide/)
+   -  [observable-hooks](https://observable-hooks.js.org/guide/)
+-  Thinking about using recoil instead of redux (+redux-toolkit) for state management
+-  still to be decided
+
 ## Useful libraries
 
 -  [react-dropzone](https://github.com/react-dropzone/react-dropzone) : drag and drop for files

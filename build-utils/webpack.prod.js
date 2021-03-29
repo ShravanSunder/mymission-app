@@ -9,7 +9,7 @@ const title = 'MyMission';
 const name = 'MyMission';
 const description = 'MyMission-PWA';
 
-const iconSrc = path.resolve(__dirname, '..', './assets/icon.png');
+const iconSrc = path.resolve(__dirname, '..', './public/assets/icon.png');
 const pwaManifestConfig = {
    name: title,
    short_name: name,

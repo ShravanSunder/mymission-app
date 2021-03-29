@@ -177,8 +177,8 @@ export const formatAggregationPeriodForUnits = (intl: IntlShape, period: Recurre
    }
 };
 
-export const formatDurationForUnits = (intl: IntlShape, period: RecurrenceDurationTypes, count = 1): string => {
-   switch (period) {
+export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceDurationTypes, count = 1): string => {
+   switch (duration) {
       case RecurrenceDurationTypes.Weekly:
       case RecurrenceDurationTypes.PerNumberOfWeeks:
       case RecurrenceDurationTypes.SpecificDaysOfWeek:
@@ -194,12 +194,11 @@ export const formatDurationForUnits = (intl: IntlShape, period: RecurrenceDurati
 };
 
 export const formatGoalForDisplay = (intl: IntlShape, period: RecurrenceAggregationPeriods, duration: RecurrenceDurationTypes): IDisplayText => {
-   const periodText = formatAggregationPeriodForUnits(intl, period);
-   const durationText = formatDurationForUnits(intl, duration).toLowerCase();
-
    if (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
+      const periodText = formatAggregationPeriodForUnits(intl, period, 2).toLowerCase();
+      const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
       return {
-         primary: intl.formatMessage({ defaultMessage: '{periodText} per {durationText}' }, { periodText, durationText }),
+         primary: intl.formatMessage({ defaultMessage: 'Number of {periodText} per {durationText}' }, { periodText, durationText }),
          secondary: intl.formatMessage(
             { defaultMessage: 'How many {periodText} a {durationText} is your goal?' },
             { periodText: periodText.toLowerCase(), durationText }
@@ -211,13 +210,14 @@ export const formatGoalForDisplay = (intl: IntlShape, period: RecurrenceAggregat
       duration === RecurrenceDurationTypes.PerNumberOfWeeks
    ) {
       const tempTarget = 2;
+      const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
       return {
-         primary: intl.formatMessage({ defaultMessage: 'Every {tempTarget} other {durationText}' }, { durationText, tempTarget }),
+         primary: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),
          secondary: intl.formatMessage({ defaultMessage: 'How often is your goal?' }),
       };
    } else if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
       return {
-         primary: intl.formatMessage({ defaultMessage: 'Specific days of the week?' }),
+         primary: intl.formatMessage({ defaultMessage: 'Specific days of the week' }),
          secondary: intl.formatMessage({ defaultMessage: 'Which days of the week is your goal?' }),
       };
    } else {

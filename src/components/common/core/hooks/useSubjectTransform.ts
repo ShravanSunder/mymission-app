@@ -1,9 +1,11 @@
 import { useObservable, useObservableState } from 'observable-hooks';
 import { useCallback } from 'react';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Exception } from '~~/models/Exception';
 import { SubjectWithValue } from './useSubjectValue';
 
-export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: [Observable<any>]) => Observable<T1>;
+export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: Observable<any>[]) => Observable<T1>;
+
 /**
  * Creates and returns an ObservableWithState from initalValue
  * The observable has a operator applied to it.
@@ -12,7 +14,12 @@ export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: [Observa
  * @param operator Accepts two arguments, 1. the current observable, 2. second input observable
  */
 
-export const useSubjectTransform = <T>(initValue: T, operator: TOperator<T>, ...otherObservables$: [Observable<any>]): SubjectWithValue<T> => {
+export const useSubjectTransform = <T>(initValue: T, operator: TOperator<T>, ...otherObservables$: Observable<any>[]): SubjectWithValue<T> => {
+   if (operator.length - 1 !== otherObservables$.length) {
+      console.log(operator, otherObservables$);
+      throw new Error('useSubjectTransform: invalid arguments match between operator and observable');
+   }
+
    const observable$ = useObservable<T>(() => new BehaviorSubject(initValue));
    const transform$ = useObservable(() => operator(observable$, ...otherObservables$));
    const value = useObservableState(transform$, initValue);

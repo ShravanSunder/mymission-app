@@ -29,9 +29,6 @@ export class Exception<T extends Record<string, any>> extends Error {
 
       this.exeptionType = exceptionType;
       this.data = data;
-      if (process.env.NODE_ENV !== 'production') {
-         console.log(exceptionType);
-         console.log(data);
-      }
+      if (process.env.NODE_ENV !== 'production') console.error(exceptionType, data);
    }
 }

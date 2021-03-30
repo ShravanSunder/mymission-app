@@ -12,7 +12,8 @@ import { MainAppLayout } from '~~/components/layout/MainAppLayout';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { IntlProvider } from 'react-intl';
 // import { StyleInjectTry } from '~~/StyleInjectTry';
-// import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { AppRootLoading } from '~~/components/app/AppRootLoading';
 
 /**
  * App Root that also has the Root Routes required for navigation
@@ -21,27 +22,22 @@ import { IntlProvider } from 'react-intl';
  */
 const AppRoot: FC = () => {
    return (
-      <>
-         {/* <StyledEngineProvider injectFirst={false}>
-            <StyleInjectTry css={css({ color: 'red' })}></StyleInjectTry> */}
-         <ThemeProvider>
-            <BrowserRouter>
-               <IntlProvider locale="en" defaultLocale="en">
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
-                     <Suspense fallback={<div></div>}>
-                        <Routes>
-                           <Route path="/" element={<MainAppLayout></MainAppLayout>} />
-                           <Route path="/users/*" element={<div>test users path</div>}></Route>
-                           <Route path="/noworkie/:id" element={<div>test not workie</div>}></Route>
-                           <Route path="/*" element={<div>notfound</div>} />
-                        </Routes>
-                     </Suspense>
-                  </ErrorBoundary>
-               </IntlProvider>
-            </BrowserRouter>
-         </ThemeProvider>
-         {/* </StyledEngineProvider> */}
-      </>
+      <ThemeProvider>
+         <BrowserRouter>
+            <IntlProvider locale="en" defaultLocale="en">
+               <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <Suspense fallback={<div></div>}>
+                     <Routes>
+                        <Route path="/" element={<MainAppLayout></MainAppLayout>} />
+                        <Route path="/users/*" element={<div>test users path</div>}></Route>
+                        <Route path="/noworkie/:id" element={<div>test not workie</div>}></Route>
+                        <Route path="/*" element={<div>notfound</div>} />
+                     </Routes>
+                  </Suspense>
+               </ErrorBoundary>
+            </IntlProvider>
+         </BrowserRouter>
+      </ThemeProvider>
    );
 };
 

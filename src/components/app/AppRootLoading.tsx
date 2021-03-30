@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import Slider from '@material-ui/core/Slider';
 import { LinearProgress } from '@material-ui/core';
+import { FC } from 'react';
 
 export const StyleInjectTry = ({ text = 'default' }) => {
    return (
@@ -28,7 +29,7 @@ export const StyleInjectTry = ({ text = 'default' }) => {
    );
 };
 
-export const AppRootLoading = () => {
+export const AppRootLoading: FC = () => {
    return (
       <div>
          <LinearProgress></LinearProgress>

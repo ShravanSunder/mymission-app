@@ -1,5 +1,5 @@
 import { Button, Theme, ThemeProvider as MuiThemeProvider } from '@material-ui/core';
-import { FC, useMemo, useState, createRef } from 'react';
+import { FC, useMemo, useState, createRef, Suspense } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -65,7 +65,7 @@ const ThemeProvider: FC = ({ children }) => {
                      vertical: 'bottom',
                      horizontal: 'center',
                   }}> */}
-               {children}
+               <Suspense fallback="Loading">{children}</Suspense>
                {/* </SnackbarProvider> */}
             </MuiThemeProvider>
          </EmotionThemeProvider>

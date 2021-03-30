@@ -17,11 +17,9 @@ const StateRoot: FC = (props) => {
    return (
       <ErrorBoundary FallbackComponent={ErrorFallback}>
          <RecoilRoot>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-               <StyledEngineProvider injectFirst={false}>
-                  <Suspense fallback={<AppRootLoading />}>{props.children}</Suspense>
-               </StyledEngineProvider>
-            </ErrorBoundary>
+            <StyledEngineProvider injectFirst={false}>
+               <Suspense fallback={<AppRootLoading />}>{props.children}</Suspense>
+            </StyledEngineProvider>
          </RecoilRoot>
       </ErrorBoundary>
    );

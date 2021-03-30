@@ -11,7 +11,7 @@ import { RecurrenceAggregationPeriods, RecurrenceDurationList, RecurrenceDuratio
 import { DaysOfWeek } from './core/schedule.types';
 import { PickTarget } from './PickTarget';
 import { availableDurations } from './core/recurrence.funcs';
-import { css } from '@emotion/react';
+import { muiIconCss } from '../../../../../helpers/muiIconCss';
 
 export interface IRecurrenceGoalProps {
    /**
@@ -40,11 +40,7 @@ const DurationIcons: FC<{ duration: RecurrenceDurationTypes }> = (props) => {
    } else if (props.duration === RecurrenceDurationTypes.Quarterly) {
       return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faThLarge} />;
    } else {
-      return (
-         <div>
-            <EventNote css={css({ width: '1.5em', height: '1.5em' })}></EventNote>
-         </div>
-      );
+      return <EventNote css={muiIconCss}></EventNote>;
    }
 };
 
@@ -69,7 +65,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
                <Fragment key={i}>
                   <ListItem key={i} selected={m === props.durationType.value} onClick={() => handleClick()} button>
                      <ListItemAvatar>
-                        <Avatar css={css({ height: '1rem', width: '1rem' })}>
+                        <Avatar>
                            <DurationIcons duration={m}></DurationIcons>
                         </Avatar>
                      </ListItemAvatar>

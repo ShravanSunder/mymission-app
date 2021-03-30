@@ -11,7 +11,7 @@ import { RecurrenceAggregationPeriods, RecurrenceDurationList, RecurrenceDuratio
 import { DaysOfWeek } from './core/schedule.types';
 import { PickTarget } from './PickTarget';
 import { availableDurations } from './core/recurrence.funcs';
-import { css } from 'twin.macro';
+import { css } from '@emotion/react';
 
 export interface IRecurrenceGoalProps {
    /**

@@ -1,26 +1,29 @@
 import { FC, lazy, Suspense } from 'react';
+
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import { RecoilRoot } from 'recoil';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
-
-const AppRoot = lazy(() => import('~~/components/app/AppRoot'));
-
-const isDev = process.env.NODE_ENV === 'development';
-console.log(`isDev=${isDev.toString()}`);
+import { css } from '@emotion/react';
+import { StyleInjectTry } from '~~/StyleInjectTry';
 
 /**
  * Currently deciding between redux and recoil.
  * Will be using observable-hooks (rxjs) for local state, see readme
  * @param props
  */
-const StateRoot: FC = () => {
+const StateRoot: FC = (props) => {
+   const style = css({ color: 'red' });
+   console.log(style);
    return (
-      <RecoilRoot>
-         <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<div></div>}>
-               <AppRoot />
-            </Suspense>
-         </ErrorBoundary>
-      </RecoilRoot>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+         <RecoilRoot>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+               <StyledEngineProvider injectFirst={false}>
+                  <Suspense fallback={<StyleInjectTry />}>{props.children}</Suspense>
+               </StyledEngineProvider>
+            </ErrorBoundary>
+         </RecoilRoot>
+      </ErrorBoundary>
    );
 };
 export default StateRoot;

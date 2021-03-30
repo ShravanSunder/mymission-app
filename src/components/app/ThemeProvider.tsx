@@ -8,15 +8,16 @@ import { grey, green, red, yellow } from '@material-ui/core/colors';
 import { ThemeProvider as EmotionThemeProvider, CacheProvider } from '@emotion/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import createCache from '@emotion/cache';
+import { StyleInjectTry } from '~~/StyleInjectTry';
 
-// const useStyles = makeStyles(() => {
+// const snackbarStyles = () => {
 //    const snackbarRoot = {
 //       color: `${grey[700]}!important`,
 //       maxWidth: 280,
 //       zIndex: 1000,
 //    };
 
-//    return createStyles({
+//    return {
 //       info: { backgroundColor: `${grey[200]}!important`, ...snackbarRoot },
 //       success: { backgroundColor: `${green[50]}!important`, ...snackbarRoot },
 //       error: { backgroundColor: `${red[100]}!important`, ...snackbarRoot },
@@ -24,16 +25,16 @@ import createCache from '@emotion/cache';
 //          backgroundColor: `${yellow[50]}!important`,
 //          ...snackbarRoot,
 //       },
-//    });
-// });
+//    };
+// };
 
 const ThemeProvider: FC = ({ children }) => {
-   // const classes = useStyles();
    // const notistackRef = createRef() as any;
    // const onClickDismiss = (key: string | number) => () => {
    //    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
    //    notistackRef?.current?.closeSnackbar(key);
    // };
+   // // const classes = snackbarStyles();
 
    const [isDark] = useState<boolean>(false);
 
@@ -42,7 +43,7 @@ const ThemeProvider: FC = ({ children }) => {
    }, [isDark]);
 
    return (
-      <StyledEngineProvider injectFirst={true}>
+      <>
          <EmotionThemeProvider theme={theme}>
             <MuiThemeProvider theme={theme}>
                {/* <SnackbarProvider
@@ -68,7 +69,7 @@ const ThemeProvider: FC = ({ children }) => {
                {/* </SnackbarProvider> */}
             </MuiThemeProvider>
          </EmotionThemeProvider>
-      </StyledEngineProvider>
+      </>
    );
 };
 

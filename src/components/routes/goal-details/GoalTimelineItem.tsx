@@ -1,5 +1,6 @@
+import { css } from '@emotion/react';
 import { FC } from 'react';
-import tw, { css } from 'twin.macro';
+import tw from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TimelineIcon } from './TimelineIcon';
 

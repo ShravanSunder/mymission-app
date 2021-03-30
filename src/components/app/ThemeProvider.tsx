@@ -8,7 +8,7 @@ import { grey, green, red, yellow } from '@material-ui/core/colors';
 import { ThemeProvider as EmotionThemeProvider, CacheProvider } from '@emotion/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import createCache from '@emotion/cache';
-import { StyleInjectTry } from '~~/components/app/AppLoading';
+import { StyleInjectTry } from '~~/components/app/AppRootLoading';
 
 // const snackbarStyles = () => {
 //    const snackbarRoot = {

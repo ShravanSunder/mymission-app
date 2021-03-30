@@ -4,7 +4,7 @@ import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import { RecoilRoot } from 'recoil';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { css } from '@emotion/react';
-import { StyleInjectTry, AppLoading } from '~~/components/app/AppLoading';
+import { StyleInjectTry, AppRootLoading } from '~~/components/app/AppRootLoading';
 
 /**
  * Currently deciding between redux and recoil.
@@ -19,7 +19,7 @@ const StateRoot: FC = (props) => {
          <RecoilRoot>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
                <StyledEngineProvider injectFirst={false}>
-                  <Suspense fallback={<AppLoading />}>{props.children}</Suspense>
+                  <Suspense fallback={<AppRootLoading />}>{props.children}</Suspense>
                </StyledEngineProvider>
             </ErrorBoundary>
          </RecoilRoot>

@@ -28,7 +28,7 @@ export const StyleInjectTry = ({ text = 'default' }) => {
    );
 };
 
-export const AppLoading = () => {
+export const AppRootLoading = () => {
    return (
       <div>
          <LinearProgress></LinearProgress>

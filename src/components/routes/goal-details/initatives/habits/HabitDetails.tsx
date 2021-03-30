@@ -12,7 +12,6 @@ export const HabitDetails: FC<ICommonProps> = () => {
    const emoji = '🍵';
    const safeEmoji: string = useSafeEmoji(emoji);
 
-   const size = 20;
    const dataPoints = [
       { x: 'Dec', y: 20 },
       { x: '2021', y: 10 },

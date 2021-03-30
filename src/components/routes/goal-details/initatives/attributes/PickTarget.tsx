@@ -51,7 +51,8 @@ export const PickTarget: FC<IRecurrenceGoalProps> = (props) => {
    if (availableDays != null && availableDays > 0) {
       const resultDays: ReactNode[] = [];
       for (let i = 1; i <= availableDays; i++) {
-         resultDays.push(<TargetItem target={props.target.value} key={i} index={i} handleChange={handleChange} />);
+         const target = <TargetItem target={props.target.value} key={i} index={i} handleChange={handleChange} />;
+         resultDays.push(target);
       }
       days = resultDays;
    }

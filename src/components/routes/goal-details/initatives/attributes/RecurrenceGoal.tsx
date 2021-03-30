@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { faCalendarWeek, faCalendarPlus, faCalendarAlt, faThLarge } from '@fortawesome/free-solid-svg-icons';
 import { EventNote } from '@material-ui/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +11,7 @@ import { RecurrenceAggregationPeriods, RecurrenceDurationList, RecurrenceDuratio
 import { DaysOfWeek } from './core/schedule.types';
 import { PickTarget } from './PickTarget';
 import { availableDurations } from './core/recurrence.funcs';
+import { css } from 'twin.macro';
 
 export interface IRecurrenceGoalProps {
    /**
@@ -40,7 +42,7 @@ const DurationIcons: FC<{ duration: RecurrenceDurationTypes }> = (props) => {
    } else {
       return (
          <div>
-            <EventNote css={{ width: '1.5em', height: '1.5em' }}></EventNote>
+            <EventNote css={css({ width: '1.5em', height: '1.5em' })}></EventNote>
          </div>
       );
    }
@@ -65,9 +67,9 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
 
             return (
                <Fragment key={i}>
-                  <ListItem key={i} selected={m === props.durationType.value} onClick={() => handleClick()}>
+                  <ListItem key={i} selected={m === props.durationType.value} onClick={() => handleClick()} button>
                      <ListItemAvatar>
-                        <Avatar>
+                        <Avatar css={css({ height: '1rem', width: '1rem' })}>
                            <DurationIcons duration={m}></DurationIcons>
                         </Avatar>
                      </ListItemAvatar>

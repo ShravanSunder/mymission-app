@@ -8,7 +8,20 @@ import { useCallback } from 'react';
  * 2. value: the current value of observable$
  * 3. push: a callback to push a new value to the observable$
  */
-export type SubjectWithValue<T> = { subject$: Subject<T>; value: T; push: (newState: T) => void };
+export type SubjectWithValue<T> = {
+   /**
+    * the subject (observable)
+    */
+   subject$: Subject<T>;
+   /**
+    * latest value of observable
+    */
+   value: T;
+   /**
+    * push a new value into observable
+    */
+   push: (newValue: T) => void;
+};
 
 /**
  * Creates and returns an @see ObservableWithValue from initial value

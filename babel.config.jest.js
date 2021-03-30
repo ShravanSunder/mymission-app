@@ -1,4 +1,4 @@
-const babelOptions = require('./babel.config.json');
+const babelOptions = require('./babel.config.js');
 
 babelOptions.presets.push('@babel/preset-typescript');
 

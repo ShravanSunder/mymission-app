@@ -66,10 +66,11 @@
       "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
       //"skipDefaultLibCheck": true,
       "resolveJsonModule": true,
-      "types": ["jest", "@emotion/react", "@emotion/react/types/css-prop", "node"],
+      "types": ["jest", "@emotion/react", "node"],
       "paths": {
          "~~/*": ["./src/*"]
-      }
+      },
+      "jsxImportSource": "@emotion/react"
       /** eof */
    },
    "exclude": ["node_modules", "dist", "build", ".yarn", "build-utils", "build-utils", "*.test.ts"],

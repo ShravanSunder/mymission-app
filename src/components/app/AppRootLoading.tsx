@@ -29,11 +29,19 @@ export const StyleInjectTry = ({ text = 'default' }) => {
    );
 };
 
+/**
+ * Created for main app root suspense.  It was necessary to get the mui5-alpha emotion
+ * injection order working properly.  Works with @see StyledEngineProvider in @see StateRoot
+ * Details:
+ * Emotion mui styles and app emotion styles are not being merged. There could be multiple
+ * emotion instances and therefore multiple classes per element.  So injection order is present
+ *
+ */
 export const AppRootLoading: FC = () => {
    return (
       <div>
-         <LinearProgress></LinearProgress>
-         <LinearProgress css={css({ backgroundColor: 'grey' })}></LinearProgress>
+         <LinearProgress variant="query"></LinearProgress>
+         <LinearProgress variant="query" css={css({ backgroundColor: 'lavender' })}></LinearProgress>
       </div>
    );
 };

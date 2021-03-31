@@ -1,8 +1,6 @@
 import { Card, CardActionArea, Typography } from '@material-ui/core';
-import { useMemo } from 'react';
 import tw from 'twin.macro';
-import { TwemojiInline } from '~~/components/common/Twemoji';
-import { useSafeEmoji } from '~~/components/common/core/hooks/useSafeEmoji';
+import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 import { ProjectMeter } from '~~/components/routes/goal-details/initatives/projects/ProjectMeter';
 
 interface IProjectCardProps {
@@ -13,8 +11,6 @@ interface IProjectCardProps {
 }
 
 export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardProps): JSX.Element => {
-   const safeEmoji: string = useSafeEmoji(emoji);
-
    const numberOfMilestones = 4;
    const numberOfSegments = 33;
    const progress = 15;
@@ -36,7 +32,7 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
                      milestonesCompleted={milestonesCompleted}
                      size={size}
                      progress={progress}
-                     safeEmoji={safeEmoji}></ProjectMeter>
+                     emoji={emoji}></ProjectMeter>
                   <div className="flex flex-col justify-between w-full h-full p-2">
                      <Typography variant="h4">{title}</Typography>
                      <Typography variant="body2">{subtitle}</Typography>
@@ -47,13 +43,13 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
                   className="pl-2 pr-2 justify-evenly justify-items-center pb-0.5 col-start-1 col-span-2 row-start-3 row-span-1 box-border grid grid-rows-1 grid-cols-3"
                   css={{ gridTemplateRows: 'auto auto auto' }}>
                   <Typography variant="caption">
-                     <TwemojiInline text="✔" /> 20/40
+                     <TwemojiInlineLazy text="✔" /> 20/40
                   </Typography>
                   <Typography variant="caption">
-                     <TwemojiInline text="🚩" /> {`${milestonesCompleted}/${numberOfMilestones}`}
+                     <TwemojiInlineLazy text="🚩" /> {`${milestonesCompleted}/${numberOfMilestones}`}
                   </Typography>
                   <Typography variant="caption">
-                     <TwemojiInline text="📅" /> June 40
+                     <TwemojiInlineLazy text="📅" /> June 40
                   </Typography>
                </div>
             </div>

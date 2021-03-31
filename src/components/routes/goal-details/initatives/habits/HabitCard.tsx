@@ -2,8 +2,6 @@ import { Card, CardActionArea, Typography } from '@material-ui/core';
 import tw from 'twin.macro';
 
 import { HabitMeter } from './HabitMeter';
-import { useSafeEmoji } from '~~/components/common/core/hooks/useSafeEmoji';
-
 interface IHabitCardProps {
    emoji: string;
    title: string;
@@ -12,8 +10,6 @@ interface IHabitCardProps {
 }
 
 export const HabitCard = ({ emoji, title, subtitle, schedule }: IHabitCardProps): JSX.Element => {
-   const safeEmoji: string = useSafeEmoji(emoji);
-
    const numberOfSegments = 3;
    const progress = 33;
    const size = 90;
@@ -28,7 +24,7 @@ export const HabitCard = ({ emoji, title, subtitle, schedule }: IHabitCardProps)
                   numberOfSegments={numberOfSegments}
                   size={size}
                   progress={progress}
-                  safeEmoji={safeEmoji}></HabitMeter>
+                  emoji={emoji}></HabitMeter>
                <div className="flex flex-col justify-between w-full h-full p-2">
                   <Typography variant="h4">{title}</Typography>
                   <Typography variant="body2">{subtitle}</Typography>

@@ -43,10 +43,9 @@ const ThemeProvider: FC = ({ children }) => {
    }, [isDark]);
 
    return (
-      <>
-         <EmotionThemeProvider theme={theme}>
-            <MuiThemeProvider theme={theme}>
-               {/* <SnackbarProvider
+      <EmotionThemeProvider theme={theme}>
+         <MuiThemeProvider theme={theme}>
+            {/* <SnackbarProvider
                   ref={notistackRef}
                   action={(key) => <Button onClick={onClickDismiss(key)}>Dismiss</Button>}
                   classes={{
@@ -65,11 +64,10 @@ const ThemeProvider: FC = ({ children }) => {
                      vertical: 'bottom',
                      horizontal: 'center',
                   }}> */}
-               <Suspense fallback="Loading">{children}</Suspense>
-               {/* </SnackbarProvider> */}
-            </MuiThemeProvider>
-         </EmotionThemeProvider>
-      </>
+            {children}
+            {/* </SnackbarProvider> */}
+         </MuiThemeProvider>
+      </EmotionThemeProvider>
    );
 };
 

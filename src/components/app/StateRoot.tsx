@@ -4,21 +4,25 @@ import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import { RecoilRoot } from 'recoil';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { css } from '@emotion/react';
-import { StyleInjectTry, AppRootLoading } from '~~/components/app/AppRootLoading';
+import { AppRootLoading } from '~~/components/app/AppRootLoading';
+
+const AppRootLazy = lazy(() => import('~~/components/app/AppRoot'));
 
 /**
- * Currently deciding between redux and recoil.
- * Will be using observable-hooks (rxjs) for local state, see readme
- * @param props
+ * Using Reocil with observable-hooks (rxjs) for local state, see readme.
+ * It has a suspense and app loading that circumvents issues with emotion-mui style injection
+ * see @see AppRootLoading for more details
  */
-const StateRoot: FC = (props) => {
+const StateRoot: FC = () => {
    const style = css({ color: 'red' });
    console.log(style);
    return (
       <ErrorBoundary FallbackComponent={ErrorFallback}>
          <RecoilRoot>
             <StyledEngineProvider injectFirst={false}>
-               <Suspense fallback={<AppRootLoading />}>{props.children}</Suspense>
+               <Suspense fallback={<AppRootLoading />}>
+                  <AppRootLazy />
+               </Suspense>
             </StyledEngineProvider>
          </RecoilRoot>
       </ErrorBoundary>

@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { TwemojiImage } from '~~/components/common/Twemoji';
+import { TwemojiImageLazy } from '~~/components/common/TwemojiLazy';
 import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 import tw from 'twin.macro';
 import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
-import { CircularMilestoneSegments } from '../../progress/CircularMilestoneSegments';
+import { CircularMilestoneSegments } from '~~/components/routes/goal-details/progress/CircularMilestoneSegments';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 
 interface IProjectMeterProps {
@@ -12,14 +12,14 @@ interface IProjectMeterProps {
    size: number;
    progress: number;
    milestonesCompleted: number;
-   safeEmoji: string;
+   emoji: string;
 }
 export const ProjectMeter: FC<IProjectMeterProps & ICommonProps> = ({
    numberOfSegments,
    size,
    numberOfMilestones,
    progress,
-   safeEmoji,
+   emoji,
    milestonesCompleted,
    className,
 }) => {
@@ -41,7 +41,7 @@ export const ProjectMeter: FC<IProjectMeterProps & ICommonProps> = ({
          </div>
 
          <div className="absolute flex justify-center w-full h-full">
-            <TwemojiImage text={safeEmoji} size={size / 2.3}></TwemojiImage>
+            <TwemojiImageLazy text={emoji} size={size / 2.3}></TwemojiImageLazy>
          </div>
       </div>
    );

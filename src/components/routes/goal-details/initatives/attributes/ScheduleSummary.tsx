@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { Typography } from '@material-ui/core';
-import { TwemojiInline } from '~~/components/common/Twemoji';
+import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 
 interface IScheduleAccordionSummary {
    icon: string;
@@ -17,7 +17,7 @@ export const ScheduleSummary: FC<IScheduleAccordionSummary> = (props) => {
             gridTemplateColumns: 'auto 1fr auto',
          }}>
          <Typography variant="h3" className="w-full rounded-full">
-            <TwemojiInline text={props.icon}></TwemojiInline>
+            <TwemojiInlineLazy text={props.icon}></TwemojiInlineLazy>
          </Typography>
          <Typography variant="h3" className="pl-2 capitalize">
             {props.summaryName}

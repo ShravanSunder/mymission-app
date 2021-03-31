@@ -1,7 +1,14 @@
 import { useMemo } from 'react';
 import emojiRegexRGI from 'emoji-regex';
 
-export const useSafeEmoji = (emoji: string): string => {
+/**
+ * Get the first emoji taking into account emoji colors and complex characters
+ * Used by @see TwemojiImage
+ * note: is expensive (large) and should be bundle split.
+ *
+ * @param emoji
+ */
+export const useFirstEmoji = (emoji: string): string => {
    return useMemo((): string => {
       if (emoji?.length > 0) {
          // eslint-disable-next-line @typescript-eslint/no-unsafe-call

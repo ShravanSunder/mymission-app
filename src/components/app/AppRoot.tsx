@@ -11,20 +11,16 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { MainAppLayout } from '~~/components/layout/MainAppLayout';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { IntlProvider } from 'react-intl';
-// import { StyleInjectTry } from '~~/StyleInjectTry';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
-import { AppRootLoading } from '~~/components/app/AppRootLoading';
-
 /**
- * App Root that also has the Root Routes required for navigation
- * Intatiates ThemeProvider as well as a Suspense and Errorboundary
+ * App Root that is called by @see StateRoot.  It contains routes required for navigation
+ * Intatiates @see ThemeProvider as well as a Suspense and Errorboundary
  * @see ThemeProvider
  */
 const AppRoot: FC = () => {
    return (
       <ThemeProvider>
-         <BrowserRouter>
-            <IntlProvider locale="en" defaultLocale="en">
+         <IntlProvider locale="en" defaultLocale="en">
+            <BrowserRouter>
                <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Suspense fallback={<div></div>}>
                      <Routes>
@@ -35,8 +31,8 @@ const AppRoot: FC = () => {
                      </Routes>
                   </Suspense>
                </ErrorBoundary>
-            </IntlProvider>
-         </BrowserRouter>
+            </BrowserRouter>
+         </IntlProvider>
       </ThemeProvider>
    );
 };

@@ -58,7 +58,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
 
    // todo this list depends on what's allowed by aggregation date
    const durationList = (
-      <List>
+      <List className="elevation-2">
          {availableDurations(props.aggregationPeriod.value).map((m: RecurrenceDurationTypes, i: number) => {
             const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, m);
             const handleClick = () => {

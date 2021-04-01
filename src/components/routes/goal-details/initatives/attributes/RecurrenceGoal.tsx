@@ -2,7 +2,7 @@ import { faCalendarAlt, faCalendarPlus, faCalendarWeek, faThLarge } from '@forta
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { EventNote } from '@material-ui/icons';
-import { FC, Fragment, ReactNode, useState, useEffect } from 'react';
+import React, { FC, Fragment, ReactNode, useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { CommonPopover } from '~~/components/common/CommonPopover';
@@ -12,6 +12,7 @@ import { formatGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
+import { DropDownButton } from '../../../../common/DropDownButton';
 
 export interface IRecurrenceGoalProps {
    /**
@@ -51,18 +52,10 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const tempColorSelectedDay = 'bg-gray-200';
    const intl = useIntl();
    const [selectedDuration, setSelectedDuration] = useState<ReactNode>(<div></div>);
+   const [showDuration, setShowDuration] = useState(false);
 
    const handleSelectedDuration = (m: RecurrenceDurationTypes, text: IDisplayText) => {
-      const selected = (
-         <ListItem>
-            <ListItemAvatar>
-               <Avatar>
-                  <DurationIcons duration={m}></DurationIcons>
-               </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={text.primary} />
-         </ListItem>
-      );
+      const selected = <DropDownButton title={text.primary} handleClick={() => setShowDuration((value) => !value)}></DropDownButton>;
       setSelectedDuration(selected);
    };
 
@@ -102,9 +95,8 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             <Typography variant="h4" className="text-center">
                {intl.formatMessage({ defaultMessage: 'What is your target goal?' })}
             </Typography>
-            <CommonPopover selected={selectedDuration}>
-               <List>{durationList}</List>
-            </CommonPopover>
+            {selectedDuration}
+            {showDuration && <List>{durationList}</List>}
          </div>
          {/* <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
             <PickTarget {...props}></PickTarget>

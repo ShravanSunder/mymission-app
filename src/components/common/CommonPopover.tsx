@@ -12,10 +12,8 @@ export const CommonPopover: FC<ICommonPopover> = (props) => {
    return (
       <PopupState variant="popover" popupId="demo-popup-popover">
          {(popupState) => (
-            <div className="">
-               <div className="w-full" {...bindTrigger(popupState)}>
-                  {props.selected}
-               </div>
+            <div className="w-full">
+               <div {...bindTrigger(popupState)}>{props.selected}</div>
                <Popover
                   {...bindPopover(popupState)}
                   anchorOrigin={{

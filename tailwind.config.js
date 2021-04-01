@@ -44,6 +44,15 @@ module.exports = {
             ...theme('spacing'),
          }),
          backgroundColor: ['group-focus'],
+         borderWidth: {
+            1: '1px',
+         },
+      },
+   },
+   variants: {
+      extend: {
+         // ...
+         borderWidth: ['hover', 'focus'],
       },
    },
 };

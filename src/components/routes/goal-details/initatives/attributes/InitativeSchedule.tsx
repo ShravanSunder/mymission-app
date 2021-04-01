@@ -7,6 +7,7 @@ import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInit
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { RecurrenceGoal } from './RecurrenceGoal';
 import { ScheduleSummary } from './ScheduleSummary';
+import { useControlledAccordion } from '~~/components/common/core/hooks/useControlledAccordion';
 
 export const InitativeSchedule: FC = () => {
    /**
@@ -14,6 +15,7 @@ export const InitativeSchedule: FC = () => {
     */
    const tempColorIcons = 'bg-gray-200';
 
+   const getAccordionProps = useControlledAccordion();
    const intl = useIntl();
 
    const recurrenceState: IRecurrenceObservables = useRecurrenceObservables();
@@ -33,7 +35,7 @@ export const InitativeSchedule: FC = () => {
    console.log(data);
 
    const aggregateAccordion = (
-      <Accordion>
+      <Accordion {...getAccordionProps('aggregateAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
             <ScheduleSummary icon={'📅'} summaryName={aggregationName} summaryValue={aggregationValue.primary}></ScheduleSummary>
          </AccordionSummary>
@@ -44,7 +46,7 @@ export const InitativeSchedule: FC = () => {
    );
 
    const goalAccordion = (
-      <Accordion>
+      <Accordion {...getAccordionProps('goalAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
             <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalValue.primary}></ScheduleSummary>
          </AccordionSummary>

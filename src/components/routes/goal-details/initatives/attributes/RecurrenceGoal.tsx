@@ -89,7 +89,9 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             </Typography>
          </div>
          <div className="p-1"></div>
-         <DropDownContainer title={selectedDurationText}>{durationList}</DropDownContainer>
+         <DropDownContainer className="m-2" selectedItemText={selectedDurationText}>
+            {durationList}
+         </DropDownContainer>
          {/* <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
             <PickTarget {...props}></PickTarget>
          </div> */}

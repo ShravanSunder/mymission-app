@@ -3,8 +3,9 @@ import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import { IDisplayText } from '~~/models/IDisplayText';
+import { ICommonProps } from '~~/components/common/ICommonProps';
 
-interface ICommonPopover {
+interface ICommonPopover extends ICommonProps {
    selected: ReactNode;
 }
 

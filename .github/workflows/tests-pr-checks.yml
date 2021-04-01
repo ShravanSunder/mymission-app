@@ -23,3 +23,10 @@ jobs:
          - run: yarn install --immutable --silent
 
          - run: yarn test
+
+         - uses: sarthak-saxena/JSBundleSize@master
+           with:
+              bootstrap: yarn
+              build_command: yarn build:prod
+              dist_path: 'dist'
+              token: ${{ secrets.GITHUB_TOKEN }}

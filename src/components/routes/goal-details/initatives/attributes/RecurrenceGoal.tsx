@@ -6,6 +6,7 @@ import { FC, Fragment, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { DropDownContainer } from '~~/components/common/DropDownContainer';
+import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
 import { muiIconCss } from '~~/helpers/muiIconCss';
 import { formatGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
@@ -92,9 +93,9 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
          <DropDownContainer className="m-2" selectedItemText={selectedDurationText}>
             {durationList}
          </DropDownContainer>
-         {/* <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
-            <PickTarget {...props}></PickTarget>
-         </div> */}
+         <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
+            <RecurrenceTarget {...props}></RecurrenceTarget>
+         </div>
       </>
    );
 };

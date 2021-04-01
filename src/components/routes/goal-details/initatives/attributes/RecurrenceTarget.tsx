@@ -34,7 +34,7 @@ const TargetItem: FC<ITargetItemProps> = (props) => {
    }, [props, index]);
 };
 
-export const PickTarget: FC<IRecurrenceGoalProps> = (props) => {
+export const RecurrenceTarget: FC<IRecurrenceGoalProps> = (props) => {
    /**
     * todo: replace colors
     */

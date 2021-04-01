@@ -13,11 +13,7 @@
 
    // legacy mode
    const root = document.getElementById('root');
-   if (root.hasChildNodes()) {
-      ReactDOM.hydrate(<App />, root);
-   } else {
-      ReactDOM.render(<App />, root);
-   }
+   ReactDOM.render(<App />, root);
 })();
 
 if ('serviceWorker' in navigator) {

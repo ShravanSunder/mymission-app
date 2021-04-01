@@ -1,5 +1,6 @@
-import { IconButton, Tooltip, useTheme } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import { Home as HomeIcon } from '@material-ui/icons';
+import { useTheme } from '@material-ui/core/styles';
 
 /**
  * Button used for Navigation.  An iconButton with centering div

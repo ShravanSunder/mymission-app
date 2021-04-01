@@ -1,14 +1,14 @@
-import { Button, Theme, ThemeProvider as MuiThemeProvider } from '@material-ui/core';
+import { Button, Theme } from '@material-ui/core';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+
 import { FC, useMemo, useState, createRef, Suspense } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createAppTheme } from '~~/styles/theme';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import { grey, green, red, yellow } from '@material-ui/core/colors';
-import { ThemeProvider as EmotionThemeProvider, CacheProvider } from '@emotion/react';
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import createCache from '@emotion/cache';
-import { StyleInjectTry } from '~~/components/app/AppRootLoading';
 
 // const snackbarStyles = () => {
 //    const snackbarRoot = {

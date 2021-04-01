@@ -1,6 +1,5 @@
 import { lazy, StrictMode, Suspense, FC } from 'react';
 import { ErrorBoundary, ErrorFallback } from './components/common/ErrorFallback';
-import _jsxDev from 'react/jsx-runtime';
 
 const isDev = process.env.NODE_ENV === 'development';
 console.log(`isDev=${isDev.toString()}`);

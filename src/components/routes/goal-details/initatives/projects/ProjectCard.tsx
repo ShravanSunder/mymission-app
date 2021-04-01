@@ -18,7 +18,7 @@ export const ProjectCard = ({ emoji, title, subtitle, schedule }: IProjectCardPr
    const milestonesCompleted = 1;
 
    return (
-      <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 border-1 rounded-md ">
+      <Card className="flex-grow m-1 border-gray-500 shadow-md elevation-2 rounded-md ">
          <CardActionArea className="container-fill-viewport-full ">
             <div
                className="p-2 container-fill-viewport-full grid gap-1"

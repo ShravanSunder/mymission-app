@@ -2,7 +2,7 @@ import { faCalendarAlt, faCalendarPlus, faCalendarWeek, faThLarge } from '@forta
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { EventNote } from '@material-ui/icons';
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { DropDownContainer } from '~~/components/common/DropDownContainer';

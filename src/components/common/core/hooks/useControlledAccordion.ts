@@ -5,7 +5,7 @@ export const useControlledAccordion = (): ((
 ) => {
    expanded: boolean;
    onChange: (event: SyntheticEvent, isExpanded: boolean) => void;
-   ariaControls: string;
+   'aria-controls': string;
 }) => {
    const [expandedAccordion, setExpandedPanel] = useState('');
    const handleAccordionChange = (panel: string) => (event: SyntheticEvent, isExpanded: boolean) => {
@@ -15,7 +15,7 @@ export const useControlledAccordion = (): ((
    const getAccordionProps = (accordionName: string) => ({
       expanded: expandedAccordion === accordionName,
       onChange: handleAccordionChange(accordionName),
-      ariaControls: accordionName,
+      'aria-controls': accordionName,
    });
 
    return getAccordionProps;

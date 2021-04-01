@@ -12,7 +12,7 @@ import { formatGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
-import { DropDownButton } from '../../../../common/DropDownButton';
+import { DropDownButton } from '~~/components/common/DropDownButton';
 
 export interface IRecurrenceGoalProps {
    /**

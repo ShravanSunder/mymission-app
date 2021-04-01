@@ -59,6 +59,9 @@ module.exports = {
          exclude: [/vendor\..*.js/],
       }),
       new ForkTsCheckerWebpackPlugin({
+         typescript: {
+            memoryLimit: 4096,
+         },
          eslint: {
             files: './src/**/*.{ts,tsx,js,jsx}',
          },

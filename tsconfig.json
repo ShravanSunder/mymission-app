@@ -73,6 +73,6 @@
       "jsxImportSource": "@emotion/react"
       /** eof */
    },
-   "exclude": ["**/node_modules", "**/.*", "*.test.ts"],
+   "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js", "**/*.test.ts"],
    "include": ["src"]
 }

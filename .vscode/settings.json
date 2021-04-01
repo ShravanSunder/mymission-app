@@ -68,16 +68,11 @@
    "gitHistory.showEditorTitleMenuBarIcons": false,
    "stylelint.packageManager": "yarn",
    "stylelint.reportInvalidScopeDisables": true,
-   "stylelint.validate": [
-      "css",
-      "html",
-      "markdown",
-      "postcss",
-      "styled-css",
-      "typescriptreact"
-   ],
+   "stylelint.validate": ["css", "html", "markdown", "postcss", "styled-css", "typescriptreact"],
    "css.lint.important": "warning",
    "eslint.packageManager": "yarn",
    "javascript.preferences.importModuleSpecifier": "non-relative",
-   "typescript.preferences.importModuleSpecifier": "non-relative"
+   "typescript.preferences.importModuleSpecifier": "non-relative",
+   "typescript.workspaceSymbols.scope": "currentProject",
+   "javascript.format.semicolons": "insert"
 }

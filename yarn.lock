@@ -2283,6 +2283,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/react@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@heroicons/react@npm:1.0.0"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 2bf50a52e63bc465c6f0d3037b72e6417fff57ead3dbaa81aa4f7fc0608abcf475742004e8af3a5ce7e1a29a549e0995d452b8b9c0c76727e8238bd77de88a4d
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -4921,6 +4930,26 @@ __metadata:
   peerDependencies:
     tailwindcss: ">=2.0.0"
   checksum: a400fa0dbc9773a29484c0d9d20b95b6f4e8364b9ed598fd8529e08ad99962612e102b20efd0f0b5320c9bf41f38dae89416af13dd8ac1ad17fbbf811113c656
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/jit@npm:^0.1.18":
+  version: 0.1.18
+  resolution: "@tailwindcss/jit@npm:0.1.18"
+  dependencies:
+    chokidar: ^3.5.1
+    dlv: ^1.1.3
+    fast-glob: ^3.2.5
+    lodash.topath: ^4.5.2
+    normalize-path: ^3.0.0
+    object-hash: ^2.1.1
+    parse-glob: ^3.0.4
+    postcss-selector-parser: ^6.0.4
+    quick-lru: ^5.1.1
+  peerDependencies:
+    postcss: ^8.2.6
+    tailwindcss: ^2.0.3
+  checksum: c9305b27f3def34e603916ac24775eb4f5778a0d84983a34a2f20fd42b2ad58d77e8efc458ca7d89a35b33bc30bdec05051b42acda968251e10e7db994a1a2ba
   languageName: node
   linkType: hard
 
@@ -8149,7 +8178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.4.1, chokidar@npm:^3.4.2":
+"chokidar@npm:^3.4.1, chokidar@npm:^3.4.2, chokidar@npm:^3.5.1":
   version: 3.5.1
   resolution: "chokidar@npm:3.5.1"
   dependencies:
@@ -9620,6 +9649,13 @@ __metadata:
   dependencies:
     path-type: ^4.0.0
   checksum: 687fa3bd604f264042f325d9460e1298447fb32782f30cddc47cb302b742684d13e8ffce4c6f455e0ae92099d71e29f72387379c10b8fd3f6f1bf8992d7c0997
+  languageName: node
+  linkType: hard
+
+"dlv@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "dlv@npm:1.1.3"
+  checksum: 3ed2cd5054ed51e3778b5939ec58b16a970ee7447c3fc02b9b75ccd0788cf596b705d0f3060f2f1593432c10809d4289a17166a5723282ab2ead5c37d7c45cf0
   languageName: node
   linkType: hard
 
@@ -13177,6 +13213,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"is-dotfile@npm:^1.0.0":
+  version: 1.0.3
+  resolution: "is-dotfile@npm:1.0.3"
+  checksum: 82be54d6d57710d393c2275a63f4c60b33bfe5e21080899073b4ef315f13c9017891aed3477c2c1ecfc43b2a1c2180151fad8fab02aba930473e88b00393501f
+  languageName: node
+  linkType: hard
+
 "is-extendable@npm:^0.1.0, is-extendable@npm:^0.1.1":
   version: 0.1.1
   resolution: "is-extendable@npm:0.1.1"
@@ -14837,6 +14880,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"lodash.topath@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "lodash.topath@npm:4.5.2"
+  checksum: c635ffd3586817e6beeff174d0e39015a1df88b885d9ba742587a2bd047af13cd9662870e0cce90ef706f6468127105488a96a8778d5d7c4af0358d025782c6b
+  languageName: node
+  linkType: hard
+
 "lodash.truncate@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.truncate@npm:4.4.2"
@@ -15670,6 +15720,7 @@ fsevents@^1.2.7:
     "@fortawesome/free-solid-svg-icons": ^5.15.3
     "@fortawesome/react-fontawesome": ^0.1.14
     "@fullhuman/postcss-purgecss": ^4.0.3
+    "@heroicons/react": ^1.0.0
     "@material-ui/core": next
     "@material-ui/icons": next
     "@material-ui/lab": next
@@ -15696,6 +15747,7 @@ fsevents@^1.2.7:
     "@storybook/react": ^6.2.1
     "@tailwindcss/aspect-ratio": ^0.2.0
     "@tailwindcss/forms": ^0.3.2
+    "@tailwindcss/jit": ^0.1.18
     "@tailwindcss/line-clamp": ^0.2.0
     "@tailwindcss/typography": ^0.4.0
     "@testing-library/react": ^11.2.6
@@ -16729,6 +16781,18 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"parse-glob@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "parse-glob@npm:3.0.4"
+  dependencies:
+    glob-base: ^0.3.0
+    is-dotfile: ^1.0.0
+    is-extglob: ^1.0.0
+    is-glob: ^2.0.0
+  checksum: bc9f7a8ed61b8005cce9b6f63130f9080e7034472b3e0c48cc28bfbad8c1290cca25b4fefddc7cd96d6f44e5bc2bace9e0c1f26e665cb2f693a13c2c7fcd5ff2
+  languageName: node
+  linkType: hard
+
 "parse-headers@npm:^2.0.0":
   version: 2.0.3
   resolution: "parse-headers@npm:2.0.3"
@@ -17752,6 +17816,13 @@ fsevents@^1.2.7:
   version: 4.0.1
   resolution: "quick-lru@npm:4.0.1"
   checksum: 91847e4b07453655f73513b96a3b49e3bb8bf37de1ce2075d44e5dddb2f08050c5dc858d97884d61618bb44487945880b4b481fe93e94a3622b43036f8b94e11
+  languageName: node
+  linkType: hard
+
+"quick-lru@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "quick-lru@npm:5.1.1"
+  checksum: fafb2b2fa1a948d6f2e88d4a60571be70b316d9b0be857d24fba0ac28fc31acebf535b643fe968473d689f8c655bcb2a0e4da67912f571059a4e4eb15740b021
   languageName: node
   linkType: hard
 

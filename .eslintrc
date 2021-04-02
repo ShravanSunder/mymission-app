@@ -62,6 +62,7 @@
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-unsafe-call": "warn",
       "@typescript-eslint/unbound-method": 0,
+      "no-param-reassign": "error",
       "import/extensions": 0,
       "import/no-unresolved": 0,
       "import/prefer-default-export": 0,

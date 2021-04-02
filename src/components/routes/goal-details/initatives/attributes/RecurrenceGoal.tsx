@@ -1,8 +1,8 @@
 import { faCalendarAlt, faCalendarPlus, faCalendarWeek, faThLarge } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import { Avatar, Fade, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { EventNote } from '@material-ui/icons';
-import { FC, Fragment, useEffect, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { SubjectWithTransform } from '~~/components/common/core/hooks/useSubjectTransform';
@@ -56,18 +56,17 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
 
    useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
-   useSubscription(props.durationType.subject$, (value) => {
-      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, value);
+   useSubscription(props.durationType.subject$, (duration) => {
+      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, duration);
       setSelectedDurationText(text.primary);
    });
-   useSubscription(props.target.subject$, (value) => {
+   useSubscription(props.target.subject$, (target) => {
       switch (props.durationType.value) {
          case RecurrenceDurationTypes.PerNumberOfDays:
          case RecurrenceDurationTypes.PerNumberOfWeeks:
          case RecurrenceDurationTypes.PerNumberOfMonths:
-            let target = 2;
-            if (typeof value === 'number') target = value;
-            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, target);
+            const safeTarget = typeof target === 'number' ? target : undefined;
+            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, safeTarget);
             setSelectedDurationText(text.primary);
             break;
       }
@@ -77,7 +76,8 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const durationList = (
       <List className="elevation-2">
          {availableDurations(props.aggregationPeriod.value).map((m: RecurrenceDurationTypes, i: number) => {
-            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, m);
+            const target = typeof props.target.value === 'number' ? props.target.value : undefined;
+            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, m, target);
             const handleClick = () => {
                props.durationType.push(m);
             };
@@ -109,11 +109,11 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
          <DropDownContainer show={showDurationDropDown} setShow={setShowDurationDropDown} className="m-2" selectedItemText={selectedDurationText}>
             {durationList}
          </DropDownContainer>
-         {
+         <Fade in={!showDurationDropDown}>
             <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
-               <RecurrenceTarget {...props}></RecurrenceTarget>
+               {!showDurationDropDown && <RecurrenceTarget {...props}></RecurrenceTarget>}
             </div>
-         }
+         </Fade>
       </>
    );
 };

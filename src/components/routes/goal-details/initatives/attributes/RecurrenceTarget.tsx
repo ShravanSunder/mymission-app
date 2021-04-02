@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import { IconButton, Typography } from '@material-ui/core';
-import { FC, MouseEvent, ReactNode, useMemo } from 'react';
+import { FC, MouseEvent, ReactNode, useEffect, useMemo, useRef } from 'react';
 import tw from 'twin.macro';
 import { availableTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { daysToRecurrenceTypeMap, RecurrenceAggregationPeriods } from './core/recurrence.types';
@@ -16,6 +16,13 @@ interface ITargetRangeItemProps {
 const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
    const tempColorSelectedDay = 'bg-gray-200';
    const index = props.index;
+   const targetRef = useRef<HTMLElement | null>(null);
+
+   useEffect(() => {
+      if (props.target === index) {
+         if (targetRef != null && targetRef.current != null) targetRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+   }, [props.target, index, targetRef]);
 
    return useMemo(() => {
       let selectStyle = css();
@@ -24,7 +31,7 @@ const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
       }
 
       return (
-         <div css={selectStyle} key={index} className="rounded-full w-11 h-11">
+         <div css={selectStyle} key={index} className="rounded-full w-11 h-11" ref={targetRef as any}>
             <IconButton className="" value={index} onClick={() => props.handleChange(null, index)}>
                <Typography className="w-5 h-5" variant="subtitle2">
                   {index}
@@ -42,6 +49,7 @@ const TargetRange: FC<IRecurrenceGoalProps> = (props) => {
       }
    };
 
+   props.aggregationPeriod.subject$;
    const availbleTargetRange = useMemo(() => availableTargetRange(props.aggregationPeriod.value, props.durationType.value), [
       props.aggregationPeriod.value,
       props.durationType.value,
@@ -49,9 +57,9 @@ const TargetRange: FC<IRecurrenceGoalProps> = (props) => {
 
    let result: ReactNode[] | null = null;
 
-   if (availbleTargetRange != null && availbleTargetRange > 0) {
+   if (availbleTargetRange != null && availbleTargetRange[1] > 0) {
       const resultDays: ReactNode[] = [];
-      for (let i = 1; i <= availbleTargetRange; i++) {
+      for (let i = availbleTargetRange[0]; i <= availbleTargetRange[1]; i++) {
          const target = <TargetRangeItem target={props.target.value} key={i} index={i} handleChange={handleChange} />;
          resultDays.push(target);
       }

@@ -1,6 +1,6 @@
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TOperator } from '~~/components/common/core/hooks/useSubjectTransform';
+import { TTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { availableTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
 import { DaysOfWeek, DaysOfWeekList } from './schedule.types';
@@ -41,19 +41,21 @@ export const transformTarget = (
 ): DaysOfWeek[] | number => {
    console.log('updateTarget');
 
+   let result: number | undefined;
+
    if (
       typeof target !== 'number' &&
       (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly)
    ) {
-      return 1;
+      result = 1;
    } else if (
       duration === RecurrenceDurationTypes.PerNumberOfDays ||
       duration === RecurrenceDurationTypes.PerNumberOfWeeks ||
       duration === RecurrenceDurationTypes.PerNumberOfMonths
    ) {
-      const available = availableTargetRange(period, duration);
+      const available: number = availableTargetRange(period, duration)[1];
       if (target > available) {
-         target = available;
+         result = available;
       }
    } else if (period === RecurrenceAggregationPeriods.PerDay) {
       if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
@@ -67,38 +69,38 @@ export const transformTarget = (
          duration === RecurrenceDurationTypes.Monthly ||
          duration === RecurrenceDurationTypes.Quarterly
       ) {
-         const available = availableTargetRange(period, duration);
+         const available: number = availableTargetRange(period, duration)[1];
          if (target > available) {
-            target = available;
+            result = available;
          }
       }
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
       if (duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
-         const available = availableTargetRange(period, duration);
+         const available: number = availableTargetRange(period, duration)[1];
          if (target > available) {
-            target = available;
+            result = available;
          }
       }
    } else if (period === RecurrenceAggregationPeriods.PerMonth) {
       if (duration === RecurrenceDurationTypes.Quarterly) {
-         const available = availableTargetRange(period, duration);
+         const available: number = availableTargetRange(period, duration)[1];
          if (target > available) {
-            target = available;
+            result = available;
          }
       }
    }
 
    if (typeof target === 'number' && target <= 0 && duration !== RecurrenceDurationTypes.SpecificDaysOfWeek) {
-      target = 1;
+      result = 1;
    }
 
-   return target;
+   return result ?? target;
 };
 
-export const durationOperator: TOperator<RecurrenceDurationTypes> = (duration$, period$) =>
+export const durationOperator: TTransform<RecurrenceDurationTypes> = (duration$, period$) =>
    combineLatest([duration$, period$]).pipe(map(([duration, period]) => transformDuration(duration, period)));
 
-export const targetOperator: TOperator<number | DaysOfWeek[]> = (
+export const targetOperator: TTransform<number | DaysOfWeek[]> = (
    target$: Observable<number | DaysOfWeek[]>,
    duration$: Observable<any>,
    period$: Observable<any>

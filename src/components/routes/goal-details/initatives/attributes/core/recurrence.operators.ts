@@ -52,9 +52,11 @@ export const transformTarget = (
       duration === RecurrenceDurationTypes.PerNumberOfWeeks ||
       duration === RecurrenceDurationTypes.PerNumberOfMonths
    ) {
-      const available: number = availableTargetRange(period, duration)[1];
-      if (target > available) {
-         result = available;
+      const availableArray: number[] = availableTargetRange(period, duration);
+      if (target > availableArray[1]) {
+         result = availableArray[1];
+      } else if (target < availableArray[0]) {
+         result = availableArray[0];
       }
    } else if (period === RecurrenceAggregationPeriods.PerDay) {
       if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {

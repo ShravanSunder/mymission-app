@@ -214,7 +214,7 @@ export const formatGoalForDisplay = (
       duration === RecurrenceDurationTypes.PerNumberOfMonths ||
       duration === RecurrenceDurationTypes.PerNumberOfWeeks
    ) {
-      const tempTarget = target ?? 2;
+      const tempTarget = (target ?? 2) > 2 ? target : 2;
       const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),

@@ -25,15 +25,17 @@ const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
    }, [props.target, index, targetRef]);
 
    return useMemo(() => {
-      let selectStyle = css();
+      let selectBackgroundStyle = css();
+      let boldStyle = css();
       if (props.target === index) {
-         selectStyle = css(tw`${tempColorSelectedDay} shadow-sm`);
+         selectBackgroundStyle = css([tw`${tempColorSelectedDay} shadow-sm font-semibold border-1`, { ariaSelected: 'true' }]);
+         boldStyle = css(tw`font-bold`);
       }
 
       return (
-         <div css={selectStyle} key={index} className="rounded-full w-11 h-11" ref={targetRef as any}>
+         <div css={selectBackgroundStyle} key={index} className="rounded-full w-11 h-11" ref={targetRef as any}>
             <IconButton className="" value={index} onClick={() => props.handleChange(null, index)}>
-               <Typography className="w-5 h-5" variant="subtitle2">
+               <Typography className="w-5 h-5" variant="subtitle2" css={boldStyle}>
                   {index}
                </Typography>
             </IconButton>
@@ -76,5 +78,9 @@ export const RecurrenceTarget: FC<IRecurrenceGoalProps> = (props) => {
 
    const targetRange = <TargetRange {...props}></TargetRange>;
 
-   return <div className="flex flex-wrap content-center place-self-center justify-items-start">{targetRange}</div>;
+   return (
+      <div className="flex flex-wrap content-center w-full p-1 rounded-lg place-self-center justify-items-start bg-gray-50" role="listbox">
+         {targetRange}
+      </div>
+   );
 };

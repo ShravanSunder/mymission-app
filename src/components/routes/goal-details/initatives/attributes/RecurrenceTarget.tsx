@@ -3,14 +3,45 @@ import { IconButton, Typography } from '@material-ui/core';
 import { FC, MouseEvent, ReactNode, useEffect, useMemo, useRef } from 'react';
 import tw from 'twin.macro';
 import { availableTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
-import { daysToRecurrenceTypeMap, RecurrenceAggregationPeriods } from './core/recurrence.types';
-import { DaysOfWeek } from './core/schedule.types';
+import { RecurrenceDurationTypes } from './core/recurrence.types';
+import { DaysOfWeek, daysOfWeekToShortCodeMap } from './core/schedule.types';
 import { IRecurrenceGoalProps } from './RecurrenceGoal';
 
+interface ITargetDaysItemProps {
+   targetDays: DaysOfWeek[];
+   index: DaysOfWeek;
+   display: string;
+   handleChange: (newValue: number) => void;
+}
+
+const TargetDaysItem: FC<ITargetDaysItemProps> = (props) => {
+   const tempColorSelectedDay = 'bg-gray-200';
+   const index = props.index;
+
+   // return useMemo(() => {
+   let selectBackgroundStyle = css();
+   let boldStyle = css();
+   if (props.targetDays.includes(index)) {
+      selectBackgroundStyle = css([tw`${tempColorSelectedDay} shadow-sm font-semibold border-1`, { ariaSelected: 'true' }]);
+      boldStyle = css(tw`font-bold`);
+   }
+
+   return (
+      <div css={selectBackgroundStyle} key={index} className="rounded-full w-11 h-11">
+         <IconButton className="" value={props.display} onClick={() => props.handleChange(index)}>
+            <Typography className="w-5 h-5" variant="subtitle2" css={boldStyle}>
+               {props.display[0]}
+            </Typography>
+         </IconButton>
+      </div>
+   );
+   // }, [props, index]);
+};
+
 interface ITargetRangeItemProps {
-   target: number | DaysOfWeek[];
+   selectedTarget: number;
    index: number;
-   handleChange: (event: MouseEvent<HTMLElement> | null, newValue: number | null) => void;
+   handleChange: (newValue: number) => void;
 }
 
 const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
@@ -19,22 +50,22 @@ const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
    const targetRef = useRef<HTMLElement | null>(null);
 
    useEffect(() => {
-      if (props.target === index) {
+      if (props.selectedTarget === index) {
          if (targetRef != null && targetRef.current != null) targetRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-   }, [props.target, index, targetRef]);
+   }, [props.selectedTarget, index, targetRef]);
 
    return useMemo(() => {
       let selectBackgroundStyle = css();
       let boldStyle = css();
-      if (props.target === index) {
+      if (props.selectedTarget === index) {
          selectBackgroundStyle = css([tw`${tempColorSelectedDay} shadow-sm font-semibold border-1`, { ariaSelected: 'true' }]);
          boldStyle = css(tw`font-bold`);
       }
 
       return (
          <div css={selectBackgroundStyle} key={index} className="rounded-full w-11 h-11" ref={targetRef as any}>
-            <IconButton className="" value={index} onClick={() => props.handleChange(null, index)}>
+            <IconButton className="" value={index} onClick={() => props.handleChange(index)}>
                <Typography className="w-5 h-5" variant="subtitle2" css={boldStyle}>
                   {index}
                </Typography>
@@ -45,29 +76,51 @@ const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
 };
 
 const TargetRange: FC<IRecurrenceGoalProps> = (props) => {
-   const handleChange = (event: MouseEvent<HTMLElement> | null, newValue: number | null) => {
-      if (newValue) {
-         props.target.push(newValue);
+   if (props.durationType.value !== RecurrenceDurationTypes.SpecificDaysOfWeek) {
+      const handleChange = (newValue: number) => {
+         if (newValue != undefined) {
+            props.target.next(newValue);
+         }
+      };
+
+      const availbleTargetRange = availableTargetRange(props.aggregationPeriod.value, props.durationType.value);
+      const targetRange = props.target.value as number;
+
+      let result: ReactNode[] | null = null;
+
+      if (availbleTargetRange != null && availbleTargetRange[1] > 0) {
+         const resultDays: ReactNode[] = [];
+         for (let i = availbleTargetRange[0]; i <= availbleTargetRange[1]; i++) {
+            const target = <TargetRangeItem selectedTarget={targetRange} key={i} index={i} handleChange={handleChange} />;
+            resultDays.push(target);
+         }
+         result = resultDays;
       }
-   };
+      return <>{result}</>;
+   } else {
+      const handleChange = (newValue: DaysOfWeek) => {
+         if (newValue != undefined) {
+            const data = props.target.subject$.getValue() as DaysOfWeek[];
+            if (data.includes(newValue)) {
+               props.target.next(data.filter((f) => f !== newValue));
+            } else {
+               props.target.next([...data, newValue]);
+            }
+         }
+      };
 
-   props.aggregationPeriod.subject$;
-   const availbleTargetRange = useMemo(() => availableTargetRange(props.aggregationPeriod.value, props.durationType.value), [
-      props.aggregationPeriod.value,
-      props.durationType.value,
-   ]);
+      const targetDays = props.target.value as DaysOfWeek[];
+      console.log(daysOfWeekToShortCodeMap);
 
-   let result: ReactNode[] | null = null;
-
-   if (availbleTargetRange != null && availbleTargetRange[1] > 0) {
-      const resultDays: ReactNode[] = [];
-      for (let i = availbleTargetRange[0]; i <= availbleTargetRange[1]; i++) {
-         const target = <TargetRangeItem target={props.target.value} key={i} index={i} handleChange={handleChange} />;
-         resultDays.push(target);
-      }
-      result = resultDays;
+      return (
+         <>
+            {Array.from(daysOfWeekToShortCodeMap.keys()).map((k) => (
+               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+               <TargetDaysItem targetDays={targetDays} key={k} index={k} display={daysOfWeekToShortCodeMap.get(k)!} handleChange={handleChange} />
+            ))}
+         </>
+      );
    }
-   return <>{result}</>;
 };
 
 export const RecurrenceTarget: FC<IRecurrenceGoalProps> = (props) => {

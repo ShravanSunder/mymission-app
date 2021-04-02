@@ -72,7 +72,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             const target = typeof props.target.value === 'number' ? props.target.value : undefined;
             const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, m, target);
             const handleClick = () => {
-               props.durationType.push(m);
+               props.durationType.next(m);
             };
 
             return (
@@ -103,7 +103,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             {durationList}
          </DropDownContainer>
          <Fade in={!showDurationDropDown}>
-            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80 box-border">
+            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-64 box-border">
                {!showDurationDropDown && <RecurrenceTarget {...props}></RecurrenceTarget>}
             </div>
          </Fade>

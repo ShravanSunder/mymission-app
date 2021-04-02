@@ -44,5 +44,5 @@ export const useSubjectTransform = <T>(initValue: T, operator: TTransform<T>, ..
    const push = useCallback((newValue: T) => source$.next(newValue), [source$]);
    const value = useObservableState(subject$, initValue);
 
-   return { subject$, push, source$, value };
+   return { subject$, next: push, source$, value };
 };

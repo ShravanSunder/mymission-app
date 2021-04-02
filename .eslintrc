@@ -63,6 +63,7 @@
       "@typescript-eslint/no-unsafe-call": "warn",
       "@typescript-eslint/unbound-method": 0,
       "no-param-reassign": "error",
+      "no-duplicate-imports": "warn",
       "import/extensions": 0,
       "import/no-unresolved": 0,
       "import/prefer-default-export": 0,

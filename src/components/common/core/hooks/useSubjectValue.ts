@@ -20,7 +20,7 @@ export type SubjectWithValue<T> = {
    /**
     * push a new value into observable
     */
-   push: (newValue: T) => void;
+   next: (newValue: T) => void;
 };
 
 /**
@@ -32,5 +32,5 @@ export const useSubjectValue = <T>(initValue: T): SubjectWithValue<T> => {
    const push = useCallback((newValue: T) => (subject$ as Subject<T>).next(newValue), [subject$]);
    const value = useObservableState(subject$, initValue);
 
-   return { subject$, push, value };
+   return { subject$, next: push, value };
 };

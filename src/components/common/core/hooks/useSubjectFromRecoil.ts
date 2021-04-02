@@ -19,5 +19,5 @@ export const useSubjectFromRecoil = <T>(atom: RecoilState<T>): SubjectWithValue<
 
    useEffect(() => next(recoilState), [next, recoilState]);
 
-   return { subject$, push: (value: T) => setRecoilState(value), value: recoilState };
+   return { subject$, next: (value: T) => setRecoilState(value), value: recoilState };
 };

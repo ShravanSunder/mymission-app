@@ -14,10 +14,10 @@ import { SubjectWithValue } from './useSubjectValue';
  */
 export const useSubjectFromRecoil = <T>(atom: RecoilState<T>): SubjectWithValue<T> => {
    const [recoilState, setRecoilState] = useRecoilState(atom);
-   const observable$ = useObservable<T>(() => new BehaviorSubject(recoilState));
-   const next = useCallback((newValue: T) => (observable$ as BehaviorSubject<T>).next(newValue), [observable$]);
+   const subject$ = useObservable<T>(() => new BehaviorSubject(recoilState)) as BehaviorSubject<T>;
+   const next = useCallback((newValue: T) => subject$.next(newValue), [subject$]);
 
    useEffect(() => next(recoilState), [next, recoilState]);
 
-   return { subject$: observable$ as Subject<T>, push: (value: T) => setRecoilState(value), value: recoilState };
+   return { subject$, push: (value: T) => setRecoilState(value), value: recoilState };
 };

@@ -1,14 +1,16 @@
 import { useObservable, useObservableState } from 'observable-hooks';
 import { useCallback } from 'react';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { Exception } from '~~/models/Exception';
-import { SubjectWithValue } from './useSubjectValue';
 
-export type TOperator<T1> = (o1$: Observable<T1>, ...otherObservables$: Observable<any>[]) => Observable<T1>;
+export type TTransform<T1> = (o1$: Observable<T1>, ...otherObservables$: Observable<any>[]) => Observable<T1>;
+
+export type TOperator<T1, T2> = (o1$: Observable<T1>, ...otherObservables$: Observable<any>[]) => Observable<T1>;
 
 /**
  * returns
- * 1. subject$
+ * 1. subject$: operator transformed stream
  * 2. value: the current value of observable$
  * 3. push: a callback to push a new value to the observable$
  */
@@ -16,7 +18,7 @@ export type SubjectWithTransform<T> = SubjectWithValue<T> & {
    /**
     * the source stream for the subject
     */
-   source$: Subject<T>;
+   source$: BehaviorSubject<T>;
 };
 
 /**
@@ -27,16 +29,20 @@ export type SubjectWithTransform<T> = SubjectWithValue<T> & {
  * @param operator Accepts two arguments, 1. the current observable, 2. second input observable
  */
 
-export const useSubjectTransform = <T>(initValue: T, operator: TOperator<T>, ...otherObservables$: Observable<any>[]): SubjectWithTransform<T> => {
+export const useSubjectTransform = <T>(initValue: T, operator: TTransform<T>, ...otherObservables$: Observable<any>[]): SubjectWithTransform<T> => {
    if (operator.length - 1 !== otherObservables$.length) {
       console.log(operator, otherObservables$);
       throw new Error('useSubjectTransform: invalid arguments match between operator and observable');
    }
 
-   const source$ = useObservable<T>(() => new BehaviorSubject(initValue));
-   const transform$ = useObservable(() => operator(source$, ...otherObservables$));
-   const value = useObservableState(transform$, initValue);
-   const push = useCallback((newValue: T) => (source$ as BehaviorSubject<T>).next(newValue), [source$]);
+   const source$ = useObservable<T>(() => new BehaviorSubject(initValue)) as BehaviorSubject<T>;
+   const subject$ = useObservable(() => {
+      const b$ = new BehaviorSubject(initValue);
+      operator(source$, ...otherObservables$).subscribe(b$);
+      return b$;
+   }) as BehaviorSubject<T>;
+   const push = useCallback((newValue: T) => source$.next(newValue), [source$]);
+   const value = useObservableState(subject$, initValue);
 
-   return { subject$: transform$ as Subject<T>, push, value, source$: source$ as Subject<T> };
+   return { subject$, push, source$, value };
 };

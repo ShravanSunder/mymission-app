@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
 import { Button, Collapse, Typography } from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons';
-import { FC, MouseEvent, useState } from 'react';
+import { useSubscription } from 'observable-hooks';
+import { Dispatch, FC, MouseEvent, SetStateAction, useState } from 'react';
+import { Observable } from 'rxjs';
 import tw from 'twin.macro';
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { combine } from '~~/helpers/string';
@@ -33,15 +35,19 @@ export const DropDownButton: FC<IDropDownButtonProps> = (props) => {
 
 interface IDropDownContainerProps extends ICommonProps {
    selectedItemText: string;
+   show: boolean;
+   setShow: Dispatch<SetStateAction<boolean>>;
 }
 
 export const DropDownContainer: FC<IDropDownContainerProps> = (props) => {
-   const [show, setShow] = useState(false);
-
    return (
       <div className={props.className}>
-         <DropDownButton className="elevation-2" showing={show} title={props.selectedItemText} handleClick={() => setShow((value) => !value)}></DropDownButton>
-         <Collapse in={show}>{show && <div className="border-2 box-border rounded-md">{props.children}</div>}</Collapse>
+         <DropDownButton
+            className="elevation-2"
+            showing={props.show}
+            title={props.selectedItemText}
+            handleClick={() => props.setShow((value) => !value)}></DropDownButton>
+         <Collapse in={props.show}>{props.show && <div className="border-2 box-border rounded-md">{props.children}</div>}</Collapse>
       </div>
    );
 };

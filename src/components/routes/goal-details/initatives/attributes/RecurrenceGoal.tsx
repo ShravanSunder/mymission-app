@@ -5,6 +5,7 @@ import { EventNote } from '@material-ui/icons';
 import { FC, Fragment, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
+import { SubjectWithTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { DropDownContainer } from '~~/components/common/DropDownContainer';
 import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
 import { muiIconCss } from '~~/helpers/muiIconCss';
@@ -12,6 +13,7 @@ import { formatGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
+import { useSubscription } from 'observable-hooks';
 
 export interface IRecurrenceGoalProps {
    /**
@@ -22,12 +24,12 @@ export interface IRecurrenceGoalProps {
    /**
     * The type of repetition.  ie Days per week, days per month
     */
-   durationType: SubjectWithValue<RecurrenceDurationTypes>;
+   durationType: SubjectWithTransform<RecurrenceDurationTypes>;
    /**
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
-   target: SubjectWithValue<number | DaysOfWeek[]>;
+   target: SubjectWithTransform<number | DaysOfWeek[]>;
 }
 
 const DurationIcons: FC<{ duration: RecurrenceDurationTypes }> = (props) => {
@@ -51,11 +53,25 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const tempColorSelectedDay = 'bg-gray-200';
    const intl = useIntl();
    const [selectedDurationText, setSelectedDurationText] = useState<string>('');
+   const [showDurationDropDown, setShowDurationDropDown] = useState(false);
 
-   useEffect(() => {
-      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value);
+   useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
+   useSubscription(props.durationType.subject$, (value) => {
+      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, value);
       setSelectedDurationText(text.primary);
-   }, [intl, props.aggregationPeriod.value, props.durationType.value]);
+   });
+   useSubscription(props.target.subject$, (value) => {
+      switch (props.durationType.value) {
+         case RecurrenceDurationTypes.PerNumberOfDays:
+         case RecurrenceDurationTypes.PerNumberOfWeeks:
+         case RecurrenceDurationTypes.PerNumberOfMonths:
+            let target = 2;
+            if (typeof value === 'number') target = value;
+            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, target);
+            setSelectedDurationText(text.primary);
+            break;
+      }
+   });
 
    // todo this list depends on what's allowed by aggregation date
    const durationList = (
@@ -90,12 +106,14 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             </Typography>
          </div>
          <div className="p-1"></div>
-         <DropDownContainer className="m-2" selectedItemText={selectedDurationText}>
+         <DropDownContainer show={showDurationDropDown} setShow={setShowDurationDropDown} className="m-2" selectedItemText={selectedDurationText}>
             {durationList}
          </DropDownContainer>
-         <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
-            <RecurrenceTarget {...props}></RecurrenceTarget>
-         </div>
+         {
+            <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
+               <RecurrenceTarget {...props}></RecurrenceTarget>
+            </div>
+         }
       </>
    );
 };

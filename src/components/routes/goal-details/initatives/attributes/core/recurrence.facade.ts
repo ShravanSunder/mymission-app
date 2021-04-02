@@ -193,10 +193,15 @@ export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceDura
    }
 };
 
-export const formatGoalForDisplay = (intl: IntlShape, period: RecurrenceAggregationPeriods, duration: RecurrenceDurationTypes): IDisplayText => {
+export const formatGoalForDisplay = (
+   intl: IntlShape,
+   period: RecurrenceAggregationPeriods,
+   duration: RecurrenceDurationTypes,
+   target?: number
+): IDisplayText => {
    if (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
       const periodText = formatAggregationPeriodForUnits(intl, period, 2).toLowerCase();
-      const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
+      const durationText = formatDurationForUnits(intl, duration, 1).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Number of {periodText} per {durationText}' }, { periodText, durationText }),
          secondary: intl.formatMessage(
@@ -209,7 +214,7 @@ export const formatGoalForDisplay = (intl: IntlShape, period: RecurrenceAggregat
       duration === RecurrenceDurationTypes.PerNumberOfMonths ||
       duration === RecurrenceDurationTypes.PerNumberOfWeeks
    ) {
-      const tempTarget = 2;
+      const tempTarget = target ?? 2;
       const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),

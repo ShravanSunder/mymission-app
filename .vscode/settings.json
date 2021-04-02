@@ -39,9 +39,7 @@
       "**/.yarn": true,
       "**/.pnp.*": true
    },
-   "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-   },
+   "editor.codeActionsOnSave": ["source.fixAll.eslint", "source.addMissingImports"],
    "eslint.probe": ["typescript", "typescriptreact"],
    "editor.quickSuggestions": {
       "strings": true

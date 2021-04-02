@@ -1,13 +1,13 @@
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
 import { DaysOfWeek } from './schedule.types';
 import { SubjectWithValue, useSubjectValue } from '~~/components/common/core/hooks/useSubjectValue';
-import { useSubjectTransform } from '~~/components/common/core/hooks/useSubjectTransform';
+import { useSubjectTransform, SubjectWithTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { durationOperator, targetOperator } from './recurrence.operators';
 
 export interface IRecurrenceObservables {
    aggregationPeriod: SubjectWithValue<RecurrenceAggregationPeriods>;
-   durationType: SubjectWithValue<RecurrenceDurationTypes>;
-   target: SubjectWithValue<number | DaysOfWeek[]>;
+   durationType: SubjectWithTransform<RecurrenceDurationTypes>;
+   target: SubjectWithTransform<number | DaysOfWeek[]>;
 }
 
 export const useRecurrenceObservables = (): IRecurrenceObservables => {

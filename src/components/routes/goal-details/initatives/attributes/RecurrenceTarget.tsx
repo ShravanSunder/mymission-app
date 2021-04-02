@@ -2,17 +2,18 @@ import { css } from '@emotion/react';
 import { IconButton, Typography } from '@material-ui/core';
 import { FC, MouseEvent, ReactNode, useMemo } from 'react';
 import tw from 'twin.macro';
-import { daysToRecurrenceTypeMap } from './core/recurrence.types';
+import { availableTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
+import { daysToRecurrenceTypeMap, RecurrenceAggregationPeriods } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
 import { IRecurrenceGoalProps } from './RecurrenceGoal';
 
-interface ITargetItemProps {
+interface ITargetRangeItemProps {
    target: number | DaysOfWeek[];
    index: number;
    handleChange: (event: MouseEvent<HTMLElement> | null, newValue: number | null) => void;
 }
 
-const TargetItem: FC<ITargetItemProps> = (props) => {
+const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
    const tempColorSelectedDay = 'bg-gray-200';
    const index = props.index;
 
@@ -34,28 +35,38 @@ const TargetItem: FC<ITargetItemProps> = (props) => {
    }, [props, index]);
 };
 
-export const RecurrenceTarget: FC<IRecurrenceGoalProps> = (props) => {
-   /**
-    * todo: replace colors
-    */
-   const tempColorSelectedDay = 'bg-gray-200';
-
+const TargetRange: FC<IRecurrenceGoalProps> = (props) => {
    const handleChange = (event: MouseEvent<HTMLElement> | null, newValue: number | null) => {
       if (newValue) {
          props.target.push(newValue);
       }
    };
 
-   let days: ReactNode[] | null = null;
-   const availableDays = daysToRecurrenceTypeMap.get(props.durationType.value);
-   if (availableDays != null && availableDays > 0) {
+   const availbleTargetRange = useMemo(() => availableTargetRange(props.aggregationPeriod.value, props.durationType.value), [
+      props.aggregationPeriod.value,
+      props.durationType.value,
+   ]);
+
+   let result: ReactNode[] | null = null;
+
+   if (availbleTargetRange != null && availbleTargetRange > 0) {
       const resultDays: ReactNode[] = [];
-      for (let i = 1; i <= availableDays; i++) {
-         const target = <TargetItem target={props.target.value} key={i} index={i} handleChange={handleChange} />;
+      for (let i = 1; i <= availbleTargetRange; i++) {
+         const target = <TargetRangeItem target={props.target.value} key={i} index={i} handleChange={handleChange} />;
          resultDays.push(target);
       }
-      days = resultDays;
+      result = resultDays;
    }
+   return <>{result}</>;
+};
 
-   return <div className="flex flex-wrap content-center place-self-center justify-items-start">{days}</div>;
+export const RecurrenceTarget: FC<IRecurrenceGoalProps> = (props) => {
+   /**
+    * todo: replace colors
+    */
+   const tempColorSelectedDay = 'bg-gray-200';
+
+   const targetRange = <TargetRange {...props}></TargetRange>;
+
+   return <div className="flex flex-wrap content-center place-self-center justify-items-start">{targetRange}</div>;
 };

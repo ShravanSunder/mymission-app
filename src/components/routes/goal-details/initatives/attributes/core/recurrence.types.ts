@@ -42,15 +42,15 @@ export const RecurrenceDurationList = GetEnumValues<RecurrenceDurationTypes>(Rec
 
 export const daysToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
    [RecurrenceDurationTypes.Weekly, 7],
-   [RecurrenceDurationTypes.Monthly, dayjs.duration({ months: 1 }).asDays()],
-   [RecurrenceDurationTypes.Quarterly, dayjs.duration({ months: 3 }).asDays()],
+   [RecurrenceDurationTypes.Monthly, Math.floor(dayjs.duration({ months: 1 }).asDays())],
+   [RecurrenceDurationTypes.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asDays())],
 ]);
 
 export const weeksToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
-   [RecurrenceDurationTypes.Monthly, dayjs.duration({ months: 1 }).asWeeks()],
-   [RecurrenceDurationTypes.Quarterly, dayjs.duration({ months: 3 }).asWeeks()],
+   [RecurrenceDurationTypes.Monthly, Math.floor(dayjs.duration({ months: 1 }).asWeeks())],
+   [RecurrenceDurationTypes.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asWeeks())],
 ]);
 
 export const monthsToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
-   [RecurrenceDurationTypes.Quarterly, dayjs.duration({ months: 3 }).asMonths()],
+   [RecurrenceDurationTypes.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
 ]);

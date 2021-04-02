@@ -14,7 +14,7 @@ export type SubjectWithValue<T> = {
     */
    subject$: Subject<T>;
    /**
-    * latest value of observable
+    * current value of observable, updated in the next render cycle after the observable
     */
    value: T;
    /**

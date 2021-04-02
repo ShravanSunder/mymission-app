@@ -1,6 +1,7 @@
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TOperator } from '~~/components/common/core/hooks/useSubjectTransform';
+import { availableTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurrence.types';
 import { DaysOfWeek, DaysOfWeekList } from './schedule.types';
 
@@ -35,69 +36,59 @@ export const transformDuration = (durationType: RecurrenceDurationTypes, aggrega
 
 export const transformTarget = (
    target: DaysOfWeek[] | number,
-   durationType: RecurrenceDurationTypes,
-   aggregationPeriod: RecurrenceAggregationPeriods
+   duration: RecurrenceDurationTypes,
+   period: RecurrenceAggregationPeriods
 ): DaysOfWeek[] | number => {
    console.log('updateTarget');
 
    if (
       typeof target !== 'number' &&
-      (durationType === RecurrenceDurationTypes.Weekly ||
-         durationType === RecurrenceDurationTypes.Monthly ||
-         durationType === RecurrenceDurationTypes.Quarterly)
+      (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly)
    ) {
       return 1;
-   } else if (durationType === RecurrenceDurationTypes.PerNumberOfDays) {
-      if (target > 365) {
-         target = 365;
+   } else if (
+      duration === RecurrenceDurationTypes.PerNumberOfDays ||
+      duration === RecurrenceDurationTypes.PerNumberOfWeeks ||
+      duration === RecurrenceDurationTypes.PerNumberOfMonths
+   ) {
+      const available = availableTargetRange(period, duration);
+      if (target > available) {
+         target = available;
       }
-   } else if (durationType === RecurrenceDurationTypes.PerNumberOfWeeks) {
-      if (target > 52) {
-         target = 52;
-      }
-   } else if (durationType === RecurrenceDurationTypes.PerNumberOfMonths) {
-      if (target > 12) {
-         target = 12;
-      }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
-      if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek) {
+   } else if (period === RecurrenceAggregationPeriods.PerDay) {
+      if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
          if (typeof target === 'number' || !Array.isArray(target)) {
             return [DaysOfWeek.Monday];
          } else if (Array.isArray(target)) {
             return target.filter((t) => DaysOfWeekList.includes(t));
          }
-      } else if (durationType === RecurrenceDurationTypes.Weekly) {
-         if (target > 7) {
-            return 7;
-         }
-      } else if (durationType === RecurrenceDurationTypes.Monthly) {
-         if (target > 31) {
-            return 31;
-         }
-      } else if (durationType === RecurrenceDurationTypes.Quarterly) {
-         if (target > 90) {
-            return 90;
+      } else if (
+         duration === RecurrenceDurationTypes.Weekly ||
+         duration === RecurrenceDurationTypes.Monthly ||
+         duration === RecurrenceDurationTypes.Quarterly
+      ) {
+         const available = availableTargetRange(period, duration);
+         if (target > available) {
+            target = available;
          }
       }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
-      if (durationType === RecurrenceDurationTypes.Monthly) {
-         if (target > 4) {
-            return 4;
-         }
-      } else if (durationType === RecurrenceDurationTypes.Quarterly) {
-         if (target > 13) {
-            return 13;
+   } else if (period === RecurrenceAggregationPeriods.PerWeek) {
+      if (duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
+         const available = availableTargetRange(period, duration);
+         if (target > available) {
+            target = available;
          }
       }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
-      if (durationType === RecurrenceDurationTypes.Quarterly) {
-         if (target > 3) {
-            return 3;
+   } else if (period === RecurrenceAggregationPeriods.PerMonth) {
+      if (duration === RecurrenceDurationTypes.Quarterly) {
+         const available = availableTargetRange(period, duration);
+         if (target > available) {
+            target = available;
          }
       }
    }
 
-   if (typeof target === 'number' && target <= 0 && durationType !== RecurrenceDurationTypes.SpecificDaysOfWeek) {
+   if (typeof target === 'number' && target <= 0 && duration !== RecurrenceDurationTypes.SpecificDaysOfWeek) {
       target = 1;
    }
 

@@ -13,7 +13,8 @@ import { formatGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
-import { useSubscription } from 'observable-hooks';
+import { useObservable, useSubscription } from 'observable-hooks';
+import { combineLatest } from 'rxjs';
 
 export interface IRecurrenceGoalProps {
    /**
@@ -55,22 +56,22 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const [selectedDurationText, setSelectedDurationText] = useState<string>('');
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
 
-   useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
-   useSubscription(props.durationType.subject$, (duration) => {
-      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, duration);
+   const updateDuration = (duration: RecurrenceDurationTypes, target: number | DaysOfWeek[]) => {
+      const safeTarget = typeof target === 'number' ? target : undefined;
+      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, safeTarget);
       setSelectedDurationText(text.primary);
-   });
-   useSubscription(props.target.subject$, (target) => {
-      switch (props.durationType.value) {
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.PerNumberOfWeeks:
-         case RecurrenceDurationTypes.PerNumberOfMonths:
-            const safeTarget = typeof target === 'number' ? target : undefined;
-            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, safeTarget);
-            setSelectedDurationText(text.primary);
-            break;
-      }
-   });
+   };
+
+   useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
+
+   useSubscription(combineLatest([props.durationType.subject$, props.target.subject$]), ([duration, target]) => updateDuration(duration, target));
+
+   // useSubscription(props.durationType.subject$, (duration) => {
+   //    updateDuration(duration, props.target.value);
+   // });
+   // useSubscription(props.target.subject$, (target) => {
+   //    updateDuration(props.durationType.value, target);
+   // });
 
    // todo this list depends on what's allowed by aggregation date
    const durationList = (

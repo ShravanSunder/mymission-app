@@ -20,7 +20,7 @@ const TargetRangeItem: FC<ITargetRangeItemProps> = (props) => {
 
    useEffect(() => {
       if (props.target === index) {
-         if (targetRef != null && targetRef.current != null) targetRef.current.scrollIntoView({ behavior: 'smooth' });
+         if (targetRef != null && targetRef.current != null) targetRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
    }, [props.target, index, targetRef]);
 

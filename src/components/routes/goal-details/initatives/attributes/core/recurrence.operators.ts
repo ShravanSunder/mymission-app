@@ -6,7 +6,6 @@ import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './recurre
 import { DaysOfWeek, DaysOfWeekList } from './schedule.types';
 
 export const transformDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
-   console.log('updateDuration');
    if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       switch (durationType) {
          case RecurrenceDurationTypes.PerNumberOfWeeks:

@@ -2,10 +2,12 @@ import { faCalendarAlt, faCalendarPlus, faCalendarWeek, faThLarge } from '@forta
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Fade, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { EventNote } from '@material-ui/icons';
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import { useSubscription } from 'observable-hooks';
+import { FC, Fragment, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
+import { combineLatest } from 'rxjs';
 import { SubjectWithTransform } from '~~/components/common/core/hooks/useSubjectTransform';
+import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { DropDownContainer } from '~~/components/common/DropDownContainer';
 import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
 import { muiIconCss } from '~~/helpers/muiIconCss';
@@ -13,8 +15,6 @@ import { formatGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
-import { useObservable, useSubscription } from 'observable-hooks';
-import { combineLatest } from 'rxjs';
 
 export interface IRecurrenceGoalProps {
    /**
@@ -56,22 +56,14 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const [selectedDurationText, setSelectedDurationText] = useState<string>('');
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
 
-   const updateDuration = (duration: RecurrenceDurationTypes, target: number | DaysOfWeek[]) => {
+   const updateDurationText = (duration: RecurrenceDurationTypes, target: number | DaysOfWeek[]) => {
       const safeTarget = typeof target === 'number' ? target : undefined;
-      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, safeTarget);
+      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, duration, safeTarget);
       setSelectedDurationText(text.primary);
    };
 
    useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
-
-   useSubscription(combineLatest([props.durationType.subject$, props.target.subject$]), ([duration, target]) => updateDuration(duration, target));
-
-   // useSubscription(props.durationType.subject$, (duration) => {
-   //    updateDuration(duration, props.target.value);
-   // });
-   // useSubscription(props.target.subject$, (target) => {
-   //    updateDuration(props.durationType.value, target);
-   // });
+   useSubscription(combineLatest([props.durationType.subject$, props.target.subject$]), ([duration, target]) => updateDurationText(duration, target));
 
    // todo this list depends on what's allowed by aggregation date
    const durationList = (

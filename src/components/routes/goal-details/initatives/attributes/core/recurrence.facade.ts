@@ -32,7 +32,6 @@ export const formatRecurrenceSummaryForDisplay = (
                },
                { target, durationType }
             ),
-            secondary: '',
          };
       } else if (durationType === RecurrenceDurationTypes.SpecificDaysOfWeek && Array.isArray(target)) {
          if (isEveryDayOfWeek(target)) {
@@ -40,13 +39,12 @@ export const formatRecurrenceSummaryForDisplay = (
                primary: intl.formatMessage({
                   defaultMessage: 'Every day',
                }),
-               secondary: '',
             };
          } else {
             const selectedWeekdays = daysOfWeekToString(target);
             return {
                primary: selectedWeekdays,
-               secondary: '',
+               description: '',
             };
          }
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfDays && typeof target == 'number') {
@@ -58,7 +56,6 @@ export const formatRecurrenceSummaryForDisplay = (
                   },
                   { target }
                ),
-               secondary: '',
             };
          }
       }
@@ -71,7 +68,6 @@ export const formatRecurrenceSummaryForDisplay = (
                },
                { target, durationType }
             ),
-            secondary: '',
          };
       } else if (typeof target === 'number' && durationType === RecurrenceDurationTypes.Quarterly && target <= 13) {
          return {
@@ -81,7 +77,6 @@ export const formatRecurrenceSummaryForDisplay = (
                },
                { target, durationType }
             ),
-            secondary: '',
          };
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfWeeks && typeof target == 'number') {
          if (target > 1) {
@@ -92,7 +87,6 @@ export const formatRecurrenceSummaryForDisplay = (
                   },
                   { target }
                ),
-               secondary: '',
             };
          } else {
             return {
@@ -102,7 +96,6 @@ export const formatRecurrenceSummaryForDisplay = (
                   },
                   { target, durationType }
                ),
-               secondary: '',
             };
          }
       }
@@ -115,7 +108,6 @@ export const formatRecurrenceSummaryForDisplay = (
                },
                { target, durationType }
             ),
-            secondary: '',
          };
       } else if (durationType === RecurrenceDurationTypes.PerNumberOfMonths && typeof target == 'number') {
          if (target > 1) {
@@ -126,7 +118,6 @@ export const formatRecurrenceSummaryForDisplay = (
                   },
                   { target }
                ),
-               secondary: '',
             };
          } else {
             return {
@@ -136,7 +127,6 @@ export const formatRecurrenceSummaryForDisplay = (
                   },
                   { target, durationType }
                ),
-               secondary: '',
             };
          }
       }
@@ -149,17 +139,17 @@ export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: Recur
    if (period === RecurrenceAggregationPeriods.PerDay) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Daily' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a day, x/day' }),
+         description: intl.formatMessage({ defaultMessage: 'Count your habits over a day, x/day' }),
       };
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Weekly' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a week, x/week' }),
+         description: intl.formatMessage({ defaultMessage: 'Count your habits over a week, x/week' }),
       };
    } else if (period === RecurrenceAggregationPeriods.PerMonth) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Monthly' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Count your habits over a month, x/month' }),
+         description: intl.formatMessage({ defaultMessage: 'Count your habits over a month, x/month' }),
       };
    } else {
       throw new Exception(ExceptionTypes.Schedule_RecurrenceAggregationPeriods, { period });
@@ -204,7 +194,7 @@ export const formatGoalForDisplay = (
       const durationText = formatDurationForUnits(intl, duration, 1).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Number of {periodText} per {durationText}' }, { periodText, durationText }),
-         secondary: intl.formatMessage(
+         description: intl.formatMessage(
             { defaultMessage: 'How many {periodText} a {durationText} is your goal?' },
             { periodText: periodText.toLowerCase(), durationText }
          ),
@@ -218,12 +208,12 @@ export const formatGoalForDisplay = (
       const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),
-         secondary: intl.formatMessage({ defaultMessage: 'How often is your goal?' }),
+         description: intl.formatMessage({ defaultMessage: 'How often is your goal?' }),
       };
    } else if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific days of the week' }),
-         secondary: intl.formatMessage({ defaultMessage: 'Which days of the week is your goal?' }),
+         description: intl.formatMessage({ defaultMessage: 'Which days of the week is your goal?' }),
       };
    } else {
       throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration });

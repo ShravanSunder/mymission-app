@@ -1,10 +1,15 @@
 export interface IDisplayText {
    /**
-    * primary description
+    * primary: primary display text
     */
    primary: string;
    /**
-    * secondary description
+    * secondary: explains the primary text, shown as a discriptive text
     */
-   secondary: string;
+   description?: string;
+
+   /**
+    * alternate way of describing the text
+    */
+   alternate?: string;
 }

@@ -8,10 +8,10 @@ import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
 import { SubjectWithTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
-import { DropDownContainer } from '~~/components/common/DropDownContainer';
+import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
 import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
 import { muiIconCss } from '~~/helpers/muiIconCss';
-import { formatGoalForDisplay } from './core/recurrence.facade';
+import { formatGoalForDisplay, formatRecurrenceSummaryForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
@@ -55,6 +55,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const intl = useIntl();
    const [selectedDurationText, setSelectedDurationText] = useState<string>('');
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
+   const [showTargetDropDown, setShowTargetDropDown] = useState(false);
 
    const updateDurationText = (duration: RecurrenceDurationTypes, target: number | DaysOfWeek[]) => {
       const safeTarget = typeof target === 'number' ? target : undefined;
@@ -64,6 +65,8 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
 
    useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
    useSubscription(combineLatest([props.durationType.subject$, props.target.subject$]), ([duration, target]) => updateDurationText(duration, target));
+
+   const goalValue = formatRecurrenceSummaryForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, props.target.value);
 
    // todo this list depends on what's allowed by aggregation date
    const durationList = (
@@ -99,14 +102,22 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             </Typography>
          </div>
          <div className="p-1"></div>
-         <DropDownContainer show={showDurationDropDown} setShow={setShowDurationDropDown} className="m-2" selectedItemText={selectedDurationText}>
+         <DropDownContainer
+            show={showDurationDropDown}
+            toggle={() => toggleGroup(setShowDurationDropDown, setShowTargetDropDown)}
+            className="m-2"
+            selectedItemText={selectedDurationText}>
             {durationList}
          </DropDownContainer>
-         <Fade in={!showDurationDropDown}>
-            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-60 box-border">
-               {!showDurationDropDown && <RecurrenceTarget {...props}></RecurrenceTarget>}
+         <DropDownContainer
+            show={showTargetDropDown}
+            toggle={() => toggleGroup(setShowTargetDropDown, setShowDurationDropDown)}
+            className="m-2"
+            selectedItemText={goalValue.primary}>
+            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-56 box-border">
+               {showTargetDropDown && <RecurrenceTarget {...props}></RecurrenceTarget>}
             </div>
-         </Fade>
+         </DropDownContainer>
       </>
    );
 };

@@ -3,8 +3,9 @@
  * {namespace}_{specificType}
  */
 export enum ExceptionTypes {
-   General_Unknown = 'Unknown Error',
-   General_External = 'External Library Error',
+   General_Unknown = 'Unknown error',
+   General_External = 'External library error',
+   General_InvalidArguments = 'Invalid arguments exception',
    Schedule_RecurrenceConfigurationIsInvalid = 'Recurrence configuration is invalid',
    Schedule_RecurrenceAggregationPeriods = 'Invalid aggregation period',
 }

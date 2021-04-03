@@ -45,7 +45,7 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
                         <AggregationIcons period={m}></AggregationIcons>
                      </Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary={text.primary} secondary={text.secondary} />
+                  <ListItemText primary={text.primary} secondary={text.description} />
                </ListItem>
             );
          })}

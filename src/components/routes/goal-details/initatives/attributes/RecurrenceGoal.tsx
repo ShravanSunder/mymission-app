@@ -103,7 +103,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             {durationList}
          </DropDownContainer>
          <Fade in={!showDurationDropDown}>
-            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-64 box-border">
+            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-60 box-border">
                {!showDurationDropDown && <RecurrenceTarget {...props}></RecurrenceTarget>}
             </div>
          </Fade>

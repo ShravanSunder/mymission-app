@@ -19,5 +19,5 @@
 
 if ('serviceWorker' in navigator) {
    // eslint-disable-next-line
-   //window.addEventListener('load', () => registerServiceWorker());
+   // window.addEventListener('load', () => registerServiceWorker());
 }

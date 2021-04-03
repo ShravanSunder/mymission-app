@@ -3,11 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 //defaultTheme.screens.sm = '600px';
 
 module.exports = {
-   purge: ['./src/**/*.{jsx,tsx,html}', './src/index.html'],
-   // purge: {
-   //    enabled: false,
-   //    content: ['./src/**/*.{jsx,tsx,html}', './src/index.html'],
-   // },
+   purge: ['./src/**/*.{jsx,tsx,html,js,ts}', './public/**/*.html'],
    darkMode: 'class', // or 'media' or 'class'
    important: false,
    corePlugins: {

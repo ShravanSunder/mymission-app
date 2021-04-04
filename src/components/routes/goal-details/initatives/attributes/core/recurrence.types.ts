@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import weekday from 'dayjs/plugin/weekday';
-import { GetValues as GetEnumValues } from '~~/helpers/enums';
+import { DaysOfWeek, MonthsOfYear } from '~~/components/routes/goal-details/initatives/attributes/core/schedule.types';
+import { getKeysOfEnum, getValuesOfEnum } from '~~/helpers/enums';
 
 dayjs.extend(weekday);
 dayjs.extend(duration);
@@ -14,31 +15,54 @@ dayjs.extend(duration);
  * - aggegate over a quarter
  */
 export enum RecurrenceAggregationPeriods {
-   PerDay = 'day',
-   PerWeek = 'week',
-   PerMonth = 'month',
+   PerDay = 'PerDay',
+   PerWeek = 'PerWeek',
+   PerMonth = 'PerMonth',
 }
 
-export const RecurrenceAggregationPeriodList = GetEnumValues<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods);
+export const RecurrenceAggregationPeriodList = getValuesOfEnum<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods);
 
 /**
  * How long is the duration of time over which you are tracking your habit
- * for example?
+ * for example? See @availableDurations for details
  * - Number of successfull days a week?
  * - Number of successfull days a month
  * - Number of successful weeks a month?
  */
 export enum RecurrenceDurationTypes {
+   /**
+    * Allowed Periods: day
+    */
+   Weekly = 'Weekly',
+   /**
+    * Allowed Periods: day, week
+    */
+   Monthly = 'Monthly',
+   /**
+    * Allowed Periods: day, week, month
+    */
+   Quarterly = 'Quarterly',
+   /**
+    * Allowed Periods: days
+    */
    SpecificDaysOfWeek = 'SpecificDaysOfWeek',
+   /**
+    * Allowed Periods: week
+    */
+   SpecificWeeksOfMonth = 'SpecificWeeksOfMonth',
+   /**
+    * Allowed Periods: month
+    */
+   SpecificMonthsOfYear = 'SpecificMonthsOfYear',
+   /**
+    * Allowed Periods: days
+    */
    PerNumberOfDays = 'PerNumberOfDays',
-   PerNumberOfWeeks = 'PerNumberOfWeeks',
-   PerNumberOfMonths = 'PerNumberOfMonths',
-   Weekly = 'week',
-   Monthly = 'month',
-   Quarterly = 'quarter',
 }
 
-export const RecurrenceDurationList = GetEnumValues<RecurrenceDurationTypes>(RecurrenceDurationTypes);
+export type TRecurrenceTarget = number | DaysOfWeek[] | MonthsOfYear[];
+
+export const RecurrenceDurationList: RecurrenceDurationTypes[] = getValuesOfEnum<RecurrenceDurationTypes>(RecurrenceDurationTypes);
 
 export const daysToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
    [RecurrenceDurationTypes.Weekly, 7],

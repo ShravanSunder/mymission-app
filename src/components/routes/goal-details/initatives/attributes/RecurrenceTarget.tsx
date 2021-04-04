@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { IconButton, Typography } from '@material-ui/core';
 import { FC, MouseEvent, ReactNode, useEffect, useMemo, useRef } from 'react';
 import tw from 'twin.macro';
-import { availableTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
+import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { RecurrenceDurationTypes } from './core/recurrence.types';
 import { DaysOfWeek, daysOfWeekToShortCodeMap } from './core/schedule.types';
 import { IRecurrenceGoalProps } from './RecurrenceGoal';
@@ -83,7 +83,7 @@ const TargetRange: FC<IRecurrenceGoalProps> = (props) => {
          }
       };
 
-      const availbleTargetRange = availableTargetRange(props.aggregationPeriod.value, props.durationType.value);
+      const availbleTargetRange = availableNumericTargetRange(props.aggregationPeriod.value, props.durationType.value);
       const targetRange = props.target.value as number;
 
       let result: ReactNode[] | null = null;

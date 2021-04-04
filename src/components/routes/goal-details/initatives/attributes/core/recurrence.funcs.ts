@@ -8,6 +8,11 @@ import {
    weeksToRecurrenceTypeMap,
 } from './recurrence.types';
 
+/**
+ * this function returns valid durations for a period
+ * @param period
+ * @returns
+ */
 export const availableDurations = (period: RecurrenceAggregationPeriods): RecurrenceDurationTypes[] => {
    if (period === RecurrenceAggregationPeriods.PerDay) {
       return [
@@ -18,15 +23,21 @@ export const availableDurations = (period: RecurrenceAggregationPeriods): Recurr
          RecurrenceDurationTypes.PerNumberOfDays,
       ];
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
-      return [RecurrenceDurationTypes.Monthly, RecurrenceDurationTypes.Quarterly, RecurrenceDurationTypes.PerNumberOfWeeks];
+      return [RecurrenceDurationTypes.Monthly, RecurrenceDurationTypes.Quarterly, RecurrenceDurationTypes.SpecificWeeksOfMonth];
    } else if (period === RecurrenceAggregationPeriods.PerMonth) {
-      return [RecurrenceDurationTypes.Quarterly, RecurrenceDurationTypes.PerNumberOfMonths];
+      return [RecurrenceDurationTypes.Quarterly, RecurrenceDurationTypes.SpecificMonthsOfYear];
    }
 
-   throw new Exception(ExceptionTypes.Schedule_RecurrenceAggregationPeriods, { period });
+   return [];
 };
 
-export const availableTargetRange = (period: RecurrenceAggregationPeriods, duration: RecurrenceDurationTypes): [number, number] => {
+/**
+ * this funciton returns valid targets for period/duration that involve a range of numbers
+ * @param period
+ * @param duration
+ * @returns
+ */
+export const availableNumericTargetRange = (period: RecurrenceAggregationPeriods, duration: RecurrenceDurationTypes): [number, number] => {
    let result2: number | undefined = undefined;
    let result1 = 1;
    if (period === RecurrenceAggregationPeriods.PerDay) {
@@ -37,17 +48,17 @@ export const availableTargetRange = (period: RecurrenceAggregationPeriods, durat
       result2 = monthsToRecurrenceTypeMap.get(duration);
    }
 
+   if (duration === RecurrenceDurationTypes.SpecificWeeksOfMonth) {
+      result1 = 1;
+      result2 = 4;
+   }
+
    if (duration === RecurrenceDurationTypes.PerNumberOfDays) {
       result1 = 2;
-      result2 = 90;
-   } else if (duration === RecurrenceDurationTypes.PerNumberOfWeeks) {
-      result1 = 2;
-      result2 = 52;
-   } else if (duration === RecurrenceDurationTypes.PerNumberOfMonths) {
-      result1 = 2;
-      result2 = 12;
+      result2 = 15;
    }
 
    if (result2 != undefined) return [result1, result2];
-   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration });
+
+   return [0, 0];
 };

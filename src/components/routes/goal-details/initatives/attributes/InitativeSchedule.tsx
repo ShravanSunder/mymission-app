@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
-import { formatAggregationPeriodForDisplay, formatRecurrenceSummaryForDisplay, formatGoalForDisplay } from './core/recurrence.facade';
+import { formatAggregationPeriodForDisplay, formatRecurrenceSummaryForDisplay, formatDurationForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { RecurrenceGoal } from './RecurrenceGoal';
@@ -30,14 +30,14 @@ export const InitativeSchedule: FC = () => {
       recurrenceState.target.value
    );
 
-   const data = formatGoalForDisplay(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value);
+   const data = formatDurationForDisplay(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value, recurrenceState.target.value);
 
    console.log(data);
 
    const aggregateAccordion = (
       <Accordion {...getAccordionProps('aggregateAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
-            <ScheduleSummary icon={'📅'} summaryName={aggregationName} summaryValue={aggregationValue.primary}></ScheduleSummary>
+            <ScheduleSummary icon={'📅'} summaryName={aggregationValue.primary} summaryValue={aggregationValue.alternate ?? ''}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
             <RecurrenceAggregationPeriod aggregationPeriod={recurrenceState.aggregationPeriod}></RecurrenceAggregationPeriod>

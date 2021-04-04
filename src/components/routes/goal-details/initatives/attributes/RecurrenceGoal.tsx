@@ -10,10 +10,11 @@ import { SubjectWithTransform } from '~~/components/common/core/hooks/useSubject
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
 import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
 import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
+import { getAsNumber } from '~~/helpers/conversion';
 import { muiIconCss } from '~~/helpers/muiIconCss';
-import { formatGoalForDisplay, formatRecurrenceSummaryForDisplay } from './core/recurrence.facade';
+import { formatAggregationPeriodForUnits, formatDurationForDisplay, formatRecurrenceSummaryForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes } from './core/recurrence.types';
+import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, TRecurrenceTarget } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
 
 export interface IRecurrenceGoalProps {
@@ -30,7 +31,7 @@ export interface IRecurrenceGoalProps {
     * Number: Number of times per repetition.
     * Days of Week:  When repetition type is SpecificDaysOfWeek, it can be an DaysOfWeek[]
     */
-   target: SubjectWithTransform<number | DaysOfWeek[]>;
+   target: SubjectWithTransform<TRecurrenceTarget>;
 }
 
 const DurationIcons: FC<{ duration: RecurrenceDurationTypes }> = (props) => {
@@ -57,9 +58,8 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
    const [showTargetDropDown, setShowTargetDropDown] = useState(false);
 
-   const updateDurationText = (duration: RecurrenceDurationTypes, target: number | DaysOfWeek[]) => {
-      const safeTarget = typeof target === 'number' ? target : undefined;
-      const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, duration, safeTarget);
+   const updateDurationText = (duration: RecurrenceDurationTypes, target: TRecurrenceTarget) => {
+      const text = formatDurationForDisplay(intl, props.aggregationPeriod.value, duration, target);
       setSelectedDurationText(text.primary);
    };
 
@@ -68,12 +68,13 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
 
    const goalValue = formatRecurrenceSummaryForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, props.target.value);
 
+   const periodUnits = formatAggregationPeriodForUnits(intl, props.aggregationPeriod.value);
+
    // todo this list depends on what's allowed by aggregation date
    const durationList = (
       <List className="elevation-2">
          {availableDurations(props.aggregationPeriod.value).map((m: RecurrenceDurationTypes, i: number) => {
-            const target = typeof props.target.value === 'number' ? props.target.value : undefined;
-            const text = formatGoalForDisplay(intl, props.aggregationPeriod.value, m, target);
+            const text = formatDurationForDisplay(intl, props.aggregationPeriod.value, m, props.target.value);
             const handleClick = () => {
                props.durationType.next(m);
             };
@@ -86,7 +87,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
                            <DurationIcons duration={m}></DurationIcons>
                         </Avatar>
                      </ListItemAvatar>
-                     <ListItemText primary={text.primary} />
+                     <ListItemText primary={text.alternate ?? text.primary} />
                   </ListItem>
                </Fragment>
             );
@@ -99,6 +100,9 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
          <div className="w-full overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
             <Typography variant="h4" className="text-center">
                {intl.formatMessage({ defaultMessage: 'What is your target goal?' })}
+            </Typography>
+            <Typography variant="body1" className="">
+               {intl.formatMessage({ defaultMessage: 'How often do you want have a successful {periodUnits}' }, { periodUnits })}
             </Typography>
          </div>
          <div className="p-1"></div>

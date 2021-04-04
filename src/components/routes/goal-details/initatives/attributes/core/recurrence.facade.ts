@@ -134,7 +134,7 @@ export const formatRecurrenceGoalForDisplay = (
             }),
          };
       } else {
-         const selectedMonths = monthsOfYearToString(monthsOfYearList);
+         const selectedMonths = monthsOfYearToString(tempTarget);
          return {
             primary: intl.formatMessage(
                {

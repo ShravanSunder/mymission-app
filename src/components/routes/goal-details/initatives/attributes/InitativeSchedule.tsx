@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { FC } from 'react';
 import { useIntl } from 'react-intl';
-import { formatAggregationPeriodForDisplay, formatRecurrenceSummaryForDisplay, formatDurationForDisplay } from './core/recurrence.facade';
+import { formatAggregationPeriodForDisplay, formatRecurrenceGoalForDisplay, formatDurationForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
 import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
 import { RecurrenceGoal } from './RecurrenceGoal';
@@ -23,7 +23,7 @@ export const InitativeSchedule: FC = () => {
    const aggregationValue = formatAggregationPeriodForDisplay(intl, recurrenceState.aggregationPeriod.value);
 
    const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
-   const goalValue = formatRecurrenceSummaryForDisplay(
+   const goalValue = formatRecurrenceGoalForDisplay(
       intl,
       recurrenceState.aggregationPeriod.value,
       recurrenceState.durationType.value,

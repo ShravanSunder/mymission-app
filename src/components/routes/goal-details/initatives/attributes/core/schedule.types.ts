@@ -59,7 +59,7 @@ export const monthsOfYearToShortCodeMap: Map<DaysOfWeek, string> = new Map(
    monthsOfYearList.map((d) => [
       d,
       dayjs()
-         .day((d as unknown) as number)
+         .month((d as unknown) as number)
          .format('MMM'),
    ]) as any
 );

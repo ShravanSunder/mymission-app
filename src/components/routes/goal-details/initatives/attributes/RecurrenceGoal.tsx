@@ -12,7 +12,7 @@ import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownCon
 import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
 import { getAsNumber } from '~~/helpers/conversion';
 import { muiIconCss } from '~~/helpers/muiIconCss';
-import { formatAggregationPeriodForUnits, formatDurationForDisplay, formatRecurrenceSummaryForDisplay } from './core/recurrence.facade';
+import { formatAggregationPeriodForUnits, formatDurationForDisplay, formatRecurrenceGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, TRecurrenceTarget } from './core/recurrence.types';
 import { DaysOfWeek } from './core/schedule.types';
@@ -66,7 +66,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    useSubscription(props.durationType.source$, () => setShowDurationDropDown(false));
    useSubscription(combineLatest([props.durationType.subject$, props.target.subject$]), ([duration, target]) => updateDurationText(duration, target));
 
-   const goalValue = formatRecurrenceSummaryForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, props.target.value);
+   const goalValue = formatRecurrenceGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, props.target.value);
 
    const periodUnits = formatAggregationPeriodForUnits(intl, props.aggregationPeriod.value);
 

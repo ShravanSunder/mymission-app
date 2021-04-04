@@ -42,7 +42,7 @@ export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceDura
  * @param target
  */
 
-export const formatRecurrenceSummaryForDisplay = (
+export const formatRecurrenceGoalForDisplay = (
    intl: IntlShape,
    period: RecurrenceAggregationPeriods,
    duration: RecurrenceDurationTypes,
@@ -55,7 +55,7 @@ export const formatRecurrenceSummaryForDisplay = (
       if (isEveryWeekOfMonth(tempTarget)) {
          return {
             primary: intl.formatMessage({
-               defaultMessage: 'Every month',
+               defaultMessage: 'Every Week',
             }),
          };
       } else {

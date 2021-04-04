@@ -39,6 +39,9 @@ module.exports = {
          maxWidth: (theme) => ({
             ...theme('spacing'),
          }),
+         minWidth: (theme) => ({
+            ...theme('spacing'),
+         }),
          backgroundColor: ['group-focus'],
          borderWidth: {
             1: '1px',

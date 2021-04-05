@@ -83,7 +83,7 @@ export const formatRecurrenceGoalForDisplay = (
             };
          }
       } else if (target < numericTargetRange[1]) {
-         const periodUnits = formatAggregationPeriodForUnits(intl, period, 1).toLowerCase();
+         const periodUnits = formatAggregationPeriodForUnits(intl, period, target).toLowerCase();
          const durationUnits = formatDurationForUnits(intl, duration, 1).toLowerCase();
          return {
             primary: intl.formatMessage(

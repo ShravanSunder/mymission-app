@@ -58,18 +58,12 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
 
       const targetNumbers = Array.from(Array(availbleTargetRange[1] + 1).keys()).filter((n) => n > 0);
       const targetValue = props.target.value as number;
-      const data = targetNumbers.map((n) => {
-         return { key: n, value: n.toString() };
-      });
-      const data2 = targetNumbers.map((f) => {
-         return [f, f.toString()];
-      });
 
       return (
          <>
-            {targetNumbers.map((k: DaysOfWeek | MonthsOfYear) => (
+            {targetNumbers.map((k: number) => (
                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-               <TargetItem selected={[targetValue]} key={k} index={k} display={targetValue.toString()} handleChange={handleChange} />
+               <TargetItem selected={[targetValue]} key={k} index={k} display={k.toString()} handleChange={handleChange} />
             ))}
          </>
       );

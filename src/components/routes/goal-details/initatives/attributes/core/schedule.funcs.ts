@@ -4,35 +4,29 @@ import { partitionToContiguousSections } from '~~/helpers/algorithms';
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
 export const daysOfWeekToString = (target: DaysOfWeek[]): string => {
-   /**
-    * if there are 6 of the days, we want to output the range as a string
-    * ie. if only sunday is not selected:
-    *    mon - sat
-    */
-   if (new Set(target).size === 6) {
-      const dayNotPresent = daysOfWeekList.find((f) => !target.includes(f));
-      if (dayNotPresent != undefined) {
-         const first: DaysOfWeek = (dayNotPresent - 1) % 7;
-         const last: DaysOfWeek = (dayNotPresent + 1) % 7;
-         return `${dayjs().weekday(last).format('ddd')}-${dayjs().weekday(first).format('ddd')}`;
+   const dateFn = (value: DaysOfWeek) => dayjs().weekday(value);
+   const result: string[] = [];
+   const contiguousSections = partitionToContiguousSections(target, daysOfWeekList);
+   contiguousSections.forEach((value, key) => {
+      if (value === key) {
+         result.push(dateFn(value).format('ddd'));
+      } else {
+         result.push(dateFn(value).format('ddd') + '-' + dateFn(key).format('ddd'));
       }
-   }
+   });
 
-   return target
-      .sort()
-      .map((m) => dayjs().weekday(m).format('ddd'))
-      .join(' ');
+   return result.join('  ');
 };
 
 export const monthsOfYearToString = (target: MonthsOfYear[]): string => {
-   const contiguousSections = partitionToContiguousSections(target, monthsOfYearList);
-
+   const dateFn = (value: MonthsOfYear) => dayjs().month(value);
    const result: string[] = [];
+   const contiguousSections = partitionToContiguousSections(target, monthsOfYearList);
    contiguousSections.forEach((value, key) => {
       if (value === key) {
-         result.push(dayjs().month(value).format('MMM'));
+         result.push(dateFn(value).format('MMM'));
       } else {
-         result.push(dayjs().month(value).format('MMM') + '-' + dayjs().month(key).format('MMM'));
+         result.push(dateFn(value).format('MMM') + '-' + dateFn(key).format('MMM'));
       }
    });
 

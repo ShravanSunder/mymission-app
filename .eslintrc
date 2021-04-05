@@ -33,7 +33,7 @@
       "formatjs/enforce-description": "off",
       "formatjs/enforce-default-message": "off",
       "formatjs/enforce-placeholders": "error",
-      "formatjs/no-multiple-whitespaces": "error",
+      "formatjs/no-multiple-whitespaces": "off",
       "formatjs/no-multiple-plurals": "error",
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
@@ -62,6 +62,7 @@
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-unsafe-call": "warn",
       "@typescript-eslint/unbound-method": 0,
+      "@typescript-eslint/restrict-template-expressions": ["error", { "allowBoolean": true, "allowNumber": true }],
       "no-param-reassign": "error",
       "no-duplicate-imports": "warn",
       "import/extensions": 0,
@@ -87,8 +88,7 @@
       "no-restricted-globals": "off",
       "eslint linebreak-style": 0,
       "object-curly-newline": 0,
-      "no-shadow": 0,
-      "restrict-template-expressions": { "allowBoolean": true, "allowNumber": true }
+      "no-shadow": 0
    },
    "settings": {
       "react": {

@@ -68,7 +68,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
 
    const goalValue = formatRecurrenceGoalForDisplay(intl, props.aggregationPeriod.value, props.durationType.value, props.target.value);
 
-   const periodUnits = formatAggregationPeriodForUnits(intl, props.aggregationPeriod.value);
+   const periodUnits = formatAggregationPeriodForUnits(intl, props.aggregationPeriod.value).toLowerCase();
 
    // todo this list depends on what's allowed by aggregation date
    const durationList = (
@@ -103,8 +103,9 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             <Typography variant="h4" className="text-center">
                {intl.formatMessage({ defaultMessage: 'What is your target goal?' })}
             </Typography>
+            <div className="p-2"></div>
             <Typography variant="body1" className="">
-               {intl.formatMessage({ defaultMessage: 'How often do you want have a successful {periodUnits}' }, { periodUnits })}
+               {intl.formatMessage({ defaultMessage: 'What is your goal to meet for success?  How often do you want to hit your goal? ' }, { periodUnits })}
             </Typography>
          </div>
          <div className="p-1"></div>

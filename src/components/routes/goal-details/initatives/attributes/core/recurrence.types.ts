@@ -33,31 +33,31 @@ export enum RecurrenceDurationTypes {
    /**
     * Allowed Periods: days
     */
-   SpecificDaysOfWeek = 'SpecificDaysOfWeek',
+   SpecificDaysOfWeek = '0_SpecificDaysOfWeek',
    /**
     * Allowed Periods: week
     */
-   SpecificWeeksOfMonth = 'SpecificWeeksOfMonth',
+   SpecificWeeksOfMonth = '1_SpecificWeeksOfMonth',
    /**
     * Allowed Periods: month
     */
-   SpecificMonthsOfYear = 'SpecificMonthsOfYear',
+   SpecificMonthsOfYear = '2_SpecificMonthsOfYear',
    /**
     * Allowed Periods: day
     */
-   Weekly = 'Weekly',
+   Weekly = '3_Weekly',
    /**
     * Allowed Periods: day, week
     */
-   Monthly = 'Monthly',
+   Monthly = '4_Monthly',
    /**
     * Allowed Periods: day, week, month
     */
-   Quarterly = 'Quarterly',
+   Quarterly = '5_Quarterly',
    /**
     * Allowed Periods: days
     */
-   PerNumberOfDays = 'PerNumberOfDays',
+   PerNumberOfDays = '6_PerNumberOfDays',
 }
 
 export type TRecurrenceTarget = number | DaysOfWeek[] | MonthsOfYear[] | number[];

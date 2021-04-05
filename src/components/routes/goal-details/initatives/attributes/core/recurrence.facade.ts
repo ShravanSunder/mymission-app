@@ -55,7 +55,7 @@ export const formatRecurrenceGoalForDisplay = (
       if (isEveryWeekOfMonth(tempTarget)) {
          return {
             primary: intl.formatMessage({
-               defaultMessage: 'Every Week',
+               defaultMessage: 'Every week of the month',
             }),
          };
       } else {
@@ -63,7 +63,7 @@ export const formatRecurrenceGoalForDisplay = (
          return {
             primary: intl.formatMessage(
                {
-                  defaultMessage: 'Weeks: {selectedWeeks}',
+                  defaultMessage: 'Weeks {selectedWeeks} of the month',
                },
                { selectedWeeks }
             ),
@@ -95,12 +95,13 @@ export const formatRecurrenceGoalForDisplay = (
          };
       } else if (target === numericTargetRange[1]) {
          const periodUnits = formatAggregationPeriodForUnits(intl, period, 1).toLowerCase();
+         const durationUnits = formatDurationForUnits(intl, duration, 1).toLowerCase();
          return {
             primary: intl.formatMessage(
                {
-                  defaultMessage: 'Every {periodUnits}',
+                  defaultMessage: 'Every {periodUnits} of the {durationUnits}',
                },
-               { periodUnits }
+               { periodUnits, durationUnits }
             ),
          };
       }

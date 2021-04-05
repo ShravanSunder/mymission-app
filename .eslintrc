@@ -87,7 +87,8 @@
       "no-restricted-globals": "off",
       "eslint linebreak-style": 0,
       "object-curly-newline": 0,
-      "no-shadow": 0
+      "no-shadow": 0,
+      "restrict-template-expressions": { "allowBoolean": true, "allowNumber": true }
    },
    "settings": {
       "react": {

@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import { array } from 'yup/lib/locale';
+import { partitionToContiguousSections } from '~~/helpers/algorithms';
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
 export const daysOfWeekToString = (target: DaysOfWeek[]): string => {
@@ -12,7 +14,7 @@ export const daysOfWeekToString = (target: DaysOfWeek[]): string => {
       if (dayNotPresent != undefined) {
          const first: DaysOfWeek = (dayNotPresent - 1) % 7;
          const last: DaysOfWeek = (dayNotPresent + 1) % 7;
-         return `${dayjs().weekday(last).format('ddd')} - ${dayjs().weekday(first).format('ddd')}`;
+         return `${dayjs().weekday(last).format('ddd')}-${dayjs().weekday(first).format('ddd')}`;
       }
    }
 
@@ -23,31 +25,33 @@ export const daysOfWeekToString = (target: DaysOfWeek[]): string => {
 };
 
 export const monthsOfYearToString = (target: MonthsOfYear[]): string => {
-   /**
-    * if there are 11, we want to output the range as a string
-    * ie. if only december is not selected:
-    *    jan - nov
-    */
-   if (new Set(target).size === 11) {
-      const dayNotPresent = monthsOfYearList.find((f) => !target.includes(f));
-      if (dayNotPresent != undefined) {
-         const first: MonthsOfYear = (dayNotPresent - 1) % 12;
-         const last: MonthsOfYear = (dayNotPresent + 1) % 12;
-         return `${dayjs().month(last).format('ddd')} - ${dayjs().month(first).format('ddd')}`;
-      }
-   }
+   const contiguousSections = partitionToContiguousSections(target, monthsOfYearList);
 
-   return target
-      .sort()
-      .map((m) => dayjs().month(m).format('MMM'))
-      .join(' ');
+   const result: string[] = [];
+   contiguousSections.forEach((value, key) => {
+      if (value === key) {
+         result.push(dayjs().month(value).format('MMM'));
+      } else {
+         result.push(dayjs().month(value).format('MMM') + '-' + dayjs().month(key).format('MMM'));
+      }
+   });
+
+   return result.join('  ');
 };
 
 export const weeksOfMonthToString = (target: number[]): string => {
-   return target
-      .sort()
-      .map((m) => m)
-      .join(', ');
+   const contiguousSections = partitionToContiguousSections(target, [1, 2, 3, 4]);
+
+   const result: string[] = [];
+   contiguousSections.forEach((value, key) => {
+      if (value === key) {
+         result.push(value.toString());
+      } else {
+         result.push(`${value}-${key}`);
+      }
+   });
+
+   return result.join('  ');
 };
 
 /**

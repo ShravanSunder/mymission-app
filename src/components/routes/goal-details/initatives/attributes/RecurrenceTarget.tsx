@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import tw from 'twin.macro';
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { RecurrenceDurationTypes, TRecurrenceTarget } from './core/recurrence.types';
-import { DaysOfWeek, daysOfWeekToShortCodeMap, MonthsOfYear, monthsOfYearToShortCodeMap } from './core/schedule.types';
+import { DaysOfWeek, daysOfWeekToShortCodeMap, MonthsOfYear, monthsOfYearToShortCodeMap, weeksOfMonthMap } from './core/schedule.types';
 import { IRecurrenceGoalProps } from './RecurrenceGoal';
 
 interface ITargetItemProps<T extends DaysOfWeek | MonthsOfYear | number> {
@@ -47,7 +47,11 @@ const TargetItem: FC<ITargetItemProps<DaysOfWeek | MonthsOfYear | number>> = (pr
 };
 
 const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
-   if (props.durationType.value !== RecurrenceDurationTypes.SpecificDaysOfWeek && props.durationType.value !== RecurrenceDurationTypes.SpecificMonthsOfYear) {
+   if (
+      props.durationType.value !== RecurrenceDurationTypes.SpecificDaysOfWeek &&
+      props.durationType.value !== RecurrenceDurationTypes.SpecificMonthsOfYear &&
+      props.durationType.value !== RecurrenceDurationTypes.SpecificWeeksOfMonth
+   ) {
       const handleChange = (newValue: number) => {
          if (newValue != undefined) {
             props.target.next(newValue);
@@ -55,7 +59,6 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
       };
 
       const availbleTargetRange = availableNumericTargetRange(props.aggregationPeriod.value, props.durationType.value);
-
       const targetNumbers = Array.from(Array(availbleTargetRange[1] + 1).keys()).filter((n) => n > 0);
       const targetValue = props.target.value as number;
 
@@ -68,7 +71,7 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
          </>
       );
    } else {
-      const handleChange = <T extends DaysOfWeek | MonthsOfYear>(newValue: T) => {
+      const handleChange = <T extends DaysOfWeek | MonthsOfYear | number>(newValue: T) => {
          if (newValue != undefined) {
             const data = props.target.subject$.getValue() as T[];
             if (data.includes(newValue)) {
@@ -79,7 +82,7 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
          }
       };
 
-      const targetValues = props.target.value as DaysOfWeek[] | MonthsOfYear[];
+      const targetValues = props.target.value as DaysOfWeek[] | MonthsOfYear[] | number[];
       let map: Map<DaysOfWeek | MonthsOfYear, string>;
       switch (props.durationType.value) {
          case RecurrenceDurationTypes.SpecificDaysOfWeek:
@@ -88,11 +91,14 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
          case RecurrenceDurationTypes.SpecificMonthsOfYear:
             map = monthsOfYearToShortCodeMap;
             break;
+         case RecurrenceDurationTypes.SpecificWeeksOfMonth:
+            map = weeksOfMonthMap;
+            break;
       }
 
       return (
          <>
-            {Array.from(map.keys()).map((k: DaysOfWeek | MonthsOfYear) => {
+            {Array.from(map.keys()).map((k: DaysOfWeek | MonthsOfYear | number) => {
                const display = map.get(k) ?? '';
                return <TargetItem selected={targetValues} key={k} index={k} display={display} handleChange={handleChange} />;
             })}

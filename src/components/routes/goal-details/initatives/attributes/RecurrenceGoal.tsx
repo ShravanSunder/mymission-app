@@ -73,25 +73,27 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    // todo this list depends on what's allowed by aggregation date
    const durationList = (
       <List className="elevation-2">
-         {availableDurations(props.aggregationPeriod.value).map((m: RecurrenceDurationTypes, i: number) => {
-            const text = formatDurationForDisplay(intl, props.aggregationPeriod.value, m, props.target.value);
-            const handleClick = () => {
-               props.durationType.next(m);
-            };
+         {availableDurations(props.aggregationPeriod.value)
+            .sort()
+            .map((m: RecurrenceDurationTypes, i: number) => {
+               const text = formatDurationForDisplay(intl, props.aggregationPeriod.value, m, props.target.value);
+               const handleClick = () => {
+                  props.durationType.next(m);
+               };
 
-            return (
-               <Fragment key={i}>
-                  <ListItem key={i} selected={m === props.durationType.value} onClick={() => handleClick()} button>
-                     <ListItemAvatar>
-                        <Avatar>
-                           <DurationIcons duration={m}></DurationIcons>
-                        </Avatar>
-                     </ListItemAvatar>
-                     <ListItemText primary={text.alternate ?? text.primary} />
-                  </ListItem>
-               </Fragment>
-            );
-         })}
+               return (
+                  <Fragment key={i}>
+                     <ListItem key={i} selected={m === props.durationType.value} onClick={() => handleClick()} button>
+                        <ListItemAvatar>
+                           <Avatar>
+                              <DurationIcons duration={m}></DurationIcons>
+                           </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={text.alternate ?? text.primary} />
+                     </ListItem>
+                  </Fragment>
+               );
+            })}
       </List>
    );
 

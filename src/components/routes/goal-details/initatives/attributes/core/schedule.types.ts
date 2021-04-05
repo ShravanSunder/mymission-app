@@ -35,9 +35,7 @@ export enum MonthsOfYear {
 }
 
 export const daysOfWeekList: DaysOfWeek[] = getValuesOfEnum<DaysOfWeek>(DaysOfWeek);
-
 export const monthsOfYearList: MonthsOfYear[] = getValuesOfEnum<MonthsOfYear>(MonthsOfYear);
-
 export const weeksOfMonthList: number[] = [1, 2, 3, 4];
 
 /**
@@ -63,6 +61,11 @@ export const monthsOfYearToShortCodeMap: Map<DaysOfWeek, string> = new Map(
          .format('MMM'),
    ]) as any
 );
+
+/**
+ * Map of @weeksOfMonthList
+ */
+export const weeksOfMonthMap: Map<number, string> = new Map(weeksOfMonthList.map((d) => [d, d.toString()]) as any);
 
 export enum QuartersOfYear {
    Q1 = 1,

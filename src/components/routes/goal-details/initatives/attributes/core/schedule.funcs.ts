@@ -15,7 +15,7 @@ export const daysOfWeekToString = (target: DaysOfWeek[]): string => {
       }
    });
 
-   return result.join('  ');
+   return result.join(',  ');
 };
 
 export const monthsOfYearToString = (target: MonthsOfYear[]): string => {
@@ -30,7 +30,7 @@ export const monthsOfYearToString = (target: MonthsOfYear[]): string => {
       }
    });
 
-   return result.join('  ');
+   return result.join(',  ');
 };
 
 export const weeksOfMonthToString = (target: number[]): string => {
@@ -45,7 +45,7 @@ export const weeksOfMonthToString = (target: number[]): string => {
       }
    });
 
-   return result.join('  ');
+   return result.join(',  ');
 };
 
 /**

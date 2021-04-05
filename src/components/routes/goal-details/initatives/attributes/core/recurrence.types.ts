@@ -31,6 +31,18 @@ export const RecurrenceAggregationPeriodList = getValuesOfEnum<RecurrenceAggrega
  */
 export enum RecurrenceDurationTypes {
    /**
+    * Allowed Periods: days
+    */
+   SpecificDaysOfWeek = 'SpecificDaysOfWeek',
+   /**
+    * Allowed Periods: week
+    */
+   SpecificWeeksOfMonth = 'SpecificWeeksOfMonth',
+   /**
+    * Allowed Periods: month
+    */
+   SpecificMonthsOfYear = 'SpecificMonthsOfYear',
+   /**
     * Allowed Periods: day
     */
    Weekly = 'Weekly',
@@ -45,22 +57,10 @@ export enum RecurrenceDurationTypes {
    /**
     * Allowed Periods: days
     */
-   SpecificDaysOfWeek = 'SpecificDaysOfWeek',
-   /**
-    * Allowed Periods: week
-    */
-   SpecificWeeksOfMonth = 'SpecificWeeksOfMonth',
-   /**
-    * Allowed Periods: month
-    */
-   SpecificMonthsOfYear = 'SpecificMonthsOfYear',
-   /**
-    * Allowed Periods: days
-    */
    PerNumberOfDays = 'PerNumberOfDays',
 }
 
-export type TRecurrenceTarget = number | DaysOfWeek[] | MonthsOfYear[];
+export type TRecurrenceTarget = number | DaysOfWeek[] | MonthsOfYear[] | number[];
 
 export const RecurrenceDurationList: RecurrenceDurationTypes[] = getValuesOfEnum<RecurrenceDurationTypes>(RecurrenceDurationTypes);
 

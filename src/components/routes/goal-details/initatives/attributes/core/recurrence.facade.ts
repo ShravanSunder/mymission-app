@@ -59,7 +59,7 @@ export const formatRecurrenceGoalForDisplay = (
             }),
          };
       } else {
-         const selectedWeeks = weeksOfMonthToString(monthsOfYearList);
+         const selectedWeeks = weeksOfMonthToString(tempTarget);
          return {
             primary: intl.formatMessage(
                {

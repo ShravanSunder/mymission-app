@@ -2,6 +2,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
+import { getAsNumberArray } from '~~/helpers/conversion';
 import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, TRecurrenceTarget } from './recurrence.types';
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
@@ -72,8 +73,15 @@ export const transformTarget = (target: TRecurrenceTarget, duration: RecurrenceD
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
       if (duration === RecurrenceDurationTypes.SpecificWeeksOfMonth) {
          const availableArray: number[] = availableNumericTargetRange(period, duration);
-         if (target > availableArray[1] || target < availableArray[0]) {
-            result = availableArray[1];
+         if (typeof target === 'number') {
+            return [availableArray[1]];
+         } else {
+            const tempTarget = getAsNumberArray(target);
+            if (tempTarget == undefined || target.some((t) => t < availableArray[0] && t < availableArray[1])) {
+               return [availableArray[1]];
+            } else {
+               return target;
+            }
          }
       }
       if (duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {

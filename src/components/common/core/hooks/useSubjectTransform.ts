@@ -1,4 +1,4 @@
-import { useObservable, useObservableState } from 'observable-hooks';
+import { useObservable, useObservableState, useObservableEagerState } from 'observable-hooks';
 import { useCallback } from 'react';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
@@ -40,9 +40,10 @@ export const useSubjectTransform = <T>(initValue: T, operator: TTransform<T>, ..
       const b$ = new BehaviorSubject(initValue);
       operator(source$, ...otherObservables$).subscribe(b$);
       return b$;
-   }) as BehaviorSubject<T>;
+   }, [source$]) as BehaviorSubject<T>;
    const push = useCallback((newValue: T) => source$.next(newValue), [source$]);
-   const value = useObservableState(subject$, initValue);
+   const value = useObservableEagerState(subject$);
+   // useObservableEagerState
 
    return { subject$, next: push, source$, value };
 };

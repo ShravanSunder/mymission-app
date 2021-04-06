@@ -6,6 +6,8 @@ import { Exception, ExceptionTypes } from '~~/models/Exception';
 
 /**
  * Helper that allows you to only have one dropDown in a group open.   For toggle parameter of @DropDownButton and accepts SetState function from @useState hook.
+ *
+ * ⚠ NOTE: order of params matter
  * @param setState the current dropdown to change state
  * @param setGroupStateOff other dropdowns to close when current is open, can be ignored
  */
@@ -22,7 +24,8 @@ interface IDropDownContainerProps extends ICommonProps {
    selectedItemText: string;
    show: boolean;
    /**
-    * Use @toggleGroup to control a group of buttons
+    * Use @toggleGroup to control a group of dropdowns together
+    * use any callback otherwise to toggle the dropdown
     */
    toggle: () => void;
 }

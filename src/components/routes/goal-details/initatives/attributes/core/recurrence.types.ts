@@ -29,7 +29,7 @@ export const RecurrenceAggregationPeriodList = getValuesOfEnum<RecurrenceAggrega
  * - Number of successfull days a month
  * - Number of successful weeks a month?
  */
-export enum RecurrenceDurationTypes {
+export enum RecurrenceDurationType {
    /**
     * Allowed Periods: days
     */
@@ -62,19 +62,19 @@ export enum RecurrenceDurationTypes {
 
 export type TRecurrenceTarget = number | DaysOfWeek[] | MonthsOfYear[] | number[];
 
-export const RecurrenceDurationList: RecurrenceDurationTypes[] = getValuesOfEnum<RecurrenceDurationTypes>(RecurrenceDurationTypes);
+export const RecurrenceDurationList: RecurrenceDurationType[] = getValuesOfEnum<RecurrenceDurationType>(RecurrenceDurationType);
 
-export const daysToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
-   [RecurrenceDurationTypes.Weekly, 7],
-   [RecurrenceDurationTypes.Monthly, Math.floor(dayjs.duration({ months: 1 }).asDays())],
-   [RecurrenceDurationTypes.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asDays())],
+export const daysToRecurrenceTypeMap: Map<RecurrenceDurationType, number> = new Map([
+   [RecurrenceDurationType.Weekly, 7],
+   [RecurrenceDurationType.Monthly, Math.floor(dayjs.duration({ months: 1 }).asDays())],
+   [RecurrenceDurationType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asDays())],
 ]);
 
-export const weeksToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
-   [RecurrenceDurationTypes.Monthly, Math.floor(dayjs.duration({ months: 1 }).asWeeks())],
-   [RecurrenceDurationTypes.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asWeeks())],
+export const weeksToRecurrenceTypeMap: Map<RecurrenceDurationType, number> = new Map([
+   [RecurrenceDurationType.Monthly, Math.floor(dayjs.duration({ months: 1 }).asWeeks())],
+   [RecurrenceDurationType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asWeeks())],
 ]);
 
-export const monthsToRecurrenceTypeMap: Map<RecurrenceDurationTypes, number> = new Map([
-   [RecurrenceDurationTypes.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
+export const monthsToRecurrenceTypeMap: Map<RecurrenceDurationType, number> = new Map([
+   [RecurrenceDurationType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
 ]);

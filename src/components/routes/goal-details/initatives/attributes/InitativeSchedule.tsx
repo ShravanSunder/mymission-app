@@ -1,10 +1,10 @@
 import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { formatAggregationPeriodForDisplay, formatRecurrenceGoalForDisplay, formatDurationForDisplay } from './core/recurrence.facade';
-import { IRecurrenceObservables, useRecurrenceObservables } from './core/useInitiativeSchedule';
-import { RecurrenceAggregationPeriod } from './RecurrenceAggregationPeriod';
+import { IRecurrenceObservables, useInitiativeSchedule } from './core/useInitiativeSchedule';
+import { RecurrenceAggregationPeriod as RecurrenceRepetition } from './RecurrenceRepetition';
 import { RecurrenceGoal } from './RecurrenceGoal';
 import { ScheduleSummary } from './ScheduleSummary';
 import { useControlledAccordion } from '~~/components/common/core/hooks/useControlledAccordion';
@@ -18,29 +18,22 @@ export const InitativeSchedule: FC = () => {
    const getAccordionProps = useControlledAccordion();
    const intl = useIntl();
 
-   const recurrenceState: IRecurrenceObservables = useRecurrenceObservables();
-   const aggregationName = intl.formatMessage({ defaultMessage: 'Habit counting' });
-   const aggregationValue = formatAggregationPeriodForDisplay(intl, recurrenceState.aggregationPeriod.value);
+   const state: IRecurrenceObservables = useInitiativeSchedule();
+   const aggregationValue = formatAggregationPeriodForDisplay(intl, state.period.value);
 
+   const periodName = intl.formatMessage({ defaultMessage: 'Habit Repetition' });
    const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
-   const goalValue = formatRecurrenceGoalForDisplay(
-      intl,
-      recurrenceState.aggregationPeriod.value,
-      recurrenceState.durationType.value,
-      recurrenceState.target.value
-   );
+   const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.duration.value, state.target.value);
 
-   const data = formatDurationForDisplay(intl, recurrenceState.aggregationPeriod.value, recurrenceState.durationType.value, recurrenceState.target.value);
-
-   console.log(data);
+   const repetitions = intl.formatMessage({ defaultMessage: 'Goal' });
 
    const aggregateAccordion = (
       <Accordion {...getAccordionProps('aggregateAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
-            <ScheduleSummary icon={'📅'} summaryName={aggregationValue.primary} summaryValue={aggregationValue.alternate ?? ''}></ScheduleSummary>
+            <ScheduleSummary icon={'📅'} summaryName={periodName} summaryValue={aggregationValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
-            <RecurrenceAggregationPeriod aggregationPeriod={recurrenceState.aggregationPeriod}></RecurrenceAggregationPeriod>
+            <RecurrenceRepetition {...state}></RecurrenceRepetition>
          </AccordionDetails>
       </Accordion>
    );
@@ -51,17 +44,24 @@ export const InitativeSchedule: FC = () => {
             <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
-            <RecurrenceGoal
-               aggregationPeriod={recurrenceState.aggregationPeriod}
-               target={recurrenceState.target}
-               durationType={recurrenceState.durationType}></RecurrenceGoal>
+            <RecurrenceGoal {...state}></RecurrenceGoal>
          </AccordionDetails>
       </Accordion>
    );
+
+   const numberAccordion = (
+      <Accordion {...getAccordionProps('numberAccordion')}>
+         <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel3a-header">
+            <ScheduleSummary icon={'🔢'} summaryName={goalName} summaryValue={goalValue.primary}></ScheduleSummary>
+         </AccordionSummary>
+      </Accordion>
+   );
+
    return (
       <div className="w-full">
          {aggregateAccordion}
-         {goalAccordion}
+         {/* {goalAccordion}
+         {numberAccordion} */}
       </div>
    );
 };

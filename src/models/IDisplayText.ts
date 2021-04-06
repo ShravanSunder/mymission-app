@@ -13,3 +13,7 @@ export interface IDisplayText {
     */
    alternate?: string;
 }
+
+export const defaultIDisplayText = (): IDisplayText => {
+   return { primary: '' } as IDisplayText;
+};

@@ -12,7 +12,7 @@ interface IScheduleAccordionSummary {
 export const ScheduleSummary: FC<IScheduleAccordionSummary> = (props) => {
    return (
       <div
-         className="w-full select-none grid grid-row-3 "
+         className="items-center w-full select-none grid grid-row-3"
          css={{
             gridTemplateColumns: 'auto 1fr auto',
          }}>
@@ -22,7 +22,7 @@ export const ScheduleSummary: FC<IScheduleAccordionSummary> = (props) => {
          <Typography variant="h3" className="pl-2 capitalize">
             {props.summaryName}
          </Typography>
-         <Typography variant="h3" className="pr-2 text-right justify-self-end">
+         <Typography variant="body1" className="pr-2 text-right justify-self-end">
             {props.summaryValue}
          </Typography>
       </div>

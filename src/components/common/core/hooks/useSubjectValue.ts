@@ -1,5 +1,5 @@
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { useObservable, useObservableState } from 'observable-hooks';
+import { useObservable, useObservableEagerState, useObservableState } from 'observable-hooks';
 import { useCallback } from 'react';
 
 /**
@@ -30,7 +30,8 @@ export type SubjectWithValue<T> = {
 export const useSubjectValue = <T>(initValue: T): SubjectWithValue<T> => {
    const subject$ = useObservable<T>(() => new BehaviorSubject(initValue)) as BehaviorSubject<T>;
    const push = useCallback((newValue: T) => (subject$ as Subject<T>).next(newValue), [subject$]);
-   const value = useObservableState(subject$, initValue);
+   const value = useObservableEagerState(subject$);
+   // useObservableEagerState
 
    return { subject$, next: push, value };
 };

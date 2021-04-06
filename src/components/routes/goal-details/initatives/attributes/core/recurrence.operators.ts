@@ -3,50 +3,50 @@ import { map } from 'rxjs/operators';
 import { TTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { getAsNumberArray } from '~~/helpers/conversion';
-import { RecurrenceAggregationPeriods, RecurrenceDurationTypes, TRecurrenceTarget } from './recurrence.types';
+import { RecurrenceAggregationPeriods, RecurrenceDurationType, TRecurrenceTarget } from './recurrence.types';
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
-export const transformDuration = (durationType: RecurrenceDurationTypes, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationTypes => {
+export const transformDuration = (durationType: RecurrenceDurationType, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceDurationType => {
    if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
       switch (durationType) {
-         case RecurrenceDurationTypes.SpecificWeeksOfMonth:
-         case RecurrenceDurationTypes.SpecificMonthsOfYear:
-            return RecurrenceDurationTypes.SpecificDaysOfWeek;
+         case RecurrenceDurationType.SpecificWeeksOfMonth:
+         case RecurrenceDurationType.SpecificMonthsOfYear:
+            return RecurrenceDurationType.SpecificDaysOfWeek;
       }
    } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
       switch (durationType) {
-         case RecurrenceDurationTypes.SpecificDaysOfWeek:
-         case RecurrenceDurationTypes.SpecificMonthsOfYear:
-            return RecurrenceDurationTypes.SpecificWeeksOfMonth;
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.Weekly:
-            return RecurrenceDurationTypes.Monthly;
+         case RecurrenceDurationType.SpecificDaysOfWeek:
+         case RecurrenceDurationType.SpecificMonthsOfYear:
+            return RecurrenceDurationType.SpecificWeeksOfMonth;
+         case RecurrenceDurationType.PerNumberOfDays:
+         case RecurrenceDurationType.Weekly:
+            return RecurrenceDurationType.Monthly;
       }
    } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
       switch (durationType) {
-         case RecurrenceDurationTypes.SpecificDaysOfWeek:
-         case RecurrenceDurationTypes.SpecificWeeksOfMonth:
-            return RecurrenceDurationTypes.SpecificMonthsOfYear;
-         case RecurrenceDurationTypes.PerNumberOfDays:
-         case RecurrenceDurationTypes.Weekly:
-         case RecurrenceDurationTypes.Monthly:
-            return RecurrenceDurationTypes.Quarterly;
+         case RecurrenceDurationType.SpecificDaysOfWeek:
+         case RecurrenceDurationType.SpecificWeeksOfMonth:
+            return RecurrenceDurationType.SpecificMonthsOfYear;
+         case RecurrenceDurationType.PerNumberOfDays:
+         case RecurrenceDurationType.Weekly:
+         case RecurrenceDurationType.Monthly:
+            return RecurrenceDurationType.Quarterly;
       }
    }
    return durationType;
 };
 
-export const transformTarget = (target: TRecurrenceTarget, duration: RecurrenceDurationTypes, period: RecurrenceAggregationPeriods): TRecurrenceTarget => {
+export const transformTarget = (target: TRecurrenceTarget, duration: RecurrenceDurationType, period: RecurrenceAggregationPeriods): TRecurrenceTarget => {
    console.log('updateTarget');
 
    let result: number | undefined;
 
    if (
       typeof target !== 'number' &&
-      (duration === RecurrenceDurationTypes.Weekly || duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly)
+      (duration === RecurrenceDurationType.Weekly || duration === RecurrenceDurationType.Monthly || duration === RecurrenceDurationType.Quarterly)
    ) {
       result = 1;
-   } else if (duration === RecurrenceDurationTypes.PerNumberOfDays) {
+   } else if (duration === RecurrenceDurationType.PerNumberOfDays) {
       const availableArray: number[] = availableNumericTargetRange(period, duration);
       if (target > availableArray[1]) {
          result = availableArray[1];
@@ -54,24 +54,20 @@ export const transformTarget = (target: TRecurrenceTarget, duration: RecurrenceD
          result = availableArray[0];
       }
    } else if (period === RecurrenceAggregationPeriods.PerDay) {
-      if (duration === RecurrenceDurationTypes.SpecificDaysOfWeek) {
+      if (duration === RecurrenceDurationType.SpecificDaysOfWeek) {
          if (typeof target === 'number') {
             return [DaysOfWeek.Monday];
          } else if (Array.isArray(target)) {
             return (target as DaysOfWeek[]).filter((t) => daysOfWeekList.includes(t));
          }
-      } else if (
-         duration === RecurrenceDurationTypes.Weekly ||
-         duration === RecurrenceDurationTypes.Monthly ||
-         duration === RecurrenceDurationTypes.Quarterly
-      ) {
+      } else if (duration === RecurrenceDurationType.Weekly || duration === RecurrenceDurationType.Monthly || duration === RecurrenceDurationType.Quarterly) {
          const available: number = availableNumericTargetRange(period, duration)[1];
          if (target > available) {
             result = available;
          }
       }
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
-      if (duration === RecurrenceDurationTypes.SpecificWeeksOfMonth) {
+      if (duration === RecurrenceDurationType.SpecificWeeksOfMonth) {
          const availableArray: number[] = availableNumericTargetRange(period, duration);
          if (typeof target === 'number') {
             return [availableArray[1]];
@@ -84,21 +80,21 @@ export const transformTarget = (target: TRecurrenceTarget, duration: RecurrenceD
             }
          }
       }
-      if (duration === RecurrenceDurationTypes.Monthly || duration === RecurrenceDurationTypes.Quarterly) {
+      if (duration === RecurrenceDurationType.Monthly || duration === RecurrenceDurationType.Quarterly) {
          const available: number = availableNumericTargetRange(period, duration)[1];
          if (target > available) {
             result = available;
          }
       }
    } else if (period === RecurrenceAggregationPeriods.PerMonth) {
-      if (duration === RecurrenceDurationTypes.SpecificMonthsOfYear) {
+      if (duration === RecurrenceDurationType.SpecificMonthsOfYear) {
          if (typeof target === 'number') {
             return [MonthsOfYear.January];
          } else if (Array.isArray(target)) {
             return (target as MonthsOfYear[]).filter((t) => monthsOfYearList.includes(t));
          }
       }
-      if (duration === RecurrenceDurationTypes.Quarterly) {
+      if (duration === RecurrenceDurationType.Quarterly) {
          const available: number = availableNumericTargetRange(period, duration)[1];
          if (target > available) {
             result = available;
@@ -106,14 +102,14 @@ export const transformTarget = (target: TRecurrenceTarget, duration: RecurrenceD
       }
    }
 
-   if (typeof target === 'number' && target <= 0 && duration !== RecurrenceDurationTypes.SpecificDaysOfWeek) {
+   if (typeof target === 'number' && target <= 0 && duration !== RecurrenceDurationType.SpecificDaysOfWeek) {
       result = 1;
    }
 
    return result ?? target;
 };
 
-export const durationOperator: TTransform<RecurrenceDurationTypes> = (duration$, period$) =>
+export const durationOperator: TTransform<RecurrenceDurationType> = (duration$, period$) =>
    combineLatest([duration$, period$]).pipe(map(([duration, period]) => transformDuration(duration, period)));
 
 export const targetOperator: TTransform<TRecurrenceTarget> = (target$: Observable<TRecurrenceTarget>, duration$: Observable<any>, period$: Observable<any>) =>

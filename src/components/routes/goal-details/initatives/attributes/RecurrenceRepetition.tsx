@@ -8,7 +8,7 @@ import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { formatAggregationPeriodForDisplay, formatDurationForDisplay } from './core/recurrence.facade';
-import { RecurrenceAggregationPeriodList, RecurrenceAggregationPeriods, RecurrenceRepetitionType } from './core/recurrence.types';
+import { RecurrenceRepetitionAggregationList, RecurrenceRepetitionAggregation, RecurrenceRepetitionType } from './core/recurrence.types';
 
 import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
 import { availableDurations } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
@@ -19,21 +19,21 @@ import { defaultIDisplayText, IDisplayText } from '~~/models/IDisplayText';
 /**
  * see @IRecurrenceObservables for detailed comments on props
  */
-export type IRecurrenceAggregationPeriodProps = IRecurrenceObservables;
+export type IRecurrenceRepetitionProps = IRecurrenceObservables;
 
-const AggregationIcons: FC<{ period: RecurrenceAggregationPeriods }> = (props) => {
-   if (props.period === RecurrenceAggregationPeriods.PerDay) {
+const AggregationIcons: FC<{ period: RecurrenceRepetitionAggregation }> = (props) => {
+   if (props.period === RecurrenceRepetitionAggregation.PerDay) {
       return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarDay} />;
-   } else if (props.period === RecurrenceAggregationPeriods.PerWeek) {
+   } else if (props.period === RecurrenceRepetitionAggregation.PerWeek) {
       return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarWeek} />;
-   } else if (props.period === RecurrenceAggregationPeriods.PerMonth) {
+   } else if (props.period === RecurrenceRepetitionAggregation.PerMonth) {
       return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarAlt} />;
    } else {
       return null;
    }
 };
 
-export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> = (props) => {
+export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    const intl = useIntl();
 
    const [selectedPeriodText] = useObservableState(
@@ -55,7 +55,7 @@ export const RecurrenceAggregationPeriod: FC<IRecurrenceAggregationPeriodProps> 
 
    const periods = (
       <List>
-         {RecurrenceAggregationPeriodList.map((m: RecurrenceAggregationPeriods, i: number) => {
+         {RecurrenceRepetitionAggregationList.map((m: RecurrenceRepetitionAggregation, i: number) => {
             const text = formatAggregationPeriodForDisplay(intl, m);
             const handleClick = () => {
                props.period.next(m);

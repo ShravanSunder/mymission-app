@@ -15,13 +15,13 @@ dayjs.extend(duration);
  * - aggregate over a month
  * - aggegate over a quarter
  */
-export enum RecurrenceAggregationPeriods {
+export enum RecurrenceRepetitionAggregation {
    PerDay = 'PerDay',
    PerWeek = 'PerWeek',
    PerMonth = 'PerMonth',
 }
 
-export const RecurrenceAggregationPeriodList = getValuesOfEnum<RecurrenceAggregationPeriods>(RecurrenceAggregationPeriods);
+export const RecurrenceRepetitionAggregationList = getValuesOfEnum<RecurrenceRepetitionAggregation>(RecurrenceRepetitionAggregation);
 
 /**
  * How long is the duration of time over which you are tracking your habit

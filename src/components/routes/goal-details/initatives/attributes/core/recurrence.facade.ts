@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 
-import { RecurrenceAggregationPeriods, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
 import { DaysOfWeek, MonthsOfYear } from './schedule.types';
 
@@ -9,13 +9,13 @@ import { getAsEnumArray, getAsNumber, getAsNumberArray } from '~~/helpers/conver
 import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { IDisplayText } from '~~/models/IDisplayText';
 
-export const formatAggregationPeriodForUnits = (intl: IntlShape, period: RecurrenceAggregationPeriods, count = 1): string => {
+export const formatAggregationPeriodForUnits = (intl: IntlShape, period: RecurrenceRepetitionAggregation, count = 1): string => {
    switch (period) {
-      case RecurrenceAggregationPeriods.PerDay:
+      case RecurrenceRepetitionAggregation.PerDay:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Day} other {Days}}' }, { count });
-      case RecurrenceAggregationPeriods.PerWeek:
+      case RecurrenceRepetitionAggregation.PerWeek:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Week} other {Weeks}}' }, { count });
-      case RecurrenceAggregationPeriods.PerMonth:
+      case RecurrenceRepetitionAggregation.PerMonth:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Month} other {Months}}' }, { count });
    }
 };
@@ -45,7 +45,7 @@ export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceRepe
 
 export const formatRecurrenceGoalForDisplay = (
    intl: IntlShape,
-   period: RecurrenceAggregationPeriods,
+   period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
    target: TRecurrenceGoalTargetType
 ): IDisplayText => {
@@ -106,7 +106,7 @@ export const formatRecurrenceGoalForDisplay = (
             ),
          };
       }
-   } else if (period === RecurrenceAggregationPeriods.PerDay) {
+   } else if (period === RecurrenceRepetitionAggregation.PerDay) {
       if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek && Array.isArray(target)) {
          const tempTarget = getAsEnumArray<DaysOfWeek>(DaysOfWeek, target) ?? [];
          if (isEveryDayOfWeek(tempTarget)) {
@@ -151,20 +151,20 @@ export const formatRecurrenceGoalForDisplay = (
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType: duration, aggregationPeriod: period, target });
 };
 
-export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: RecurrenceAggregationPeriods): IDisplayText => {
-   if (period === RecurrenceAggregationPeriods.PerDay) {
+export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: RecurrenceRepetitionAggregation): IDisplayText => {
+   if (period === RecurrenceRepetitionAggregation.PerDay) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Daily Habits' }),
          description: intl.formatMessage({ defaultMessage: 'Count your habits over a period of a day' }),
          alternate: intl.formatMessage({ defaultMessage: 'Day' }),
       };
-   } else if (period === RecurrenceAggregationPeriods.PerWeek) {
+   } else if (period === RecurrenceRepetitionAggregation.PerWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Weekly Habits' }),
          description: intl.formatMessage({ defaultMessage: 'Count your habits over a period of a week' }),
          alternate: intl.formatMessage({ defaultMessage: 'Week' }),
       };
-   } else if (period === RecurrenceAggregationPeriods.PerMonth) {
+   } else if (period === RecurrenceRepetitionAggregation.PerMonth) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Monthly Habits' }),
          description: intl.formatMessage({ defaultMessage: 'Count your habits over of a month' }),
@@ -177,7 +177,7 @@ export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: Recur
 
 export const formatDurationForDisplay = (
    intl: IntlShape,
-   period: RecurrenceAggregationPeriods,
+   period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
    target: TRecurrenceGoalTargetType
 ): IDisplayText => {
@@ -201,9 +201,9 @@ export const formatDurationForDisplay = (
          primary: intl.formatMessage({ defaultMessage: 'Specific months of the year' }),
       };
    } else if (
-      period === RecurrenceAggregationPeriods.PerDay ||
-      period === RecurrenceAggregationPeriods.PerWeek ||
-      period === RecurrenceAggregationPeriods.PerMonth
+      period === RecurrenceRepetitionAggregation.PerDay ||
+      period === RecurrenceRepetitionAggregation.PerWeek ||
+      period === RecurrenceRepetitionAggregation.PerMonth
    ) {
       const periodText = formatAggregationPeriodForUnits(intl, period, 2).toLowerCase();
       const durationText = formatDurationForUnits(intl, duration, 1).toLowerCase();

@@ -1,7 +1,7 @@
 import {
    daysToRecurrenceTypeMap,
    monthsToRecurrenceTypeMap,
-   RecurrenceAggregationPeriods,
+   RecurrenceRepetitionAggregation,
    RecurrenceRepetitionType,
    weeksToRecurrenceTypeMap,
 } from './recurrence.types';
@@ -14,8 +14,8 @@ import { Exception, ExceptionTypes } from '~~/models/Exception';
  * @param period
  * @returns
  */
-export const availableDurations = (period: RecurrenceAggregationPeriods): RecurrenceRepetitionType[] => {
-   if (period === RecurrenceAggregationPeriods.PerDay) {
+export const availableDurations = (period: RecurrenceRepetitionAggregation): RecurrenceRepetitionType[] => {
+   if (period === RecurrenceRepetitionAggregation.PerDay) {
       return [
          RecurrenceRepetitionType.SpecificDaysOfWeek,
          RecurrenceRepetitionType.Weekly,
@@ -23,9 +23,9 @@ export const availableDurations = (period: RecurrenceAggregationPeriods): Recurr
          RecurrenceRepetitionType.Quarterly,
          RecurrenceRepetitionType.PerNumberOfDays,
       ];
-   } else if (period === RecurrenceAggregationPeriods.PerWeek) {
+   } else if (period === RecurrenceRepetitionAggregation.PerWeek) {
       return [RecurrenceRepetitionType.Monthly, RecurrenceRepetitionType.Quarterly, RecurrenceRepetitionType.SpecificWeeksOfMonth];
-   } else if (period === RecurrenceAggregationPeriods.PerMonth) {
+   } else if (period === RecurrenceRepetitionAggregation.PerMonth) {
       return [RecurrenceRepetitionType.Quarterly, RecurrenceRepetitionType.SpecificMonthsOfYear];
    }
 
@@ -38,14 +38,14 @@ export const availableDurations = (period: RecurrenceAggregationPeriods): Recurr
  * @param duration
  * @returns
  */
-export const availableNumericTargetRange = (period: RecurrenceAggregationPeriods, duration: RecurrenceRepetitionType): [number, number] => {
+export const availableNumericTargetRange = (period: RecurrenceRepetitionAggregation, duration: RecurrenceRepetitionType): [number, number] => {
    let result2: number | undefined = undefined;
    let result1 = 1;
-   if (period === RecurrenceAggregationPeriods.PerDay) {
+   if (period === RecurrenceRepetitionAggregation.PerDay) {
       result2 = daysToRecurrenceTypeMap.get(duration);
-   } else if (period === RecurrenceAggregationPeriods.PerWeek) {
+   } else if (period === RecurrenceRepetitionAggregation.PerWeek) {
       result2 = weeksToRecurrenceTypeMap.get(duration);
-   } else if (period === RecurrenceAggregationPeriods.PerMonth) {
+   } else if (period === RecurrenceRepetitionAggregation.PerMonth) {
       result2 = monthsToRecurrenceTypeMap.get(duration);
    }
 

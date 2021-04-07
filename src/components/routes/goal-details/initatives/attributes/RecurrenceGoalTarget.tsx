@@ -108,7 +108,7 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
    }
 };
 
-export const RecurrenceTarget: FC<IRecurrenceGoalProps> = (props) => {
+export const RecurrenceGoalTarget: FC<IRecurrenceGoalProps> = (props) => {
    /**
     * todo: replace colors
     */

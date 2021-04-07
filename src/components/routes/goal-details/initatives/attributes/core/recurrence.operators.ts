@@ -1,21 +1,21 @@
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RecurrenceAggregationPeriods, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
 import { TTransform } from '~~/components/common/core/hooks/useSubjectTransform';
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { getAsNumberArray } from '~~/helpers/conversion';
 
-export const transformDuration = (durationType: RecurrenceRepetitionType, aggregationPeriod: RecurrenceAggregationPeriods): RecurrenceRepetitionType => {
-   if (aggregationPeriod === RecurrenceAggregationPeriods.PerDay) {
+export const transformDuration = (durationType: RecurrenceRepetitionType, aggregationPeriod: RecurrenceRepetitionAggregation): RecurrenceRepetitionType => {
+   if (aggregationPeriod === RecurrenceRepetitionAggregation.PerDay) {
       switch (durationType) {
          case RecurrenceRepetitionType.SpecificWeeksOfMonth:
          case RecurrenceRepetitionType.SpecificMonthsOfYear:
             return RecurrenceRepetitionType.SpecificDaysOfWeek;
       }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerWeek) {
+   } else if (aggregationPeriod === RecurrenceRepetitionAggregation.PerWeek) {
       switch (durationType) {
          case RecurrenceRepetitionType.SpecificDaysOfWeek:
          case RecurrenceRepetitionType.SpecificMonthsOfYear:
@@ -24,7 +24,7 @@ export const transformDuration = (durationType: RecurrenceRepetitionType, aggreg
          case RecurrenceRepetitionType.Weekly:
             return RecurrenceRepetitionType.Monthly;
       }
-   } else if (aggregationPeriod === RecurrenceAggregationPeriods.PerMonth) {
+   } else if (aggregationPeriod === RecurrenceRepetitionAggregation.PerMonth) {
       switch (durationType) {
          case RecurrenceRepetitionType.SpecificDaysOfWeek:
          case RecurrenceRepetitionType.SpecificWeeksOfMonth:
@@ -41,7 +41,7 @@ export const transformDuration = (durationType: RecurrenceRepetitionType, aggreg
 export const transformTarget = (
    target: TRecurrenceGoalTargetType,
    duration: RecurrenceRepetitionType,
-   period: RecurrenceAggregationPeriods
+   period: RecurrenceRepetitionAggregation
 ): TRecurrenceGoalTargetType => {
    console.log('updateTarget');
 
@@ -59,7 +59,7 @@ export const transformTarget = (
       } else if (target < availableArray[0]) {
          result = availableArray[0];
       }
-   } else if (period === RecurrenceAggregationPeriods.PerDay) {
+   } else if (period === RecurrenceRepetitionAggregation.PerDay) {
       if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek) {
          if (typeof target === 'number') {
             return [DaysOfWeek.Monday];
@@ -76,7 +76,7 @@ export const transformTarget = (
             result = available;
          }
       }
-   } else if (period === RecurrenceAggregationPeriods.PerWeek) {
+   } else if (period === RecurrenceRepetitionAggregation.PerWeek) {
       if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth) {
          const availableArray: number[] = availableNumericTargetRange(period, duration);
          if (typeof target === 'number') {
@@ -96,7 +96,7 @@ export const transformTarget = (
             result = available;
          }
       }
-   } else if (period === RecurrenceAggregationPeriods.PerMonth) {
+   } else if (period === RecurrenceRepetitionAggregation.PerMonth) {
       if (duration === RecurrenceRepetitionType.SpecificMonthsOfYear) {
          if (typeof target === 'number') {
             return [MonthsOfYear.January];

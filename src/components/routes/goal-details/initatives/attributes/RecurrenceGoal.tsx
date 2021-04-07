@@ -11,7 +11,7 @@ import { DurationIcons } from './DurationIcons';
 
 import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
-import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
+import { RecurrenceGoalTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceGoalTarget';
 
 /**
  * see @IRecurrenceObservables for detailed comments on props
@@ -89,7 +89,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
             className="m-2"
             selectedItemText={goalValue.primary}>
             <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-56 box-border">
-               {showTargetDropDown && <RecurrenceTarget {...props}></RecurrenceTarget>}
+               {showTargetDropDown && <RecurrenceGoalTarget {...props}></RecurrenceGoalTarget>}
             </div>
          </DropDownContainer>
       </>

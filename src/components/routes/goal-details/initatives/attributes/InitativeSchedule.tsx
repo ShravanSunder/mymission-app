@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { formatAggregationPeriodForDisplay, formatRecurrenceGoalForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useInitiativeSchedule } from './core/useInitiativeSchedule';
 import { RecurrenceGoal } from './RecurrenceGoal';
-import { RecurrenceAggregationPeriod as RecurrenceRepetition } from './RecurrenceRepetition';
+import { RecurrenceRepetition as RecurrenceRepetition } from './RecurrenceRepetition';
 import { ScheduleSummary } from './ScheduleSummary';
 
 import { useControlledAccordion } from '~~/components/common/core/hooks/useControlledAccordion';

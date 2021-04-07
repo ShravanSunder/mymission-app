@@ -1,47 +1,42 @@
-import { Avatar, Fade, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { useSubscription } from 'observable-hooks';
 import { FC, Fragment, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
-import { SubjectWithTransform } from '~~/components/common/core/hooks/useSubjectTransform';
-import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
-import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
-import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
-import { getAsNumber } from '~~/helpers/conversion';
+
 import { formatAggregationPeriodForUnits, formatDurationForDisplay, formatRecurrenceGoalForDisplay } from './core/recurrence.facade';
 import { availableDurations } from './core/recurrence.funcs';
-import { RecurrenceAggregationPeriods, RecurrenceDurationType, TRecurrenceTarget } from './core/recurrence.types';
-import { DaysOfWeek } from './core/schedule.types';
+import { RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './core/recurrence.types';
 import { DurationIcons } from './DurationIcons';
+
+import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
+import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
+import { RecurrenceTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceTarget';
 
 /**
  * see @IRecurrenceObservables for detailed comments on props
  */
-export interface IRecurrenceGoalProps {
-   period: SubjectWithValue<RecurrenceAggregationPeriods>;
-   duration: SubjectWithTransform<RecurrenceDurationType>;
-   target: SubjectWithTransform<TRecurrenceTarget>;
-}
+export type IRecurrenceGoalProps = IRecurrenceObservables;
 
 export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    /**
     * TODO: replace colors
     */
-   const tempColorSelectedDay = 'bg-gray-200';
+   // const tempColorSelectedDay = 'bg-gray-200';
    const intl = useIntl();
    const [selectedDurationText, setSelectedDurationText] = useState<string>('');
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
    const [showTargetDropDown, setShowTargetDropDown] = useState(false);
 
-   const updateDurationText = (duration: RecurrenceDurationType, target: TRecurrenceTarget) => {
+   const updateDurationText = (duration: RecurrenceRepetitionType, target: TRecurrenceGoalTargetType) => {
       const text = formatDurationForDisplay(intl, props.period.value, duration, target);
       setSelectedDurationText(text.primary);
    };
 
-   useSubscription(props.duration.source$, () => setShowDurationDropDown(false));
-   useSubscription(combineLatest([props.duration.subject$, props.target.subject$]), ([duration, target]) => updateDurationText(duration, target));
+   useSubscription(props.repetition.source$, () => setShowDurationDropDown(false));
+   useSubscription(combineLatest([props.repetition.subject$, props.goalTarget.subject$]), ([duration, target]) => updateDurationText(duration, target));
 
-   const goalValue = formatRecurrenceGoalForDisplay(intl, props.period.value, props.duration.value, props.target.value);
+   const goalValue = formatRecurrenceGoalForDisplay(intl, props.period.value, props.repetition.value, props.goalTarget.value);
 
    const periodUnits = formatAggregationPeriodForUnits(intl, props.period.value).toLowerCase();
 
@@ -49,15 +44,15 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
       <List className="elevation-2">
          {availableDurations(props.period.value)
             .sort()
-            .map((m: RecurrenceDurationType, i: number) => {
-               const text = formatDurationForDisplay(intl, props.period.value, m, props.target.value);
+            .map((m: RecurrenceRepetitionType, i: number) => {
+               const text = formatDurationForDisplay(intl, props.period.value, m, props.goalTarget.value);
                const handleClick = () => {
-                  props.duration.next(m);
+                  props.repetition.next(m);
                };
 
                return (
                   <Fragment key={i}>
-                     <ListItem key={i} selected={m === props.duration.value} onClick={() => handleClick()} button>
+                     <ListItem key={i} selected={m === props.repetition.value} onClick={() => handleClick()} button>
                         <ListItemAvatar>
                            <Avatar>
                               <DurationIcons duration={m}></DurationIcons>

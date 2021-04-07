@@ -1,5 +1,6 @@
-import { GoalTimelineItem } from '~~/components/routes/goal-details/GoalTimelineItem';
 import { HabitCard } from './initatives/habits/HabitCard';
+
+import { GoalTimelineItem } from '~~/components/routes/goal-details/GoalTimelineItem';
 import { ProjectCard } from '~~/components/routes/goal-details/initatives/projects/ProjectCard';
 
 export const GoalTimeline = (): JSX.Element => {

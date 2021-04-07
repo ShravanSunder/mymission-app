@@ -1,5 +1,6 @@
 import { Card, CardActionArea, Typography } from '@material-ui/core';
 import tw from 'twin.macro';
+
 import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 import { ProjectMeter } from '~~/components/routes/goal-details/initatives/projects/ProjectMeter';
 

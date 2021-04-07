@@ -1,12 +1,12 @@
-import { FC, lazy, Suspense } from 'react';
-
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
-import { RecoilRoot } from 'recoil';
-import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { css } from '@emotion/react';
-import { AppRootLoading } from '~~/components/app/AppRootLoading';
+import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { FC, lazy, Suspense } from 'react';
+import { RecoilRoot } from 'recoil';
 
-const AppRootLazy = lazy(() => import('~~/components/app/AppRoot'));
+import { AppRootLoading } from '~~/components/app/AppRootLoading';
+import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
+
+const AppRootLazy = lazy(() => import(/* webpackChunkName: "AppRoot" */ '~~/components/app/AppRoot'));
 
 /**
  * Using Reocil with observable-hooks (rxjs) for local state, see readme.

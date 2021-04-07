@@ -1,7 +1,7 @@
-import { ReactNode, RefObject, ReactNodeArray } from 'react';
-import { SwipeableDrawer } from '@material-ui/core';
-import tw from 'twin.macro';
 import { css } from '@emotion/react';
+import { SwipeableDrawer } from '@material-ui/core';
+import { ReactNode, RefObject, ReactNodeArray } from 'react';
+import tw from 'twin.macro';
 
 export interface IDetailsDrawerProps {
    open: boolean;

@@ -1,12 +1,13 @@
 import { IntlShape } from 'react-intl';
+
+import { RecurrenceAggregationPeriods, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
+import { DaysOfWeek, MonthsOfYear } from './schedule.types';
+
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
-import { getAsEnum, getAsEnumArray, getAsNumber, getAsNumberArray } from '~~/helpers/conversion';
-import { isEnum } from '~~/helpers/enums';
+import { getAsEnumArray, getAsNumber, getAsNumberArray } from '~~/helpers/conversion';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { IDisplayText } from '~~/models/IDisplayText';
-import { RecurrenceAggregationPeriods, RecurrenceDurationType, TRecurrenceTarget } from './recurrence.types';
-import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
-import { DaysOfWeek, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
 export const formatAggregationPeriodForUnits = (intl: IntlShape, period: RecurrenceAggregationPeriods, count = 1): string => {
    switch (period) {
@@ -19,18 +20,18 @@ export const formatAggregationPeriodForUnits = (intl: IntlShape, period: Recurre
    }
 };
 
-export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceDurationType, count = 1): string => {
+export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceRepetitionType, count = 1): string => {
    switch (duration) {
-      case RecurrenceDurationType.PerNumberOfDays:
-      case RecurrenceDurationType.SpecificDaysOfWeek:
+      case RecurrenceRepetitionType.PerNumberOfDays:
+      case RecurrenceRepetitionType.SpecificDaysOfWeek:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Day} other {Days}}' }, { count });
-      case RecurrenceDurationType.Weekly:
-      case RecurrenceDurationType.SpecificWeeksOfMonth:
+      case RecurrenceRepetitionType.Weekly:
+      case RecurrenceRepetitionType.SpecificWeeksOfMonth:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Week} other {Weeks}}' }, { count });
-      case RecurrenceDurationType.Monthly:
-      case RecurrenceDurationType.SpecificMonthsOfYear:
+      case RecurrenceRepetitionType.Monthly:
+      case RecurrenceRepetitionType.SpecificMonthsOfYear:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Month} other {Months}}' }, { count });
-      case RecurrenceDurationType.Quarterly:
+      case RecurrenceRepetitionType.Quarterly:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Quarter} other {Quarters}}' }, { count });
    }
 };
@@ -45,12 +46,12 @@ export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceDura
 export const formatRecurrenceGoalForDisplay = (
    intl: IntlShape,
    period: RecurrenceAggregationPeriods,
-   duration: RecurrenceDurationType,
-   target: TRecurrenceTarget
+   duration: RecurrenceRepetitionType,
+   target: TRecurrenceGoalTargetType
 ): IDisplayText => {
    const numericTargetRange = availableNumericTargetRange(period, duration);
 
-   if (duration === RecurrenceDurationType.SpecificWeeksOfMonth && Array.isArray(target)) {
+   if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth && Array.isArray(target)) {
       const tempTarget = getAsNumberArray(target) ?? [];
       if (isEveryWeekOfMonth(tempTarget)) {
          return {
@@ -71,7 +72,7 @@ export const formatRecurrenceGoalForDisplay = (
          };
       }
    } else if (typeof target === 'number' && numericTargetRange[1] != 0 && numericTargetRange[0] != 0) {
-      if (duration === RecurrenceDurationType.PerNumberOfDays) {
+      if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
          if (target > 1) {
             return {
                primary: intl.formatMessage(
@@ -106,7 +107,7 @@ export const formatRecurrenceGoalForDisplay = (
          };
       }
    } else if (period === RecurrenceAggregationPeriods.PerDay) {
-      if (duration === RecurrenceDurationType.SpecificDaysOfWeek && Array.isArray(target)) {
+      if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek && Array.isArray(target)) {
          const tempTarget = getAsEnumArray<DaysOfWeek>(DaysOfWeek, target) ?? [];
          if (isEveryDayOfWeek(tempTarget)) {
             return {
@@ -126,7 +127,7 @@ export const formatRecurrenceGoalForDisplay = (
             };
          }
       }
-   } else if (duration === RecurrenceDurationType.SpecificMonthsOfYear && Array.isArray(target)) {
+   } else if (duration === RecurrenceRepetitionType.SpecificMonthsOfYear && Array.isArray(target)) {
       const tempTarget = getAsEnumArray<MonthsOfYear>(MonthsOfYear, target) ?? [];
       if (isEveryMonthOfYear(tempTarget)) {
          return {
@@ -177,25 +178,25 @@ export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: Recur
 export const formatDurationForDisplay = (
    intl: IntlShape,
    period: RecurrenceAggregationPeriods,
-   duration: RecurrenceDurationType,
-   target: TRecurrenceTarget
+   duration: RecurrenceRepetitionType,
+   target: TRecurrenceGoalTargetType
 ): IDisplayText => {
-   if (duration === RecurrenceDurationType.PerNumberOfDays) {
+   if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
       const tempTarget: number = getAsNumber(target) ?? 2;
       const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Alternate {durationText}' }, { durationText, tempTarget }),
          alternate: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),
       };
-   } else if (duration === RecurrenceDurationType.SpecificDaysOfWeek) {
+   } else if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific days of the week' }),
       };
-   } else if (duration === RecurrenceDurationType.SpecificWeeksOfMonth) {
+   } else if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific weeks of the month' }),
       };
-   } else if (duration === RecurrenceDurationType.SpecificMonthsOfYear) {
+   } else if (duration === RecurrenceRepetitionType.SpecificMonthsOfYear) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific months of the year' }),
       };

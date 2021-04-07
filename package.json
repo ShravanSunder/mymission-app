@@ -13,9 +13,9 @@
       "test": "jest --runInBand",
       "test:update": "jest -u",
       "test:generate-output": "jest --json --outputFile=.jest-test-results.json",
-      "lint": "eslint 'src/*.{js,ts,tsx}' --fix",
-      "lint:quiet": "eslint 'src/*.{js,ts,tsx}' --quiet --fix",
-      "lint:commit": "yarn run pretty-quick --staged --verbose --pattern \"./src/*.*(js|jsx|ts|tsx)\"",
+      "lint": "eslint './src/**/*.{js,ts,tsx,jsx}' --fix",
+      "lint:quiet": "eslint 'src/**/.{js,ts,tsx,jsx}' --quiet --fix",
+      "lint:commit": "yarn run pretty-quick --staged --verbose --pattern \"./src/**/*.(js|jsx|ts|tsx)\"",
       "storybook": "start-storybook -p 6006",
       "build:storybook": "build-storybook"
    },

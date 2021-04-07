@@ -1,31 +1,32 @@
-import { DaysOfWeek } from '~~/components/routes/goal-details/initatives/attributes/core/schedule.types';
-import { Exception, ExceptionTypes } from '~~/models/Exception';
 import {
    daysToRecurrenceTypeMap,
    monthsToRecurrenceTypeMap,
    RecurrenceAggregationPeriods,
-   RecurrenceDurationType,
+   RecurrenceRepetitionType,
    weeksToRecurrenceTypeMap,
 } from './recurrence.types';
+
+import { DaysOfWeek } from '~~/components/routes/goal-details/initatives/attributes/core/schedule.types';
+import { Exception, ExceptionTypes } from '~~/models/Exception';
 
 /**
  * this function returns valid durations for a period
  * @param period
  * @returns
  */
-export const availableDurations = (period: RecurrenceAggregationPeriods): RecurrenceDurationType[] => {
+export const availableDurations = (period: RecurrenceAggregationPeriods): RecurrenceRepetitionType[] => {
    if (period === RecurrenceAggregationPeriods.PerDay) {
       return [
-         RecurrenceDurationType.SpecificDaysOfWeek,
-         RecurrenceDurationType.Weekly,
-         RecurrenceDurationType.Monthly,
-         RecurrenceDurationType.Quarterly,
-         RecurrenceDurationType.PerNumberOfDays,
+         RecurrenceRepetitionType.SpecificDaysOfWeek,
+         RecurrenceRepetitionType.Weekly,
+         RecurrenceRepetitionType.Monthly,
+         RecurrenceRepetitionType.Quarterly,
+         RecurrenceRepetitionType.PerNumberOfDays,
       ];
    } else if (period === RecurrenceAggregationPeriods.PerWeek) {
-      return [RecurrenceDurationType.Monthly, RecurrenceDurationType.Quarterly, RecurrenceDurationType.SpecificWeeksOfMonth];
+      return [RecurrenceRepetitionType.Monthly, RecurrenceRepetitionType.Quarterly, RecurrenceRepetitionType.SpecificWeeksOfMonth];
    } else if (period === RecurrenceAggregationPeriods.PerMonth) {
-      return [RecurrenceDurationType.Quarterly, RecurrenceDurationType.SpecificMonthsOfYear];
+      return [RecurrenceRepetitionType.Quarterly, RecurrenceRepetitionType.SpecificMonthsOfYear];
    }
 
    return [];
@@ -37,7 +38,7 @@ export const availableDurations = (period: RecurrenceAggregationPeriods): Recurr
  * @param duration
  * @returns
  */
-export const availableNumericTargetRange = (period: RecurrenceAggregationPeriods, duration: RecurrenceDurationType): [number, number] => {
+export const availableNumericTargetRange = (period: RecurrenceAggregationPeriods, duration: RecurrenceRepetitionType): [number, number] => {
    let result2: number | undefined = undefined;
    let result1 = 1;
    if (period === RecurrenceAggregationPeriods.PerDay) {
@@ -48,12 +49,12 @@ export const availableNumericTargetRange = (period: RecurrenceAggregationPeriods
       result2 = monthsToRecurrenceTypeMap.get(duration);
    }
 
-   if (duration === RecurrenceDurationType.SpecificWeeksOfMonth) {
+   if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth) {
       result1 = 1;
       result2 = 4;
    }
 
-   if (duration === RecurrenceDurationType.PerNumberOfDays) {
+   if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
       result1 = 2;
       result2 = 15;
    }

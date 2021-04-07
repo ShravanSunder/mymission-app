@@ -1,9 +1,10 @@
-import { lazy, FC, Suspense } from 'react';
+import React, { lazy, FC, Suspense } from 'react';
 
 import { TwemojiImageProps } from './TwemojiImage';
 import { TwemojiInlineProps } from './TwemojiInline';
 
-const TwemojiImage = lazy(() => import('./TwemojiImage'));
+const TwemojiImage = lazy(() => import(/* webpackChunkName: "TwemojiImage" */ './TwemojiImage'));
+const TwemojiInline = lazy(() => import(/* webpackChunkName: "TwemojiInline" */ './TwemojiInline'));
 
 export const TwemojiImageLazy: FC<TwemojiImageProps> = (props) => {
    return (
@@ -12,8 +13,6 @@ export const TwemojiImageLazy: FC<TwemojiImageProps> = (props) => {
       </Suspense>
    );
 };
-
-const TwemojiInline = lazy(() => import('./TwemojiInline'));
 
 export const TwemojiInlineLazy: FC<TwemojiInlineProps> = (props) => {
    return (

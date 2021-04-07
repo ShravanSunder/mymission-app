@@ -1,13 +1,16 @@
+import { css } from '@emotion/react';
+import { Button, useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import { useCallback, useRef, useState } from 'react';
+
 // import tw from 'twin.macro';
 import { GoalTimeline } from '../routes/goal-details/GoalTimeline';
 import { GoalTitleCard } from '../routes/goal-details/GoalTitleCard';
-import { Button, useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
-import { css } from '@emotion/react';
 import { HabitDetails } from '../routes/goal-details/initatives/habits/HabitDetails';
-import { cssMq } from '~~/styles/theme';
+
 import { DetailsDrawer } from './DetailsDrawer';
+
+import { cssMq } from '~~/styles/theme';
 
 export const ContentLayout = (): JSX.Element => {
    const theme = useTheme();

@@ -1,5 +1,5 @@
-import { Twemoji, Props } from 'react-emoji-render';
 import { FC } from 'react';
+import { Twemoji, Props } from 'react-emoji-render';
 
 export interface TwemojiInlineProps extends Props {
    fontSize?: number;

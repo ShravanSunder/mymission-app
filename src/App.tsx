@@ -1,9 +1,8 @@
 import { lazy, StrictMode, Suspense, FC } from 'react';
-import { ErrorBoundary, ErrorFallback } from './components/common/ErrorFallback';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const StateRoot = lazy(() => import('./components/app/StateRoot'));
+const StateRoot = lazy(() => import(/* webpackChunkName: "StateRoot" */ './components/app/StateRoot'));
 
 export const App: FC = () => {
    return (

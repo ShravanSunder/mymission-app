@@ -1,8 +1,9 @@
-import { ResponsivePie, PieCustomLayerProps } from '@nivo/pie';
+import { useTheme } from '@material-ui/core';
 import { PatternDotsDef, Theme as NivoTheme } from '@nivo/core';
+import { ResponsivePie, PieCustomLayerProps } from '@nivo/pie';
+
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
-import { useTheme } from '@material-ui/core';
 
 export type TPiceChartData = {
    id: string | number;

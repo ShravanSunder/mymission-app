@@ -1,7 +1,9 @@
 import dayjs from 'dayjs';
 import { array } from 'yup/lib/locale';
-import { partitionToContiguousSections } from '~~/helpers/algorithms';
+
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
+
+import { partitionToContiguousSections } from '~~/helpers/algorithms';
 
 export const daysOfWeekToString = (target: DaysOfWeek[]): string => {
    const dateFn = (value: DaysOfWeek) => dayjs().weekday(value);

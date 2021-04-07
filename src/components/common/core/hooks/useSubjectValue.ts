@@ -1,6 +1,6 @@
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { useObservable, useObservableEagerState, useObservableState } from 'observable-hooks';
+import { useObservable, useObservableEagerState } from 'observable-hooks';
 import { useCallback } from 'react';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 /**
  * returns

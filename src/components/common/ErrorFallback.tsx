@@ -1,5 +1,4 @@
 import { Typography, IconButton, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
-
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';

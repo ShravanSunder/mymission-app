@@ -1,6 +1,6 @@
+import { Typography } from '@material-ui/core';
 import { FC } from 'react';
 
-import { Typography } from '@material-ui/core';
 import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 
 interface IScheduleAccordionSummary {

@@ -1,7 +1,7 @@
 import { ButtonBase } from '@material-ui/core';
-import tw from 'twin.macro';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import { FormattedDate } from 'react-intl';
+import tw from 'twin.macro';
 
 interface IMonthProps {
    month: number;

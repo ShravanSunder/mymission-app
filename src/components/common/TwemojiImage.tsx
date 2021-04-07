@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import { Twemoji, Props } from 'react-emoji-render';
 
-import { FC } from 'react';
 
 import { useFirstEmoji } from './core/hooks/useFirstEmoji';
 

@@ -1,8 +1,10 @@
 import { FC } from 'react';
 import tw from 'twin.macro';
+
+import { InitativeSchedule } from '../attributes/InitativeSchedule';
+
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { TwemojiImageLazy } from '~~/components/common/TwemojiLazy';
-import { InitativeSchedule } from '../attributes/InitativeSchedule';
 import { TrendChart } from '~~/components/routes/goal-details/charts/TrendChart';
 
 const tempColorIcon = 'border-red-200 bg-red-100';

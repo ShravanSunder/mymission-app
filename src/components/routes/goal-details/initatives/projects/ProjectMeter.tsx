@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { TwemojiImageLazy } from '~~/components/common/TwemojiLazy';
-import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 import tw from 'twin.macro';
-import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
-import { CircularMilestoneSegments } from '~~/components/routes/goal-details/progress/CircularMilestoneSegments';
+
 import { ICommonProps } from '~~/components/common/ICommonProps';
+import { TwemojiImageLazy } from '~~/components/common/TwemojiLazy';
+import { CircularMilestoneSegments } from '~~/components/routes/goal-details/progress/CircularMilestoneSegments';
+import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
+import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 
 interface IProjectMeterProps {
    numberOfSegments: number;

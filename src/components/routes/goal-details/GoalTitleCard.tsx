@@ -1,11 +1,10 @@
+import { CardActions } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { CardActions } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
 import { useTheme } from '@material-ui/core/styles';
-
+import Typography from '@material-ui/core/Typography';
+import CancelIcon from '@material-ui/icons/Cancel';
 import tw from 'twin.macro';
 
 const tempText1 = `Make a life worth living and happy`;

@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import Slider from '@material-ui/core/Slider';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Slider from '@material-ui/core/Slider';
 import { FC } from 'react';
 
 export const StyleInjectTry = ({ text = 'default' }) => {

@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import weekday from 'dayjs/plugin/weekday';
+
 import { DaysOfWeek, MonthsOfYear } from '~~/components/routes/goal-details/initatives/attributes/core/schedule.types';
 import { getKeysOfEnum, getValuesOfEnum } from '~~/helpers/enums';
 
@@ -29,7 +30,7 @@ export const RecurrenceAggregationPeriodList = getValuesOfEnum<RecurrenceAggrega
  * - Number of successfull days a month
  * - Number of successful weeks a month?
  */
-export enum RecurrenceDurationType {
+export enum RecurrenceRepetitionType {
    /**
     * Allowed Periods: days
     */
@@ -60,21 +61,28 @@ export enum RecurrenceDurationType {
    PerNumberOfDays = '6_PerNumberOfDays',
 }
 
-export type TRecurrenceTarget = number | DaysOfWeek[] | MonthsOfYear[] | number[];
+/**
+ * Type of goal,
+ * - number / repetion
+ * - specific days of week
+ * - specific months of year
+ * - specific numbers of array.  Currenty used by Week# per month
+ */
+export type TRecurrenceGoalTargetType = number | DaysOfWeek[] | MonthsOfYear[] | number[];
 
-export const RecurrenceDurationList: RecurrenceDurationType[] = getValuesOfEnum<RecurrenceDurationType>(RecurrenceDurationType);
+export const RecurrenceDurationList: RecurrenceRepetitionType[] = getValuesOfEnum<RecurrenceRepetitionType>(RecurrenceRepetitionType);
 
-export const daysToRecurrenceTypeMap: Map<RecurrenceDurationType, number> = new Map([
-   [RecurrenceDurationType.Weekly, 7],
-   [RecurrenceDurationType.Monthly, Math.floor(dayjs.duration({ months: 1 }).asDays())],
-   [RecurrenceDurationType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asDays())],
+export const daysToRecurrenceTypeMap: Map<RecurrenceRepetitionType, number> = new Map([
+   [RecurrenceRepetitionType.Weekly, 7],
+   [RecurrenceRepetitionType.Monthly, Math.floor(dayjs.duration({ months: 1 }).asDays())],
+   [RecurrenceRepetitionType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asDays())],
 ]);
 
-export const weeksToRecurrenceTypeMap: Map<RecurrenceDurationType, number> = new Map([
-   [RecurrenceDurationType.Monthly, Math.floor(dayjs.duration({ months: 1 }).asWeeks())],
-   [RecurrenceDurationType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asWeeks())],
+export const weeksToRecurrenceTypeMap: Map<RecurrenceRepetitionType, number> = new Map([
+   [RecurrenceRepetitionType.Monthly, Math.floor(dayjs.duration({ months: 1 }).asWeeks())],
+   [RecurrenceRepetitionType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asWeeks())],
 ]);
 
-export const monthsToRecurrenceTypeMap: Map<RecurrenceDurationType, number> = new Map([
-   [RecurrenceDurationType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
+export const monthsToRecurrenceTypeMap: Map<RecurrenceRepetitionType, number> = new Map([
+   [RecurrenceRepetitionType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
 ]);

@@ -1,8 +1,10 @@
 import { css } from '@emotion/react';
 import { FC } from 'react';
 import tw from 'twin.macro';
-import { ICommonProps } from '~~/components/common/ICommonProps';
+
 import { TimelineIcon } from './TimelineIcon';
+
+import { ICommonProps } from '~~/components/common/ICommonProps';
 
 interface TimelineStreamProps {
    showTopConnector: boolean;

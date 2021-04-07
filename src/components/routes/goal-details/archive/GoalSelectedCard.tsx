@@ -1,6 +1,5 @@
 import { CardActions, useTheme, Card, CardContent, IconButton, Typography, CardMedia } from '@material-ui/core';
 import CancelIcon from '@material-ui/icons/Cancel';
-
 import tw from 'twin.macro';
 
 const text1 = `This is my goal2 and its very long and i want to see what it does and what This is my goal2 and its very long and i want to see

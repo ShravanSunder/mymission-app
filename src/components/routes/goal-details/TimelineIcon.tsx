@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { ToggleButton } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
 import { useTheme } from '@material-ui/core/styles';
+import HomeIcon from '@material-ui/icons/Home';
+import { useState } from 'react';
 
 /**
  * Button used for Navigation.  An iconButton with centering div

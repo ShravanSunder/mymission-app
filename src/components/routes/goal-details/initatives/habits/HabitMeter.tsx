@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { TwemojiImageLazy } from '~~/components/common/TwemojiLazy';
-import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
-import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
 import tw from 'twin.macro';
+
 import { ICommonProps } from '~~/components/common/ICommonProps';
+import { TwemojiImageLazy } from '~~/components/common/TwemojiLazy';
+import { CircularProgress } from '~~/components/routes/goal-details/progress/CircularProgress';
+import { CircularProgressSegments } from '~~/components/routes/goal-details/progress/CircularProgressSegments';
 
 interface IHabitMeterProps {
    numberOfSegments: number;

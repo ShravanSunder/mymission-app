@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import emojiRegexRGI from 'emoji-regex';
+import { useMemo } from 'react';
 
 /**
  * Get the first emoji taking into account emoji colors and complex characters

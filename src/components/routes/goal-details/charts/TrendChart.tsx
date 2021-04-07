@@ -1,8 +1,9 @@
+import { useTheme } from '@material-ui/core/styles';
 import { ResponsiveLine, Datum } from '@nivo/line';
 import { FC } from 'react';
+
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
-import { useTheme } from '@material-ui/core/styles';
 
 interface ITrendChartProps {
    title: string;

@@ -74,6 +74,7 @@ module.exports = {
    output: {
       path: path.resolve(__dirname, '..', './build'),
       filename: '[name].[contenthash].js',
+      chunkFilename: '[name].[chunkhash].js',
    },
    optimization: {
       minimize: true,

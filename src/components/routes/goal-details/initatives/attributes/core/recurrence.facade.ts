@@ -105,6 +105,12 @@ export const formatRecurrenceGoalForDisplay = (
                },
                { periodUnits, durationUnits }
             ),
+            alternate: intl.formatMessage(
+               {
+                  defaultMessage: 'Every {periodUnits}',
+               },
+               { periodUnits, durationUnits }
+            ),
          };
       }
    } else if (period === RecurrenceRepetitionAggregation.PerDay) {
@@ -155,20 +161,20 @@ export const formatRecurrenceGoalForDisplay = (
 export const formatRepetitionAggregationForDisplay = (intl: IntlShape, period: RecurrenceRepetitionAggregation): IDisplayText => {
    if (period === RecurrenceRepetitionAggregation.PerDay) {
       return {
-         primary: intl.formatMessage({ defaultMessage: 'Daily Habits' }),
-         description: intl.formatMessage({ defaultMessage: 'Count your habits over a period of a day' }),
+         primary: intl.formatMessage({ defaultMessage: 'Daily Habit' }),
+         description: intl.formatMessage({ defaultMessage: 'Count the habit over a day' }),
          alternate: intl.formatMessage({ defaultMessage: 'Day' }),
       };
    } else if (period === RecurrenceRepetitionAggregation.PerWeek) {
       return {
-         primary: intl.formatMessage({ defaultMessage: 'Weekly Habits' }),
-         description: intl.formatMessage({ defaultMessage: 'Count your habits over a period of a week' }),
+         primary: intl.formatMessage({ defaultMessage: 'Weekly Habit' }),
+         description: intl.formatMessage({ defaultMessage: 'Count the habit over a week' }),
          alternate: intl.formatMessage({ defaultMessage: 'Week' }),
       };
    } else if (period === RecurrenceRepetitionAggregation.PerMonth) {
       return {
-         primary: intl.formatMessage({ defaultMessage: 'Monthly Habits' }),
-         description: intl.formatMessage({ defaultMessage: 'Count your habits over of a month' }),
+         primary: intl.formatMessage({ defaultMessage: 'Monthly Habit' }),
+         description: intl.formatMessage({ defaultMessage: 'Count the habit over a month' }),
          alternate: intl.formatMessage({ defaultMessage: 'Month' }),
       };
    } else {
@@ -187,7 +193,6 @@ export const formatRepetitionForDisplay = (
       const durationText = formatRepetitionForUnits(intl, duration, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Alternate {durationText}' }, { durationText, tempTarget }),
-         alternate: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),
       };
    } else if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek) {
       return {

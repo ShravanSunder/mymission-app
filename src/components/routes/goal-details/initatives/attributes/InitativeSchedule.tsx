@@ -30,23 +30,23 @@ export const InitativeSchedule: FC = () => {
    const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value, state.goalTargetCount.value);
    const targetValue = formatGoalTargetCountForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value, state.goalTargetCount.value);
 
-   const goalSummary = (
-      <div css={tw`grid grid-cols-2`}>
-         <div>
-            {'📅'}
-            {goalValue.primary}
-         </div>
-         <div>
-            {'🔢'}
-            {targetValue.primary}
-         </div>
-      </div>
-   );
+   // const goalSummary = (
+   //    <div css={tw`grid grid-cols-2`}>
+   //       <div>
+   //          {'📅'}
+   //          {goalValue.primary}
+   //       </div>
+   //       <div>
+   //          {'🔢'}
+   //          {targetValue.primary}
+   //       </div>
+   //    </div>
+   // );
 
    const aggregateAccordion = (
       <Accordion {...getAccordionProps('aggregateAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
-            <ScheduleSummary icon={'📅'} summaryName={periodName} summaryValue={aggregationValue.primary}></ScheduleSummary>
+            <ScheduleSummary icon={'📅'} summaryName={aggregationValue.primary} summaryValue={goalValue.alternate ?? goalValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
             <RecurrenceRepetition {...state}></RecurrenceRepetition>
@@ -57,7 +57,7 @@ export const InitativeSchedule: FC = () => {
    const goalAccordion = (
       <Accordion {...getAccordionProps('goalAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
-            <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalSummary}></ScheduleSummary>
+            <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={targetValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
             <RecurrenceGoal {...state}></RecurrenceGoal>

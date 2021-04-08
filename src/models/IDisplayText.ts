@@ -4,10 +4,13 @@ export interface IDisplayText {
     */
    primary: string;
    /**
+    * summary: short of primary
+    */
+   summary?: string;
+   /**
     * secondary: explains the primary text, shown as a discriptive text
     */
    description?: string;
-
    /**
     * alternate way of describing the text
     */

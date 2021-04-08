@@ -12,7 +12,7 @@ import { Exception, ExceptionTypes } from '~~/models/Exception';
  * @param setState the current dropdown to change state
  * @param setGroupStateOff other dropdowns to close when current is open, can be ignored
  */
-export const toggleGroup = (setState: Dispatch<SetStateAction<boolean>>, ...setGroupStateOff: Dispatch<SetStateAction<boolean>>[]): void => {
+export const toggleGroup = (setState: Dispatch<SetStateAction<boolean>>, setGroupStateOff: Dispatch<SetStateAction<boolean>>[]): void => {
    if (setGroupStateOff.some((set) => set === setState)) throw new Exception(ExceptionTypes.General_InvalidArguments, { setState, setGroupStateOff });
 
    setState((value) => {

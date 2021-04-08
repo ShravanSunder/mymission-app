@@ -18,9 +18,13 @@ export const LabelWithButton: FC<ILabelWithButtonProps> = (props) => {
    const rotate = props.showing ? css({ transform: 'rotate(0deg)', transition: '500ms' }) : css({ transform: 'rotate(90deg)', transition: '500ms' });
 
    return (
-      <LabelContainer className={props.className} css={[props.showing ? css({}) : css(tw`bg-gradient-to-r from-transparent to-gray-50`)]} title={props.title}>
+      <LabelContainer
+         className={props.className}
+         css={[props.showing ? css({}) : css(tw`bg-gradient-to-r from-transparent to-gray-50`)]}
+         title={props.title}
+         onClick={props.handleClick}>
          <div className="flex flex-grow-0  w-10 bg-gray-200 border-l-1">
-            <Button className=" w-10 min-w-0 " onClick={(event: MouseEvent) => props.handleClick(event)}>
+            <Button className=" w-10 min-w-0">
                <ArrowDropDown css={rotate} />
             </Button>
          </div>

@@ -7,13 +7,14 @@ import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { formatRepetitionAggregationForDisplay, formatRepetitionForDisplay } from './core/recurrence.facade';
+import { formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay, formatRepetitionForDisplay } from './core/recurrence.facade';
 import { RecurrenceRepetitionAggregationList, RecurrenceRepetitionAggregation, RecurrenceRepetitionType } from './core/recurrence.types';
 
 import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
 import { availableDurations } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
 import { DurationIcons } from '~~/components/routes/goal-details/initatives/attributes/DurationIcons';
+import { RecurrenceGoalTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceGoalTarget';
 import { defaultIDisplayText, IDisplayText } from '~~/models/IDisplayText';
 
 /**
@@ -49,9 +50,14 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    );
 
    const [showPeriodDropDown, setShowPeriodDropDown] = useState(false);
-   useSubscription(props.period.subject$, () => setShowPeriodDropDown(false));
+   useSubscription(props.period.subject$, () => {
+      setShowPeriodDropDown(false);
+   });
    const [showDurationDropDown, setShowDurationDropDown] = useState(false);
    useSubscription(props.repetition.source$, () => setShowDurationDropDown(false));
+   const [showTargetDropDown, setShowTargetDropDown] = useState(false);
+
+   const goalValue = formatRecurrenceGoalForDisplay(intl, props.period.value, props.repetition.value, props.goalTarget.value, props.goalTargetCount.value);
 
    const periods = (
       <List>
@@ -106,31 +112,41 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    );
 
    return (
-      <>
-         <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-96">
+      <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1">
+         <div className="w-full p-1">
             <Typography variant="h4" className="text-center">
-               {intl.formatMessage({ defaultMessage: 'How you want to count your habits?' })}
-            </Typography>
-            <div className="p-1"></div>
-            <Typography variant="body1" className="p-1">
-               {intl.formatMessage({ defaultMessage: 'What is your goal to meet for success?  How often do you want to hit your goal? ' })}
+               {intl.formatMessage({ defaultMessage: 'How you want to count your habit?' })}
             </Typography>
          </div>
-         <div className="p-1"></div>
          <DropDownContainer
             show={showPeriodDropDown}
-            toggle={() => toggleGroup(setShowPeriodDropDown, setShowDurationDropDown)}
+            toggle={() => toggleGroup(setShowPeriodDropDown, [setShowDurationDropDown, setShowTargetDropDown])}
             className="m-2"
             selectedItemText={selectedPeriodText.primary}>
             {periods}
          </DropDownContainer>
+         <div className="w-full p-1 pt-4">
+            <Typography variant="h4" className="text-center">
+               {intl.formatMessage({ defaultMessage: 'What is your intention to practice your habit?' })}
+            </Typography>
+         </div>
          <DropDownContainer
             show={showDurationDropDown}
-            toggle={() => toggleGroup(setShowDurationDropDown, setShowPeriodDropDown)}
+            toggle={() => toggleGroup(setShowDurationDropDown, [setShowPeriodDropDown, setShowTargetDropDown])}
             className="m-2"
             selectedItemText={selectedDurationText.primary}>
             {durationList}
          </DropDownContainer>
-      </>
+
+         <DropDownContainer
+            show={showTargetDropDown}
+            toggle={() => toggleGroup(setShowTargetDropDown, [setShowDurationDropDown, setShowPeriodDropDown])}
+            className="m-2 "
+            selectedItemText={goalValue.primary}>
+            <div className="w-full p-2 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-56 box-border">
+               {showTargetDropDown && <RecurrenceGoalTarget {...props}></RecurrenceGoalTarget>}
+            </div>
+         </DropDownContainer>
+      </div>
    );
 };

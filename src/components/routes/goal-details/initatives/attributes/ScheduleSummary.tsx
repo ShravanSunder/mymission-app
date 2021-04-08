@@ -1,12 +1,12 @@
 import { Typography } from '@material-ui/core';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 
 interface IScheduleAccordionSummary {
    icon: string;
    summaryName: string;
-   summaryValue: string;
+   summaryValue: string | ReactNode;
 }
 
 export const ScheduleSummary: FC<IScheduleAccordionSummary> = (props) => {

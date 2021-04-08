@@ -34,7 +34,7 @@ interface IDropDownContainerProps extends ICommonProps {
 export const DropDownContainer: FC<IDropDownContainerProps> = (props) => {
    return (
       <div className={props.className}>
-         <LabelWithButton className="elevation-2" showing={props.show} title={props.selectedItemText} handleClick={() => props.toggle()}></LabelWithButton>
+         <LabelWithButton showing={props.show} title={props.selectedItemText} handleClick={() => props.toggle()}></LabelWithButton>
          <Collapse in={props.show}>{<div className="border-2 box-border rounded-md">{props.children}</div>}</Collapse>
       </div>
    );

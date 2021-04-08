@@ -2,8 +2,9 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
+import tw from 'twin.macro';
 
-import { formatAggregationPeriodForDisplay, formatRecurrenceGoalForDisplay } from './core/recurrence.facade';
+import { formatRepetitionAggregationForDisplay, formatRecurrenceGoalForDisplay, formatGoalTargetCountForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useInitiativeSchedule } from './core/useInitiativeSchedule';
 import { RecurrenceGoal } from './RecurrenceGoal';
 import { RecurrenceRepetition as RecurrenceRepetition } from './RecurrenceRepetition';
@@ -21,13 +22,26 @@ export const InitativeSchedule: FC = () => {
    const intl = useIntl();
 
    const state: IRecurrenceObservables = useInitiativeSchedule();
-   const aggregationValue = formatAggregationPeriodForDisplay(intl, state.period.value);
+   const aggregationValue = formatRepetitionAggregationForDisplay(intl, state.period.value);
 
    const periodName = intl.formatMessage({ defaultMessage: 'Habit Repetition' });
-   const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
-   const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value);
 
-   const repetitions = intl.formatMessage({ defaultMessage: 'Goal' });
+   const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
+   const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value, state.goalTargetCount.value);
+   const targetValue = formatGoalTargetCountForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value, state.goalTargetCount.value);
+
+   const goalSummary = (
+      <div css={tw`grid grid-cols-2`}>
+         <div>
+            {'📅'}
+            {goalValue.primary}
+         </div>
+         <div>
+            {'🔢'}
+            {targetValue.primary}
+         </div>
+      </div>
+   );
 
    const aggregateAccordion = (
       <Accordion {...getAccordionProps('aggregateAccordion')}>
@@ -43,7 +57,7 @@ export const InitativeSchedule: FC = () => {
    const goalAccordion = (
       <Accordion {...getAccordionProps('goalAccordion')}>
          <AccordionSummary expandIcon={<ExpandMoreIcon />} id="panel2a-header">
-            <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalValue.primary}></ScheduleSummary>
+            <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={goalSummary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
             <RecurrenceGoal {...state}></RecurrenceGoal>

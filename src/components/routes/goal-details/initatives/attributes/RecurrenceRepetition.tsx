@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { formatAggregationPeriodForDisplay, formatDurationForDisplay } from './core/recurrence.facade';
+import { formatRepetitionAggregationForDisplay, formatRepetitionForDisplay } from './core/recurrence.facade';
 import { RecurrenceRepetitionAggregationList, RecurrenceRepetitionAggregation, RecurrenceRepetitionType } from './core/recurrence.types';
 
 import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
@@ -37,13 +37,13 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    const intl = useIntl();
 
    const [selectedPeriodText] = useObservableState(
-      () => props.period.subject$.pipe(map((period) => formatAggregationPeriodForDisplay(intl, period))),
+      () => props.period.subject$.pipe(map((period) => formatRepetitionAggregationForDisplay(intl, period))),
       () => defaultIDisplayText()
    );
    const [selectedDurationText] = useObservableState<IDisplayText>(
       () =>
          combineLatest([props.period.subject$, props.repetition.subject$, props.goalTarget.subject$]).pipe(
-            map(([period, duration, target]) => formatDurationForDisplay(intl, period, duration, target))
+            map(([period, duration, target]) => formatRepetitionForDisplay(intl, period, duration, target))
          ),
       defaultIDisplayText()
    );
@@ -56,7 +56,7 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    const periods = (
       <List>
          {RecurrenceRepetitionAggregationList.map((m: RecurrenceRepetitionAggregation, i: number) => {
-            const text = formatAggregationPeriodForDisplay(intl, m);
+            const text = formatRepetitionAggregationForDisplay(intl, m);
             const handleClick = () => {
                props.period.next(m);
             };
@@ -84,7 +84,7 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
          {availableDurations(props.period.value)
             .sort()
             .map((m: RecurrenceRepetitionType, i: number) => {
-               const text = formatDurationForDisplay(intl, props.period.value, m, props.goalTarget.value);
+               const text = formatRepetitionForDisplay(intl, props.period.value, m, props.goalTarget.value);
                const handleClick = () => {
                   props.repetition.next(m);
                };
@@ -106,10 +106,16 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    );
 
    return (
-      <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-96">
-         <Typography variant="h4" className="text-center">
-            {intl.formatMessage({ defaultMessage: 'How you want to count your habits?' })}
-         </Typography>
+      <>
+         <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-96">
+            <Typography variant="h4" className="text-center">
+               {intl.formatMessage({ defaultMessage: 'How you want to count your habits?' })}
+            </Typography>
+            <div className="p-1"></div>
+            <Typography variant="body1" className="p-1">
+               {intl.formatMessage({ defaultMessage: 'What is your goal to meet for success?  How often do you want to hit your goal? ' })}
+            </Typography>
+         </div>
          <div className="p-1"></div>
          <DropDownContainer
             show={showPeriodDropDown}
@@ -125,6 +131,6 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
             selectedItemText={selectedDurationText.primary}>
             {durationList}
          </DropDownContainer>
-      </div>
+      </>
    );
 };

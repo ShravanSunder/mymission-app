@@ -2,6 +2,8 @@ import { useObservable, useObservableEagerState } from 'observable-hooks';
 import { useCallback } from 'react';
 import { Subject, BehaviorSubject } from 'rxjs';
 
+export type TNewValueFunc<T> = (oldValue: T) => T;
+
 /**
  * returns
  * 1. subject$: stream
@@ -20,7 +22,7 @@ export type SubjectWithValue<T> = {
    /**
     * push a new value into observable
     */
-   next: (newValue: T) => void;
+   next: (newValue: T | TNewValueFunc<T>) => void;
 };
 
 /**
@@ -29,9 +31,20 @@ export type SubjectWithValue<T> = {
  */
 export const useSubjectValue = <T>(initValue: T): SubjectWithValue<T> => {
    const subject$ = useObservable<T>(() => new BehaviorSubject(initValue)) as BehaviorSubject<T>;
-   const push = useCallback((newValue: T) => (subject$ as Subject<T>).next(newValue), [subject$]);
+
+   const push = useCallback(
+      (newValue: T | TNewValueFunc<T>) => {
+         if (typeof newValue === 'function') {
+            const result = (newValue as TNewValueFunc<T>)(subject$.getValue());
+            (subject$ as Subject<T>).next(result);
+         } else {
+            (subject$ as Subject<T>).next(newValue);
+         }
+      },
+      [subject$]
+   );
+
    const value = useObservableEagerState(subject$);
-   // useObservableEagerState
 
    return { subject$, next: push, value };
 };

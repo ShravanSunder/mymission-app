@@ -9,7 +9,7 @@ import { getAsEnumArray, getAsNumber, getAsNumberArray } from '~~/helpers/conver
 import { Exception, ExceptionTypes } from '~~/models/Exception';
 import { IDisplayText } from '~~/models/IDisplayText';
 
-export const formatAggregationPeriodForUnits = (intl: IntlShape, period: RecurrenceRepetitionAggregation, count = 1): string => {
+export const formatRepetitionAggregationForUnits = (intl: IntlShape, period: RecurrenceRepetitionAggregation, count = 1): string => {
    switch (period) {
       case RecurrenceRepetitionAggregation.PerDay:
          return intl.formatMessage({ defaultMessage: '{count, plural, one {Day} other {Days}}' }, { count });
@@ -20,7 +20,7 @@ export const formatAggregationPeriodForUnits = (intl: IntlShape, period: Recurre
    }
 };
 
-export const formatDurationForUnits = (intl: IntlShape, duration: RecurrenceRepetitionType, count = 1): string => {
+export const formatRepetitionForUnits = (intl: IntlShape, duration: RecurrenceRepetitionType, count = 1): string => {
    switch (duration) {
       case RecurrenceRepetitionType.PerNumberOfDays:
       case RecurrenceRepetitionType.SpecificDaysOfWeek:
@@ -47,7 +47,8 @@ export const formatRecurrenceGoalForDisplay = (
    intl: IntlShape,
    period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType
+   target: TRecurrenceGoalTargetType,
+   targetCount: number
 ): IDisplayText => {
    const numericTargetRange = availableNumericTargetRange(period, duration);
 
@@ -84,8 +85,8 @@ export const formatRecurrenceGoalForDisplay = (
             };
          }
       } else if (target < numericTargetRange[1]) {
-         const periodUnits = formatAggregationPeriodForUnits(intl, period, target).toLowerCase();
-         const durationUnits = formatDurationForUnits(intl, duration, 1).toLowerCase();
+         const periodUnits = formatRepetitionAggregationForUnits(intl, period, target).toLowerCase();
+         const durationUnits = formatRepetitionForUnits(intl, duration, 1).toLowerCase();
          return {
             primary: intl.formatMessage(
                {
@@ -95,8 +96,8 @@ export const formatRecurrenceGoalForDisplay = (
             ),
          };
       } else if (target === numericTargetRange[1]) {
-         const periodUnits = formatAggregationPeriodForUnits(intl, period, 1).toLowerCase();
-         const durationUnits = formatDurationForUnits(intl, duration, 1).toLowerCase();
+         const periodUnits = formatRepetitionAggregationForUnits(intl, period, 1).toLowerCase();
+         const durationUnits = formatRepetitionForUnits(intl, duration, 1).toLowerCase();
          return {
             primary: intl.formatMessage(
                {
@@ -151,7 +152,7 @@ export const formatRecurrenceGoalForDisplay = (
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType: duration, aggregationPeriod: period, target });
 };
 
-export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: RecurrenceRepetitionAggregation): IDisplayText => {
+export const formatRepetitionAggregationForDisplay = (intl: IntlShape, period: RecurrenceRepetitionAggregation): IDisplayText => {
    if (period === RecurrenceRepetitionAggregation.PerDay) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Daily Habits' }),
@@ -175,7 +176,7 @@ export const formatAggregationPeriodForDisplay = (intl: IntlShape, period: Recur
    }
 };
 
-export const formatDurationForDisplay = (
+export const formatRepetitionForDisplay = (
    intl: IntlShape,
    period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
@@ -183,7 +184,7 @@ export const formatDurationForDisplay = (
 ): IDisplayText => {
    if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
       const tempTarget: number = getAsNumber(target) ?? 2;
-      const durationText = formatDurationForUnits(intl, duration, 2).toLowerCase();
+      const durationText = formatRepetitionForUnits(intl, duration, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Alternate {durationText}' }, { durationText, tempTarget }),
          alternate: intl.formatMessage({ defaultMessage: 'Every {tempTarget} {durationText}' }, { durationText, tempTarget }),
@@ -205,8 +206,8 @@ export const formatDurationForDisplay = (
       period === RecurrenceRepetitionAggregation.PerWeek ||
       period === RecurrenceRepetitionAggregation.PerMonth
    ) {
-      const periodText = formatAggregationPeriodForUnits(intl, period, 2).toLowerCase();
-      const durationText = formatDurationForUnits(intl, duration, 1).toLowerCase();
+      const periodText = formatRepetitionAggregationForUnits(intl, period, 2).toLowerCase();
+      const durationText = formatRepetitionForUnits(intl, duration, 1).toLowerCase();
 
       return {
          primary: intl.formatMessage({ defaultMessage: 'Number of {periodText} per {durationText}' }, { periodText, durationText }),
@@ -214,4 +215,23 @@ export const formatDurationForDisplay = (
    }
 
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration });
+};
+
+export const formatGoalTargetCountForDisplay = (
+   intl: IntlShape,
+   period: RecurrenceRepetitionAggregation,
+   duration: RecurrenceRepetitionType,
+   target: TRecurrenceGoalTargetType,
+   targetCount: number
+): IDisplayText => {
+   const periodText = formatRepetitionAggregationForUnits(intl, period, 1).toLowerCase();
+
+   return {
+      primary: intl.formatMessage(
+         { defaultMessage: '{targetCount} {targetCount, plural, one {time} other {times}}/{periodText}' },
+         { periodText, targetCount }
+      ),
+   };
+
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { duration, target, targetCount });
 };

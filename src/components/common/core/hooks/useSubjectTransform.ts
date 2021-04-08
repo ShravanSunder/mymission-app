@@ -2,7 +2,7 @@ import { useObservable, useObservableEagerState } from 'observable-hooks';
 import { useCallback } from 'react';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-import { SubjectWithValue } from '~~/components/common/core/hooks/useSubjectValue';
+import { SubjectWithValue, TNewValueFunc } from '~~/components/common/core/hooks/useSubjectValue';
 import { Exception } from '~~/models/Exception';
 
 export type TTransform<T1> = (o1$: Observable<T1>, ...otherObservables$: Observable<any>[]) => Observable<T1>;
@@ -42,9 +42,21 @@ export const useSubjectTransform = <T>(initValue: T, operator: TTransform<T>, ..
       operator(source$, ...otherObservables$).subscribe(b$);
       return b$;
    }, [source$]) as BehaviorSubject<T>;
-   const push = useCallback((newValue: T) => source$.next(newValue), [source$]);
+
+   const push = useCallback(
+      (newValue: T | TNewValueFunc<T>) => {
+         if (typeof newValue === 'function') {
+            // 📝NOTE: uses transformed subject$ instead of source$ as input
+            const result = (newValue as TNewValueFunc<T>)(subject$.getValue());
+            (source$ as Subject<T>).next(result);
+         } else {
+            (source$ as Subject<T>).next(newValue);
+         }
+      },
+      [source$, subject$]
+   );
+
    const value = useObservableEagerState(subject$);
-   // useObservableEagerState
 
    return { subject$, next: push, source$, value };
 };

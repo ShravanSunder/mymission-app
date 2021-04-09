@@ -32,6 +32,7 @@ const moduleRules = [
             options: {
                loader: 'tsx',
                target: 'es2015',
+               jsxFactory: '_jsx',
             },
          },
          // {

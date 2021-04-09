@@ -3806,6 +3806,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/plugin-eslint@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "@rollup/plugin-eslint@npm:8.0.1"
+  dependencies:
+    "@rollup/pluginutils": ^4.0.0
+    eslint: ^7.12.0
+  peerDependencies:
+    rollup: ^1.20.0||^2.0.0
+  checksum: 2ea170a654ecbed7d0cab7d6e6235a139396eac6e289ba470ac6dfc341faa98b9395faf7558f2a01e4b2d615d9e0d7d8d98260c5f3bf08b2a587469c08e3e959
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-json@npm:^4.1.0":
   version: 4.1.0
   resolution: "@rollup/plugin-json@npm:4.1.0"
@@ -3888,7 +3900,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^4.1.0":
+"@rollup/pluginutils@npm:^4.0.0, @rollup/pluginutils@npm:^4.1.0":
   version: 4.1.0
   resolution: "@rollup/pluginutils@npm:4.1.0"
   dependencies:
@@ -10884,6 +10896,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-plugin-babel@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "esbuild-plugin-babel@npm:0.2.3"
+  peerDependencies:
+    "@babel/core": ^7.0.0
+  checksum: d3485d2c45742a7a36c040656f99c7326cfc34df758c46fd270a7c6e6475daf7bdcf82871e772cccee0819db11263ce373b6dc99a790b6f25173a695144ec31f
+  languageName: node
+  linkType: hard
+
 "esbuild@npm:^0.11.6":
   version: 0.11.6
   resolution: "esbuild@npm:0.11.6"
@@ -11267,7 +11288,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.23.0":
+"eslint@npm:^7.12.0, eslint@npm:^7.18.0, eslint@npm:^7.23.0":
   version: 7.23.0
   resolution: "eslint@npm:7.23.0"
   dependencies:
@@ -16710,6 +16731,7 @@ fsevents@^1.2.7:
     "@pmmmwh/react-refresh-webpack-plugin": ^0.4.3
     "@react-hook/window-size": ^3.0.7
     "@rollup/plugin-babel": ^5.3.0
+    "@rollup/plugin-eslint": ^8.0.1
     "@rollup/plugin-typescript": ^8.2.1
     "@storybook/addon-a11y": ^6.2.1
     "@storybook/addon-actions": ^6.2.1
@@ -16774,6 +16796,7 @@ fsevents@^1.2.7:
     dotenv-webpack: ^7.0.2
     emoji-regex: ^9.2.2
     esbuild: ^0.11.6
+    esbuild-plugin-babel: ^0.2.3
     eslint: ^7.23.0
     eslint-config-airbnb: ^18.2.1
     eslint-config-prettier: ^8.1.0
@@ -16836,6 +16859,7 @@ fsevents@^1.2.7:
     vite: ^2.1.5
     vite-babel-plugin: ^0.0.2
     vite-plugin-babel-macros: ^1.0.5
+    vite-plugin-eslint: ^1.1.0
     vite-tsconfig-paths: ^2.5.0
     webpack: ^5.29.0
     webpack-bundle-analyzer: ^4.4.0
@@ -23147,6 +23171,18 @@ resolve@^2.0.0-next.3:
   peerDependencies:
     vite: ">=2"
   checksum: e1e68d481e15aae221681c964952b7bf75b42ea65753718d4111b2ecf119cae60be099ea69dbaeee5260f7a50d2da92d96f9c946d74c167608f21aacc629f3e5
+  languageName: node
+  linkType: hard
+
+"vite-plugin-eslint@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "vite-plugin-eslint@npm:1.1.0"
+  dependencies:
+    "@rollup/pluginutils": ^4.1.0
+    eslint: ^7.18.0
+  peerDependencies:
+    vite: ^2.0.1
+  checksum: c384ecb86cd72cc57ee9af77194bd82a0d7deda23d505cbb6d4ec9d45e56a1bac9406788a7c728fde3a7f64bb4e42746fdef771ef11c545f30d0b00847d63de6
   languageName: node
   linkType: hard
 

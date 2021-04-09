@@ -7,3 +7,4 @@ dist/**
 build/**
 vite.config.ts
 vite.config.js
+**/*.css

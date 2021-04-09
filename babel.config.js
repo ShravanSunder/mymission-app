@@ -20,7 +20,7 @@ module.exports = function (api) {
       //presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }]],
       plugins: [
          //'@emotion',
-         // 'babel-plugin-macros',
+         //'babel-plugin-macros',
          [
             'formatjs',
             {

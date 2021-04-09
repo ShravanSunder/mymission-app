@@ -1,13 +1,11 @@
 import { Typography } from '@material-ui/core';
-import { FC, useState, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
 
-import { formatRepetitionAggregationForUnits, formatRecurrenceGoalForDisplay, formatGoalTargetCountForDisplay } from './core/recurrence.facade';
+import { formatGoalTargetCountForDisplay } from './core/recurrence.facade';
 
-import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
 import { LabelWithStepper } from '~~/components/common/LabelWithStepper';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
-import { RecurrenceGoalTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceGoalTarget';
 
 /**
  * see @IRecurrenceObservables for detailed comments on props

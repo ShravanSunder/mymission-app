@@ -5,7 +5,7 @@
 (async () => {
    // dynamic imports for code splitting
    const ReactDOM = await import('react-dom');
-   const React = await import('react');
+   //const React = await import('react');
    const { App } = await import('./App');
 
    // concurrent mode

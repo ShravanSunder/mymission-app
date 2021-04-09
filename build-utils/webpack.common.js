@@ -69,8 +69,7 @@ module.exports = {
       }),
       new ProvidePlugin({
          React: 'react',
-         css: 'emotion/css/macro',
-         jsx: 'emotion/css/macro',
+         _jsx: ['@emotion/react', 'jsx'],
       }),
    ],
    performance: {

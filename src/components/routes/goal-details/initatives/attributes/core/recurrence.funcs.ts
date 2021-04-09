@@ -6,9 +6,6 @@ import {
    weeksToRecurrenceTypeMap,
 } from './recurrence.types';
 
-import { DaysOfWeek } from '~~/components/routes/goal-details/initatives/attributes/core/schedule.types';
-import { Exception, ExceptionTypes } from '~~/models/Exception';
-
 /**
  * this function returns valid durations for a period
  * @param period

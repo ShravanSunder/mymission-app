@@ -1,5 +1,3 @@
-import { map } from 'rxjs/operators';
-
 export const getValuesOfEnum = <TEnum>(enumeration: Record<string, string | number>): TEnum[] => {
    return (Object.keys(enumeration)
       .filter((key) => {

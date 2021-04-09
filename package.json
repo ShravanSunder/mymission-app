@@ -7,6 +7,7 @@
       "start": "cross-env NODE_ENV=development  NODE_OPTIONS=--max-old-space-size=4096  webpack serve --progress --config build-utils/webpack.config.js --env env=dev",
       "build:prod": "cross-env NODE_ENV=production webpack --config build-utils/webpack.config.js --env env=prod",
       "build:workbox-simple": "workbox injectManifest workbox-config.js",
+      "build:workbox-esbuild": "npx esbuild src/serviceworker/serviceworker.ts --bundle --define:process.env.NODE_ENV=\"production\" --outfile='/dist/sw.generated.js' && npx workbox-cli injectManifest workbox.config.js",
       "build:tailwind": "postcss src/tailwind.css -o src/tailwind.generated.css",
       "watch:tailwind": "postcss -w src/tailwind.css -o src/tailwind.generated.css",
       "build:analyze": "yarn run build:prod --env addon=bundleanalyze",
@@ -136,6 +137,7 @@
       "webpack-pwa-manifest": "^4.3.0",
       "webpack-virtual-modules": "^0.4.2",
       "workbox-build": "^6.1.2",
+      "workbox-cli": "^6.1.2",
       "workbox-webpack-plugin": "^6.1.2",
       "yarn": "^1.22.10"
    },

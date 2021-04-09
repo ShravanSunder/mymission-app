@@ -4,14 +4,15 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 
 const constants = require('./constants');
 
 const iconSrc = path.resolve(__dirname, '..', './public/assets/icon.png');
 const pwaManifestConfig = {
-   name: title,
-   short_name: constants.name,
-   description: constants.name,
+   name: constants.title,
+   short_name: constants.title,
+   description: constants.title,
    background_color: '#ffffff',
    crossorigin: 'use-credentials',
    icons: [
@@ -37,7 +38,7 @@ const moduleRules = [
             loader: 'esbuild-loader',
             options: {
                loader: 'tsx',
-               target: envTargets,
+               target: constants.envTargets,
                jsxFactory: '_jsx',
             },
          },
@@ -80,11 +81,13 @@ module.exports = {
       removeEmptyChunks: true,
    },
    optimization: {
-      minimizer: new ESBuildMinifyPlugin({
-         target: constants.envTargets,
-         css: true,
-         minifyWhitespace: true,
-      }),
+      minimizer: [
+         new ESBuildMinifyPlugin({
+            target: constants.envTargets,
+            css: true,
+            minifyWhitespace: true,
+         }),
+      ],
       runtimeChunk: 'single',
       moduleIds: 'deterministic',
       splitChunks: {

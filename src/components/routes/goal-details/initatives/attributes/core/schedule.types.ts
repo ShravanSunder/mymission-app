@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
 
-import { getKeysOfEnum, getValuesOfEnum } from '~~/helpers/enums';
+import { getValuesOfEnum } from '~~/helpers/enums';
+
 dayjs.extend(weekday);
 
 /**

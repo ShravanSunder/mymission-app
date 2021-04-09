@@ -1,6 +1,5 @@
-import { css, jsx } from '@emotion/react/macro';
-import { Button, ButtonGroup, Typography } from '@material-ui/core';
-import { ArrowDropDown } from '@material-ui/icons';
+import { css } from '@emotion/react';
+import { Button, ButtonGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { FC, MouseEvent } from 'react';
@@ -8,7 +7,6 @@ import tw from 'twin.macro';
 
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { LabelContainer } from '~~/components/common/LabelContainer';
-import { combine } from '~~/helpers/string';
 
 interface ILabelWithStepperProps extends ICommonProps {
    title: string;

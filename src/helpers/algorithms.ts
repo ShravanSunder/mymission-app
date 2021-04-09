@@ -11,6 +11,7 @@ export const partitionToContiguousSections = <T>(currentSelection: T[], sortedFu
    sortedFullList.forEach((f, i) => {
       if (currentSelection.includes(f)) {
          if (data.has(sortedFullList[i - 1])) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             data.set(f, data.get(sortedFullList[i - 1])!);
             data.delete(sortedFullList[i - 1]);
          } else {

@@ -1,12 +1,10 @@
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
-import { Button, Theme } from '@material-ui/core';
-import { grey, green, red, yellow } from '@material-ui/core/colors';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { Theme } from '@material-ui/core';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { SnackbarProvider } from 'notistack';
-import { FC, useMemo, useState, createRef, Suspense } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import { createAppTheme } from '~~/styles/theme';
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 // eslint-disable-next-line import/no-extraneous-dependencies
 

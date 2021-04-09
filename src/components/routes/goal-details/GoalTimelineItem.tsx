@@ -1,4 +1,4 @@
-import { css, jsx } from '@emotion/react/macro';
+import { css } from '@emotion/react';
 import { FC } from 'react';
 import tw from 'twin.macro';
 

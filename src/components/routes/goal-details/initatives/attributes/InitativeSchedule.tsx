@@ -2,9 +2,8 @@ import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
-import tw from 'twin.macro';
 
-import { formatRepetitionAggregationForDisplay, formatRecurrenceGoalForDisplay, formatGoalTargetCountForDisplay } from './core/recurrence.facade';
+import { formatGoalTargetCountForDisplay, formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useInitiativeSchedule } from './core/useInitiativeSchedule';
 import { RecurrenceGoal } from './RecurrenceGoal';
 import { RecurrenceRepetition as RecurrenceRepetition } from './RecurrenceRepetition';

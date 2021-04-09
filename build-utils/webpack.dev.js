@@ -68,14 +68,14 @@ module.exports = {
       new webpack.EvalSourceMapDevToolPlugin({
          exclude: [/vendor\..*.js/],
       }),
-      new ForkTsCheckerWebpackPlugin({
-         typescript: {
-            memoryLimit: 4096,
-         },
-         eslint: {
-            files: './src/**/*.{ts,tsx,js,jsx}',
-         },
-      }),
+      // new ForkTsCheckerWebpackPlugin({
+      //    typescript: {
+      //       memoryLimit: 4096,
+      //    },
+      //    eslint: {
+      //       files: './src/**/*.{ts,tsx,js,jsx}',
+      //    },
+      // }),
       new webpack.HotModuleReplacementPlugin(),
       new ReactRefreshWebpackPlugin(),
       // new InjectManifest({
@@ -98,6 +98,7 @@ module.exports = {
       publicPath: '/',
       historyApiFallback: true,
       port: 7035,
+      // writeToDisk: true,
       //stats: 'errors-only',
    },
    devtool: 'eval-cheap-module-source-map', // 'eval-source-map',
@@ -107,6 +108,20 @@ module.exports = {
    optimization: {
       minimize: false,
       chunkIds: 'named',
+      splitChunks: {
+         cacheGroups: {
+            vendor: {
+               test: /([/\/])?node_modules([/\/])?/,
+               name(module) {
+                  // get the name. E.g. node_modules/packageName/not/this/part.js
+                  // or node_modules/packageName
+                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                  // npm package names are URL-safe, but some servers don't like @ symbols
+                  return `vendor.${packageName.replace('@', '_')}`;
+               },
+            },
+         },
+      },
    },
 };
 

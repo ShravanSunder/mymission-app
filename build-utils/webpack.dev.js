@@ -28,12 +28,19 @@ const moduleRules = [
             },
          },
          {
-            loader: 'ts-loader',
+            loader: 'esbuild-loader',
             options: {
-               transpileOnly: true,
-               configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
+               loader: 'tsx',
+               target: 'es2015',
             },
          },
+         // {
+         //    loader: 'ts-loader',
+         //    options: {
+         //       transpileOnly: true,
+         //       configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
+         //    },
+         // },
       ],
    },
 ];

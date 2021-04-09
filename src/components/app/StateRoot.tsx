@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, jsx } from '@emotion/react/macro';
 import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import { FC, lazy, Suspense } from 'react';
 import { RecoilRoot } from 'recoil';

@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, jsx } from '@emotion/react/macro';
 import tw from 'twin.macro';
 
 import { ContentLayout } from './ContentLayout';

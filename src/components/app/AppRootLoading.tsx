@@ -1,4 +1,5 @@
-import { css } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import { css, jsx } from '@emotion/react/macro';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Slider from '@material-ui/core/Slider';
 import { FC } from 'react';

@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { ProvidePlugin } = require('webpack');
 
 const title = 'MyMission';
 const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
@@ -65,6 +66,11 @@ module.exports = {
       new HtmlWebpackPlugin({
          title: title,
          template: path.resolve(__dirname, '..', './src/index.html'),
+      }),
+      new ProvidePlugin({
+         React: 'react',
+         css: 'emotion/css/macro',
+         jsx: 'emotion/css/macro',
       }),
    ],
    performance: {

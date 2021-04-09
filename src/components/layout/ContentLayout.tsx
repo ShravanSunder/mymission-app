@@ -1,4 +1,5 @@
-import { css } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import { css, jsx } from '@emotion/react/macro';
 import { Button, useMediaQuery } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { useCallback, useRef, useState } from 'react';

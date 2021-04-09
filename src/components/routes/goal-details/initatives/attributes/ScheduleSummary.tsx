@@ -1,5 +1,6 @@
 import { Typography } from '@material-ui/core';
 import { FC, ReactNode } from 'react';
+import { useIntl } from 'react-intl';
 
 import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 
@@ -10,6 +11,10 @@ interface IScheduleAccordionSummary {
 }
 
 export const ScheduleSummary: FC<IScheduleAccordionSummary> = (props) => {
+   // for test
+   // const { formatMessage } = useIntl();
+   // const data = formatMessage({ defaultMessage: 'sdfsdfdsfdfds {count}' }, { count: 1 });
+   // console.log(data);
    return (
       <div
          className="items-center w-full select-none grid grid-row-3"

@@ -62,7 +62,8 @@ export default {
    // A set of global variables that need to be available in all test environments
    globals: {
       'ts-jest': {
-         babel: true,
+         //babel: true,
+         //babelConfig: 'babel.config.jest.js',
          tsconfig: 'tsconfig.jest.json',
          astTransformers: {
             before: [
@@ -183,7 +184,7 @@ export default {
 
    // A map from regular expressions to paths to transformers
    transform: {
-      '^.+\\.(ts|tsx|js|jsx)$': '../babel.config.jest.js',
+      '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
       //'^.+\\.(js|jsx)$': '../babel.config.jest.js',
       // '^.+\\.jsx?$': 'ts-jest',
       // '^.+\\.tsx?$': 'ts-jest',

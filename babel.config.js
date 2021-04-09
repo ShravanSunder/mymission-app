@@ -1,3 +1,4 @@
+// esbuild-plugin handles most of the transformation
 module.exports = function (api) {
    api.cache(true);
    return {

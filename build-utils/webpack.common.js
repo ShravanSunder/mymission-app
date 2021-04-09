@@ -6,8 +6,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ProvidePlugin } = require('webpack');
 
-const title = 'MyMission';
-const fileExtensions = ['jpg', 'jpeg', 'png', 'gif', 'eot', 'otf', 'svg', 'ttf', 'woff', 'woff2'];
+const constants = require('./constants');
 
 const isDev = process.env.NODE_ENV !== 'production';
 require('dotenv').config({ path: `../.env.${process.env.NODE_ENV}` });
@@ -30,16 +29,13 @@ const moduleRules = [
             loader: 'postcss-loader',
             options: {
                sourceMap: false,
-               // postcssOptions: {
-               //    plugins: () => [postcssPresetEnv(/* pluginOptions */)],
-               // },
             },
          },
       ],
       exclude: /node_modules/,
    },
    {
-      test: new RegExp(`.(${fileExtensions.join('|')})$`),
+      test: new RegExp(`.(${constants.fileExtensions.join('|')})$`),
       type: 'asset/resource',
       exclude: /node_modules/,
    },
@@ -64,7 +60,7 @@ module.exports = {
       new ESLintPlugin({ cache: true }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-         title: title,
+         title: constants.title,
          template: path.resolve(__dirname, '..', './src/index.html'),
       }),
       new ProvidePlugin({
@@ -75,23 +71,5 @@ module.exports = {
    performance: {
       // maxEntrypointSize: 512000,
       // maxAssetSize: 512000,
-   },
-   optimization: {
-      runtimeChunk: 'single',
-      moduleIds: 'deterministic',
-      splitChunks: {
-         cacheGroups: {
-            vendor: {
-               test: /([/\/])?node_modules([/\/])?/,
-               name(module) {
-                  // get the name. E.g. node_modules/packageName/not/this/part.js
-                  // or node_modules/packageName
-                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-                  // npm package names are URL-safe, but some servers don't like @ symbols
-                  return `vendor.${packageName.replace('@', '_')}`;
-               },
-            },
-         },
-      },
    },
 };

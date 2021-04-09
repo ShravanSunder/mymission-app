@@ -5,15 +5,13 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const title = 'MyMission';
-const name = 'MyMission';
-const description = 'MyMission-PWA';
+const constants = require('./constants');
 
 const iconSrc = path.resolve(__dirname, '..', './public/assets/icon.png');
 const pwaManifestConfig = {
    name: title,
-   short_name: name,
-   description: description,
+   short_name: constants.name,
+   description: constants.name,
    background_color: '#ffffff',
    crossorigin: 'use-credentials',
    icons: [
@@ -36,10 +34,11 @@ const moduleRules = [
             },
          },
          {
-            loader: 'ts-loader',
+            loader: 'esbuild-loader',
             options: {
-               transpileOnly: true,
-               configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
+               loader: 'tsx',
+               target: envTargets,
+               jsxFactory: '_jsx',
             },
          },
       ],
@@ -62,7 +61,6 @@ module.exports = {
          chunkFilename: '[id].[contenthash].css',
       }),
       new WebpackPwaManifest(pwaManifestConfig),
-      //new FaviconsWebpackPlugin(iconSrc),
    ],
    devServer: {
       contentBase: path.resolve(__dirname, '..', './dist'),
@@ -80,5 +78,28 @@ module.exports = {
       minimize: true,
       removeAvailableModules: true,
       removeEmptyChunks: true,
+   },
+   optimization: {
+      minimizer: new ESBuildMinifyPlugin({
+         target: constants.envTargets,
+         css: true,
+         minifyWhitespace: true,
+      }),
+      runtimeChunk: 'single',
+      moduleIds: 'deterministic',
+      splitChunks: {
+         cacheGroups: {
+            vendor: {
+               test: /([/\/])?node_modules([/\/])?/,
+               name(module) {
+                  // get the name. E.g. node_modules/packageName/not/this/part.js
+                  // or node_modules/packageName
+                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                  // npm package names are URL-safe, but some servers don't like @ symbols
+                  return `vendor.${packageName.replace('@', '_')}`;
+               },
+            },
+         },
+      },
    },
 };

@@ -6,6 +6,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const { transform } = require('@formatjs/ts-transformer');
 
+const constants = require('./constants');
+
 const cache = {
    //type: 'memory',
    type: 'filesystem',
@@ -31,7 +33,7 @@ const moduleRules = [
             loader: 'esbuild-loader',
             options: {
                loader: 'tsx',
-               target: 'es2015',
+               target: constants.targetEnv,
                jsxFactory: '_jsx',
             },
          },

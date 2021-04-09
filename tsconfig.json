@@ -66,13 +66,22 @@
       "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
       //"skipDefaultLibCheck": true,
       "resolveJsonModule": true,
-      "types": ["jest", "@emotion/react", "node"],
+      "types": ["jest", "@emotion/react", "node", "vite/client"],
       "paths": {
          "~~/*": ["./src/*"]
       },
-      "jsxImportSource": "@emotion/react"
+      "jsxImportSource": "@emotion/react",
+      "plugins": [
+         {
+            "transform": "@formatjs/ts-transformer",
+            "import": "transform",
+            "type": "config",
+            "overrideIdFn": "[sha512:contenthash:base64:6]",
+            "ast": true
+         }
+      ]
       /** eof */
    },
    "exclude": ["**/node_modules", ".husky", "./src/styles/css", "./tailwind.config.js", "**/*.test.ts"],
-   "include": ["src"]
+   "include": ["src", "vite.config.ts"]
 }

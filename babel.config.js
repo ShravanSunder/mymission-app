@@ -15,12 +15,12 @@ const muiPlugins = [
 ];
 
 module.exports = function (api) {
-   api.cache(true);
+   api.cache(false);
    return {
-      presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }]],
+      //presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }]],
       plugins: [
-         '@emotion',
-         'babel-plugin-macros',
+         //'@emotion',
+         // 'babel-plugin-macros',
          [
             'formatjs',
             {
@@ -28,7 +28,7 @@ module.exports = function (api) {
                ast: true,
             },
          ],
-         ...muiPlugins,
+         // ...muiPlugins,
       ],
    };
 };

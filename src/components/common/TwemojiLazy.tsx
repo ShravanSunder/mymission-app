@@ -1,4 +1,4 @@
-import React, { lazy, FC, Suspense } from 'react';
+import { lazy, FC, Suspense } from 'react';
 
 import { TwemojiImageProps } from './TwemojiImage';
 import { TwemojiInlineProps } from './TwemojiInline';

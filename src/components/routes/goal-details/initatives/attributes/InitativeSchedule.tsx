@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useIntl } from 'react-intl';
 import tw from 'twin.macro';
 

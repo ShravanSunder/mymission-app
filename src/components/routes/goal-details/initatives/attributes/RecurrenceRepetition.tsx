@@ -2,7 +2,7 @@ import { faCalendarAlt, faCalendarDay, faCalendarWeek } from '@fortawesome/free-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { useObservableState, useSubscription } from 'observable-hooks';
-import React, { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';

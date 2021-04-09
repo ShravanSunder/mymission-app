@@ -5,3 +5,5 @@ build-utils/**/*
 **/node_modules/**
 dist/**
 build/**
+vite.config.ts
+vite.config.js

@@ -4,9 +4,9 @@
 // import { registerServiceWorker } from './serviceworker/registerServiceWorker.ts';
 (async () => {
    // dynamic imports for code splitting
-   const ReactDOM = await import(/* webpackChunkName: "react-dom" */ 'react-dom');
-   // const React = await import('react');
-   const { App } = await import(/* webpackChunkName: "App" */ './App');
+   const ReactDOM = await import('react-dom');
+   const React = await import('react');
+   const { App } = await import('./App');
 
    // concurrent mode
    // eslint-disable-next-line @typescript-eslint/no-unsafe-call

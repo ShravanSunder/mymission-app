@@ -6,3 +6,4 @@ build
 .yarn/install-state.gz
 .yarn/build-state.yml
 .eslintcache
+.rollup.cache

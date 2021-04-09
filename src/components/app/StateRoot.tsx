@@ -6,7 +6,7 @@ import { RecoilRoot } from 'recoil';
 import { AppRootLoading } from '~~/components/app/AppRootLoading';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 
-const AppRootLazy = lazy(() => import(/* webpackChunkName: "AppRoot" */ '~~/components/app/AppRoot'));
+const AppRootLazy = lazy(() => import('~~/components/app/AppRoot'));
 
 /**
  * Using Reocil with observable-hooks (rxjs) for local state, see readme.

@@ -36,7 +36,9 @@ const moduleRules = [
             loader: 'esbuild-loader',
             options: {
                loader: 'css',
+               target: constants.targetEnv,
                minify: isDev ? false : true,
+               sourcemap: false,
             },
          },
       ],

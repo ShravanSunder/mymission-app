@@ -32,14 +32,13 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
    };
 
    return (
-      <>
-         <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1 max-h-80">
+      <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1">
+         <div className="w-full p-1">
             <Typography variant="h4" className="p-2 text-center">
                {intl.formatMessage({ defaultMessage: 'What do you want to acheive?' })}
             </Typography>
          </div>
-         <div className="p-1"></div>
          <LabelWithStepper className="m-2 " title={targetValue.primary} handleClick={handleStepperClick}></LabelWithStepper>
-      </>
+      </div>
    );
 };

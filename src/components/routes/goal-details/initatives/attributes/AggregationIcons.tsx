@@ -1,8 +1,11 @@
 import { faCalendarAlt, faCalendarDay, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
 
 import { RecurrenceRepetitionAggregation } from './core/recurrence.types';
+
+import { lazier } from '~~/components/common/utils/lazier';
+
+const [FontAwesomeIcon] = lazier(() => import(/*  webpackChunkName: "fortawesome-react" */ '@fortawesome/react-fontawesome'), 'FontAwesomeIcon');
 
 export const AggregationIcons: FC<{ period: RecurrenceRepetitionAggregation }> = (props) => {
    if (props.period === RecurrenceRepetitionAggregation.PerDay) {

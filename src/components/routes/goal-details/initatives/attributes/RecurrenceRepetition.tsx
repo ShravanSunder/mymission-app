@@ -114,7 +114,8 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
             selectedItemText={selectedPeriodText.primary}>
             {periods}
          </DropDownContainer>
-         <div className="w-full p-1 pt-4">
+         <div className="p-2"></div>
+         <div className="w-full p-1">
             <Typography variant="h4" className="text-center">
                {intl.formatMessage({ defaultMessage: 'What is your intention to practice your habit?' })}
             </Typography>
@@ -126,7 +127,6 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
             selectedItemText={selectedDurationText.primary}>
             {durationList}
          </DropDownContainer>
-
          <DropDownContainer
             show={showTargetDropDown}
             toggle={() => toggleGroup(setShowTargetDropDown, [setShowDurationDropDown, setShowPeriodDropDown])}

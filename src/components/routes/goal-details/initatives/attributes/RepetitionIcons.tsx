@@ -1,11 +1,13 @@
 import { faCalendarAlt, faCalendarPlus, faCalendarWeek, faThLarge } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { EventNote } from '@material-ui/icons';
 import { FC } from 'react';
 
 import { RecurrenceRepetitionType } from './core/recurrence.types';
 
+import { lazier } from '~~/components/common/utils/lazier';
 import { muiIconCss } from '~~/helpers/muiIconCss';
+
+const [FontAwesomeIcon] = lazier(() => import(/*  webpackChunkName: "fortawesome-react" */ '@fortawesome/react-fontawesome'), 'FontAwesomeIcon');
 
 export const RepetitionIcons: FC<{ duration: RecurrenceRepetitionType }> = (props) => {
    if (props.duration === RecurrenceRepetitionType.Weekly) {

@@ -4,7 +4,7 @@ import React from 'react';
 import { ScheduleSummary } from '~~/components/routes/goal-details/initatives/attributes/ScheduleSummary';
 import { IntlWrapper } from '~~/testing/utils/wrappers';
 
-it('does render', () => {
+it('smoke test does render', () => {
    const { asFragment } = render(<ScheduleSummary icon="😀" summaryName="name" summaryValue="sdljfdsjfdskfjs"></ScheduleSummary>, {
       wrapper: IntlWrapper,
    });
@@ -12,9 +12,3 @@ it('does render', () => {
    expect(asFragment()).toMatchSnapshot();
    screen.debug();
 });
-
-// it('does render more', () => {
-//    const { asFragment } = render(<ScheduleSummary icon="😀" summaryName="name" summaryValue="sdljfdsjfdskfjs"></ScheduleSummary>, );
-
-//    expect(asFragment()).toMatchSnapshot();
-// });

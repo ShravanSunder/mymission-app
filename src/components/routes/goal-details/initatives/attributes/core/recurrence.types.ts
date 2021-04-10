@@ -86,3 +86,10 @@ export const weeksToRecurrenceTypeMap: Map<RecurrenceRepetitionType, number> = n
 export const monthsToRecurrenceTypeMap: Map<RecurrenceRepetitionType, number> = new Map([
    [RecurrenceRepetitionType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
 ]);
+
+export enum HabitType {
+   PositiveCount = 'PositiveCount',
+   Time = 'Timed',
+   Target = 'Target',
+   NegativeCount = 'NegativeCount',
+}

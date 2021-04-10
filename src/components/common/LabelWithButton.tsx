@@ -22,7 +22,7 @@ export const LabelWithButton: FC<ILabelWithButtonProps> = (props) => {
          css={[props.showing ? css({}) : css(tw`bg-gradient-to-r from-transparent to-gray-50`)]}
          title={props.title}
          onClick={props.handleClick}>
-         <div className="flex flex-grow-0  w-10 bg-gray-200 border-l-1">
+         <div className="flex flex-grow-0 w-10 bg-gray-200 border-l-1 box-border">
             <Button className=" w-10 min-w-0">
                <ArrowDropDown css={rotate} />
             </Button>

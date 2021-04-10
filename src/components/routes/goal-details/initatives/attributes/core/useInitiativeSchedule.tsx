@@ -31,6 +31,7 @@ export const useInitiativeSchedule = (): IRecurrenceObservables => {
    const repetition = useSubjectTransform<RecurrenceRepetitionType>(RecurrenceRepetitionType.Weekly, durationOperator, period.subject$);
    const goalTarget = useSubjectTransform<TRecurrenceGoalTargetType>(5, targetOperator, repetition.subject$, period.subject$);
    const goalTargetCount = useSubjectValue<number>(1);
+   // const goalUnit =
 
    return { period, repetition, goalTarget, goalTargetCount };
 };

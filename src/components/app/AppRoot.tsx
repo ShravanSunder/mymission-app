@@ -1,7 +1,7 @@
-import '~~/styles/css/tailwind-base.css';
-import '~~/styles/css/tailwind-components.css';
-import '~~/styles/css/tailwind-utilities.css';
-import '~~/styles/css/app.css';
+import '~~/styles/css/tailwind-base.pcss';
+import '~~/styles/css/tailwind-components.pcss';
+import '~~/styles/css/tailwind-utilities.pcss';
+import '~~/styles/css/app.pcss';
 
 import { Suspense, FC } from 'react';
 import { IntlProvider } from 'react-intl';

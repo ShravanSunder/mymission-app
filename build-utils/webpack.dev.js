@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const { transform } = require('@formatjs/ts-transformer');
 
@@ -68,6 +69,7 @@ module.exports = {
       new webpack.EvalSourceMapDevToolPlugin({
          exclude: [/vendor\..*.js/],
       }),
+      new MiniCssExtractPlugin(),
       // new ForkTsCheckerWebpackPlugin({
       //    typescript: {
       //       memoryLimit: 4096,

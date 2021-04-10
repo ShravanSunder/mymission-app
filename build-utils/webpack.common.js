@@ -21,9 +21,10 @@ console.log('------------------------------------------------------');
 
 const moduleRules = [
    {
-      test: /\.css$/i,
+      test: /\.(css|pcss)$/i,
       use: [
-         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+         // isDev ? 'style-loader' : MiniCssExtractPlugin.loader
+         MiniCssExtractPlugin.loader,
          { loader: 'css-loader', options: { importLoaders: 1 } },
          {
             loader: 'postcss-loader',

@@ -4,8 +4,8 @@ import React, { FC, Fragment, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import tw from 'twin.macro';
 
-import { AggregationIcons } from './AggregationIcons';
 import { formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay, formatRepetitionForDisplay } from './core/recurrence.facade';
 import { RecurrenceRepetitionAggregationList, RecurrenceRepetitionAggregation, RecurrenceRepetitionType } from './core/recurrence.types';
 
@@ -17,6 +17,8 @@ import { RecurrenceGoalTarget } from '~~/components/routes/goal-details/initativ
 import { defaultIDisplayText, IDisplayText } from '~~/models/IDisplayText';
 
 const [RepetitionIcons] = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/RepetitionIcons'), 'RepetitionIcons');
+
+const [AggregationIcons] = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/AggregationIcons'), 'AggregationIcons');
 
 /**
  * see @IRecurrenceObservables for detailed comments on props
@@ -47,7 +49,6 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    const [showTargetDropDown, setShowTargetDropDown] = useState(false);
 
    const goalValue = formatRecurrenceGoalForDisplay(intl, props.period.value, props.repetition.value, props.goalTarget.value, props.goalTargetCount.value);
-
    const periods = (
       <List>
          {RecurrenceRepetitionAggregationList.map((m: RecurrenceRepetitionAggregation, i: number) => {
@@ -70,11 +71,7 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
       </List>
    );
 
-   // const goalValue = formatRecurrenceGoalForDisplay(intl, props.period.value, props.duration.value, props.target.value);
-
-   // const periodUnits = formatAggregationPeriodForUnits(intl, props.period.value).toLowerCase();
-
-   const durationList = (
+   const repetitionList = (
       <List className="elevation-2">
          {availableDurations(props.period.value)
             .sort()
@@ -111,7 +108,8 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
             show={showPeriodDropDown}
             toggle={() => toggleGroup(setShowPeriodDropDown, [setShowDurationDropDown, setShowTargetDropDown])}
             className="m-2"
-            selectedItemText={selectedPeriodText.primary}>
+            selectedItemText={selectedPeriodText.primary}
+            selectedItemIcon={<AggregationIcons period={props.period.value}></AggregationIcons>}>
             {periods}
          </DropDownContainer>
          <div className="p-2"></div>
@@ -124,8 +122,9 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
             show={showDurationDropDown}
             toggle={() => toggleGroup(setShowDurationDropDown, [setShowPeriodDropDown, setShowTargetDropDown])}
             className="m-2"
+            selectedItemIcon={<RepetitionIcons period={props.repetition.value}></RepetitionIcons>}
             selectedItemText={selectedDurationText.primary}>
-            {durationList}
+            {repetitionList}
          </DropDownContainer>
          <DropDownContainer
             show={showTargetDropDown}

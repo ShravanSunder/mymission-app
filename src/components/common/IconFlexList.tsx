@@ -1,18 +1,18 @@
 import { css } from '@emotion/react';
 import { IconButton, Typography } from '@material-ui/core';
-import { FC, ReactElement, useMemo, useEffect, useRef } from 'react';
+import React, { FC, ReactElement, useMemo, useEffect, useRef, ReactNode } from 'react';
 import tw from 'twin.macro';
 
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { combine } from '~~/helpers/string';
 
-interface IconFlexItemProps<T> {
+export interface IconFlexItemProps<T extends number | string | Record<string, any>> {
    selected: T[];
    index: T;
-   display: string;
+   display: string | ReactNode;
    handleChange: (newValue: T) => void;
 }
-export const IconFlexItem = <T,>(props: IconFlexItemProps<T>): ReactElement | null => {
+export const IconFlexItem = <T extends number | string | Record<string, any>>(props: IconFlexItemProps<T>): ReactElement | null => {
    const targetRef = useRef<HTMLElement | null>(null);
 
    useEffect(() => {
@@ -34,8 +34,11 @@ export const IconFlexItem = <T,>(props: IconFlexItemProps<T>): ReactElement | nu
 
       return (
          <div css={[selectBackgroundStyle, tw`grid grid-flow-row`]} key={i} className="rounded-full w-11 h-11" ref={targetRef as any}>
-            <IconButton className="grid grid-rows-1 grid-cols-1 justify-items-center" value={props.display} onClick={() => props.handleChange(props.index)}>
-               <Typography className="h-5 text-center min-w-5" variant="subtitle2" css={boldStyle}>
+            <IconButton
+               css={[tw`grid grid-rows-1 grid-cols-1 justify-items-center align-middle p-0`, { 'MuiIconButton-label': { backgroundColor: 'red' } }]}
+               value={`${props.index.toString()}`}
+               onClick={() => props.handleChange(props.index)}>
+               <Typography css={[tw`text-center min-w-5 place-items-center`, boldStyle]} variant="body2">
                   {props.display}
                </Typography>
             </IconButton>

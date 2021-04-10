@@ -4,7 +4,9 @@ import { useIntl } from 'react-intl';
 
 import { formatGoalTargetCountForDisplay } from './core/recurrence.facade';
 
+import { IconFlexItem, IconFlexItemProps, IconFlexItemProps, IconFlexList } from '~~/components/common/IconFlexList';
 import { LabelWithStepper } from '~~/components/common/LabelWithStepper';
+import { HabitGoalCategory, HabitGoalCategoryList } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.types';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
 
 /**
@@ -31,6 +33,16 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
       }
    };
 
+   const items = HabitGoalCategoryList.map((m) => {
+      const itemProps: IconFlexItemProps<HabitGoalCategory> = {
+         selected: [HabitGoalCategory.PositiveCount],
+         index: m,
+         display: m.substr(0, 1),
+         handleChange: (newValue: HabitGoalCategory) => {},
+      };
+      return <IconFlexItem {...itemProps} key={m}></IconFlexItem>;
+   });
+
    return (
       <div className="w-full p-1 overflow-hidden overflow-y-auto grid grid-cols-1">
          <div className="w-full p-1">
@@ -38,6 +50,7 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
                {intl.formatMessage({ defaultMessage: 'What do you want to acheive?' })}
             </Typography>
          </div>
+         <IconFlexList>{items}</IconFlexList>
          <LabelWithStepper className="m-2 " title={targetValue.primary} handleClick={handleStepperClick}></LabelWithStepper>
       </div>
    );

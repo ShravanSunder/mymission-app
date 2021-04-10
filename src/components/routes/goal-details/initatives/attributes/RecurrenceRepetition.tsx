@@ -16,9 +16,9 @@ import { IRecurrenceObservables } from '~~/components/routes/goal-details/initat
 import { RecurrenceGoalTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceGoalTarget';
 import { defaultIDisplayText, IDisplayText } from '~~/models/IDisplayText';
 
-const [RepetitionIcons] = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/RepetitionIcons'), 'RepetitionIcons');
+const RepetitionIcons = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/RepetitionIcons'), 'RepetitionIcons');
 
-const [AggregationIcons] = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/AggregationIcons'), 'AggregationIcons');
+const AggregationIcons = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/AggregationIcons'), 'AggregationIcons');
 
 /**
  * see @IRecurrenceObservables for detailed comments on props
@@ -86,7 +86,7 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
                      <ListItem key={i} selected={m === props.repetition.value} onClick={() => handleClick()} button>
                         <ListItemAvatar>
                            <Avatar>
-                              <RepetitionIcons duration={m}></RepetitionIcons>
+                              <RepetitionIcons repetition={m}></RepetitionIcons>
                            </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={text.alternate ?? text.primary} />

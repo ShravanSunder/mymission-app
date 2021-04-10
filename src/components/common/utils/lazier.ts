@@ -1,36 +1,18 @@
-/**
- * Improvement on top of React.lazy() that allows lazy rendering of named imports
- * Usage:
- *
- *  -- alternative to import { primary } from './Button'
- *  const PrimaryButton = lazier(() => import('./Button'), 'primary');
- *
- *  -- get the default import
- *  lazier(() => import('./Button'), 'default');
- *
- *  -- or
- *  lazier(() => import('./Button'));
- *
- */
-// @ts-check
-import * as React from 'react';
+import { lazy, ComponentType, LazyExoticComponent } from 'react';
 
-type LazyNamed = (
-   importPromise: () => Promise<{
-      [name: string]: any;
+/**
+ * modified lazy
+ * @param factory
+ * @param name
+ * @returns
+ */
+export const lazier = <T extends ComponentType<any>>(
+   factory: () => Promise<{
+      [name: string]: T;
    }>,
-   ...name: string[]
-) => React.LazyExoticComponent<React.ComponentType<any>>[];
-
-/**
- * @param {() => Promise<*>} thenable
- * @param {String} name
- */
-export const lazier: LazyNamed = (thenable, ...name) => {
-   const lazyExports = name.map((n) =>
-      React.lazy(() => {
-         return thenable().then((mod) => ({ default: mod[n] }));
-      })
-   );
-   return lazyExports;
+   name: string
+): LazyExoticComponent<T> => {
+   return lazy(() => {
+      return factory().then((module) => ({ default: module[name] }));
+   });
 };

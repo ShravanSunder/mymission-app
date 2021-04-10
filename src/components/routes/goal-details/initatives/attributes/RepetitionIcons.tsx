@@ -12,14 +12,14 @@ import { muiIconCss } from '~~/helpers/muiIconCss';
 
 const [FontAwesomeIcon] = lazier(() => import(/*  webpackChunkName: "fortawesome-react" */ '@fortawesome/react-fontawesome'), 'FontAwesomeIcon');
 
-export const RepetitionIcons: FC<{ duration: RecurrenceRepetitionType } & ICommonProps> = (props) => {
-   if (props.duration === RecurrenceRepetitionType.Weekly) {
+export const RepetitionIcons: FC<{ repetition: RecurrenceRepetitionType } & ICommonProps> = (props) => {
+   if (props.repetition === RecurrenceRepetitionType.Weekly) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faCalendarWeek} />;
-   } else if (props.duration === RecurrenceRepetitionType.SpecificDaysOfWeek) {
+   } else if (props.repetition === RecurrenceRepetitionType.SpecificDaysOfWeek) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faCalendarPlus} />;
-   } else if (props.duration === RecurrenceRepetitionType.Monthly) {
+   } else if (props.repetition === RecurrenceRepetitionType.Monthly) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faCalendarAlt} />;
-   } else if (props.duration === RecurrenceRepetitionType.Quarterly) {
+   } else if (props.repetition === RecurrenceRepetitionType.Quarterly) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faThLarge} />;
    } else {
       return <EventNote className={props.className} css={muiIconCss}></EventNote>;

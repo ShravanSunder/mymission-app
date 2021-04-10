@@ -1,10 +1,12 @@
-import { FC, Suspense } from 'react';
+import React, { FC, Suspense } from 'react';
 
 import { TwemojiImageProps, TwemojiInlineProps } from './TwemojiInternal';
 
 import { lazier } from '~~/components/common/utils/lazier';
 
-const [TwemojiImage, TwemojiInline] = lazier(() => import(/* webpackChunkName: "TwemojiInternal" */ './TwemojiInternal'), 'TwemojiImage', 'TwemojiInline');
+const TwemojiImage = lazier(() => import(/* webpackChunkName: "TwemojiInternal" */ './TwemojiInternal'), 'TwemojiImage');
+
+const TwemojiInline = lazier(() => import(/* webpackChunkName: "TwemojiInternal" */ './TwemojiInternal'), 'TwemojiInline');
 
 export const TwemojiImageLazy: FC<TwemojiImageProps> = (props) => {
    return (

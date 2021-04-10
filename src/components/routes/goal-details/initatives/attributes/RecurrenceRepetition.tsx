@@ -1,5 +1,3 @@
-import { faCalendarAlt, faCalendarDay, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 import { useObservableState, useSubscription } from 'observable-hooks';
 import React, { FC, Fragment, useState } from 'react';
@@ -7,32 +5,23 @@ import { useIntl } from 'react-intl';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { AggregationIcons } from './AggregationIcons';
 import { formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay, formatRepetitionForDisplay } from './core/recurrence.facade';
 import { RecurrenceRepetitionAggregationList, RecurrenceRepetitionAggregation, RecurrenceRepetitionType } from './core/recurrence.types';
 
 import { DropDownContainer, toggleGroup } from '~~/components/common/DropDownContainer';
+import { lazier } from '~~/components/common/utils/lazier';
 import { availableDurations } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
-import { DurationIcons } from '~~/components/routes/goal-details/initatives/attributes/DurationIcons';
 import { RecurrenceGoalTarget } from '~~/components/routes/goal-details/initatives/attributes/RecurrenceGoalTarget';
 import { defaultIDisplayText, IDisplayText } from '~~/models/IDisplayText';
+
+const [RepetitionIcons] = lazier(() => import('~~/components/routes/goal-details/initatives/attributes/RepetitionIcons'), 'RepetitionIcons');
 
 /**
  * see @IRecurrenceObservables for detailed comments on props
  */
 export type IRecurrenceRepetitionProps = IRecurrenceObservables;
-
-const AggregationIcons: FC<{ period: RecurrenceRepetitionAggregation }> = (props) => {
-   if (props.period === RecurrenceRepetitionAggregation.PerDay) {
-      return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarDay} />;
-   } else if (props.period === RecurrenceRepetitionAggregation.PerWeek) {
-      return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarWeek} />;
-   } else if (props.period === RecurrenceRepetitionAggregation.PerMonth) {
-      return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarAlt} />;
-   } else {
-      return null;
-   }
-};
 
 export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    const intl = useIntl();
@@ -100,7 +89,7 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
                      <ListItem key={i} selected={m === props.repetition.value} onClick={() => handleClick()} button>
                         <ListItemAvatar>
                            <Avatar>
-                              <DurationIcons duration={m}></DurationIcons>
+                              <RepetitionIcons duration={m}></RepetitionIcons>
                            </Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={text.alternate ?? text.primary} />

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Twemoji, Props } from 'react-emoji-render';
 
-
 import { useFirstEmoji } from './core/hooks/useFirstEmoji';
 
 export interface TwemojiImageProps extends Props {
@@ -16,7 +15,7 @@ export interface TwemojiImageProps extends Props {
  * useSafeEmoji is large for bundle size as well
  * @param props
  */
-const TwemojiImage: FC<TwemojiImageProps> = (props) => {
+export const TwemojiImage: FC<TwemojiImageProps> = (props) => {
    const height: string = props.size != undefined ? `${props.size.toFixed(1)}% !important` : `100%`;
    const margin = props.size != undefined ? '0 !important' : '';
 
@@ -36,4 +35,29 @@ const TwemojiImage: FC<TwemojiImageProps> = (props) => {
    );
 };
 
-export default TwemojiImage;
+export interface TwemojiInlineProps extends Props {
+   fontSize?: number;
+}
+
+/**
+ * ⚠ use the lazy version, the it makes the load time better.
+ * @param props
+ */
+
+export const TwemojiInline: FC<TwemojiInlineProps> = (props: TwemojiInlineProps) => {
+   return (
+      <Twemoji
+         options={props.options}
+         svg={props.svg ?? true}
+         props={props.props}
+         onlyEmojiClassName={props.onlyEmojiClassName}
+         text={props.text}
+         css={{
+            display: 'inline-block',
+            span: { display: 'inline-block' },
+            img: { display: 'inline-block' },
+            ...(props.fontSize && { fontsize: props.fontSize }),
+         }}
+      />
+   );
+};

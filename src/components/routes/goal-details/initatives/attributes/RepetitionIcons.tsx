@@ -7,7 +7,7 @@ import { RecurrenceRepetitionType } from './core/recurrence.types';
 
 import { muiIconCss } from '~~/helpers/muiIconCss';
 
-export const DurationIcons: FC<{ duration: RecurrenceRepetitionType }> = (props) => {
+export const RepetitionIcons: FC<{ duration: RecurrenceRepetitionType }> = (props) => {
    if (props.duration === RecurrenceRepetitionType.Weekly) {
       return <FontAwesomeIcon fixedWidth={true} className="w-full h-full" icon={faCalendarWeek} />;
    } else if (props.duration === RecurrenceRepetitionType.SpecificDaysOfWeek) {

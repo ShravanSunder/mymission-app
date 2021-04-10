@@ -3,9 +3,6 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { InjectManifest } = require('workbox-webpack-plugin');
-const { transform } = require('@formatjs/ts-transformer');
 
 const constants = require('./constants');
 
@@ -38,24 +35,13 @@ const moduleRules = [
                jsxFactory: '_jsx',
             },
          },
-         // {
-         //    loader: 'ts-loader',
-         //    options: {
-         //       transpileOnly: true,
-         //       configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
-         //    },
-         // },
       ],
    },
 ];
 
 module.exports = {
    mode: 'development',
-   // stats: {
-   //    warningsCount: true,
-   //    errorsCount: true,
-   //    logging: 'verbose',
-   // },
+   stats: 'minimal',
    // infrastructureLogging: {
    //    level: 'verbose',
    // },
@@ -70,21 +56,8 @@ module.exports = {
          exclude: [/vendor\..*.js/],
       }),
       new MiniCssExtractPlugin(),
-      // new ForkTsCheckerWebpackPlugin({
-      //    typescript: {
-      //       memoryLimit: 4096,
-      //    },
-      //    eslint: {
-      //       files: './src/**/*.{ts,tsx,js,jsx}',
-      //    },
-      // }),
       new webpack.HotModuleReplacementPlugin(),
       new ReactRefreshWebpackPlugin(),
-      // new InjectManifest({
-      //    swSrc: path.resolve(__dirname, '..', './src/sw.js'),
-      //    maximumFileSizeToCacheInBytes: 50 * 1000 * 1000, //50mb,
-      //    exclude: [/node_modules/, /\.test\.tsx?$/, /\.stories\.tsx?$/],
-      // }),
    ],
    output: {
       path: path.resolve(__dirname, '..', './dist'),
@@ -101,7 +74,7 @@ module.exports = {
       historyApiFallback: true,
       port: 7035,
       // writeToDisk: true,
-      //stats: 'errors-only',
+      stats: 'errors-only',
    },
    devtool: 'eval-cheap-module-source-map', // 'eval-source-map',
    module: {

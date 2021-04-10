@@ -16,7 +16,7 @@ console.log('Evironment: isDev', process.env.NODE_ENV, isDev);
 console.log('------------------------------------------------------');
 
 /**
- * Use the webpack.development.js file if possible instead
+ * used with .dev and .prod files
  */
 
 const moduleRules = [
@@ -25,18 +25,25 @@ const moduleRules = [
       use: [
          // isDev ? 'style-loader' : MiniCssExtractPlugin.loader
          MiniCssExtractPlugin.loader,
-         { loader: 'css-loader', options: { importLoaders: 1 } },
+         { loader: 'css-loader', options: { importLoaders: 2 } },
          {
             loader: 'postcss-loader',
             options: {
                sourceMap: false,
             },
          },
+         {
+            loader: 'esbuild-loader',
+            options: {
+               loader: 'css',
+               minify: isDev ? false : true,
+            },
+         },
       ],
       exclude: /node_modules/,
    },
    {
-      test: new RegExp(`.(${constants.fileExtensions.join('|')})$`),
+      test: new RegExp(`.(${constants.assetExtensions.join('|')})$`),
       type: 'asset/resource',
       exclude: /node_modules/,
    },

@@ -87,7 +87,8 @@ export const monthsToRecurrenceTypeMap: Map<RecurrenceRepetitionType, number> = 
    [RecurrenceRepetitionType.Quarterly, Math.floor(dayjs.duration({ months: 3 }).asMonths())],
 ]);
 
-export enum RecurrenceGoalCategory {
+// todo: need to add units
+export enum RecurrenceGoalCategoryType {
    PositiveTarget = 'PositiveTarget',
    Timed = 'Timed',
    // Target = 'Target',
@@ -95,4 +96,4 @@ export enum RecurrenceGoalCategory {
    // Completion = 'Completion',
 }
 
-export const habitCategoryList: RecurrenceGoalCategory[] = getValuesOfEnum<RecurrenceGoalCategory>(RecurrenceGoalCategory);
+export const habitCategoryList: RecurrenceGoalCategoryType[] = getValuesOfEnum<RecurrenceGoalCategoryType>(RecurrenceGoalCategoryType);

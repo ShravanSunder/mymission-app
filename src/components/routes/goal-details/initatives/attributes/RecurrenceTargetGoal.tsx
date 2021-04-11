@@ -4,11 +4,11 @@ import { IconFlexItem, IconFlexList } from '../../../../common/IconFlexList';
 
 import { RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './core/recurrence.types';
 import { DaysOfWeek, daysOfWeekToShortCodeMap, MonthsOfYear, monthsOfYearToShortCodeMap, weeksOfMonthMap } from './core/schedule.types';
-import { IRecurrenceGoalProps } from './RecurrenceGoal';
+import { IRecurrenceTargetProps as IRecurrenceTargetGoalProps } from './RecurrenceTarget';
 
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 
-const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
+const RecurrenceTargetGoalInternal: FC<IRecurrenceTargetGoalProps> = (props) => {
    if (
       props.repetition.value !== RecurrenceRepetitionType.SpecificDaysOfWeek &&
       props.repetition.value !== RecurrenceRepetitionType.SpecificMonthsOfYear &&
@@ -16,13 +16,13 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
    ) {
       const handleChange = (newValue: number) => {
          if (newValue != undefined) {
-            props.goalTarget.next(newValue);
+            props.target.next(newValue);
          }
       };
 
       const availbleTargetRange = availableNumericTargetRange(props.period.value, props.repetition.value);
       const targetNumbers = Array.from(Array(availbleTargetRange[1] + 1).keys()).filter((n) => n > 0);
-      const targetValue = props.goalTarget.value as number;
+      const targetValue = props.target.value as number;
 
       return (
          <>
@@ -35,16 +35,16 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
    } else {
       const handleChange = <T extends DaysOfWeek | MonthsOfYear | number>(newValue: T) => {
          if (newValue != undefined) {
-            const data = props.goalTarget.subject$.getValue() as T[];
+            const data = props.target.subject$.getValue() as T[];
             if (data.includes(newValue)) {
-               props.goalTarget.next(data.filter((f) => f !== newValue) as TRecurrenceGoalTargetType);
+               props.target.next(data.filter((f) => f !== newValue) as TRecurrenceGoalTargetType);
             } else {
-               props.goalTarget.next([...data, newValue] as TRecurrenceGoalTargetType);
+               props.target.next([...data, newValue] as TRecurrenceGoalTargetType);
             }
          }
       };
 
-      const targetValues = props.goalTarget.value as DaysOfWeek[] | MonthsOfYear[] | number[];
+      const targetValues = props.target.value as DaysOfWeek[] | MonthsOfYear[] | number[];
       let map: Map<DaysOfWeek | MonthsOfYear, string>;
       switch (props.repetition.value) {
          case RecurrenceRepetitionType.SpecificDaysOfWeek:
@@ -69,12 +69,12 @@ const RecurrenceTargetInternal: FC<IRecurrenceGoalProps> = (props) => {
    }
 };
 
-export const RecurrenceGoalTarget: FC<IRecurrenceGoalProps> = (props) => {
+export const RecurrenceTargetGoal: FC<IRecurrenceTargetGoalProps> = (props) => {
    /**
     * todo: replace colors
     */
    // const tempColorSelectedDay = 'bg-gray-200';
 
-   const targetRange = <RecurrenceTargetInternal {...props}></RecurrenceTargetInternal>;
+   const targetRange = <RecurrenceTargetGoalInternal {...props}></RecurrenceTargetGoalInternal>;
    return <IconFlexList className="w-full p-1 rounded-lg  justify-items-start">{targetRange}</IconFlexList>;
 };

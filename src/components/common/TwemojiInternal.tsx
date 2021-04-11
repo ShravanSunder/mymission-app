@@ -53,24 +53,21 @@ export const TwemojiInline: FC<TwemojiInlineProps> = ({ grayscale = false, ...re
    // todo: replace later with tw`filter grayscale` when supported by tailwind and twin
    const grayscaleStyle = grayscale
       ? {
-           filter: 'grayscale(0.6)',
+           filter: 'grayscale(0.5)',
         }
       : {};
 
+   // 📝 remember that sometimes the Twemoji component uses span and sometimes span/img for emoji.  the styles for span
+   // need to be on the parent.
    return (
-      <Twemoji
-         options={props.options}
-         svg={props.svg ?? true}
-         props={props.props}
-         onlyEmojiClassName={props.onlyEmojiClassName}
-         text={props.text ?? ''}
+      <span
          css={{
             display: 'inline-block',
-            ...grayscaleStyle,
             span: { display: 'inline-block', ...grayscaleStyle },
             img: { display: 'inline-block', ...grayscaleStyle },
             ...(props.fontSize && { fontsize: props.fontSize }),
-         }}
-      />
+         }}>
+         <Twemoji options={props.options} svg={props.svg ?? true} props={props.props} onlyEmojiClassName={props.onlyEmojiClassName} text={props.text ?? ''} />
+      </span>
    );
 };

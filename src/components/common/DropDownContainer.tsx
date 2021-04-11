@@ -1,5 +1,5 @@
 import { Collapse } from '@material-ui/core';
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, ReactNode } from 'react';
 
 import { ICommonProps } from '~~/components/common/ICommonProps';
 import { LabelWithButton } from '~~/components/common/LabelWithButton';
@@ -22,6 +22,7 @@ export const toggleGroup = (setState: Dispatch<SetStateAction<boolean>>, setGrou
 };
 
 interface IDropDownContainerProps extends ICommonProps {
+   selectedItemIcon?: string | ReactNode;
    selectedItemText: string;
    show: boolean;
    /**
@@ -34,7 +35,11 @@ interface IDropDownContainerProps extends ICommonProps {
 export const DropDownContainer: FC<IDropDownContainerProps> = (props) => {
    return (
       <div className={props.className}>
-         <LabelWithButton showing={props.show} title={props.selectedItemText} handleClick={() => props.toggle()}></LabelWithButton>
+         <LabelWithButton
+            icon={props.selectedItemIcon}
+            showing={props.show}
+            title={props.selectedItemText}
+            handleClick={() => props.toggle()}></LabelWithButton>
          <Collapse in={props.show}>{<div className="border-2 box-border rounded-md">{props.children}</div>}</Collapse>
       </div>
    );

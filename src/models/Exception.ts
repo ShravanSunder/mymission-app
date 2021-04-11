@@ -8,6 +8,7 @@ export enum ExceptionTypes {
    General_InvalidArguments = 'Invalid arguments exception',
    Schedule_RecurrenceConfigurationIsInvalid = 'Recurrence configuration is invalid',
    Schedule_RecurrenceAggregationPeriods = 'Invalid aggregation period',
+   Schedule_RecurrenceGoalCategoryIsInvalid = 'Invalid goal category',
 }
 
 /**

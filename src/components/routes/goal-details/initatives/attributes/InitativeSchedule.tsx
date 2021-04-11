@@ -3,10 +3,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 
-import { formatGoalTargetCountForDisplay, formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay } from './core/recurrence.facade';
+import { formatTargetGoalForDisplay, formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay } from './core/recurrence.facade';
 import { IRecurrenceObservables, useInitiativeSchedule } from './core/useInitiativeSchedule';
-import { RecurrenceGoal } from './RecurrenceGoal';
 import { RecurrenceRepetition as RecurrenceRepetition } from './RecurrenceRepetition';
+import { RecurrenceTarget } from './RecurrenceTarget';
 import { ScheduleSummary } from './ScheduleSummary';
 
 import { useControlledAccordion } from '~~/components/common/core/hooks/useControlledAccordion';
@@ -26,8 +26,15 @@ export const InitativeSchedule: FC = () => {
    const periodName = intl.formatMessage({ defaultMessage: 'Habit Repetition' });
 
    const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
-   const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value, state.goalTargetCount.value);
-   const targetValue = formatGoalTargetCountForDisplay(intl, state.period.value, state.repetition.value, state.goalTarget.value, state.goalTargetCount.value);
+   const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.repetition.value, state.target.value, state.targetGoal.value);
+   const targetValue = formatTargetGoalForDisplay(
+      intl,
+      state.period.value,
+      state.repetition.value,
+      state.target.value,
+      state.targetGoal.value,
+      state.targetCategory.value
+   );
 
    // const goalSummary = (
    //    <div css={tw`grid grid-cols-2`}>
@@ -59,7 +66,7 @@ export const InitativeSchedule: FC = () => {
             <ScheduleSummary icon={'🎯'} summaryName={goalName} summaryValue={targetValue.primary}></ScheduleSummary>
          </AccordionSummary>
          <AccordionDetails>
-            <RecurrenceGoal {...state}></RecurrenceGoal>
+            <RecurrenceTarget {...state}></RecurrenceTarget>
          </AccordionDetails>
       </Accordion>
    );

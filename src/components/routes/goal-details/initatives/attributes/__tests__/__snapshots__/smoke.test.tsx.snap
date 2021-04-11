@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`does render 1`] = `
+exports[`smoke test does render 1`] = `
 <DocumentFragment>
   <div
     class="items-center w-full select-none grid grid-row-3 css-u5ueop-ScheduleSummary"

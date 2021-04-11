@@ -28,5 +28,5 @@ jobs:
            with:
               bootstrap: yarn
               build_command: yarn build:prod
-              dist_path: 'dist'
+              dist_path: 'build'
               token: ${{ secrets.GITHUB_TOKEN }}

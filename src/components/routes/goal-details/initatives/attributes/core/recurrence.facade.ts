@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 
-import { RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceGoalCategoryType, RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
 import { DaysOfWeek, MonthsOfYear } from './schedule.types';
 
@@ -222,21 +222,56 @@ export const formatRepetitionForDisplay = (
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration });
 };
 
-export const formatGoalTargetCountForDisplay = (
+export const formatTargetGoalForDisplay = (
    intl: IntlShape,
    period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
    target: TRecurrenceGoalTargetType,
-   targetCount: number
+   targetGoal: number,
+   targetCategory: RecurrenceGoalCategoryType
 ): IDisplayText => {
    const periodText = formatRepetitionAggregationForUnits(intl, period, 1).toLowerCase();
 
-   return {
-      primary: intl.formatMessage(
-         { defaultMessage: '{targetCount} {targetCount, plural, one {time} other {times}}/{periodText}' },
-         { periodText, targetCount }
-      ),
-   };
+   if (targetCategory === RecurrenceGoalCategoryType.NegativeTarget) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Limit to {targetGoal} times/{periodText}' }, { periodText, targetGoal }),
+         emoji: '🚫',
+      };
+   } else if (targetCategory === RecurrenceGoalCategoryType.PositiveTarget) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: '{targetGoal} times/{periodText}' }, { periodText, targetGoal }),
+         emoji: '✔',
+      };
+   } else if (targetCategory === RecurrenceGoalCategoryType.Timed) {
+      return {
+         primary: intl.formatMessage(
+            { defaultMessage: '{targetGoal} {targetGoal, plural, one {minute} other {minutes}}/{periodText}' },
+            { periodText, targetGoal }
+         ),
+         emoji: '⏲',
+      };
+   }
 
-   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { duration, target, targetCount });
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceGoalCategoryIsInvalid, { duration, target, targetCount: targetGoal });
+};
+
+export const formatTargetCategoryForDisplay = (intl: IntlShape, targetCategory: RecurrenceGoalCategoryType): IDisplayText => {
+   if (targetCategory === RecurrenceGoalCategoryType.NegativeTarget) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Negative Target' }),
+         emoji: '🚫',
+      };
+   } else if (targetCategory === RecurrenceGoalCategoryType.PositiveTarget) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Positive Target' }),
+         emoji: '✔',
+      };
+   } else if (targetCategory === RecurrenceGoalCategoryType.Timed) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Timed' }),
+         emoji: '⏲',
+      };
+   }
+
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceGoalCategoryIsInvalid, { goalCategory: targetCategory });
 };

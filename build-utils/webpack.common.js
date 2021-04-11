@@ -16,7 +16,7 @@ console.log('Evironment: isDev', process.env.NODE_ENV, isDev);
 console.log('------------------------------------------------------');
 
 /**
- * Use the webpack.development.js file if possible instead
+ * used with .dev and .prod files
  */
 
 const moduleRules = [
@@ -32,11 +32,20 @@ const moduleRules = [
                sourceMap: false,
             },
          },
+         // {
+         //    loader: 'esbuild-loader',
+         //    options: {
+         //       loader: 'css',
+         //       target: constants.targetEnv,
+         //       minify: isDev ? false : true,
+         //       sourcemap: false,
+         //    },
+         // },
       ],
       exclude: /node_modules/,
    },
    {
-      test: new RegExp(`.(${constants.fileExtensions.join('|')})$`),
+      test: new RegExp(`.(${constants.assetExtensions.join('|')})$`),
       type: 'asset/resource',
       exclude: /node_modules/,
    },

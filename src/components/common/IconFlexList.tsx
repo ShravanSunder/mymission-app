@@ -55,7 +55,7 @@ export const IconFlexItem = <T extends number | string | Record<string, any>>(pr
 };
 export const IconFlexList: FC<ICommonProps> = (props) => {
    return (
-      <div className={combine('flex flex-wrap content-center place-self-center', props.className)} role="listbox">
+      <div className={combine('flex flex-wrap gap-3 content-center place-self-center', props.className)} role="listbox">
          {props.children}
       </div>
    );

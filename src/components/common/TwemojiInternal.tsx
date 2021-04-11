@@ -39,7 +39,7 @@ export const TwemojiImage: FC<TwemojiImageProps> = (props) => {
 
 export interface TwemojiInlineProps extends Props {
    fontSize?: number;
-   grayscale: boolean;
+   grayscale?: boolean;
 }
 
 /**
@@ -58,20 +58,19 @@ export const TwemojiInline: FC<TwemojiInlineProps> = ({ grayscale = false, ...re
       : {};
 
    return (
-      <span className={props.className}>
-         <Twemoji
-            options={props.options}
-            svg={props.svg ?? true}
-            props={props.props}
-            onlyEmojiClassName={props.onlyEmojiClassName ?? props.className}
-            text={props.text ?? ''}
-            css={{
-               display: 'inline-block',
-               span: { display: 'inline-block' },
-               img: { display: 'inline-block', ...grayscaleStyle },
-               ...(props.fontSize && { fontsize: props.fontSize }),
-            }}
-         />
-      </span>
+      <Twemoji
+         options={props.options}
+         svg={props.svg ?? true}
+         props={props.props}
+         onlyEmojiClassName={props.onlyEmojiClassName}
+         text={props.text ?? ''}
+         css={{
+            display: 'inline-block',
+            ...grayscaleStyle,
+            span: { display: 'inline-block', ...grayscaleStyle },
+            img: { display: 'inline-block', ...grayscaleStyle },
+            ...(props.fontSize && { fontsize: props.fontSize }),
+         }}
+      />
    );
 };

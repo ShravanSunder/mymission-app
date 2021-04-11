@@ -25,22 +25,22 @@ const moduleRules = [
       use: [
          // isDev ? 'style-loader' : MiniCssExtractPlugin.loader
          MiniCssExtractPlugin.loader,
-         { loader: 'css-loader', options: { importLoaders: 2 } },
+         { loader: 'css-loader', options: { importLoaders: 1 } },
          {
             loader: 'postcss-loader',
             options: {
                sourceMap: false,
             },
          },
-         {
-            loader: 'esbuild-loader',
-            options: {
-               loader: 'css',
-               target: constants.targetEnv,
-               minify: isDev ? false : true,
-               sourcemap: false,
-            },
-         },
+         // {
+         //    loader: 'esbuild-loader',
+         //    options: {
+         //       loader: 'css',
+         //       target: constants.targetEnv,
+         //       minify: isDev ? false : true,
+         //       sourcemap: false,
+         //    },
+         // },
       ],
       exclude: /node_modules/,
    },

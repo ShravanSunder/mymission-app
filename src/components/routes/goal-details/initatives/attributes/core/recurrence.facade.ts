@@ -245,17 +245,17 @@ export const formatGoalCategoryForDisplay = (intl: IntlShape, goalCategory: Recu
    if (goalCategory === RecurrenceGoalCategory.NegativeTarget) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Negative Target' }),
-         emoji: '⛔',
+         emoji: '🚫',
       };
    } else if (goalCategory === RecurrenceGoalCategory.PositiveTarget) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Positive Target' }),
-         emoji: '👍🏾',
+         emoji: '✔',
       };
    } else if (goalCategory === RecurrenceGoalCategory.Timed) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Timed' }),
-         emoji: '⌚',
+         emoji: '⏲',
       };
    }
 

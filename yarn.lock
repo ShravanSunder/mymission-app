@@ -5751,7 +5751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack@npm:^4, @types/webpack@npm:^4.4.31, @types/webpack@npm:^4.41.26, @types/webpack@npm:^4.41.8":
+"@types/webpack@npm:^4, @types/webpack@npm:^4.41.26, @types/webpack@npm:^4.41.8":
   version: 4.41.27
   resolution: "@types/webpack@npm:4.41.27"
   dependencies:
@@ -8469,15 +8469,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clean-webpack-plugin@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "clean-webpack-plugin@npm:3.0.0"
+"clean-webpack-plugin@npm:^4.0.0-alpha.0":
+  version: 4.0.0-alpha.0
+  resolution: "clean-webpack-plugin@npm:4.0.0-alpha.0"
   dependencies:
-    "@types/webpack": ^4.4.31
     del: ^4.1.1
   peerDependencies:
-    webpack: "*"
-  checksum: fc0fbd1c8e163b784209d51a5df4336ad359737f8b324697d33d1c484ee5c7efee9a1f9f18786860216019764f4a6e02e329e0410e3ab4d52e5e5b52a1038dfe
+    webpack: ">=4.0.0 <6.0.0"
+  checksum: 24a671e2df6d831b8badcb1491b6e38e1f92a303a88d645084839ef8cdd577474f5da5ca18f1a5cf1382dfb7ba07b25bc721440bbe42bf1433313ce9885c6c1a
   languageName: node
   linkType: hard
 
@@ -10538,12 +10537,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.11.6":
-  version: 0.11.6
-  resolution: "esbuild@npm:0.11.6"
+"esbuild@npm:^0.11.7":
+  version: 0.11.7
+  resolution: "esbuild@npm:0.11.7"
   bin:
     esbuild: bin/esbuild
-  checksum: 8ce783c9b06dea2fb742ad0e8b05f1a8cf5cfaa474123db2a166beedfc24a78ced42a9d7b7bc400438cbb403439dd8246e1d38fe43441610a0d633b905e8d94b
+  checksum: 9dd088c97182cc3c4ece2832c4233c5ca6f1b5e0eb9f168bda44f3c3b8665e97de24496328e418f42f343e677b8d1c8cdbb5a118f66ff36dae3be51f65374faf
   languageName: node
   linkType: hard
 
@@ -10721,9 +10720,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.3.4":
-  version: 24.3.4
-  resolution: "eslint-plugin-jest@npm:24.3.4"
+"eslint-plugin-jest@npm:^24.3.5":
+  version: 24.3.5
+  resolution: "eslint-plugin-jest@npm:24.3.5"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
@@ -10732,7 +10731,7 @@ __metadata:
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: 22a5b2a02720849d3dab12ffc49491e739d332258d628c7990d181a48d1b2c03d1dd5406cdc3acc9e4b978910896b38b9abfd2bc1381910a49cc23e593c2f7e3
+  checksum: 6352966b16a2a65cd5637f6d02ffcd59f52e8cb6cb8434d35520fe5b30cbf475e3a55a088fcf0d41d6f7c0dbd93e9b5c637707075fbb3d960b318c305c3ac7aa
   languageName: node
   linkType: hard
 
@@ -16320,21 +16319,21 @@ fsevents@^1.2.7:
     babel-plugin-formatjs: ^10.2.6
     babel-plugin-macros: ^3.0.1
     chrono-node: ^2.2.6
-    clean-webpack-plugin: ^3.0.0
+    clean-webpack-plugin: ^4.0.0-alpha.0
     cross-env: ^7.0.3
     css-loader: ^5.2.1
     dayjs: ^1.10.4
     dexie: ^3.0.3
     dotenv-webpack: ^7.0.2
     emoji-regex: ^9.2.2
-    esbuild: ^0.11.6
+    esbuild: ^0.11.7
     esbuild-loader: ^2.11.0
     eslint: ^7.24.0
     eslint-config-airbnb: ^18.2.1
     eslint-config-prettier: ^8.1.0
     eslint-plugin-formatjs: ^2.14.5
     eslint-plugin-import: ^2.22.1
-    eslint-plugin-jest: ^24.3.4
+    eslint-plugin-jest: ^24.3.5
     eslint-plugin-jsx-a11y: ^6.4.1
     eslint-plugin-prettier: ^3.3.1
     eslint-plugin-react: ^7.23.2

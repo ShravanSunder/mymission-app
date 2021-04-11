@@ -122,7 +122,7 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
             show={showDurationDropDown}
             toggle={() => toggleGroup(setShowDurationDropDown, [setShowPeriodDropDown, setShowTargetDropDown])}
             className="m-2"
-            selectedItemIcon={<RepetitionIcons period={props.repetition.value}></RepetitionIcons>}
+            selectedItemIcon={<RepetitionIcons repetition={props.repetition.value}></RepetitionIcons>}
             selectedItemText={selectedDurationText.primary}>
             {repetitionList}
          </DropDownContainer>

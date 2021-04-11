@@ -13,7 +13,11 @@ import { muiIconCss } from '~~/helpers/muiIconCss';
 export const RepetitionIcons: FC<{ repetition: RecurrenceRepetitionType } & ICommonProps> = (props) => {
    if (props.repetition === RecurrenceRepetitionType.Weekly) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faCalendarWeek} />;
-   } else if (props.repetition === RecurrenceRepetitionType.SpecificDaysOfWeek) {
+   } else if (
+      props.repetition === RecurrenceRepetitionType.SpecificDaysOfWeek ||
+      props.repetition === RecurrenceRepetitionType.SpecificMonthsOfYear ||
+      props.repetition === RecurrenceRepetitionType.SpecificWeeksOfMonth
+   ) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faCalendarPlus} />;
    } else if (props.repetition === RecurrenceRepetitionType.Monthly) {
       return <FontAwesomeIcon fixedWidth={true} className={props.className} css={css(tw`w-full h-full place-items-center`)} icon={faCalendarAlt} />;

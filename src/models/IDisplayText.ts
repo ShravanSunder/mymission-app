@@ -8,13 +8,17 @@ export interface IDisplayText {
     */
    summary?: string;
    /**
-    * secondary: explains the primary text, shown as a discriptive text
+    * description: explains the primary text, shown as a discriptive text
     */
    description?: string;
    /**
     * alternate way of describing the text
     */
    alternate?: string;
+   /**
+    * emoji to describe
+    */
+   emoji?: string;
 }
 
 export const defaultIDisplayText = (): IDisplayText => {

@@ -1,12 +1,14 @@
 import { Typography } from '@material-ui/core';
-import { FC, MouseEvent } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
+import tw from 'twin.macro';
 
-import { formatGoalTargetCountForDisplay } from './core/recurrence.facade';
+import { formatGoalCategoryForDisplay, formatGoalTargetCountForDisplay } from './core/recurrence.facade';
 
-import { IconFlexItem, IconFlexItemProps, IconFlexItemProps, IconFlexList } from '~~/components/common/IconFlexList';
+import { IconFlexItem, IconFlexItemProps, IconFlexList } from '~~/components/common/IconFlexList';
 import { LabelWithStepper } from '~~/components/common/LabelWithStepper';
-import { HabitGoalCategory, HabitGoalCategoryList } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.types';
+import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
+import { RecurrenceGoalCategory, habitCategoryList } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.types';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
 
 /**
@@ -33,12 +35,13 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
       }
    };
 
-   const items = HabitGoalCategoryList.map((m) => {
-      const itemProps: IconFlexItemProps<HabitGoalCategory> = {
-         selected: [HabitGoalCategory.PositiveCount],
+   const items = habitCategoryList.map((m) => {
+      const category = formatGoalCategoryForDisplay(intl, m);
+      const itemProps: IconFlexItemProps<RecurrenceGoalCategory> = {
+         selected: [RecurrenceGoalCategory.PositiveTarget],
          index: m,
-         display: m.substr(0, 1),
-         handleChange: (newValue: HabitGoalCategory) => {},
+         display: <TwemojiInlineLazy text={category.emoji} grayscale></TwemojiInlineLazy>,
+         handleChange: (newValue: RecurrenceGoalCategory) => {},
       };
       return <IconFlexItem {...itemProps} key={m}></IconFlexItem>;
    });
@@ -50,7 +53,9 @@ export const RecurrenceGoal: FC<IRecurrenceGoalProps> = (props) => {
                {intl.formatMessage({ defaultMessage: 'What do you want to acheive?' })}
             </Typography>
          </div>
-         <IconFlexList>{items}</IconFlexList>
+         <div className="w-full grid grid-row-1 grid-col-1 justify-items-center">
+            <IconFlexList>{items}</IconFlexList>
+         </div>
          <LabelWithStepper className="m-2 " title={targetValue.primary} handleClick={handleStepperClick}></LabelWithStepper>
       </div>
    );

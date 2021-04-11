@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 
-import { RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceGoalCategory, RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
 import { DaysOfWeek, MonthsOfYear } from './schedule.types';
 
@@ -239,4 +239,25 @@ export const formatGoalTargetCountForDisplay = (
    };
 
    throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { duration, target, targetCount });
+};
+
+export const formatGoalCategoryForDisplay = (intl: IntlShape, goalCategory: RecurrenceGoalCategory): IDisplayText => {
+   if (goalCategory === RecurrenceGoalCategory.NegativeTarget) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Negative Target' }),
+         emoji: '⛔',
+      };
+   } else if (goalCategory === RecurrenceGoalCategory.PositiveTarget) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Positive Target' }),
+         emoji: '👍🏾',
+      };
+   } else if (goalCategory === RecurrenceGoalCategory.Timed) {
+      return {
+         primary: intl.formatMessage({ defaultMessage: 'Timed' }),
+         emoji: '⌚',
+      };
+   }
+
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceGoalCategoryIsInvalid, { goalCategory });
 };

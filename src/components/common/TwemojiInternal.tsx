@@ -3,7 +3,9 @@ import { Twemoji, Props } from 'react-emoji-render';
 
 import { useFirstEmoji } from './core/hooks/useFirstEmoji';
 
-export interface TwemojiImageProps extends Props {
+import { ICommonProps } from '~~/components/common/ICommonProps';
+
+export interface TwemojiImageProps extends Props, ICommonProps {
    /**
     * the width and height in % from 0 to 100%
     */
@@ -22,7 +24,7 @@ export const TwemojiImage: FC<TwemojiImageProps> = (props) => {
    const safeEmoji = useFirstEmoji(props.text ?? '');
 
    return (
-      <div
+      <span
          className="w-full h-full p-1 bg-transparent box-border"
          css={[
             {
@@ -31,12 +33,13 @@ export const TwemojiImage: FC<TwemojiImageProps> = (props) => {
             },
          ]}>
          <Twemoji options={props.options} svg={props.svg ?? true} props={props.props} text={safeEmoji} />
-      </div>
+      </span>
    );
 };
 
 export interface TwemojiInlineProps extends Props {
    fontSize?: number;
+   grayscale: boolean;
 }
 
 /**
@@ -44,20 +47,31 @@ export interface TwemojiInlineProps extends Props {
  * @param props
  */
 
-export const TwemojiInline: FC<TwemojiInlineProps> = (props: TwemojiInlineProps) => {
+export const TwemojiInline: FC<TwemojiInlineProps> = ({ grayscale = false, ...rest }: TwemojiInlineProps) => {
+   const props = { ...rest, grayscale };
+
+   // todo: replace later with tw`filter grayscale` when supported by tailwind and twin
+   const grayscaleStyle = grayscale
+      ? {
+           filter: 'grayscale(0.6)',
+        }
+      : {};
+
    return (
-      <Twemoji
-         options={props.options}
-         svg={props.svg ?? true}
-         props={props.props}
-         onlyEmojiClassName={props.onlyEmojiClassName}
-         text={props.text}
-         css={{
-            display: 'inline-block',
-            span: { display: 'inline-block' },
-            img: { display: 'inline-block' },
-            ...(props.fontSize && { fontsize: props.fontSize }),
-         }}
-      />
+      <span className={props.className}>
+         <Twemoji
+            options={props.options}
+            svg={props.svg ?? true}
+            props={props.props}
+            onlyEmojiClassName={props.onlyEmojiClassName ?? props.className}
+            text={props.text ?? ''}
+            css={{
+               display: 'inline-block',
+               span: { display: 'inline-block' },
+               img: { display: 'inline-block', ...grayscaleStyle },
+               ...(props.fontSize && { fontsize: props.fontSize }),
+            }}
+         />
+      </span>
    );
 };

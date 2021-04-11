@@ -23,24 +23,31 @@ export const IconFlexItem = <T extends number | string | Record<string, any>>(pr
 
    return useMemo(() => {
       // TODO: replace color
-      const tempColorSelectedDay = 'bg-gray-200';
-      let selectBackgroundStyle = css();
+      let selectBackgroundStyle = css(tw`bg-gray-50 border-1 border-gray-50 shadow-sm`);
       let boldStyle = css();
       if (props.selected.includes(props.index)) {
-         selectBackgroundStyle = css([tw`${tempColorSelectedDay} shadow-sm font-semibold border-1`, { ariaSelected: 'true' }]);
-         boldStyle = css(tw`font-bold`);
+         selectBackgroundStyle = css([tw`bg-gray-200 shadow-inner font-semibold border-1 border-gray-300`, { ariaSelected: 'true' }]);
+         boldStyle = css(tw`font-extrabold`);
       }
       const i = (props.index as unknown) as string | number;
+      let displayNode: ReactNode | null = null;
+      if (typeof props.display === 'string') {
+         displayNode = (
+            <Typography css={[tw`text-center min-w-5 place-items-center`, boldStyle]} variant="body2">
+               {props.display}
+            </Typography>
+         );
+      } else {
+         displayNode = <div css={[tw`text-center min-w-5 place-items-center text-sm`, boldStyle]}>{props.display}</div>;
+      }
 
       return (
          <div css={[selectBackgroundStyle, tw`grid grid-flow-row`]} key={i} className="rounded-full w-11 h-11" ref={targetRef as any}>
             <IconButton
-               css={[tw`grid grid-rows-1 grid-cols-1 justify-items-center align-middle p-0`, { 'MuiIconButton-label': { backgroundColor: 'red' } }]}
+               css={[tw`grid grid-rows-1 grid-cols-1 justify-items-center align-middle p-0`]}
                value={`${props.index.toString()}`}
                onClick={() => props.handleChange(props.index)}>
-               <Typography css={[tw`text-center min-w-5 place-items-center`, boldStyle]} variant="body2">
-                  {props.display}
-               </Typography>
+               {displayNode}
             </IconButton>
          </div>
       );
@@ -48,7 +55,7 @@ export const IconFlexItem = <T extends number | string | Record<string, any>>(pr
 };
 export const IconFlexList: FC<ICommonProps> = (props) => {
    return (
-      <div className={combine('flex flex-wrap content-center w-full place-self-center justify-items-start', props.className)} role="listbox">
+      <div className={combine('flex flex-wrap content-center place-self-center', props.className)} role="listbox">
          {props.children}
       </div>
    );

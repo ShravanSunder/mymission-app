@@ -76,5 +76,5 @@ export const RecurrenceGoalTarget: FC<IRecurrenceGoalProps> = (props) => {
    // const tempColorSelectedDay = 'bg-gray-200';
 
    const targetRange = <RecurrenceTargetInternal {...props}></RecurrenceTargetInternal>;
-   return <IconFlexList className="p-1 rounded-lg bg-gray-50">{targetRange}</IconFlexList>;
+   return <IconFlexList className="w-full p-1 rounded-lg  justify-items-start">{targetRange}</IconFlexList>;
 };

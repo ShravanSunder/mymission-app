@@ -9,6 +9,7 @@ import { availableNumericTargetRange } from '~~/components/routes/goal-details/i
 import { getAsNumberArray } from '~~/helpers/conversion';
 
 export const transformDuration = (repetition: RecurrenceRepetitionType, aggregation: RecurrenceRepetitionAggregation): RecurrenceRepetitionType => {
+   console.log('repetitiontransform');
    if (aggregation === RecurrenceRepetitionAggregation.PerDay) {
       switch (repetition) {
          case RecurrenceRepetitionType.SpecificWeeksOfMonth:

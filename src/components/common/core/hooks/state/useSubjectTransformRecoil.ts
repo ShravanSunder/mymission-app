@@ -1,7 +1,7 @@
 import { useObservable, useObservableEagerState, useObservableState } from 'observable-hooks';
 import { useCallback } from 'react';
 import { useRecoilState, atom, RecoilState, RecoilValueReadOnly, useRecoilValue } from 'recoil';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { SubjectWithValue, TNewValueFunc } from '~~/components/common/core/hooks/state/useSubjectValue';
@@ -44,16 +44,10 @@ export const useSubjectTransformRecoil = <T>(
    }
 
    const recoilState = useRecoilValue(atom);
-   const source$ = recoilState.getSubject();
 
    // todo: it doens't make sense to send this to the recoil state
-   const subject$ = useObservable(() => {
-      const b$ = new BehaviorSubject(recoilState.getSubject().value);
-      console.log('make observable');
-      operator(source$, ...otherObservables$).subscribe(b$);
-      return b$;
-   }) as BehaviorSubject<T>;
+   const subject$ = useObservable(() => operator(recoilState.getSubject(), ...otherObservables$)) as BehaviorSubject<T>;
    // const value = useObservableState(subject$, recoilState);
 
-   return { subject$, next: recoilState.next, source$ };
+   return { subject$, next: recoilState.next, source$: recoilState.getSubject() };
 };

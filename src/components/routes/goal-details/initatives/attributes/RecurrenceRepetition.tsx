@@ -48,7 +48,15 @@ export const RecurrenceRepetition: FC<IRecurrenceRepetitionProps> = (props) => {
    useSubscription(props.repetition.source$, () => setShowDurationDropDown(false));
    const [showTargetDropDown, setShowTargetDropDown] = useState(false);
 
-   const goalValue = formatRecurrenceGoalForDisplay(intl, props.period.value, props.repetition.value, props.target.value, props.targetGoal.value);
+   const [goalValue] = useObservableState<IDisplayText>(
+      () =>
+         combineLatest([props.period.subject$, props.repetition.subject$, props.target.subject$, props.targetGoal.subject$]).pipe(
+            map(([period, duration, target, targetGoal]) => formatRecurrenceGoalForDisplay(intl, period, duration, target, targetGoal))
+         ),
+      defaultIDisplayText()
+   );
+
+   console.log('RecurrenceRepetition', goalValue);
    const periods = (
       <List>
          {RecurrenceRepetitionAggregationList.map((m: RecurrenceRepetitionAggregation, i: number) => {

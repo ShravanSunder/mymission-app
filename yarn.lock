@@ -7305,6 +7305,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.21.1":
+  version: 0.21.1
+  resolution: "axios@npm:0.21.1"
+  dependencies:
+    follow-redirects: ^1.10.0
+  checksum: 864fb7b5d077d236737f10adca53bf451a93f35a15271f56fba8da07265a02d26b7d881b935a6697dc6adb0549ea3e56d2eecb403edaa3bb78f6479901c10f69
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^2.2.0":
   version: 2.2.0
   resolution: "axobject-query@npm:2.2.0"
@@ -9630,13 +9639,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:^2.1.1":
-  version: 2.2.1
-  resolution: "deepmerge@npm:2.2.1"
-  checksum: 8394eb5ab19010e4e856e96ffb570528cad00e4af35e1e774898b52fd986fa6840dbce3e9217a7a1e38683c170cf0cbfe19c67323b89d329afad0ffa72db382e
-  languageName: node
-  linkType: hard
-
 "deepmerge@npm:^4.2.2":
   version: 4.2.2
   resolution: "deepmerge@npm:4.2.2"
@@ -9774,6 +9776,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dequal@npm:2.0.2":
+  version: 2.0.2
+  resolution: "dequal@npm:2.0.2"
+  checksum: 3b5b019a873da282a25512c632c077e5e8e2a019e71c5b6968836443b861e44176ee3934facfecdc14994d553c1ff4a6c7232278d6aef87baf65e2413d41760c
+  languageName: node
+  linkType: hard
+
 "des.js@npm:^1.0.0":
   version: 1.0.1
   resolution: "des.js@npm:1.0.1"
@@ -9853,10 +9862,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dexie@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "dexie@npm:3.0.3"
-  checksum: f2fcb5df163e221121e5e37f1cc25465261de28e1a18dcfba5da7e2870d0791d8f8b693b57f99e5377c29fdc25e358b4eb8cd97320d34b3c6c3715c9acb3607c
+"dexie-react-hooks@npm:next":
+  version: 1.0.3-alpha.1
+  resolution: "dexie-react-hooks@npm:1.0.3-alpha.1"
+  peerDependencies:
+    "@types/react": ">=16"
+    dexie: ">=3.1.0-alpha.1"
+    react: ">=16"
+  checksum: e3938ff22ac805f517dafa0e9141bc1264cc0cc027f97de8e7378afc154bfc4af9d386c257c34dbd2012d9f3eda842a29ed072c1c09fcb060bcdffe327cf6ff3
+  languageName: node
+  linkType: hard
+
+"dexie@npm:next":
+  version: 3.1.0-alpha.9
+  resolution: "dexie@npm:3.1.0-alpha.9"
+  checksum: 17c30164d69ce11b4034a9d6f314f09957a13babaab7b7a387b8c036c4f63f5d0e0cd5cd4361adadff70d1c428b1bfe638ac4c4715561602525849d3c438f7d9
   languageName: node
   linkType: hard
 
@@ -11720,7 +11740,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.10.0":
   version: 1.13.3
   resolution: "follow-redirects@npm:1.13.3"
   peerDependenciesMeta:
@@ -11814,23 +11834,6 @@ __metadata:
   version: 0.2.2
   resolution: "format@npm:0.2.2"
   checksum: 0740f5212144e63dad4b3b2156d84a875c0649f4976ecfa91f21b086ad007e9af575e88cf782b202c5f5783fb6d4ee3cebcd357b79aa82d556f8401dc1762f55
-  languageName: node
-  linkType: hard
-
-"formik@npm:^2.2.6":
-  version: 2.2.6
-  resolution: "formik@npm:2.2.6"
-  dependencies:
-    deepmerge: ^2.1.1
-    hoist-non-react-statics: ^3.3.0
-    lodash: ^4.17.14
-    lodash-es: ^4.17.14
-    react-fast-compare: ^2.0.1
-    tiny-warning: ^1.0.2
-    tslib: ^1.10.0
-  peerDependencies:
-    react: ">=16.8.0"
-  checksum: 9de7908b46d06321b2653ec1c965298500ad25457f93aa3e54359a8ba101b7f9d30519d172be9de66af6cf7e423e16bbe8860439c50cd3d47ca52b199d9158c0
   languageName: node
   linkType: hard
 
@@ -14105,6 +14108,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"isomorphic.js@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "isomorphic.js@npm:0.2.4"
+  checksum: ad41b23b90e23efe7136d0ca6f4bd5343e319460d0f36c561e2f09fe27705c68196f1460ae59c8bc6edf2e8333b1bfdea91a28409e9eb2a65204804be811df25
+  languageName: node
+  linkType: hard
+
 "isstream@npm:~0.1.2":
   version: 0.1.2
   resolution: "isstream@npm:0.1.2"
@@ -15178,6 +15188,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"lib0@npm:^0.2.38":
+  version: 0.2.41
+  resolution: "lib0@npm:0.2.41"
+  dependencies:
+    isomorphic.js: ^0.2.4
+  checksum: 919de96018c8fe8b3d1ec640b7e5ac6ffe2e70ce8623073bf06be37e173c43c975903c203c07b978e6a04f055620ea97bad8b6a423681e467274c29787a1b08a
+  languageName: node
+  linkType: hard
+
 "lines-and-columns@npm:^1.1.6":
   version: 1.1.6
   resolution: "lines-and-columns@npm:1.1.6"
@@ -15287,7 +15306,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lodash-es@npm:^4.17.14, lodash-es@npm:^4.17.15":
+"lodash-es@npm:^4.17.15":
   version: 4.17.21
   resolution: "lodash-es@npm:4.17.21"
   checksum: ff0e7bb9595594d8b9c32fbe15912eaeefd83266f6e6872fbc498533cf8c2f039d12d37034b33965f1c04ef66ec1d6da83377c77e84e14c51a137901bb50865e
@@ -16315,6 +16334,7 @@ fsevents@^1.2.7:
     "@typescript-eslint/parser": ^4.21.0
     "@whitespace/storybook-addon-html": ^5.0.0
     autoprefixer: ^10.2.5
+    axios: ^0.21.1
     babel-loader: ^8.2.2
     babel-plugin-formatjs: ^10.2.6
     babel-plugin-macros: ^3.0.1
@@ -16323,7 +16343,8 @@ fsevents@^1.2.7:
     cross-env: ^7.0.3
     css-loader: ^5.2.1
     dayjs: ^1.10.4
-    dexie: ^3.0.3
+    dexie: next
+    dexie-react-hooks: next
     dotenv-webpack: ^7.0.2
     emoji-regex: ^9.2.2
     esbuild: ^0.11.7
@@ -16343,7 +16364,6 @@ fsevents@^1.2.7:
     facepaint: ^1.2.1
     favicons-webpack-plugin: ^5.0.2
     fork-ts-checker-webpack-plugin: ^6.2.0
-    formik: ^2.2.6
     framer-motion: ^4.1.3
     history: ^5.0.0
     html-webpack-plugin: ^5.3.1
@@ -16363,6 +16383,7 @@ fsevents@^1.2.7:
     react-dom: ^17.0.2
     react-emoji-render: ^1.2.4
     react-error-boundary: ^3.1.1
+    react-hook-form: ^7.0.7
     react-hot-loader: ^4.13.0
     react-icons: ^4.2.0
     react-intl: ^5.15.7
@@ -16376,6 +16397,7 @@ fsevents@^1.2.7:
     style-loader: ^2.0.0
     stylelint: ^13.12.0
     stylelint-config-recommended: ^4.0.0
+    swr: ^0.5.5
     tailwindcss: ^2.1.1
     tailwindcss-elevation: ^1.0.1
     ts-jest: ^26.5.4
@@ -16400,6 +16422,7 @@ fsevents@^1.2.7:
     workbox-webpack-plugin: ^6.1.2
     workbox-window: ^6.1.2
     yarn: ^1.22.10
+    yjs: ^13.5.4
     yup: ^0.32.9
   languageName: unknown
   linkType: soft
@@ -18686,13 +18709,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^2.0.1":
-  version: 2.0.4
-  resolution: "react-fast-compare@npm:2.0.4"
-  checksum: 4e4bfc3597414a36ee35977259012fff30c4f13a0e5dcabf958e91991bef8e9a3faee9dd666cfbdb0c2a0f0ddaf242ac2912054caa956a793c4cdff274dc5aec
-  languageName: node
-  linkType: hard
-
 "react-fast-compare@npm:^3.0.1, react-fast-compare@npm:^3.2.0":
   version: 3.2.0
   resolution: "react-fast-compare@npm:3.2.0"
@@ -18713,6 +18729,15 @@ fsevents@^1.2.7:
     react: ^16.6.0 || ^17.0.0
     react-dom: ^16.6.0 || ^17.0.0
   checksum: 69d082670e7b09f2df1784d1d58f8361d7bd3f57f37f2f4155aaf4f6cace1c213bb25a4cea9e1bd4bfaeb56b1dc83f614f5f6e4713f9d2465cf3d716c0ec897b
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.0.7":
+  version: 7.0.7
+  resolution: "react-hook-form@npm:7.0.7"
+  peerDependencies:
+    react: ^16.8.0 || ^17
+  checksum: cecb675514dd481bf72406f0032ea58d9327677b6e89963bc75f8870d74f2264603ef1b9b5c1fc10b6364729313904ba3373dcf0d2b2936d61e2043431ed73a0
   languageName: node
   linkType: hard
 
@@ -21202,6 +21227,17 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"swr@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "swr@npm:0.5.5"
+  dependencies:
+    dequal: 2.0.2
+  peerDependencies:
+    react: ^16.11.0 || ^17.0.0
+  checksum: 80ff924020e57631c4ab6a58356ac2c0edeb59220ca10a362210c760a4e4cccb28db41b5b600d018790475bed087032fe217c3e138dedd448939345dbbba13ef
+  languageName: node
+  linkType: hard
+
 "symbol-observable@npm:1.2.0, symbol-observable@npm:^1.0.4":
   version: 1.2.0
   resolution: "symbol-observable@npm:1.2.0"
@@ -21878,7 +21914,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.11.1, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
+"tslib@npm:^1.11.1, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: f44fe7f216946b17d3e3074df3746372703cf24e9127b4c045511456e8e4bf25515fb0a1bb3937676cc305651c5d4fcb6377b0588a4c6a957e748c4c28905d17
@@ -23734,6 +23770,15 @@ typescript@^4.2.4:
     yarn: bin/yarn.js
     yarnpkg: bin/yarn.js
   checksum: e43c2102576ac3d79f58f6cddc36726e39d54357bbdd2b9af8ad94d8368e63170555acb4652af08a04354e1a92555d5b293936f9d9b3c8b066872ac11f32cb29
+  languageName: node
+  linkType: hard
+
+"yjs@npm:^13.5.4":
+  version: 13.5.4
+  resolution: "yjs@npm:13.5.4"
+  dependencies:
+    lib0: ^0.2.38
+  checksum: 7944428d30ae70be0b9458a1c6388223cb5e634ca721c860b96c245bc87c61a51208013e36a2e718d7d404308ec27ab86bfa6d9399c6964b01b7f4f9156af996
   languageName: node
   linkType: hard
 

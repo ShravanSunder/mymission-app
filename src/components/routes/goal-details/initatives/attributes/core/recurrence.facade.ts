@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 
-import { RecurrenceGoalCategoryType, RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceGoalCategoryType, RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceTargetType } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
 import { DaysOfWeek, MonthsOfYear } from './schedule.types';
 
@@ -47,10 +47,11 @@ export const formatRecurrenceGoalForDisplay = (
    intl: IntlShape,
    period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType,
+   target: TRecurrenceTargetType,
    targetCount: number
 ): IDisplayText => {
    const numericTargetRange = availableNumericTargetRange(period, duration);
+   // console.log(period, duration, target, targetCount);
 
    if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth && Array.isArray(target)) {
       const tempTarget = getAsNumberArray(target) ?? [];
@@ -155,7 +156,9 @@ export const formatRecurrenceGoalForDisplay = (
       }
    }
 
-   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType: duration, aggregationPeriod: period, target });
+   return { primary: '' };
+
+   // throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType: duration, aggregationPeriod: period, target });
 };
 
 export const formatRepetitionAggregationForDisplay = (intl: IntlShape, period: RecurrenceRepetitionAggregation): IDisplayText => {
@@ -186,7 +189,7 @@ export const formatRepetitionForDisplay = (
    intl: IntlShape,
    period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType
+   target: TRecurrenceTargetType
 ): IDisplayText => {
    if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
       const tempTarget: number = getAsNumber(target) ?? 2;
@@ -226,7 +229,7 @@ export const formatTargetGoalForDisplay = (
    intl: IntlShape,
    period: RecurrenceRepetitionAggregation,
    duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType,
+   target: TRecurrenceTargetType,
    targetGoal: number,
    targetCategory: RecurrenceGoalCategoryType
 ): IDisplayText => {

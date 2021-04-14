@@ -18,7 +18,7 @@ export type SubjectWithValue<T> = {
    /**
     * current value of observable, updated in the next render cycle after the observable updates
     */
-   value: T;
+   // value: T;
    /**
     * push a new value into observable
     */
@@ -46,5 +46,5 @@ export const useSubjectValue = <T>(initValue: T): SubjectWithValue<T> => {
 
    const value = useObservableEagerState(subject$);
 
-   return { subject$, next: push, value };
+   return { subject$, next: push };
 };

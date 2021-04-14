@@ -1,10 +1,10 @@
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceTargetType } from './recurrence.types';
 import { DaysOfWeek, daysOfWeekList, MonthsOfYear, monthsOfYearList } from './schedule.types';
 
-import { TTransform } from '~~/components/common/core/hooks/useSubjectTransform';
+import { TTransform } from '~~/components/common/core/hooks/state/useSubjectTransform';
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { getAsNumberArray } from '~~/helpers/conversion';
 
@@ -39,10 +39,10 @@ export const transformDuration = (repetition: RecurrenceRepetitionType, aggregat
 };
 
 export const transformTarget = (
-   target: TRecurrenceGoalTargetType,
+   target: TRecurrenceTargetType,
    repetition: RecurrenceRepetitionType,
    aggregation: RecurrenceRepetitionAggregation
-): TRecurrenceGoalTargetType => {
+): TRecurrenceTargetType => {
    console.log('updateTarget');
 
    let result: number | undefined;
@@ -122,14 +122,14 @@ export const transformTarget = (
 export const repetitionOperator: TTransform<RecurrenceRepetitionType> = (repetition$, period$) =>
    combineLatest([repetition$, period$]).pipe(map(([repetition, period]) => transformDuration(repetition, period)));
 
-export const targetOperator: TTransform<TRecurrenceGoalTargetType> = (
-   target$: Observable<TRecurrenceGoalTargetType>,
+export const targetOperator: TTransform<TRecurrenceTargetType> = (
+   target$: Observable<TRecurrenceTargetType>,
    repetition$: Observable<RecurrenceRepetitionType>,
    aggregation$: Observable<RecurrenceRepetitionAggregation>
 ) => combineLatest([target$, repetition$, aggregation$]).pipe(map(([target, repetition, aggregation]) => transformTarget(target, repetition, aggregation)));
 
-export const targetGoalOperator: TTransform<TRecurrenceGoalTargetType> = (
-   target$: Observable<TRecurrenceGoalTargetType>,
-   repetition$: Observable<RecurrenceRepetitionType>,
-   aggregation$: Observable<RecurrenceRepetitionAggregation>
-) => combineLatest([target$, repetition$, aggregation$]).pipe(map(([target, duration, period]) => transformTarget(target, duration, period)));
+// export const targetGoalOperator: TTransform<TRecurrenceTargetType> = (
+//    target$: Observable<TRecurrenceTargetType>,
+//    repetition$: Observable<RecurrenceRepetitionType>,
+//    aggregation$: Observable<RecurrenceRepetitionAggregation>
+// ) => combineLatest([target$, repetition$, aggregation$]).pipe(map(([target, duration, period]) => transformTarget(target, duration, period)));

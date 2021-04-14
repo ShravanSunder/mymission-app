@@ -68,7 +68,7 @@ export enum RecurrenceRepetitionType {
  * - specific months of year
  * - specific numbers of array.  Currenty used by Week# per month
  */
-export type TRecurrenceGoalTargetType = number | DaysOfWeek[] | MonthsOfYear[] | number[];
+export type TRecurrenceTargetType = number | DaysOfWeek[] | MonthsOfYear[] | number[];
 
 export const RecurrenceDurationList: RecurrenceRepetitionType[] = getValuesOfEnum<RecurrenceRepetitionType>(RecurrenceRepetitionType);
 

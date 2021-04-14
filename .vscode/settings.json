@@ -72,5 +72,10 @@
    "javascript.preferences.importModuleSpecifier": "non-relative",
    "typescript.preferences.importModuleSpecifier": "non-relative",
    "typescript.workspaceSymbols.scope": "currentProject",
-   "javascript.format.semicolons": "insert"
+   "javascript.format.semicolons": "insert",
+   "material-icon-theme.folders.associations": {
+      "atoms": "firebase",
+      "state": "database"
+   },
+   "material-icon-theme.activeIconPack": "react_redux"
 }

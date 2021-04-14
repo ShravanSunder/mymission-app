@@ -1,13 +1,28 @@
+import { useSubscription } from 'observable-hooks';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import * as Y from 'yjs';
+
 import { repetitionOperator, targetOperator } from './recurrence.operators';
 import {
    RecurrenceGoalCategoryType,
    RecurrenceRepetitionAggregation,
    RecurrenceRepetitionType,
-   TRecurrenceGoalTargetType as TRecurrenceTargetType,
+   TRecurrenceTargetType as TRecurrenceTargetType,
 } from './recurrence.types';
 
-import { SubjectWithTransform, useSubjectTransform } from '~~/components/common/core/hooks/useSubjectTransform';
-import { SubjectWithValue, useSubjectValue, useSubjectValue } from '~~/components/common/core/hooks/useSubjectValue';
+import { useSubjectFromRecoil } from '~~/components/common/core/hooks/state/useSubjectFromRecoil';
+import { SubjectWithTransform, useSubjectTransform } from '~~/components/common/core/hooks/state/useSubjectTransform';
+import { useSubjectTransformRecoil } from '~~/components/common/core/hooks/state/useSubjectTransformRecoil';
+import { SubjectWithValue, useSubjectValue } from '~~/components/common/core/hooks/state/useSubjectValue';
+import { logDebug } from '~~/components/common/core/subscriptions';
+import {
+   source,
+   periodAtom,
+   targetAtom,
+   repetitionAtom,
+   targetGoalAtom,
+   targetCategoryAtom,
+} from '~~/components/routes/goal-details/initatives/attributes/atoms/testatom';
 
 export interface IRecurrenceObservables {
    /**
@@ -36,11 +51,26 @@ export interface IRecurrenceObservables {
 }
 
 export const useInitiativeSchedule = (): IRecurrenceObservables => {
-   const period = useSubjectValue<RecurrenceRepetitionAggregation>(RecurrenceRepetitionAggregation.PerDay);
-   const repetition = useSubjectTransform<RecurrenceRepetitionType>(RecurrenceRepetitionType.Weekly, repetitionOperator, period.subject$);
-   const target = useSubjectTransform<TRecurrenceTargetType>(5, targetOperator, repetition.subject$, period.subject$);
-   const targetGoal = useSubjectValue<number>(1);
-   const targetCategory = useSubjectValue<RecurrenceGoalCategoryType>(RecurrenceGoalCategoryType.PositiveTarget);
+   // const [doc] = useRecoilState(yjsDocState);
+   const [sourceStuff, setSourceStuff] = useRecoilState(source);
+   // const [];
+   // const subject = useRecoilValue(subjectTest);
 
-   return { period, repetition, target, targetGoal, targetCategory };
+   const period = useSubjectFromRecoil<RecurrenceRepetitionAggregation>(periodAtom);
+
+   const repetition = useSubjectTransformRecoil<RecurrenceRepetitionType>(repetitionAtom, repetitionOperator, period.subject$);
+   const target = useSubjectTransformRecoil<TRecurrenceTargetType>(targetAtom, targetOperator, repetition.subject$, period.subject$);
+   const targetGoal = useSubjectFromRecoil<number>(targetGoalAtom);
+   const targetCategory = useSubjectFromRecoil<RecurrenceGoalCategoryType>(targetCategoryAtom);
+
+   // useSubscription(period.subject$, logDebug);
+   useSubscription(repetition.subject$, logDebug);
+   useSubscription(target.subject$, logDebug);
+   // useSubscription(targetGoal.subject$, logDebug);
+   // useSubscription(targetCategory.subject$, logDebug);
+
+   useSubscription(repetition.source$, logDebug);
+   useSubscription(target.source$, logDebug);
+
+   return { period: period, repetition, target, targetGoal, targetCategory };
 };

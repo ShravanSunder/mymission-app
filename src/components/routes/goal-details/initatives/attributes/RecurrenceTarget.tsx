@@ -1,6 +1,9 @@
 import { Typography } from '@material-ui/core';
+import { useObservableState } from 'observable-hooks';
 import React, { FC, MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import tw from 'twin.macro';
 
 import { formatTargetCategoryForDisplay, formatTargetGoalForDisplay } from './core/recurrence.facade';
@@ -10,6 +13,7 @@ import { LabelWithStepper } from '~~/components/common/LabelWithStepper';
 import { TwemojiInlineLazy } from '~~/components/common/TwemojiLazy';
 import { RecurrenceGoalCategoryType, habitCategoryList } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.types';
 import { IRecurrenceObservables } from '~~/components/routes/goal-details/initatives/attributes/core/useInitiativeSchedule';
+import { IDisplayText, defaultIDisplayText } from '~~/models/IDisplayText';
 
 /**
  * see @IRecurrenceObservables for detailed comments on props
@@ -46,13 +50,20 @@ export const RecurrenceTarget: FC<IRecurrenceTargetProps> = (props) => {
    // const tempColorSelectedDay = 'bg-gray-200';
    const intl = useIntl();
 
-   const targetValue = formatTargetGoalForDisplay(
-      intl,
-      props.period.value,
-      props.repetition.value,
-      props.target.value,
-      props.targetGoal.value,
-      props.targetCategory.value
+   const [targetValue] = useObservableState<IDisplayText>(
+      () =>
+         combineLatest([
+            props.period.subject$,
+            props.repetition.subject$,
+            props.target.subject$,
+            props.targetGoal.subject$,
+            props.targetCategory.subject$,
+         ]).pipe(
+            map(([period, duration, target, targetGoal, targetGoalCategory]) =>
+               formatTargetGoalForDisplay(intl, period, duration, target, targetGoal, targetGoalCategory)
+            )
+         ),
+      defaultIDisplayText()
    );
 
    const handleStepperClick = (event: MouseEvent, action: 'add' | 'remove'): void => {

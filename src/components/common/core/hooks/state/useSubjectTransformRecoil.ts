@@ -1,6 +1,6 @@
-import { useObservable, useObservableEagerState, useObservableState } from 'observable-hooks';
+import { useObservable, useObservableEagerState, useObservableState, useSubscription } from 'observable-hooks';
 import { useCallback } from 'react';
-import { useRecoilState, atom, RecoilState, RecoilValueReadOnly, useRecoilValue } from 'recoil';
+import { useRecoilState, atom, RecoilState, RecoilValueReadOnly, useRecoilValue, useRecoilCallback } from 'recoil';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -44,10 +44,15 @@ export const useSubjectTransformRecoil = <T>(
    }
 
    const recoilState = useRecoilValue(atom);
+   useRecoilCallback(({ snapshot }) => async () => {
+      await snapshot.getPromise(atom);
+   });
 
    // todo: it doens't make sense to send this to the recoil state
-   const subject$ = useObservable(() => operator(recoilState.getSubject(), ...otherObservables$)) as BehaviorSubject<T>;
+   const subject$ = useObservable(() => operator(recoilState.getSubject, ...otherObservables$)) as BehaviorSubject<T>;
    // const value = useObservableState(subject$, recoilState);
 
-   return { subject$, next: recoilState.next, source$: recoilState.getSubject() };
+   useSubscription(subject$, (v) => console.log('triggered', v));
+
+   return { subject$, next: recoilState.next, source$: recoilState.getSubject };
 };

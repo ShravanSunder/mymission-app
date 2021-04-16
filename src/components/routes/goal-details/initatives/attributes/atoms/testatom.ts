@@ -45,7 +45,7 @@ export const source = atom<number>({
    // ],
 });
 
-export const trailAtom = observableAtomFactory('RecurrenceRepetitionAggregation', RecurrenceRepetitionAggregation.PerDay);
+// export const trailAtom = observableAtomFactory('RecurrenceRepetitionAggregation', RecurrenceRepetitionAggregation.PerDay);
 
 export const periodAtom = observableAtomFactory('RecurrenceRepetitionAggregation', RecurrenceRepetitionAggregation.PerDay);
 

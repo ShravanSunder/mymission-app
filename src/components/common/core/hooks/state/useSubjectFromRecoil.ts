@@ -17,7 +17,7 @@ import { RecoilSubject } from '~~/providers/observableAtomFactory';
  */
 export const useSubjectFromRecoil = <T>(atom: RecoilValueReadOnly<RecoilSubject<T>>): SubjectWithValue<T> => {
    const recoilState = useRecoilValue(atom);
-   const subject$ = recoilState.getSubject();
+   const subject$ = recoilState.getSubject;
    // const subject$ = useObservable((input$: Observable<[T]>) => input$.pipe(map(([value]) => value)), [recoilState]) as BehaviorSubject<T>;
 
    return { subject$, next: recoilState.next };

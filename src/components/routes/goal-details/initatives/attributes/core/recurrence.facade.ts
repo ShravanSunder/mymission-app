@@ -1,9 +1,12 @@
+import { PanoramaSharp } from '@material-ui/icons';
+import { duration } from 'dayjs';
 import { IntlShape } from 'react-intl';
 
-import { RecurrenceGoalCategoryType, RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './recurrence.types';
+import { RecurrenceGoalCategoryType, RecurrenceRepetitionAggregation, RecurrenceRepetitionType, TRecurrenceTargetType } from './recurrence.types';
 import { daysOfWeekToString, isEveryDayOfWeek, isEveryMonthOfYear, isEveryWeekOfMonth, monthsOfYearToString, weeksOfMonthToString } from './schedule.funcs';
 import { DaysOfWeek, MonthsOfYear } from './schedule.types';
 
+import { IInitativeRecurrence } from '~~/components/routes/goal-details/initatives/attributes/core/initativeSchedule.types';
 import { availableNumericTargetRange } from '~~/components/routes/goal-details/initatives/attributes/core/recurrence.funcs';
 import { getAsEnumArray, getAsNumber, getAsNumberArray } from '~~/helpers/conversion';
 import { Exception, ExceptionTypes } from '~~/models/Exception';
@@ -39,20 +42,15 @@ export const formatRepetitionForUnits = (intl: IntlShape, duration: RecurrenceRe
 /**
  * function to get a display string that represents the recurrence
  * @param period
- * @param duration
+ * @param repetition
  * @param target
  */
 
-export const formatRecurrenceGoalForDisplay = (
-   intl: IntlShape,
-   period: RecurrenceRepetitionAggregation,
-   duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType,
-   targetCount: number
-): IDisplayText => {
-   const numericTargetRange = availableNumericTargetRange(period, duration);
+export const formatRecurrenceGoalForDisplay = (intl: IntlShape, params: IInitativeRecurrence): IDisplayText => {
+   const { period, repetition, target } = params;
+   const numericTargetRange = availableNumericTargetRange(period, repetition);
 
-   if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth && Array.isArray(target)) {
+   if (repetition === RecurrenceRepetitionType.SpecificWeeksOfMonth && Array.isArray(target)) {
       const tempTarget = getAsNumberArray(target) ?? [];
       if (isEveryWeekOfMonth(tempTarget)) {
          return {
@@ -73,7 +71,7 @@ export const formatRecurrenceGoalForDisplay = (
          };
       }
    } else if (typeof target === 'number' && numericTargetRange[1] != 0 && numericTargetRange[0] != 0) {
-      if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
+      if (repetition === RecurrenceRepetitionType.PerNumberOfDays) {
          if (target > 1) {
             return {
                primary: intl.formatMessage(
@@ -86,7 +84,7 @@ export const formatRecurrenceGoalForDisplay = (
          }
       } else if (target < numericTargetRange[1]) {
          const periodUnits = formatRepetitionAggregationForUnits(intl, period, target).toLowerCase();
-         const durationUnits = formatRepetitionForUnits(intl, duration, 1).toLowerCase();
+         const durationUnits = formatRepetitionForUnits(intl, repetition, 1).toLowerCase();
          return {
             primary: intl.formatMessage(
                {
@@ -97,7 +95,7 @@ export const formatRecurrenceGoalForDisplay = (
          };
       } else if (target === numericTargetRange[1]) {
          const periodUnits = formatRepetitionAggregationForUnits(intl, period, 1).toLowerCase();
-         const durationUnits = formatRepetitionForUnits(intl, duration, 1).toLowerCase();
+         const durationUnits = formatRepetitionForUnits(intl, repetition, 1).toLowerCase();
          return {
             primary: intl.formatMessage(
                {
@@ -114,7 +112,7 @@ export const formatRecurrenceGoalForDisplay = (
          };
       }
    } else if (period === RecurrenceRepetitionAggregation.PerDay) {
-      if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek && Array.isArray(target)) {
+      if (repetition === RecurrenceRepetitionType.SpecificDaysOfWeek && Array.isArray(target)) {
          const tempTarget = getAsEnumArray<DaysOfWeek>(DaysOfWeek, target) ?? [];
          if (isEveryDayOfWeek(tempTarget)) {
             return {
@@ -134,7 +132,7 @@ export const formatRecurrenceGoalForDisplay = (
             };
          }
       }
-   } else if (duration === RecurrenceRepetitionType.SpecificMonthsOfYear && Array.isArray(target)) {
+   } else if (repetition === RecurrenceRepetitionType.SpecificMonthsOfYear && Array.isArray(target)) {
       const tempTarget = getAsEnumArray<MonthsOfYear>(MonthsOfYear, target) ?? [];
       if (isEveryMonthOfYear(tempTarget)) {
          return {
@@ -155,7 +153,7 @@ export const formatRecurrenceGoalForDisplay = (
       }
    }
 
-   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType: duration, aggregationPeriod: period, target });
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { durationType: repetition, aggregationPeriod: period, target });
 };
 
 export const formatRepetitionAggregationForDisplay = (intl: IntlShape, period: RecurrenceRepetitionAggregation): IDisplayText => {
@@ -182,27 +180,24 @@ export const formatRepetitionAggregationForDisplay = (intl: IntlShape, period: R
    }
 };
 
-export const formatRepetitionForDisplay = (
-   intl: IntlShape,
-   period: RecurrenceRepetitionAggregation,
-   duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType
-): IDisplayText => {
-   if (duration === RecurrenceRepetitionType.PerNumberOfDays) {
+export const formatRepetitionForDisplay = (intl: IntlShape, params: IInitativeRecurrence): IDisplayText => {
+   const { period, repetition, target } = params;
+
+   if (repetition === RecurrenceRepetitionType.PerNumberOfDays) {
       const tempTarget: number = getAsNumber(target) ?? 2;
-      const durationText = formatRepetitionForUnits(intl, duration, 2).toLowerCase();
+      const durationText = formatRepetitionForUnits(intl, repetition, 2).toLowerCase();
       return {
          primary: intl.formatMessage({ defaultMessage: 'Alternate {durationText}' }, { durationText, tempTarget }),
       };
-   } else if (duration === RecurrenceRepetitionType.SpecificDaysOfWeek) {
+   } else if (repetition === RecurrenceRepetitionType.SpecificDaysOfWeek) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific days of the week' }),
       };
-   } else if (duration === RecurrenceRepetitionType.SpecificWeeksOfMonth) {
+   } else if (repetition === RecurrenceRepetitionType.SpecificWeeksOfMonth) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific weeks of the month' }),
       };
-   } else if (duration === RecurrenceRepetitionType.SpecificMonthsOfYear) {
+   } else if (repetition === RecurrenceRepetitionType.SpecificMonthsOfYear) {
       return {
          primary: intl.formatMessage({ defaultMessage: 'Specific months of the year' }),
       };
@@ -212,24 +207,19 @@ export const formatRepetitionForDisplay = (
       period === RecurrenceRepetitionAggregation.PerMonth
    ) {
       const periodText = formatRepetitionAggregationForUnits(intl, period, 2).toLowerCase();
-      const durationText = formatRepetitionForUnits(intl, duration, 1).toLowerCase();
+      const durationText = formatRepetitionForUnits(intl, repetition, 1).toLowerCase();
 
       return {
          primary: intl.formatMessage({ defaultMessage: 'Number of {periodText} per {durationText}' }, { periodText, durationText }),
       };
    }
 
-   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration });
+   throw new Exception(ExceptionTypes.Schedule_RecurrenceConfigurationIsInvalid, { period, duration: repetition });
 };
 
-export const formatTargetGoalForDisplay = (
-   intl: IntlShape,
-   period: RecurrenceRepetitionAggregation,
-   duration: RecurrenceRepetitionType,
-   target: TRecurrenceGoalTargetType,
-   targetGoal: number,
-   targetCategory: RecurrenceGoalCategoryType
-): IDisplayText => {
+export const formatTargetGoalForDisplay = (intl: IntlShape, params: IInitativeRecurrence): IDisplayText => {
+   const { period, repetition, target, targetGoal, targetCategory } = params;
+
    const periodText = formatRepetitionAggregationForUnits(intl, period, 1).toLowerCase();
 
    if (targetCategory === RecurrenceGoalCategoryType.NegativeTarget) {

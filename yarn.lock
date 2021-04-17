@@ -16352,6 +16352,7 @@ fsevents@^1.2.7:
     jest-transformer-mdx: ^2.2.0
     material-ui-popup-state: ^1.8.0
     mini-css-extract-plugin: ^1.4.1
+    nanoid: ^3.1.22
     notistack: next
     observable-hooks: ^4.0.3
     postcss: ^8.2.9

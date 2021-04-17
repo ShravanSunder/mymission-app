@@ -3,13 +3,15 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 
-import { formatTargetGoalForDisplay, formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay } from './core/recurrence.facade';
-import { IRecurrenceObservables, useInitiativeSchedule } from './core/useInitiativeSchedule';
+import { formatRecurrenceGoalForDisplay, formatRepetitionAggregationForDisplay, formatTargetGoalForDisplay } from './core/recurrence.facade';
+import { useInitiativeSchedule } from './core/useInitiativeSchedule';
 import { RecurrenceRepetition as RecurrenceRepetition } from './RecurrenceRepetition';
 import { RecurrenceTarget } from './RecurrenceTarget';
 import { ScheduleSummary } from './ScheduleSummary';
 
 import { useControlledAccordion } from '~~/components/common/core/hooks/useControlledAccordion';
+import { IInitativeRecurrence } from '~~/components/routes/goal-details/initatives/attributes/core/initativeSchedule.types';
+import { TAtomState } from '~~/models/TRecoilState';
 
 export const InitativeSchedule: FC = () => {
    /**
@@ -20,34 +22,10 @@ export const InitativeSchedule: FC = () => {
    const getAccordionProps = useControlledAccordion();
    const intl = useIntl();
 
-   const state: IRecurrenceObservables = useInitiativeSchedule();
-   const aggregationValue = formatRepetitionAggregationForDisplay(intl, state.period.value);
+   const state: TAtomState<IInitativeRecurrence> = useInitiativeSchedule();
 
    const periodName = intl.formatMessage({ defaultMessage: 'Habit Repetition' });
-
    const goalName = intl.formatMessage({ defaultMessage: 'Goal' });
-   const goalValue = formatRecurrenceGoalForDisplay(intl, state.period.value, state.repetition.value, state.target.value, state.targetGoal.value);
-   const targetValue = formatTargetGoalForDisplay(
-      intl,
-      state.period.value,
-      state.repetition.value,
-      state.target.value,
-      state.targetGoal.value,
-      state.targetCategory.value
-   );
-
-   // const goalSummary = (
-   //    <div css={tw`grid grid-cols-2`}>
-   //       <div>
-   //          {'📅'}
-   //          {goalValue.primary}
-   //       </div>
-   //       <div>
-   //          {'🔢'}
-   //          {targetValue.primary}
-   //       </div>
-   //    </div>
-   // );
 
    const aggregateAccordion = (
       <Accordion {...getAccordionProps('aggregateAccordion')}>

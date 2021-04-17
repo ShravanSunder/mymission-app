@@ -3,10 +3,12 @@ import '~~/styles/css/tailwind-components.pcss';
 import '~~/styles/css/tailwind-utilities.pcss';
 import '~~/styles/css/app.pcss';
 
-import { Suspense, FC } from 'react';
-import { IntlProvider } from 'react-intl';
+import React, { Suspense, FC } from 'react';
+import { IntlProvider, RawIntlProvider } from 'react-intl';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
+import { getIntlRoot, intlLocaleAtom, intlProviderAtom } from '~~/components/app/IntlProvider';
 import ThemeProvider from '~~/components/app/ThemeProvider';
 import { ErrorBoundary, ErrorFallback } from '~~/components/common/ErrorFallback';
 import { MainAppLayout } from '~~/components/layout/MainAppLayout';
@@ -17,9 +19,12 @@ import { MainAppLayout } from '~~/components/layout/MainAppLayout';
  * @see ThemeProvider
  */
 const AppRoot: FC = () => {
+   const intlLocaleValue = useRecoilValue(intlLocaleAtom);
+   const intlProviderValue = useRecoilValue(intlProviderAtom);
+
    return (
       <ThemeProvider>
-         <IntlProvider locale="en" defaultLocale="en">
+         <RawIntlProvider value={intlProviderValue} key={intlLocaleValue}>
             <BrowserRouter>
                <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Suspense fallback={<div></div>}>
@@ -32,7 +37,7 @@ const AppRoot: FC = () => {
                   </Suspense>
                </ErrorBoundary>
             </BrowserRouter>
-         </IntlProvider>
+         </RawIntlProvider>
       </ThemeProvider>
    );
 };

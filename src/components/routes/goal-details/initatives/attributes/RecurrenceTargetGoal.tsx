@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { IconFlexItem, IconFlexList } from '../../../../common/IconFlexList';
 
-import { RecurrenceRepetitionType, TRecurrenceGoalTargetType } from './core/recurrence.types';
+import { RecurrenceRepetitionType, TRecurrenceTargetType } from './core/recurrence.types';
 import { DaysOfWeek, daysOfWeekToShortCodeMap, MonthsOfYear, monthsOfYearToShortCodeMap, weeksOfMonthMap } from './core/schedule.types';
 import { IRecurrenceTargetProps as IRecurrenceTargetGoalProps } from './RecurrenceTarget';
 
@@ -37,9 +37,9 @@ const RecurrenceTargetGoalInternal: FC<IRecurrenceTargetGoalProps> = (props) => 
          if (newValue != undefined) {
             const data = props.target.subject$.getValue() as T[];
             if (data.includes(newValue)) {
-               props.target.next(data.filter((f) => f !== newValue) as TRecurrenceGoalTargetType);
+               props.target.next(data.filter((f) => f !== newValue) as TRecurrenceTargetType);
             } else {
-               props.target.next([...data, newValue] as TRecurrenceGoalTargetType);
+               props.target.next([...data, newValue] as TRecurrenceTargetType);
             }
          }
       };

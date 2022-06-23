@@ -149,7 +149,7 @@
       "@react-hook/window-size": "^3.0.7",
       "chrono-node": "^2.2.6",
       "dayjs": "^1.10.4",
-      "dexie": "^3.0.3",
+      "dexie": "^3.2.2",
       "emoji-regex": "^9.2.2",
       "facepaint": "^1.2.1",
       "formik": "^2.2.6",
